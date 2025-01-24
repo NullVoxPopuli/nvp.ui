@@ -45,7 +45,7 @@
       ]
     },
     "overrides": {
-      "@glimmer/interfaces": "^0.84.2",
+      "@glimmer/interfaces": "^0.94.0",
       "@glimmer/validator": "^0.84.2",
       "ember-async-data": "1.0.1",
       "ember-cli-babel": "^8.2.0",
