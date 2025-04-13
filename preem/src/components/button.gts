@@ -32,6 +32,9 @@ export interface Signature {
     variant?: 'danger' | 'primary' | 'secondary' | 'default' | undefined;
   };
   Blocks: {
+    /**
+     * Default content to make the button
+     */
     default: [];
   };
 }

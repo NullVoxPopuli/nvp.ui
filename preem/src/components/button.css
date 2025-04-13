@@ -2,4 +2,7 @@
 
 .preem_button {
   --button-radius: var(--radius);
+
+  display: inline-grid;
+  gap: var(--gap);
 }
