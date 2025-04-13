@@ -1,0 +1,5 @@
+@import './variables.css';
+
+.preem_button {
+  --button-radius: var(--radius);
+}
