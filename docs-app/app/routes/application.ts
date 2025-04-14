@@ -32,6 +32,7 @@ export default class ApplicationRoute extends Route {
     const manifest = await setupKolay(this, {
       resolve: {
         'ember-primitives': import('ember-primitives'),
+        'ember-primitives/components/popover': import('ember-primitives/components/popover'),
         '@universal-ember/preem': import('@universal-ember/preem'),
         kolay: import('kolay'),
       },
