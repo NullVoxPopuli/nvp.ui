@@ -4,7 +4,7 @@ import { setup } from 'qunit-dom';
 import { start } from 'ember-qunit';
 
 import Application from 'docs-app/app';
-import config from 'docs-app/config/environment';
+import config from 'docs-app/config';
 
 setApplication(Application.create(config.APP));
 

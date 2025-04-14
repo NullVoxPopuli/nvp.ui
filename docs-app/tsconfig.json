@@ -12,7 +12,12 @@
       "docs-app/tests/*": ["tests/*"],
       "docs-app/*": ["app/*"],
       "*": ["types/*"]
-    }
+    },
+    "types": [
+      "ember-source/types",
+      "vite/client",
+      "kolay/virtual",
+      "@embroider/core/virtual"]
   },
   "include": ["app/**/*", "tests/**/*", "types/**/*"]
 }
