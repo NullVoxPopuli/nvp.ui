@@ -1,8 +1,55 @@
-@import './variables.css';
+.preem__button {
+  --button-background-color: var(--button-color);
+  --button-hover-mix: 0%;
+  --button-opacity: 1;
+  --button-interact-spread: 0;
 
-.preem_button {
-  --button-radius: var(--radius);
+  /* Behaviors */
+  transition: all 0.2s;
+  opacity: var(--button-opacity);
 
+  /* Layout */
   display: inline-grid;
+  grid-auto-flow: column;
   gap: var(--gap);
+  padding: var(--padding-1) var(--padding-2);
+
+  /* Borders */
+  border-radius: var(--button-border-radius);
+  border-width: var(--button-border-width);
+  border-style: var(--button-border-style);
+
+  /* Colors */
+  box-shadow: 0 1px 3px var(--button-interact-spread) var(--button-background-color);
+  background: 
+    color-mix(in oklab,
+              var(--button-background-color) 75%,
+              var(--button-hover-color-mix) var(--button-hover-mix));
+  border-color: 
+    color-mix(in oklab,
+              var(--button-background-color) 50%,
+              var(--button-border-color-mix) 50%);
+
+  /* States */
+  &[data-variant="primary"] { --button-background-color: var(--color-primary); }
+  &[data-variant="secondary"] { --button-background-color: var(--color-secondary); }
+  &[data-variant="danger"] { --button-background-color: var(--color-danger); }
+
+  &:hover {
+    --button-hover-mix: 30%;
+    --button-interact-spread: 1px;
+  }
+
+  /* Press, tap, etc */
+  &:active {
+    transform: scale(0.98);
+    --button-hover-mix: 30%;
+    --button-hover-color-mix: #000;
+    --button-interact-spread: -1px;
+  }
+
+  &[aria-disabled] {
+    --button-opacity: 0.5;
+    --button-interact-spread: -1px;
+  }
 }

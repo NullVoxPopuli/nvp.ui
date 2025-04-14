@@ -1,3 +1,5 @@
+import './variables.css';
+import './focus.css';
 import './button.css';
 
 import type { TOC } from '@ember/component/template-only';
@@ -39,8 +41,20 @@ export interface Signature {
   };
 }
 
+const or = (a: unknown, b: unknown) => a || b;
+
 export const Button: TOC<Signature> = <template>
   <button class='preem__button' data-variant={{@variant}} aria-disabled={{Boolean @disabled}}>
-    {{yield}}
+    {{#if (or (has-block 'start') @start)}}
+      <span>{{@start}}{{yield to='start'}}</span>
+    {{/if}}
+
+    {{#if (or (has-block) (has-block 'text'))}}
+      <span>{{yield}}{{yield to='text'}}</span>
+    {{/if}}
+
+    {{#if (or (has-block 'end') @end)}}
+      <span>{{@end}}{{yield to='end'}}</span>
+    {{/if}}
   </button>
 </template>;

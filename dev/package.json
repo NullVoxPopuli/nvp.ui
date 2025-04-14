@@ -20,11 +20,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
-    "@babel/eslint-parser": "^7.25.9",
-    "@nullvoxpopuli/eslint-configs": "^4.3.0",
-    "@typescript-eslint/eslint-plugin": "^8.19.0",
-    "@typescript-eslint/parser": "^8.19.0",
-    "eslint": "^8.48.0",
+    "@nullvoxpopuli/eslint-configs": "^5.1.1",
+    "eslint": "^9.24.0",
     "prettier": "^3.4.2",
     "typescript": "^5.2.2"
   },
