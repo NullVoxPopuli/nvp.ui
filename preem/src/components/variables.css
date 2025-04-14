@@ -1,6 +1,7 @@
 :root {
   /* General */
   --radius: 0.25rem;
+  --font: ui-sans-serif, sans-serif;
 
   /* Spacing */
   --gap: 0.25rem;
@@ -38,6 +39,19 @@
   --button-border-width: var(--border-width);
   --button-border-style: var(--border-style);
   --button-border-color: var(--border-color);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html, body, button {
+  font-family: var(--font);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 main {
