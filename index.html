@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>null ui</title>
+    <meta name="description" content="Primitives for building UI Quickly in Ember.js" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script src="https://requirejs.org/docs/release/2.3.7/minified/require.js"></script>
+  </head>
+  <body>
+    <script src="/@embroider/virtual/vendor.js"></script>
+    <script type="module">
+      import Application from '#app/app';
+      import environment from '#app/config';
+
+      Application.create(environment.APP);
+    </script>
+  </body>
+</html>

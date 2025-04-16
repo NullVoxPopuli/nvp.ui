@@ -1,6 +1,0 @@
-packages:
-  - 'preem'
-  - 'test-app'
-  - 'docs-app'
-  - 'docs-api'
-  - 'dev'
