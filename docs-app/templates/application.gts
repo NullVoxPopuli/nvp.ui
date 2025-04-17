@@ -1,29 +1,29 @@
-import 'ember-mobile-menu/themes/android';
+import "ember-mobile-menu/themes/android";
 
-import { on } from '@ember/modifier';
+import { on } from "@ember/modifier";
 
-import { pascalCase, sentenceCase } from 'change-case';
+import { pascalCase, sentenceCase } from "change-case";
 // @ts-expect-error no types for the mobile-menu
-import MenuWrapper from 'ember-mobile-menu/components/mobile-menu-wrapper';
-import { pageTitle } from 'ember-page-title';
-import Route from 'ember-route-template';
-import { GroupNav, PageNav } from 'kolay/components';
+import MenuWrapper from "ember-mobile-menu/components/mobile-menu-wrapper";
+import { pageTitle } from "ember-page-title";
+import Route from "ember-route-template";
+import { GroupNav, PageNav } from "kolay/components";
 
-import { abbreviatedSha } from '~build/git';
+import { abbreviatedSha } from "~build/git";
 
-import type { TOC } from '@ember/component/template-only';
-import type { Page } from 'kolay';
+import type { TOC } from "@ember/component/template-only";
+import type { Page } from "kolay";
 
 const Menu: TOC<{ Element: SVGElement }> = <template>
   <svg
-    xmlns='http://www.w3.org/2000/svg'
-    x='0px'
-    y='0px'
-    viewBox='0 0 50 50'
-    style='fill:currentColor'
+    xmlns="http://www.w3.org/2000/svg"
+    x="0px"
+    y="0px"
+    viewBox="0 0 50 50"
+    style="fill:currentColor"
     ...attributes
   ><path
-      d='M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z'
+      d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z"
     ></path></svg>
 </template>;
 
@@ -50,23 +50,23 @@ const SideNav: TOC<{ Element: HTMLElement }> = <template>
 
 export default Route(
   <template>
-    {{pageTitle 'Docs :: ' abbreviatedSha}}
+    {{pageTitle "Docs :: " abbreviatedSha}}
 
     <MenuWrapper as |mmw|>
-      <mmw.MobileMenu @mode='push' @maxWidth={{200}} as |mm|>
-        <SideNav {{on 'click' mm.actions.close}} />
+      <mmw.MobileMenu @mode="push" @maxWidth={{200}} as |mm|>
+        <SideNav {{on "click" mm.actions.close}} />
       </mmw.MobileMenu>
 
-      <mmw.Content class='container'>
-        <header style='display: flex; align-items: baseline; gap: 1rem;'>
+      <mmw.Content class="container">
+        <header style="display: flex; align-items: baseline; gap: 1rem;">
           <mmw.Toggle><Menu /></mmw.Toggle>
           <GroupNav />
         </header>
 
-        <div class='big-layout'>
+        <div class="big-layout">
           <SideNav />
 
-          <main style='padding-top: 1rem;'>
+          <main style="padding-top: 1rem;">
             {{outlet}}
           </main>
         </div>
@@ -140,11 +140,11 @@ export default Route(
 function nameFor(x: Page) {
   // We defined componentName via json file
 
-  if ('componentName' in x) {
-    return `${x.componentName}`;
+  if ("componentName" in x) {
+    return `${x.componentName as string}`;
   }
 
-  if (x.path.includes('/components/')) {
+  if (x.path.includes("/components/")) {
     return `<${pascalCase(x.name)} />`;
   }
 

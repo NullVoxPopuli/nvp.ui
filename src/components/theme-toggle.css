@@ -10,7 +10,7 @@
   .preem__sr-only {
     margin-left: -0.5rem;
   }
-  input[type='checkbox'][role='switch'] {
+  input[type="checkbox"][role="switch"] {
     opacity: 0;
     position: absolute;
   }
@@ -49,7 +49,7 @@
     transition: transform 0.2s linear;
   }
 
-  input[type='checkbox'][role='switch']:checked + label .ball {
+  input[type="checkbox"][role="switch"]:checked + label .ball {
     transform: translateX(120%);
   }
 }

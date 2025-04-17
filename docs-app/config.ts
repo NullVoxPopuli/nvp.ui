@@ -1,8 +1,8 @@
 const ENV = {
-  modulePrefix: 'docs-app',
-  environment: import.meta.env.DEV ? 'development' : 'production',
-  rootURL: '/',
-  locationType: 'history',
+  modulePrefix: "docs-app",
+  environment: import.meta.env.DEV ? "development" : "production",
+  rootURL: "/",
+  locationType: "history",
   EmberENV: {
     EXTEND_PROTOTYPES: false,
     FEATURES: {
@@ -19,7 +19,7 @@ const ENV = {
 export default ENV;
 
 export function enterTestMode() {
-  ENV.locationType = 'none';
-  ENV.APP.rootElement = '#ember-testing';
+  ENV.locationType = "none";
+  ENV.APP.rootElement = "#ember-testing";
   ENV.APP.autoboot = false;
 }

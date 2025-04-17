@@ -2,9 +2,8 @@
 
 Switches between light mode and dark mode
 
-
 ```gjs live no-shadow
-import { ThemeToggle } from '@universal-ember/preem';
+import { ThemeToggle } from "@universal-ember/preem";
 
 <template>
   <div class="demo">
@@ -15,7 +14,7 @@ import { ThemeToggle } from '@universal-ember/preem';
 
   <style>
     .demo {
-      display: flex; 
+      display: flex;
       gap: 0.5rem;
       justify-content: center;
       align-items: center;
@@ -31,40 +30,35 @@ import { ThemeToggle } from '@universal-ember/preem';
 </template>
 ```
 
+## Features
 
-## Features 
+- Toggles the theme, managed by ['color-scheme'](https://ember-primitives.pages.dev/6-utils/color-scheme)
+- Live updates if anything else changes the current color scheme.
+- Defaults to the user's preferred color scheme.
 
-* Toggles the theme, managed by ['color-scheme'](https://ember-primitives.pages.dev/6-utils/color-scheme) 
-* Live updates if anything else changes the current color scheme. 
-* Defaults to the user's preferred color scheme.
+## Installation
 
-
-## Installation 
-
-```bash 
-pnpm add @universal-ember/preem 
+```bash
+pnpm add @universal-ember/preem
 ```
 
 ## Anatomy
 
-```js 
-import { ThemeToggle } from '@universal-ember/preem';
+```js
+import { ThemeToggle } from "@universal-ember/preem";
 ```
 
 or for non-tree-shaking environments:
-```js 
-import { ThemeToggle } from '@universal-ember/preem/components/theme-toggle';
+
+```js
+import { ThemeToggle } from "@universal-ember/preem/components/theme-toggle";
 ```
 
+```gjs
+import { ThemeToggle } from "@universal-ember/preem";
 
-```gjs 
-import { ThemeToggle } from '@universal-ember/preem';
-
-<template>
-  <ThemeToggle />
-</template>
+<template><ThemeToggle /></template>
 ```
-
 
 ## API Reference
 
@@ -74,14 +68,13 @@ none
 
 none
 
-### Styling 
+### Styling
 
 Public selectors:
 
-| key | description |  
-| :---: | :----------- |  
-| `.preem__site-theme-toggle` | Wrapper element around the underlying switch |  
-
+|             key             | description                                  |
+| :-------------------------: | :------------------------------------------- |
+| `.preem__site-theme-toggle` | Wrapper element around the underlying switch |
 
 ## Accessibility
 
@@ -89,7 +82,6 @@ See [`Switch`](https://ember-primitives.pages.dev/3-components/switch)
 
 ### Keyboard Interactions
 
-| key | description |  
-| :---: | :----------- |  
-| <kbd>Space</kbd> | Toggles the component's state |  
-
+|       key        | description                   |
+| :--------------: | :---------------------------- |
+| <kbd>Space</kbd> | Toggles the component's state |

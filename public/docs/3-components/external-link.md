@@ -2,13 +2,12 @@
 
 The `<ExternalLink />` component is a light wrapper around the [Anchor element][mdn-a], which will always make your link an external link.
 
-
 [mdn-a]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
 
 This component always has `target=_blank` and `rel='noreferrer noopener'`.
 
 ```gjs live
-import { ExternalLink } from '@universal-ember/preem';
+import { ExternalLink } from "@universal-ember/preem";
 
 <template>
   <ExternalLink href="https://github.com/universal-ember/preem">
@@ -17,22 +16,23 @@ import { ExternalLink } from '@universal-ember/preem';
 </template>
 ```
 
-## Installation 
+## Installation
 
-```bash 
-pnpm add @universal-ember/preem 
+```bash
+pnpm add @universal-ember/preem
 ```
 
 ## API Reference
 
 ```gjs live no-shadow
-import { ComponentSignature } from 'kolay';
+import { ComponentSignature } from "kolay";
 
 <template>
-  <ComponentSignature 
-    @package="@universal-ember/preem" 
-    @module="declarations/components/external-link" 
-    @name="Signature" />
+  <ComponentSignature
+    @package="@universal-ember/preem"
+    @module="declarations/components/external-link"
+    @name="Signature"
+  />
 </template>
 ```
 
@@ -40,12 +40,11 @@ import { ComponentSignature } from 'kolay';
 
 none
 
-### Styling 
+### Styling
 
 Public selectors:
 
-| key | description |  
-| :---: | :----------- |  
-| `.preem__external-link` | The anchor class  |  
-| `.preem__external-link__link-content` | The wrapper element around the block content |  
-
+|                  key                  | description                                  |
+| :-----------------------------------: | :------------------------------------------- |
+|        `.preem__external-link`        | The anchor class                             |
+| `.preem__external-link__link-content` | The wrapper element around the block content |

@@ -15,6 +15,10 @@ declarations/
 # misc
 /coverage/
 !.*
+*.yml
+*.yaml
+README.md
+CHANGELOG.md
 .eslintcache
 .lint-todo/
 .github/

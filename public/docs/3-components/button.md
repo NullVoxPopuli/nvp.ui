@@ -2,20 +2,19 @@
 
 The accessible button is an improvement on the native `<button>` by providing additional information when disabled, tooltips, etc
 
-
 ```gjs live no-shadow
-import { Button, ExternalLink } from '@universal-ember/preem';
-import { PortalTargets } from 'ember-primitives';
+import { Button, ExternalLink } from "@universal-ember/preem";
+import { PortalTargets } from "ember-primitives";
 
 const Reasoning = <template>
   You are missing the following permissions:
-  
+
   <ul>
     <li>blogs.read</li>
     <li>blogs.write</li>
   </ul>
 
-  To gain these permissions, consider purchasing a 
+  To gain these permissions, consider purchasing a
   <ExternalLink href="https://example.com">
     Blogging Subscription
   </ExternalLink>
@@ -28,7 +27,7 @@ const Reasoning = <template>
   <Button @variant="secondary">Secondary</Button>
   <Button @variant="danger">Danger</Button>
 
-  <br><br>
+  <br /><br />
 
   <Button>
     <:start>✨</:start>
@@ -42,17 +41,20 @@ const Reasoning = <template>
     Button text
   </Button>
 
-  <br><br>
+  <br /><br />
   <Button @variant="primary" @disabled="Disabled for visual Demo">Primary</Button>
 
-  <br><br>
+  <br /><br />
   <Button @variant="primary" @disabled="Disabled for visual Demo">Primary</Button>
   <Button @variant="secondary" @disabled="Disabled for visual Demo">Secondary</Button>
   <Button @variant="danger" @disabled="Disabled for visual Demo">Danger</Button>
 
-  <br><br>
-  <Button @variant="primary" @disabled="You do not have permission to do this. You are missing the 'click-whatever-i-want' permission">Primary</Button>
-  <br><br>
+  <br /><br />
+  <Button
+    @variant="primary"
+    @disabled="You do not have permission to do this. You are missing the 'click-whatever-i-want' permission"
+  >Primary</Button>
+  <br /><br />
   <Button @variant="primary" @disabled={{Reasoning}}>Create Blog Post</Button>
   <Button @variant="primary">Create Blog Post</Button>
 </template>
@@ -60,20 +62,21 @@ const Reasoning = <template>
 
 ## Installation
 
-```bash 
-pnpm add @universal-ember/preem 
+```bash
+pnpm add @universal-ember/preem
 ```
 
 ## API Reference
 
 ```gjs
-import { ComponentSignature } from 'kolay';
+import { ComponentSignature } from "kolay";
 
 <template>
-  <ComponentSignature 
-    @package="@universal-ember/preem" 
-    @module="declarations/components/button" 
-    @name="Signature" />
+  <ComponentSignature
+    @package="@universal-ember/preem"
+    @module="declarations/components/button"
+    @name="Signature"
+  />
 </template>
 ```
 
@@ -81,9 +84,9 @@ import { ComponentSignature } from 'kolay';
 
 none
 
-### Styling 
+### Styling
 
 Public selectors:
 
-| key | description |  
-| :---: | :----------- |  
+| key | description |
+| :-: | :---------- |

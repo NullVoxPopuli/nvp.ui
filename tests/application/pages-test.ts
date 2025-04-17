@@ -1,11 +1,12 @@
-import { findAll, settled, visit, waitUntil } from '@ember/test-helpers';
-import { module, test } from 'qunit';
-import { setupApplicationTest } from 'ember-qunit';
+import { findAll, settled, visit, waitUntil } from "@ember/test-helpers";
+import { module, test } from "qunit";
+import { setupApplicationTest } from "ember-qunit";
 
-import { colorScheme } from 'ember-primitives/color-scheme';
+import { colorScheme } from "ember-primitives/color-scheme";
 
-import { a11yAudit } from 'ember-a11y-testing/test-support';
+import { a11yAudit } from "ember-a11y-testing/test-support";
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
 const pages: { path: string }[] = (window as any).__pages__;
 
 /**
@@ -19,24 +20,25 @@ async function checkA11y(assert: Assert, path: string, theme: string) {
       rules: {
         // TODO: find a syntax highlighting theme
         //       with better contrast
-        'color-contrast': {
+        "color-contrast": {
           enabled: false,
         },
       },
     });
     assert.ok(true, `no a11y errors found for ${path} using the ${theme} theme`);
   } catch (e) {
-    let errorText = '';
+    let errorText = "";
 
-    if (typeof e === 'object') {
-      if (e && 'message' in e && typeof e.message === 'string') {
+    if (typeof e === "object") {
+      if (e && "message" in e && typeof e.message === "string") {
         errorText = e.message;
       }
     }
 
-    let message = `no a11y errors found for ${path} using the ${theme} theme` + `\n\n` + errorText;
+    const message =
+      `no a11y errors found for ${path} using the ${theme} theme` + `\n\n` + errorText;
 
-    if (window.location.search.includes('debugA11yAudit')) {
+    if (window.location.search.includes("debugA11yAudit")) {
       console.error(errorText);
     }
 
@@ -44,22 +46,22 @@ async function checkA11y(assert: Assert, path: string, theme: string) {
   }
 }
 
-module('Application | Pages', function (hooks) {
+module("Application | Pages", function (hooks) {
   setupApplicationTest(hooks);
 
-  for (let page of pages) {
+  for (const page of pages) {
     test(`${page.path}`, async function (assert) {
-      let path = page.path.replace('.md', '');
+      const path = page.path.replace(".md", "");
 
       await visit(path);
-      await waitUntil(() => findAll('nav a').length !== 0);
-      await checkA11y(assert, path, 'default');
+      await waitUntil(() => findAll("nav a").length !== 0);
+      await checkA11y(assert, path, "default");
 
-      colorScheme.update('dark');
-      await checkA11y(assert, path, 'dark');
+      colorScheme.update("dark");
+      await checkA11y(assert, path, "dark");
 
-      colorScheme.update('light');
-      await checkA11y(assert, path, 'light');
+      colorScheme.update("light");
+      await checkA11y(assert, path, "light");
     });
   }
 });

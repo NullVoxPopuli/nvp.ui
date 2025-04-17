@@ -1,17 +1,17 @@
-'use strict';
+"use strict";
 
 module.exports = {
-  presets: ['@babel/preset-typescript'],
+  presets: ["@babel/preset-typescript"],
   plugins: [
-    ['@babel/plugin-transform-typescript', { allowDeclareFields: true }],
+    ["@babel/plugin-transform-typescript", { allowDeclareFields: true }],
     [
-      'babel-plugin-ember-template-compilation',
+      "babel-plugin-ember-template-compilation",
       {
-        targetFormat: 'hbs',
+        targetFormat: "hbs",
         transforms: [],
       },
     ],
-    ['module:decorator-transforms', { runtime: { import: 'decorator-transforms/runtime' } }],
+    ["module:decorator-transforms", { runtime: { import: "decorator-transforms/runtime" } }],
   ],
 
   generatorOpts: {

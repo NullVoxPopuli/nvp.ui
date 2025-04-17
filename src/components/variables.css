@@ -10,13 +10,11 @@
   --gap-3: 0.75rem;
   --gap-4: 1rem;
 
-
   --padding: 0.5rem;
   --padding-1: 0.25rem;
   --padding-2: var(--padding);
   --padding-3: 0.75rem;
   --padding-4: 1rem;
-
 
   /* Focus */
   --ring-opacity: 1;
@@ -41,12 +39,15 @@
   --button-border-color: var(--border-color);
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
 
-html, body, button {
+html,
+body,
+button {
   font-family: var(--font);
 }
 
