@@ -79,8 +79,14 @@
       height: 8px;
       transform: rotate(45deg);
     }
+
+    /* When hovering / focusing, don't close the tooltip */
+    &:hover, &:focus-visible {
+      display: block;
+    }
   }
 
+  /* Control the tooltip from the button */
   &:hover, &:focus-visible {
     .preem__button__disabled-reason {
       display: block;
