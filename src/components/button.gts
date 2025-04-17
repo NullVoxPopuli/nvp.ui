@@ -3,11 +3,12 @@ import './focus.css';
 import './button.css';
 
 import Component from '@glimmer/component';
-import type { TOC } from '@ember/component/template-only';
-import type { ComponentLike } from '@glint/template';
-import { Popover } from 'ember-primitives';
-import { on } from '@ember/modifier';
 import { tracked } from '@glimmer/tracking';
+import { on } from '@ember/modifier';
+
+import { Popover } from 'ember-primitives';
+
+import type { ComponentLike } from '@glint/template';
 
 export interface Signature {
   /**
@@ -51,62 +52,33 @@ const isString = (x: unknown) => typeof x === 'string';
 export class Button extends Component<Signature> {
   @tracked isFocused = false;
   handleFocus = () => (this.isFocused = true);
-  handleBlur = () => (this.isFocused = true);
+  handleBlur = () => (this.isFocused = false);
 
   <template>
     <Popover @inline={{true}} as as |popover|>
-      <style>
-        .floatybit {
-          width: max-content;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background: #222;
-          color: white;
-          font-weight: bold;
-          padding: 5px;
-          border-radius: 4px;
-          font-size: 90%;
-          filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.4));
-          z-index: 10;
-        }
-        .arrow {
-          position: absolute;
-          background: #222;
-          width: 8px;
-          height: 8px;
-          transform: rotate(45deg);
-        }
-      </style>
-
       <button
         class='preem__button'
         data-variant={{@variant}}
         aria-disabled={{Boolean @disabled}}
         {{popover.reference}}
-        {{on 'mouseover' this.handleFocus}}
-        {{on 'mouseleave' this.handleBlur}}
-        {{on 'focus' this.handleFocus}}
-        {{on 'blur' this.handleBlur}}
       >
-        {{#if this.isFocused}}
-          {{#if @disabled}}
-            <popover.Content class='floatybit'>
-              {{#if (isString @disabled)}}
-                {{@disabled}}
-              {{else}}
-                <@disabled />
-              {{/if}}
-              <div class='arrow' {{popover.arrow}}></div>
-            </popover.Content>
-          {{/if}}
+        {{#if @disabled}}
+          <popover.Content class='preem__button__disabled-reason'>
+            {{#if (isString @disabled)}}
+              {{@disabled}}
+            {{else}}
+              <@disabled />
+            {{/if}}
+            <div class='arrow' {{popover.arrow}}></div>
+          </popover.Content>
         {{/if}}
+
         {{#if (or (has-block 'start') @start)}}
           <span>{{@start}}{{yield to='start'}}</span>
         {{/if}}
 
         {{#if (or (has-block) (has-block 'text'))}}
-          <span>{{yield}}{{yield to='text'}}</span>
+          <span class='preem__button__text'>{{yield}}{{yield to='text'}}</span>
         {{/if}}
 
         {{#if (or (has-block 'end') @end)}}

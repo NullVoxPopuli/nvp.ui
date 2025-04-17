@@ -54,6 +54,7 @@ const Reasoning = <template>
   <Button @variant="primary" @disabled="You do not have permission to do this. You are missing the 'click-whatever-i-want' permission">Primary</Button>
   <br><br>
   <Button @variant="primary" @disabled={{Reasoning}}>Create Blog Post</Button>
+  <Button @variant="primary">Create Blog Post</Button>
 </template>
 ```
 
