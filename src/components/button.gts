@@ -34,12 +34,41 @@ export interface Signature {
      * What colors to make the button.
      */
     variant?: "danger" | "primary" | "secondary" | "default" | undefined;
+
+    /**
+     * Content before the button contents (such as for an icon)
+     *
+     * The `<:start>` block should not be used if using this arg
+     */
+    start?: string;
+    /**
+     * Content after the button contents (such as for an icon)
+     *
+     * The `<:end>` block should not be used if using this arg
+     */
+    end?: string;
   };
   Blocks: {
     /**
-     * Default content to make the button
+     * Default content for button contents
      */
     default: [];
+    /**
+     * Default content for button contents
+     */
+    text: [];
+    /**
+     * Content before the button contents (such as for an icon)
+     *
+     * The `@start` arg should not be used if using this block
+     */
+    start: [];
+    /**
+     * Content after the button contents (such as for an icon)
+     *
+     * The `@end` arg should not be used if using this block
+     */
+    end: [];
   };
 }
 
