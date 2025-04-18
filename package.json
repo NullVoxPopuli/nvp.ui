@@ -7,7 +7,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:universal-ember/preem.git"
+    "url": "git+ssh@github.com:universal-ember/preem.git"
   },
   "license": "MIT",
   "type": "module",
@@ -60,12 +60,12 @@
     "build:docs-api": "typedoc --options ./typedoc.config.json --json ./dist-docs/docs.json --plugin @zamiell/typedoc-plugin-not-exported --includeTag external ",
     "lint:package": "pnpm publint",
     "lint:published-types": "attw *.tgz || exit 0",
-    "format": "prettier . --cache --write",
+    "format": "prettier . --write",
     "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\" --prefixColors auto",
     "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\" --prefixColors auto && pnpm run format",
-    "lint:format": "prettier . --cache --check",
+    "lint:format": "prettier . --check",
     "lint:hbs": "ember-template-lint . --no-error-on-unmatched-pattern",
-    "lint:js": "eslint . --cache",
+    "lint:js": "eslint .",
     "lint:hbs:fix": "ember-template-lint . --fix --no-error-on-unmatched-pattern",
     "lint:js:fix": "eslint . --fix",
     "lint:types": "glint --project ./tsconfig.tests.json",

@@ -3,6 +3,7 @@
   "glint": {
     "environment": ["ember-loose", "ember-template-imports"]
   },
+  "include": ["src", "docs-app/**", "tests"],
   "compilerOptions": {
     "declarationDir": "declarations",
     "types": ["ember-source/types", "vite/client", "kolay/virtual", "@embroider/core/virtual"],
