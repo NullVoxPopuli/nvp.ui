@@ -6,7 +6,13 @@
   },
   "compilerOptions": {
     "declarationDir": "declarations",
-    "types": ["ember-source/types", "vite/client", "kolay/virtual", "@embroider/core/virtual"],
+    "types": [
+      "ember-source/types",
+      "vite/client",
+      "kolay/virtual",
+      "@embroider/core/virtual",
+      "unplugin-info/client"
+    ],
     "paths": {
       "@universal-ember/preem": "./src/index.ts"
     }

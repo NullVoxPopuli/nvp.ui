@@ -3,12 +3,16 @@
   "glint": {
     "environment": ["ember-loose", "ember-template-imports"]
   },
-  "include": ["src", "docs-app/**", "tests"],
+  "include": ["src", "docs-app", "tests"],
   "compilerOptions": {
-    "declarationDir": "declarations",
-    "types": ["ember-source/types", "vite/client", "kolay/virtual", "@embroider/core/virtual"],
-    "paths": {
-      "@universal-ember/preem": "./src/index.ts"
-    }
+    "rootDir": ".",
+    "types": [
+      "ember-source/types",
+      "vite/client",
+      "kolay/virtual",
+      "@embroider/core/virtual",
+      "unplugin-info/client"
+    ],
+    "paths": {}
   }
 }

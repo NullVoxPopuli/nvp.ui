@@ -2,8 +2,12 @@ import Application from "@ember/application";
 
 import * as PageTitle from "ember-page-title/services/page-title";
 import { sync } from "ember-primitives/color-scheme";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import * as ResizeObserverService from "ember-resize-observer-service/addon/services/resize-observer";
 import Resolver from "ember-resolver";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import * as SetBodyClassService from "ember-set-body-class/addon/services/body-class";
 import { registry as kolayServices } from "kolay";
 
@@ -41,7 +45,9 @@ export default class App extends Application {
     ...kolayServices("docs-app"),
 
     // From V1 libraries...
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     "docs-app/services/resize-observer": ResizeObserverService,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     "docs-app/services/body-class": SetBodyClassService,
   });
 }

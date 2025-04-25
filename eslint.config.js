@@ -4,15 +4,17 @@ import { configs } from "@nullvoxpopuli/eslint-configs";
 
 const defaults = configs.ember(import.meta.dirname);
 
-export default [
-  ...defaults,
-  {
-    files: ["**/*.ts", "**/*.gts"],
-    languageOptions: {
-      parserOptions: {
-        project: join(import.meta.dirname, "tsconfig.tests.json"),
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
-  },
+const tsconfig = join(import.meta.dirname, "tsconfig.tests.json");
+
+const config = [
+  ...defaults.map((x) => {
+    if (x.languageOptions?.parserOptions?.tsconfigRootDir) {
+      x.languageOptions.parserOptions.project = tsconfig;
+      delete x.languageOptions.parserOptions.projectService;
+    }
+
+    return x;
+  }),
 ];
+
+export default config;
