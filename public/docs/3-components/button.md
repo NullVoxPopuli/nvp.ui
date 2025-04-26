@@ -72,11 +72,7 @@ pnpm add @universal-ember/preem
 import { ComponentSignature } from "kolay";
 
 <template>
-  <ComponentSignature
-    @package="."
-    @module="declarations/components/button"
-    @name="Signature"
-  />
+  <ComponentSignature @package="." @module="declarations/components/button" @name="Signature" />
 </template>
 ```
 

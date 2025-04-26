@@ -5,12 +5,7 @@
   "compilerOptions": {
     "noEmitOnError": false
   },
-  "exclude": [
-    "./dist/_app_/",
-    "./dist/**/*.js",
-    "./dist/**/*.js.map",
-    "./dist/**/*.d.ts.map"
-  ],
+  "exclude": ["./dist/_app_/", "./dist/**/*.js", "./dist/**/*.js.map", "./dist/**/*.d.ts.map"],
   "out": "./dist",
   "json": "./dist/docs.json",
   "pretty": true,
