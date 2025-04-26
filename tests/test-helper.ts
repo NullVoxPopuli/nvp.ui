@@ -5,7 +5,7 @@ import { setup as setupExtras } from "qunit-assertions-extra";
 import { setup } from "qunit-dom";
 import { start as qunitStart } from "ember-qunit";
 
-import Application from "#app/app.js";
+import Application from "#app/app.ts";
 import config from "#app/config.ts";
 
 export async function start() {
@@ -21,11 +21,11 @@ export async function start() {
 
   Object.assign(window, { getSettledState, getPendingWaiterState, currentURL, currentRouteName });
 
-  const response = await fetch("/docs/manifest.json");
+  const response = await fetch("/kolay-manifest/manifest.json");
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const json = await response.json();
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-  const pages = json.list.flat();
+
+  const pages = json.groups[0].list.flat();
 
   // The accessibility page deliberately
   // has violations for demonstration

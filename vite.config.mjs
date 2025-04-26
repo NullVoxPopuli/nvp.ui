@@ -14,6 +14,8 @@ export default defineConfig({
   resolve: {
     extensions,
     alias: {
+      "@universal-ember/preem": `${process.cwd()}/src/index.ts`,
+
       // bug? idk
       "@glimmer/tracking/primitives/cache": `${nm}/ember-source/dist/packages/@glimmer/tracking/primitives/cache`,
       "@glimmer/tracking": `${nm}/ember-source/dist/packages/@glimmer/tracking/index`,
