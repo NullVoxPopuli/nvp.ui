@@ -7,6 +7,9 @@ const defaults = configs.ember(import.meta.dirname);
 const tsconfig = join(import.meta.dirname, "tsconfig.tests.json");
 
 const config = [
+  {
+    ignores: ["dist", "node_modules", "declarations", "dist-app", "dist-docs"],
+  },
   ...defaults.map((x) => {
     if (x.languageOptions?.parserOptions?.tsconfigRootDir) {
       x.languageOptions.parserOptions.project = tsconfig;

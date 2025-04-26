@@ -73,7 +73,7 @@ import { ComponentSignature } from "kolay";
 
 <template>
   <ComponentSignature
-    @package="@universal-ember/preem"
+    @package="."
     @module="declarations/components/button"
     @name="Signature"
   />
