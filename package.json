@@ -73,7 +73,7 @@
     "lint:types": "glint --project ./tsconfig.tests.json",
     "start": "vite dev",
     "start:docs": "npx html-pages ./dist-docs --no-cache",
-    "test": "NODE_ENV=development vite build --mode=development && testem --file testem.js ci",
+    "test": "NODE_ENV=development vite build --mode=development && testem --file testem.cjs ci",
     "prepack": "rollup --config"
   },
   "dependencies": {
