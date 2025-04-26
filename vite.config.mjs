@@ -37,7 +37,7 @@ export default defineConfig({
     info(),
     kolay({
       src: "public/docs",
-      packages: ["@universal-ember/preem"],
+      packages: ["."],
     }),
   ],
   optimizeDeps: {

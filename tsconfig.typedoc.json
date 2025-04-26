@@ -1,7 +1,10 @@
 {
   "extends": "@tsconfig/ember/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "paths": {
+      "@universal-ember/preem": ["./src/index.ts"]
+    }
   },
   "typedocOptions": {
     "entryPoints": ["declarations/*.d.ts", "declarations/components/**.d.ts"]

@@ -3,7 +3,8 @@
 /vendor/
 
 # compiled output
-/dist/
+dist/
+dist-app/
 dist-docs/
 declarations/
 /tmp/

@@ -1,6 +1,6 @@
 {
   "extends": "@ember/library-tsconfig",
-  "exclude": ["docs-app", "tests", "declarations", "dist"],
+  "exclude": ["docs-app", "tests", "declarations", "dist", "dist-app", "dist-docs"],
   "glint": {
     "environment": ["ember-loose", "ember-template-imports"]
   },

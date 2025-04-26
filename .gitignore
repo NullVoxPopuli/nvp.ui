@@ -2,6 +2,8 @@
 
 # compiled output
 dist/
+dist-app/
+dist-docs/
 declarations/
 docs-api/docs.json
 *.tgz

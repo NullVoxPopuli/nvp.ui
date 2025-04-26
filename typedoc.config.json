@@ -1,20 +1,20 @@
 {
   "$schema": "https://typedoc.org/schema.json",
-  "tsconfig": "../preem/tsconfig.typedoc.json",
+  "tsconfig": "./tsconfig.typedoc.json",
   "cleanOutputDir": true,
   "compilerOptions": {
     "noEmitOnError": false
   },
   "exclude": [
-    "../preem/dist/_app_/",
-    "../preem/dist/**/*.js",
-    "../preem/dist/**/*.js.map",
-    "../preem/dist/**/*.d.ts.map"
+    "./dist/_app_/",
+    "./dist/**/*.js",
+    "./dist/**/*.js.map",
+    "./dist/**/*.d.ts.map"
   ],
   "out": "./dist",
-  "json": "./docs.json",
+  "json": "./dist/docs.json",
   "pretty": true,
   "excludeInternal": false,
   "skipErrorChecking": true,
-  "plugin": ["@zamiell/typedoc-plugin-not-exported"]
+  "plugin": []
 }
