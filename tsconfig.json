@@ -1,6 +1,6 @@
 {
   "extends": "@ember/library-tsconfig",
-  "exclude": ["docs-app", "tests"],
+  "exclude": ["docs-app", "tests", "declarations", "dist"],
   "glint": {
     "environment": ["ember-loose", "ember-template-imports"]
   },
@@ -12,9 +12,6 @@
       "kolay/virtual",
       "@embroider/core/virtual",
       "unplugin-info/client"
-    ],
-    "paths": {
-      "@universal-ember/preem": "./src/index.ts"
-    }
+    ]
   }
 }
