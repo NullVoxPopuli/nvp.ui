@@ -55,7 +55,8 @@
     "src"
   ],
   "scripts": {
-    "deploy:prepare": "pnpm build; pnpm build:api-docs; pnpm build:app",
+    "deploy:prepare": "pnpm build && pnpm build:api-docs && pnpm build:app",
+    "deploy:preview": "pnpm deploy:prepare && pnpm vite preview --outDir dist-app",
     "build": "rollup --config",
     "build:app": "vite build --out-dir dist-app",
     "build:api-docs": "typedoc --options ./typedoc.config.json --json ./dist-docs/docs.json ",
