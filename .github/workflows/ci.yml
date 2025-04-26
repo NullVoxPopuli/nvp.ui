@@ -20,10 +20,15 @@ jobs:
   setup:
     name: 'Setup'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 2
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - uses: wyvox/action@v1
       - run:  echo ${{ github.event.number }} > ./pr-number.txt
+      - id: set-matrix
+        run: |
+          echo "matrix=$(pnpm -s dlx @embroider/try list)" >> $GITHUB_OUTPUT
 
   # Every PR will need linting. Turbo's cache can optimize per-package
   lint:
@@ -59,26 +64,26 @@ jobs:
       - run: pnpm build
       - run: pnpm turbo test --filter test-app
 
-  try-scenarios:
-    name: ${{ matrix.try-scenario }}
+  compatibility:
+    needs: ["setup"]
     runs-on: ubuntu-latest
-    needs: [test]
     timeout-minutes: 10
     strategy:
       fail-fast: false
-      matrix:
-        try-scenario:
-          - ember-lts-4.12
-          - ember-5.1
-          - ember-release
-          - ember-beta
-          - ember-canary
+      matrix: ${{fromJson(needs.setup.outputs.matrix)}}
+
+    name: "${{ matrix.name }}"
 
     steps:
-      - uses: wyvox/action@v1
-      - run: pnpm build
-      - name: Run Tests
-        run: ./node_modules/.bin/ember try:one ${{ matrix.try-scenario }} --skip-cleanup
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: pnpm
+      - run: pnpm dlx @embroider/try apply ${{ matrix.name }}
+      - run: pnpm install --no-lockfile
+      - run: pnpm test
+        env: ${{ matrix.env }}
 
   # NOTE: Docs' types don't need checking because we check types in the
   #       Lint phase up above
