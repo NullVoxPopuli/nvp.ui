@@ -2,13 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title><%= namespace %> Tests</title>
+    <title>null ui tests</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="/@embroider/virtual/vendor.css" />
-    <link rel="stylesheet" href="/@embroider/virtual/app.css" />
-    <link rel="stylesheet" href="/@embroider/virtual/test-support.css" />
+    <script src="https://requirejs.org/docs/release/2.3.7/minified/require.js"></script>
   </head>
   <body>
     <div id="qunit"></div>
@@ -18,16 +16,16 @@
       </div>
     </div>
 
-    <script src="/testem.js" integrity="" data-embroider-ignore></script>
-    <script src="/@embroider/virtual/vendor.js"></script>
-    <script src="/@embroider/virtual/test-support.js"></script>
+    <script src="/testem.cjs" integrity="" data-embroider-ignore></script>
     <script type="module">
       import "ember-testing";
     </script>
 
     <script type="module">
       import { start } from "./test-helper";
+
       import.meta.glob("./**/*.{js,ts,gjs,gts}", { eager: true });
+
       start();
     </script>
   </body>

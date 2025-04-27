@@ -8,7 +8,9 @@ import { start as qunitStart } from "ember-qunit";
 import Application from "#app/app.ts";
 import config from "#app/config.ts";
 
-export async function start() {
+Object.assign(window, { getSettledState, getPendingWaiterState, currentURL, currentRouteName });
+
+export function start() {
   QUnit.config.urlConfig.push({
     id: "debugA11yAudit",
     label: "Log a11y violations",
@@ -18,21 +20,6 @@ export async function start() {
 
   setup(QUnit.assert);
   setupExtras(QUnit.assert);
-
-  Object.assign(window, { getSettledState, getPendingWaiterState, currentURL, currentRouteName });
-
-  const response = await fetch("/kolay-manifest/manifest.json");
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const json = await response.json();
-
-  const pages = json.groups[0].list.flat();
-
-  // The accessibility page deliberately
-  // has violations for demonstration
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-  (window as any).__pages__ = pages.filter(
-    (page: { path: string }) => !page.path.includes("accessibility"),
-  );
 
   qunitStart();
 }

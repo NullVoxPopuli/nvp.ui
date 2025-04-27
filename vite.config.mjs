@@ -20,9 +20,9 @@ export default defineConfig({
       "@glimmer/tracking/primitives/cache": `${nm}/ember-source/dist/packages/@glimmer/tracking/primitives/cache`,
       "@glimmer/tracking": `${nm}/ember-source/dist/packages/@glimmer/tracking/index`,
 
-      // all from ember-mobile-menu dependencies
       // All of this goes away when these addons are converted to V2
       // HOWEVER -- @ember/render-modifiers should be killed
+      "ember-a11y-testing/test-support": `${nm}/ember-a11y-testing/addon-test-support`,
       "@ember/render-modifiers/modifiers/did-insert": `${nm}/@ember/render-modifiers/addon/modifiers/did-insert`,
       "@ember/render-modifiers/modifiers/did-update": `${nm}/@ember/render-modifiers/addon/modifiers/did-update`,
       "@ember/render-modifiers/modifiers/will-destroy": `${nm}/@ember/render-modifiers/addon/modifiers/will-destroy`,

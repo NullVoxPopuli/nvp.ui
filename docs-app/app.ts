@@ -40,6 +40,7 @@ export default class App extends Application {
     "docs-app/routes/page": PageRoute,
     "docs-app/templates/application": ApplicationTemplate,
     "docs-app/templates/page": PageTemplate,
+
     // From Libraries
     "docs-app/services/page-title": PageTitle,
     ...kolayServices("docs-app"),

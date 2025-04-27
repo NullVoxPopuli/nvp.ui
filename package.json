@@ -113,11 +113,11 @@
     "@glint/environment-ember-template-imports": "unstable",
     "@glint/template": "^1.5.2",
     "@glint/tsserver-plugin": "unstable",
-    "@nullvoxpopuli/eslint-configs": "^5.1.1",
+    "@nullvoxpopuli/eslint-configs": "^5.1.2",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-typescript": "^12.1.2",
-    "@shikijs/rehype": "^3.2.2",
+    "@shikijs/rehype": "^3.3.0",
     "@tsconfig/ember": "^3.0.10",
     "@types/qunit": "^2.19.12",
     "@types/rsvp": "^4.0.9",
@@ -126,6 +126,7 @@
     "change-case": "^5.4.4",
     "concurrently": "^9.1.2",
     "content-tag": "^3.1.2",
+    "ember-a11y-testing": "^7.1.2",
     "ember-focus-trap": "^1.1.1",
     "ember-headless-form": "^1.1.1",
     "ember-mobile-menu": "^5.3.0",
@@ -142,8 +143,8 @@
     "ember-set-body-class": "^1.0.2",
     "ember-source": "6.5.0-alpha.6",
     "ember-template-imports": "^4.3.0",
-    "ember-template-lint": "^7.0.7",
-    "eslint": "^9.24.0",
+    "ember-template-lint": "^7.2.0",
+    "eslint": "^9.25.1",
     "highlight.js": "^11.11.1",
     "highlightjs-glimmer": "^2.2.2",
     "kolay": "^3.3.0",
@@ -181,8 +182,10 @@
   },
   "pnpm": {
     "overrides": {
+      "@ember/test-helpers": "5.2.1",
+      "@ember/test-waiters": "4.1.0",
       "@glimmer/component": "^2.0.0",
-      "@embroider/macros": "1.17.1"
+      "@embroider/macros": "1.17.2"
     },
     "peerDependencyRules": {
       "allowAny": [
