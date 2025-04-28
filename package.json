@@ -147,7 +147,7 @@
     "eslint": "^9.25.1",
     "highlight.js": "^11.11.1",
     "highlightjs-glimmer": "^2.2.2",
-    "kolay": "^3.3.0",
+    "kolay": "^3.5.0",
     "lodash.sortby": "^4.7.0",
     "lorem-ipsum": "^2.0.8",
     "prettier": "^3.5.3",
