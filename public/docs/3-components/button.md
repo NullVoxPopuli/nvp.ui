@@ -68,11 +68,11 @@ pnpm add @universal-ember/preem
 
 ## API Reference
 
-```gjs
+```gjs live
 import { ComponentSignature } from "kolay";
 
 <template>
-  <ComponentSignature @package="." @module="declarations/components/button" @name="Signature" />
+  <ComponentSignature @package="." @module="declarations/components/button.gts" @name="Signature" />
 </template>
 ```
 
