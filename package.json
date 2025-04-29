@@ -81,7 +81,8 @@
     "@embroider/macros": "1.17.2",
     "decorator-transforms": "^2.3.0",
     "ember-primitives": "^0.30.0",
-    "execa": "^9.5.2"
+    "execa": "^9.5.2",
+    "kolay": "^3.5.2"
   },
   "packageManager": "pnpm@10.10.0",
   "devDependencies": {
@@ -141,13 +142,12 @@
     "ember-route-template": "^1.0.3",
     "ember-scoped-css": "^0.23.3",
     "ember-set-body-class": "^1.0.2",
-    "ember-source": "beta",
+    "ember-source": "^6.4.0",
     "ember-template-imports": "^4.3.0",
     "ember-template-lint": "^7.2.0",
     "eslint": "^9.25.1",
     "highlight.js": "^11.11.1",
     "highlightjs-glimmer": "^2.2.2",
-    "kolay": "link:../kolay",
     "lodash.sortby": "^4.7.0",
     "lorem-ipsum": "^2.0.8",
     "prettier": "^3.5.3",
@@ -182,6 +182,11 @@
   },
   "pnpm": {
     "overrides": {
+      "@ember/test-helpers": "$@ember/test-helpers",
+      "@ember/test-waiters": "$@ember/test-waiters",
+      "@glimmer/component": "$@glimmer/component",
+      "ember-source": "$ember-source",
+      "@embroider/macros": "$@embroider/macros"
     },
     "peerDependencyRules": {
       "allowAny": [
