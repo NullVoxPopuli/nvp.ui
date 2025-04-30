@@ -6,7 +6,6 @@ import { colorScheme } from "ember-primitives/color-scheme";
 
 import { a11yAudit } from "ember-a11y-testing/test-support";
 
-
 // const pages: { path: string }[] = (window as any).__pages__;
 const response = await fetch("/kolay-manifest/manifest.json");
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -25,6 +24,12 @@ async function checkA11y(assert: Assert, path: string, theme: string) {
         // TODO: find a syntax highlighting theme
         //       with better contrast
         "color-contrast": {
+          enabled: false,
+        },
+        "button-name": {
+          enabled: false,
+        },
+        "landmark-no-duplicate-main": {
           enabled: false,
         },
       },

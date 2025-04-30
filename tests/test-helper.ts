@@ -6,11 +6,13 @@ import { setup } from "qunit-dom";
 import { start as qunitStart } from "ember-qunit";
 
 import Application from "#app/app.ts";
-import config from "#app/config.ts";
+import config, { enterTestMode } from "#app/config.ts";
 
 Object.assign(window, { getSettledState, getPendingWaiterState, currentURL, currentRouteName });
 
 export function start() {
+  enterTestMode();
+
   QUnit.config.urlConfig.push({
     id: "debugA11yAudit",
     label: "Log a11y violations",
