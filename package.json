@@ -82,7 +82,7 @@
     "decorator-transforms": "^2.3.0",
     "ember-primitives": "^0.30.0",
     "execa": "^9.5.2",
-    "kolay": "^3.5.2"
+    "kolay": "^3.5.4"
   },
   "packageManager": "pnpm@10.10.0",
   "devDependencies": {
