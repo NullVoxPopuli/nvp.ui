@@ -2,7 +2,7 @@ import { render } from "@ember/test-helpers";
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 
-import { ExternalLink } from "@universal-ember/preem";
+import { ExternalLink } from "#src/index.ts";
 
 module("ExternalLink", function (hooks) {
   setupRenderingTest(hooks);

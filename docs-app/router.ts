@@ -1,5 +1,3 @@
-// I reject this lint
-
 import EmberRouter from "@ember/routing/router";
 
 import { properLinks } from "ember-primitives/proper-links";

@@ -10,6 +10,7 @@ import { a11yAudit } from "ember-a11y-testing/test-support";
 const response = await fetch("/kolay-manifest/manifest.json");
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const json = await response.json();
+// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
 const pages = json.groups[0].list.flat() as { path: string }[];
 
 /**
