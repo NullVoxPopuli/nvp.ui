@@ -2,13 +2,18 @@
 
 # compiled output
 dist/
+dist-app/
+dist-docs/
+declarations/
 docs-api/docs.json
+*.tgz
 
 # dependencies
 node_modules/
 
 # misc
 .turbo/
+.log/
 .eslintcache
 /.env*
 /.pnp*

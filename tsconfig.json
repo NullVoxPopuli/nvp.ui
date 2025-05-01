@@ -1,0 +1,17 @@
+{
+  "extends": "@ember/library-tsconfig",
+  "exclude": ["docs-app", "tests", "declarations", "dist", "dist-app", "dist-docs"],
+  "glint": {
+    "environment": ["ember-loose", "ember-template-imports"]
+  },
+  "compilerOptions": {
+    "declarationDir": "declarations",
+    "types": [
+      "ember-source/types",
+      "vite/client",
+      "kolay/virtual",
+      "@embroider/core/virtual",
+      "unplugin-info/client"
+    ]
+  }
+}

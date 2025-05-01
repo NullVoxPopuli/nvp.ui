@@ -1,0 +1,60 @@
+:root {
+  /* General */
+  --radius: 0.25rem;
+  --font: ui-sans-serif, sans-serif;
+
+  /* Spacing */
+  --gap: 0.25rem;
+  --gap-1: var(--gap);
+  --gap-2: 0.5rem;
+  --gap-3: 0.75rem;
+  --gap-4: 1rem;
+
+  --padding: 0.5rem;
+  --padding-1: 0.25rem;
+  --padding-2: var(--padding);
+  --padding-3: 0.75rem;
+  --padding-4: 1rem;
+
+  /* Focus */
+  --ring-opacity: 1;
+  --ring-color: rgb(224 78 57 / var(--ring-opacity, 1));
+
+  /* Borders */
+  --border-width: 1px;
+  --border-style: solid;
+
+  /* Colors */
+  --color-primary: #00cdff;
+  --color-secondary: #5555ff;
+  --color-danger: #ee0055;
+
+  /* Components */
+  --button-color: rgb(100, 100, 100);
+  --button-border-color-mix: rgb(100, 100, 100);
+  --button-hover-color-mix: rgb(255, 255, 255);
+  --button-border-radius: var(--radius);
+  --button-border-width: var(--border-width);
+  --button-border-style: var(--border-style);
+  --button-border-color: var(--border-color);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+button {
+  font-family: var(--font);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+main {
+  padding: var(--padding);
+}

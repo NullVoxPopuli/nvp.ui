@@ -3,7 +3,10 @@
 /vendor/
 
 # compiled output
-/dist/
+dist/
+dist-app/
+dist-docs/
+declarations/
 /tmp/
 
 # dependencies
@@ -13,6 +16,10 @@
 # misc
 /coverage/
 !.*
+*.yml
+*.yaml
+README.md
+CHANGELOG.md
 .eslintcache
 .lint-todo/
 .github/

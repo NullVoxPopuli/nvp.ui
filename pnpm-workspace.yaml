@@ -1,6 +1,15 @@
-packages:
-  - 'preem'
-  - 'test-app'
-  - 'docs-app'
-  - 'docs-api'
-  - 'dev'
+autoInstallPeers: false
+peersSuffixMaxLength: 40
+
+# Hax, to dangerously force the dep graph
+# to be what we want
+publicHoistPattern:
+- "ember-source"
+- "@glimmer/component"
+
+overrides:
+  "@ember/test-helpers": "$@ember/test-helpers"
+  "@ember/test-waiters": "$@ember/test-waiters"
+  "@glimmer/component": "$@glimmer/component"
+  "ember-source": "$ember-source"
+  "@embroider/macros": "$@embroider/macros"
