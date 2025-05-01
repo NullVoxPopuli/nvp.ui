@@ -67,15 +67,13 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: NullVoxPopuli/action-setup-pnpm@v2
-      - run: pnpm turbo build:dev
+      - run: pnpm deploy:prepare
       - uses: actions/upload-artifact@v3
         with:
           name: deploy-prep-dist
           if-no-files-found: error
           path: |
-            ./docs-app/dist/**/*
-            !node_modules/
-            !./**/node_modules/
+            ./dist-app/
 
 #################################################################
 # For the rest:
@@ -113,7 +111,7 @@ jobs:
           branch: ${{ github.event.workflow_run.head_branch }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ember-primitives
+          projectName: null-ui
           directory: ./deploy-prep-dist/
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
@@ -133,4 +131,4 @@ jobs:
             | -------   | ----------- |
             | Docs    | ${{ needs.DeployPreview_Docs.outputs.docsUrl }}   |
 
-            [Logs](https://github.com/universal-ember/ember-primitives/actions/runs/${{ github.run_id }})
+            [Logs](https://github.com/nullvoxpopuli/nullui/actions/runs/${{ github.run_id }})
