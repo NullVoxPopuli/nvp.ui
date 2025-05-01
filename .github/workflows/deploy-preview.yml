@@ -68,7 +68,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: NullVoxPopuli/action-setup-pnpm@v2
       - run: pnpm turbo build:dev
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: deploy-prep-dist
           if-no-files-found: error
@@ -105,7 +105,7 @@ jobs:
     outputs:
       docsUrl: ${{ steps.deploy.outputs.url }}
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         name: deploy-prep-dist
       - id: deploy
         uses: cloudflare/pages-action@v1.5.0
