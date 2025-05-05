@@ -143,7 +143,7 @@
     "ember-route-template": "^1.0.3",
     "ember-scoped-css": "^0.23.3",
     "ember-set-body-class": "^1.0.2",
-    "ember-source": "^6.4.0",
+    "ember-source": "6.6.0-alpha.1",
     "ember-template-imports": "^4.3.0",
     "ember-template-lint": "^7.2.0",
     "eslint": "^9.25.1",

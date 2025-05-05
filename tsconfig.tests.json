@@ -5,6 +5,8 @@
   },
   "include": ["src", "docs-app", "tests"],
   "compilerOptions": {
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
     "rootDir": ".",
     "types": [
       "ember-source/types",
