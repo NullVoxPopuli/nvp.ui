@@ -35,7 +35,6 @@
     "@ember/test-helpers": ">= 3.2.0",
     "@ember/test-waiters": ">= 3.0.2",
     "@glimmer/component": "^2.0.0",
-    "@glimmer/tracking": ">= 1.1.2",
     "@glint/template": ">= 1.0.0",
     "ember-modifier": ">= 4.1.0",
     "ember-resources": ">= 6.1.0",
@@ -74,7 +73,7 @@
     "lint:types": "glint --project ./tsconfig.tests.json",
     "start": "vite dev",
     "start:docs": "npx html-pages ./dist-docs --no-cache",
-    "test": "NODE_ENV=development vite build --mode=test && testem --file testem.cjs ci",
+    "test": "NODE_ENV=development vite build --mode=development && testem --file testem.cjs ci",
     "prepack": "rollup --config"
   },
   "dependencies": {
@@ -109,7 +108,6 @@
     "@embroider/core": "^4.0.2",
     "@embroider/vite": "^1.1.0",
     "@glimmer/component": "^2.0.0",
-    "@glimmer/tracking": "^1.1.2",
     "@glint/core": "unstable",
     "@glint/environment-ember-loose": "unstable",
     "@glint/environment-ember-template-imports": "unstable",
