@@ -8,7 +8,7 @@ const tsconfig = join(import.meta.dirname, "tsconfig.tests.json");
 
 const config = [
   {
-    ignores: ["dist", "node_modules", "declarations", "dist-app", "dist-docs"],
+    ignores: ["dist", "node_modules", "declarations", "dist-app", "dist-docs", "dist-tests"],
   },
   ...defaults,
   ...defaults.map((x) => {
