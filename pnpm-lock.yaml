@@ -31,9 +31,6 @@ importers:
       execa:
         specifier: ^9.5.2
         version: 9.5.2
-      kolay:
-        specifier: ^3.5.5
-        version: 3.5.5(68c223a260defe788a9690ec8289c224)
     devDependencies:
       '@arethetypeswrong/cli':
         specifier: ^0.17.4
@@ -218,6 +215,9 @@ importers:
       highlightjs-glimmer:
         specifier: ^2.2.2
         version: 2.2.2(highlight.js@11.11.1)
+      kolay:
+        specifier: ^3.5.6
+        version: 3.5.6(a03f6ba40738bebf1150a8e2eb826b7a)
       lodash.sortby:
         specifier: ^4.7.0
         version: 4.7.0
@@ -4961,12 +4961,11 @@ packages:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
     engines: {node: '>=6'}
 
-  kolay@3.5.5:
-    resolution: {integrity: sha512-lQAbA5WbEHIu6eXtbPMgjUHJmQCFu09J6qm1xc0z+TcKgz8mRK/iDLfxf/BByCZVz8epHr89tk1ADZk2tV05iA==}
+  kolay@3.5.6:
+    resolution: {integrity: sha512-iyvTXQXQMkNvchuYRX0ayMROF1drLbb3r7TpJgYdYmw74WaV3zNXpGT9rPGQL2uSiW/2BIZMAZRl6QLyzhgRLA==}
     engines: {node: '>= 18'}
     peerDependencies:
       '@glint/template': '*'
-      ember-source: 6.6.0-alpha.1
 
   ky@1.8.1:
     resolution: {integrity: sha512-7Bp3TpsE+L+TARSnnDpk3xg8Idi8RwSLdj6CMbNWoOARIrGrbuLGusV0dYwbZOm4bB3jHNxSw8Wk/ByDqJEnDw==}
@@ -13401,12 +13400,11 @@ snapshots:
 
   kleur@4.1.5: {}
 
-  kolay@3.5.5(68c223a260defe788a9690ec8289c224):
+  kolay@3.5.6(a03f6ba40738bebf1150a8e2eb826b7a):
     dependencies:
       '@ember/test-waiters': 4.1.0(@glint/template@1.5.2)
       '@embroider/addon-shim': 1.10.0
       '@glimmer/component': 2.0.0
-      '@glimmer/tracking': 1.1.2
       '@glint/template': 1.5.2
       common-tags: 1.8.2
       decorator-transforms: 2.3.0(@babel/core@7.27.1)
@@ -13414,7 +13412,6 @@ snapshots:
       ember-primitives: 0.27.2(af1f7de65e33daa758e0904898bd98d9)
       ember-repl: 6.0.0(e03f9755adf3f32ffcd967d2c4886e57)
       ember-resources: 7.0.4(807cfcd3020ea8ad8edb1795de9ad08f)
-      ember-source: 6.6.0-alpha.1(@glimmer/component@2.0.0)(rsvp@4.8.5)
       globby: 14.1.0
       json5: 2.2.3
       package-up: 5.0.0
@@ -13428,6 +13425,8 @@ snapshots:
       - '@ember/test-helpers'
       - '@glimmer/compiler'
       - '@glimmer/syntax'
+      - '@glimmer/tracking'
+      - ember-source
       - supports-color
       - typescript
       - webpack
