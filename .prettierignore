@@ -6,6 +6,7 @@
 dist/
 dist-app/
 dist-docs/
+dist-tests/
 declarations/
 /tmp/
 
