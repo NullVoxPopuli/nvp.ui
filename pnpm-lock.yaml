@@ -84,6 +84,9 @@ importers:
       '@embroider/core':
         specifier: ^4.0.3
         version: 4.0.3(@glint/template@1.5.2)
+      '@embroider/try':
+        specifier: github:NullVoxPopuli/try#3d2427f
+        version: https://codeload.github.com/NullVoxPopuli/try/tar.gz/3d2427f
       '@embroider/vite':
         specifier: ^1.1.1
         version: 1.1.1(eecac0a6098b4996af55f03aa191e387)
@@ -971,6 +974,11 @@ packages:
   '@embroider/shared-internals@3.0.0':
     resolution: {integrity: sha512-5J5ipUMCAinQS38WW7wedruq5Z4VnHvNo+ZgOduw0PtI9w0CQWx7/HE+98PBDW8jclikeF+aHwF317vc1hwuzg==}
     engines: {node: 12.* || 14.* || >= 16}
+
+  '@embroider/try@https://codeload.github.com/NullVoxPopuli/try/tar.gz/3d2427f':
+    resolution: {tarball: https://codeload.github.com/NullVoxPopuli/try/tar.gz/3d2427f}
+    version: 0.0.5
+    hasBin: true
 
   '@embroider/vite@1.1.1':
     resolution: {integrity: sha512-ETEL3Vbp4HkCXyD83GH5nyPj5YogpPlysy86dIIC/o47uRvecou70SxdegCn9hlfvhIbZNEQtsfbSbQY+gHfZA==}
@@ -8497,6 +8505,8 @@ snapshots:
       typescript-memoize: 1.1.1
     transitivePeerDependencies:
       - supports-color
+
+  '@embroider/try@https://codeload.github.com/NullVoxPopuli/try/tar.gz/3d2427f': {}
 
   '@embroider/vite@1.1.1(eecac0a6098b4996af55f03aa191e387)':
     dependencies:
