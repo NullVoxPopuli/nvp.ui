@@ -14,8 +14,6 @@ overrides:
 
 packageExtensionsChecksum: sha256-N5gr6fWTUXLCxP7pn0oZueTB0ypA5X1iAqKxiLeM+4I=
 
-pnpmfileChecksum: sha256-3iASB1M5kYL0ToMD/EdDeJMQXZuMv1aIJ4BrLpfHZrg=
-
 patchedDependencies:
   ember-mobile-menu:
     hash: ab7af0110081e15928f5cd92a18a9133f9dd1c84d7380a2ea41cc6601b03d351
