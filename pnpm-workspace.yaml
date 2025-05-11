@@ -7,6 +7,18 @@ publicHoistPattern:
 - "ember-source"
 - "@glimmer/component"
 
+peerDependencyRules:
+  allowAny:
+    - "typescript"
+    - "ember-source"
+    - "@glimmer/compiler"
+    - "@glimmer/syntax"
+
+  ignoreMissing:
+    - webpack
+    - rsvp
+
+
 overrides:
   "@ember/test-helpers": "$@ember/test-helpers"
   "@ember/test-waiters": "$@ember/test-waiters"

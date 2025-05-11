@@ -32,8 +32,8 @@
     "./addon-main": "./addon-main.cjs"
   },
   "peerDependencies": {
-    "@ember/test-helpers": ">= 3.2.0",
-    "@ember/test-waiters": ">= 3.0.2",
+    "@ember/test-helpers": "5.2.1",
+    "@ember/test-waiters": "4.1.0",
     "@glimmer/component": "^2.0.0",
     "@glint/template": ">= 1.0.0",
     "ember-modifier": ">= 4.1.0",
@@ -72,7 +72,8 @@
     "lint:js:fix": "eslint . --fix",
     "lint:types": "glint --project ./tsconfig.tests.json",
     "start": "vite dev",
-    "start:docs": "npx html-pages ./dist-docs --no-cache",
+    "start:docs": "vite preview --outDir dist-app",
+    "start:api-docs": "npx html-pages ./dist-docs --no-cache",
     "test:launch": "cd dist-tests && testem --file ../testem.cjs server",
     "test:ci": "cd dist-tests && testem --file ../testem.cjs ci",
     "test": "pnpm build:tests && pnpm test:ci",
@@ -82,12 +83,12 @@
     "@embroider/addon-shim": "^1.10.0",
     "@embroider/macros": "1.17.3",
     "decorator-transforms": "^2.3.0",
-    "ember-primitives": "^0.30.1",
-    "execa": "^9.5.2"
+    "ember-primitives": "^0.32.0",
+    "execa": "^9.5.3"
   },
   "packageManager": "pnpm@10.10.0",
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.17.4",
+    "@arethetypeswrong/cli": "^0.18.1",
     "@babel/core": "^7.27.1",
     "@babel/helpers": "^7.27.1",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
@@ -101,7 +102,7 @@
     "@ember/app-tsconfig": "^1.0.3",
     "@ember/library-tsconfig": "^1.1.3",
     "@ember/render-modifiers": "^3.0.0",
-    "@ember/test-helpers": "5.2.1",
+    "@ember/test-helpers": "5.2.2",
     "@ember/test-waiters": "4.1.0",
     "@embroider/addon-dev": "8.0.1",
     "@embroider/compat": "^4.0.3",
@@ -129,7 +130,6 @@
     "content-tag": "^3.1.3",
     "ember-a11y-testing": "^7.1.2",
     "ember-focus-trap": "^1.1.1",
-    "ember-headless-form": "^1.1.1",
     "ember-mobile-menu": "^5.3.0",
     "ember-modifier": "^4.2.0",
     "ember-on-resize-modifier": "^2.0.2",
@@ -144,11 +144,11 @@
     "ember-set-body-class": "^1.0.2",
     "ember-source": "6.6.0-alpha.1",
     "ember-template-imports": "^4.3.0",
-    "kolay": "^3.5.6",
     "ember-template-lint": "^7.6.0",
     "eslint": "^9.26.0",
     "highlight.js": "^11.11.1",
     "highlightjs-glimmer": "^2.2.2",
+    "kolay": "^3.6.2",
     "lodash.sortby": "^4.7.0",
     "lorem-ipsum": "^2.0.8",
     "prettier": "^3.5.3",
@@ -180,26 +180,5 @@
     "type": "addon",
     "main": "addon-main.cjs",
     "app-js": {}
-  },
-  "pnpm": {
-    "overrides": {
-      "@ember/test-helpers": "$@ember/test-helpers",
-      "@ember/test-waiters": "$@ember/test-waiters",
-      "@glimmer/component": "$@glimmer/component",
-      "ember-source": "$ember-source",
-      "@embroider/macros": "$@embroider/macros"
-    },
-    "peerDependencyRules": {
-      "allowAny": [
-        "typescript",
-        "ember-source",
-        "@glimmer/compiler",
-        "@glimmer/syntax"
-      ],
-      "ignoreMissing": [
-        "webpack",
-        "rsvp"
-      ]
-    }
   }
 }

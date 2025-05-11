@@ -8,8 +8,18 @@ import { defineConfig } from "vite";
 const nm = `${process.cwd()}/node_modules`;
 
 export default defineConfig({
+  minify: false,
+  sourceMap: true,
+  sourcemap: true,
   build: {
+    minify: false,
+    sourceMap: true,
     target: ["esnext"],
+    rollupOptions: {
+      output: {
+        sourcemap: true,
+      },
+    },
   },
   resolve: {
     extensions,
