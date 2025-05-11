@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": "../",
     "paths": {
-      "@universal-ember/preem": ["./src/index.ts"]
+      "null.ui": ["./src/index.ts"]
     }
   },
   "typedocOptions": {
