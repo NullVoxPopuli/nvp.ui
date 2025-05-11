@@ -80,7 +80,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: pnpm
+      # TODO: uncomment this
+      # - run: pnpm dlx @embroider/try apply ${{ matrix.name }}
+      - run: pnpm install --no-lockfile --ignore-scripts
       - run: pnpm try apply ${{ matrix.name }}
+      # The above can be deleted when my PR is merged
       - run: pnpm install --no-lockfile
       - run: pnpm test
         env: ${{ matrix.env }}
