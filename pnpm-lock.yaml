@@ -85,8 +85,8 @@ importers:
         specifier: ^4.0.3
         version: 4.0.3(@glint/template@1.5.2)
       '@embroider/try':
-        specifier: github:NullVoxPopuli/try#3d2427f
-        version: https://codeload.github.com/NullVoxPopuli/try/tar.gz/3d2427f
+        specifier: github:NullVoxPopuli/try#768631a
+        version: https://codeload.github.com/NullVoxPopuli/try/tar.gz/768631a
       '@embroider/vite':
         specifier: ^1.1.1
         version: 1.1.1(eecac0a6098b4996af55f03aa191e387)
@@ -975,8 +975,8 @@ packages:
     resolution: {integrity: sha512-5J5ipUMCAinQS38WW7wedruq5Z4VnHvNo+ZgOduw0PtI9w0CQWx7/HE+98PBDW8jclikeF+aHwF317vc1hwuzg==}
     engines: {node: 12.* || 14.* || >= 16}
 
-  '@embroider/try@https://codeload.github.com/NullVoxPopuli/try/tar.gz/3d2427f':
-    resolution: {tarball: https://codeload.github.com/NullVoxPopuli/try/tar.gz/3d2427f}
+  '@embroider/try@https://codeload.github.com/NullVoxPopuli/try/tar.gz/768631a':
+    resolution: {tarball: https://codeload.github.com/NullVoxPopuli/try/tar.gz/768631a}
     version: 0.0.5
     hasBin: true
 
@@ -8506,7 +8506,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@embroider/try@https://codeload.github.com/NullVoxPopuli/try/tar.gz/3d2427f': {}
+  '@embroider/try@https://codeload.github.com/NullVoxPopuli/try/tar.gz/768631a': {}
 
   '@embroider/vite@1.1.1(eecac0a6098b4996af55f03aa191e387)':
     dependencies:
