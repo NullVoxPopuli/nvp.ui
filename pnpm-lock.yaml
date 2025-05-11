@@ -6,8 +6,8 @@ settings:
   peersSuffixMaxLength: 40
 
 overrides:
-  '@ember/test-helpers': 5.2.2
-  '@ember/test-waiters': 4.1.0
+  '@ember/test-helpers': '>= 5.2.1'
+  '@ember/test-waiters': '>= 4.1.0'
   '@glimmer/component': ^2.0.0
   ember-source: 6.6.0-alpha.1
   '@embroider/macros': 1.17.3
@@ -18,21 +18,36 @@ importers:
 
   .:
     dependencies:
+      '@ember/test-helpers':
+        specifier: '>= 5.2.1'
+        version: 5.2.2(b191353dce08279c398064bec3978083)
+      '@ember/test-waiters':
+        specifier: '>= 4.1.0'
+        version: 4.1.0(@glint/template@1.5.2)
       '@embroider/addon-shim':
         specifier: ^1.10.0
         version: 1.10.0
       '@embroider/macros':
         specifier: 1.17.3
         version: 1.17.3(@glint/template@1.5.2)
+      '@glimmer/component':
+        specifier: ^2.0.0
+        version: 2.0.0
+      '@glint/template':
+        specifier: '>= 1.0.0'
+        version: 1.5.2
       decorator-transforms:
         specifier: ^2.3.0
         version: 2.3.0(@babel/core@7.27.1)
+      ember-modifier:
+        specifier: '>= 4.2.0'
+        version: 4.2.0(23cf5c8a0bb3a9d8460cb35cc1070343)
       ember-primitives:
         specifier: ^0.32.0
         version: 0.32.0(82bdc8e30de9bc16923ef6b776c675cd)
-      execa:
-        specifier: ^9.5.3
-        version: 9.5.3
+      ember-resources:
+        specifier: '>= 7.0.4'
+        version: 7.0.4(807cfcd3020ea8ad8edb1795de9ad08f)
     devDependencies:
       '@arethetypeswrong/cli':
         specifier: ^0.18.1
@@ -76,12 +91,6 @@ importers:
       '@ember/render-modifiers':
         specifier: ^3.0.0
         version: 3.0.0(77301ff8039155cebc4c845e13057acd)
-      '@ember/test-helpers':
-        specifier: 5.2.2
-        version: 5.2.2(b191353dce08279c398064bec3978083)
-      '@ember/test-waiters':
-        specifier: 4.1.0
-        version: 4.1.0(@glint/template@1.5.2)
       '@embroider/addon-dev':
         specifier: 8.0.1
         version: 8.0.1(@glint/template@1.5.2)(rollup@4.40.2)
@@ -97,9 +106,6 @@ importers:
       '@embroider/vite':
         specifier: ^1.1.1
         version: 1.1.1(eecac0a6098b4996af55f03aa191e387)
-      '@glimmer/component':
-        specifier: ^2.0.0
-        version: 2.0.0
       '@glint/core':
         specifier: unstable
         version: 1.4.1-unstable.d17c1f1(typescript@5.8.3)
@@ -109,9 +115,6 @@ importers:
       '@glint/environment-ember-template-imports':
         specifier: unstable
         version: 1.4.1-unstable.d17c1f1(7cc6e121946bf49d67e64eb9f66fa274)
-      '@glint/template':
-        specifier: ^1.5.2
-        version: 1.5.2
       '@glint/tsserver-plugin':
         specifier: unstable
         version: 1.4.1-unstable.d17c1f1
@@ -163,9 +166,6 @@ importers:
       ember-mobile-menu:
         specifier: ^5.3.0
         version: 5.3.0(b76058be40b98c0810a3f0bb63a09158)
-      ember-modifier:
-        specifier: ^4.2.0
-        version: 4.2.0(23cf5c8a0bb3a9d8460cb35cc1070343)
       ember-on-resize-modifier:
         specifier: ^2.0.2
         version: 2.0.2(cd296b8479611bdb9e7fc7536cd242e7)
@@ -184,9 +184,6 @@ importers:
       ember-resolver:
         specifier: ^13.1.0
         version: 13.1.0(7120387f1461dcbf738f9b1965ce0ead)
-      ember-resources:
-        specifier: ^7.0.4
-        version: 7.0.4(807cfcd3020ea8ad8edb1795de9ad08f)
       ember-route-template:
         specifier: ^1.0.3
         version: 1.0.3
@@ -208,6 +205,9 @@ importers:
       eslint:
         specifier: ^9.26.0
         version: 9.26.0(jiti@2.4.2)
+      execa:
+        specifier: ^9.5.3
+        version: 9.5.3
       highlight.js:
         specifier: ^11.11.1
         version: 11.11.1
@@ -3283,7 +3283,7 @@ packages:
     resolution: {integrity: sha512-V30dZgfj3itq+4/H78livBN1X4wvYeCJnsPTnQFqZfgrQyEfCYLL6d96W0T4UoahQao+PFzJcR2P/CpMU9j5nw==}
     engines: {node: 16.* || >= 18}
     peerDependencies:
-      '@ember/test-helpers': 5.2.2
+      '@ember/test-helpers': '>= 5.2.1'
       qunit: '>= 2'
     peerDependenciesMeta:
       qunit:
@@ -3405,7 +3405,7 @@ packages:
   ember-gesture-modifiers@6.1.0:
     resolution: {integrity: sha512-LY92LRkO+wDiqeIjni3IXn1xV8lIUJzIm7Ywh7+sGeKpxy2qBtSlnyyFIAxBjCfD1RrM3wGSh3WKA41y+LS5lw==}
     peerDependencies:
-      '@ember/test-helpers': 5.2.2
+      '@ember/test-helpers': '>= 5.2.1'
       ember-source: 6.6.0-alpha.1
     peerDependenciesMeta:
       '@ember/test-helpers':
@@ -3443,8 +3443,8 @@ packages:
   ember-primitives@0.32.0:
     resolution: {integrity: sha512-VZLUgr+9ldd6FbCMgbXcRfrca+UCL8qk72FtL+yKVDJxb+7G//XrkXxiUypMB1H8tMy60+3vh1wLo7EanVE43Q==}
     peerDependencies:
-      '@ember/test-helpers': 5.2.2
-      '@ember/test-waiters': 4.1.0
+      '@ember/test-helpers': '>= 5.2.1'
+      '@ember/test-waiters': '>= 4.1.0'
       '@glimmer/component': ^2.0.0
       '@glint/template': '>= 1.0.0'
       ember-modifier: '>= 4.1.0'
@@ -3458,7 +3458,7 @@ packages:
   ember-qunit@9.0.2:
     resolution: {integrity: sha512-vAuumvTYgfFpP0LgK1uw2vBEnD7bv1JYh0JUwkFfBiAkCGV7HkjVWNcgQ2agwarfzxLgEaC0hWlOn9adwJmlNg==}
     peerDependencies:
-      '@ember/test-helpers': 5.2.2
+      '@ember/test-helpers': '>= 5.2.1'
       ember-source: 6.6.0-alpha.1
       qunit: ^2.13.0
 
@@ -6096,7 +6096,7 @@ packages:
   reactiveweb@1.4.2:
     resolution: {integrity: sha512-A9tJOMJoghbi4TaDBbcUYTqVimodVc0cE0Kb7N04FibTLs/hs6N8XfqDS4nZe8gXuIJMxgabwYT3C/X4U9kYIw==}
     peerDependencies:
-      '@ember/test-waiters': 4.1.0
+      '@ember/test-waiters': '>= 4.1.0'
 
   readable-stream@1.0.34:
     resolution: {integrity: sha512-ok1qVCJuRkNmvebYikljxJA/UEsKwLl2nI1OmaqAu4/UE+h0wKCHok4XkL/gvi39OacXvw59RJUOFUkDib2rHg==}
