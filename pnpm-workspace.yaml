@@ -1,20 +1,18 @@
 autoInstallPeers: false
 overrides:
-  '@ember/test-helpers': $@ember/test-helpers
-  '@ember/test-waiters': $@ember/test-waiters
-  '@glimmer/component': $@glimmer/component
-  ember-source: $ember-source
-  '@embroider/macros': $@embroider/macros
-
-patchedDependencies:
-  ember-mobile-menu: patches/ember-mobile-menu.patch
-
+  '@ember/test-helpers': '>= 5.2.1'
+  '@ember/test-waiters': '>= 4.1.0'
+  '@glimmer/component': ^2.0.0
+  ember-source: 6.6.0-alpha.1
+  '@embroider/macros': 1.17.3
+  testem: link:../testem
 packageExtensions:
   ember-mobile-menu:
     peerDependencies:
       '@glimmer/tracking': ''
-      'ember-source': ''
-
+      ember-source: ''
+patchedDependencies:
+  ember-mobile-menu: patches/ember-mobile-menu.patch
 peerDependencyRules:
   allowAny:
     - typescript

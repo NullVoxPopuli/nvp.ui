@@ -59,7 +59,7 @@
     "start:docs": "vite preview --outDir dist-app",
     "start:api-docs": "npx html-pages ./dist-docs --no-cache",
     "test:launch": "cd dist-tests && testem --file ../testem.cjs server",
-    "test:ci": "cd dist-tests && testem --file ../testem.cjs ci",
+    "test:ci": "cd dist-tests && npm exec testem ci",
     "test": "pnpm build:tests && pnpm test:ci",
     "prepare": "pnpm build && pnpm build:api-docs",
     "prepack": "rollup --config"
@@ -153,7 +153,7 @@
     "rollup": "~4.40.2",
     "rollup-plugin-copy": "^3.5.0",
     "shiki": "^3.4.0",
-    "testem": "^3.15.2",
+    "testem": "NullVoxPopuli/testem:6691bdb",
     "tracked-built-ins": "^4.0.0",
     "typedoc": "^0.28.4",
     "typescript": "^5.8.3",
