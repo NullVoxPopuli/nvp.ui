@@ -1,27 +1,30 @@
 autoInstallPeers: false
-peersSuffixMaxLength: 40
+overrides:
+  '@ember/test-helpers': $@ember/test-helpers
+  '@ember/test-waiters': $@ember/test-waiters
+  '@glimmer/component': $@glimmer/component
+  ember-source: $ember-source
+  '@embroider/macros': $@embroider/macros
 
-# Hax, to dangerously force the dep graph
-# to be what we want
-publicHoistPattern:
-- "ember-source"
-- "@glimmer/component"
+patchedDependencies:
+  ember-mobile-menu: patches/ember-mobile-menu.patch
+
+packageExtensions:
+  ember-mobile-menu:
+    peerDependencies:
+      '@glimmer/tracking': ''
+      'ember-source': ''
 
 peerDependencyRules:
   allowAny:
-    - "typescript"
-    - "ember-source"
-    - "@glimmer/compiler"
-    - "@glimmer/syntax"
-
+    - typescript
+    - ember-source
+    - '@glimmer/compiler'
+    - '@glimmer/syntax'
   ignoreMissing:
     - webpack
     - rsvp
-
-
-overrides:
-  "@ember/test-helpers": "$@ember/test-helpers"
-  "@ember/test-waiters": "$@ember/test-waiters"
-  "@glimmer/component": "$@glimmer/component"
-  "ember-source": "$ember-source"
-  "@embroider/macros": "$@embroider/macros"
+peersSuffixMaxLength: 40
+publicHoistPattern:
+  - ember-source
+  - '@glimmer/component'

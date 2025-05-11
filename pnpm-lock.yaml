@@ -12,7 +12,14 @@ overrides:
   ember-source: 6.6.0-alpha.1
   '@embroider/macros': 1.17.3
 
+packageExtensionsChecksum: sha256-N5gr6fWTUXLCxP7pn0oZueTB0ypA5X1iAqKxiLeM+4I=
+
 pnpmfileChecksum: sha256-84aBxvqLMA7tzVouqpHpyhbPTt1s36qLtUPdywQDjMw=
+
+patchedDependencies:
+  ember-mobile-menu:
+    hash: ab7af0110081e15928f5cd92a18a9133f9dd1c84d7380a2ea41cc6601b03d351
+    path: patches/ember-mobile-menu.patch
 
 importers:
 
@@ -165,7 +172,7 @@ importers:
         version: 1.1.1(7120387f1461dcbf738f9b1965ce0ead)
       ember-mobile-menu:
         specifier: ^5.3.0
-        version: 5.3.0(b76058be40b98c0810a3f0bb63a09158)
+        version: 5.3.0(patch_hash=ab7af0110081e15928f5cd92a18a9133f9dd1c84d7380a2ea41cc6601b03d351)(b76058be40b98c0810a3f0bb63a09158)
       ember-on-resize-modifier:
         specifier: ^2.0.2
         version: 2.0.2(cd296b8479611bdb9e7fc7536cd242e7)
@@ -11355,7 +11362,7 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  ember-mobile-menu@5.3.0(b76058be40b98c0810a3f0bb63a09158):
+  ember-mobile-menu@5.3.0(patch_hash=ab7af0110081e15928f5cd92a18a9133f9dd1c84d7380a2ea41cc6601b03d351)(b76058be40b98c0810a3f0bb63a09158):
     dependencies:
       '@ember/render-modifiers': 2.1.0(cd296b8479611bdb9e7fc7536cd242e7)
       '@ember/test-waiters': 4.1.0(@glint/template@1.5.2)
