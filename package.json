@@ -93,7 +93,7 @@
     "@embroider/config-meta-loader": "^1.0.0",
     "@embroider/core": "^4.0.3",
     "@embroider/vite": "^1.1.1",
-    "@embroider/try": "github:NullVoxPopuli/try#3d2427f",
+    "@embroider/try": "github:NullVoxPopuli/try#768631a",
     "@glimmer/component": "^2.0.0",
     "@glint/core": "unstable",
     "@glint/environment-ember-loose": "unstable",
