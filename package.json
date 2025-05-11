@@ -42,7 +42,7 @@
     "deploy:preview": "pnpm deploy:prepare && pnpm vite preview --outDir dist-app",
     "build": "rollup --config ./config/rollup.config.mjs",
     "build:app": "vite build --out-dir dist-app",
-    "build:api-docs": "typedoc --options ./typedoc.config.json --json ./dist-docs/docs.json ",
+    "build:api-docs": "typedoc --options ./config/typedoc.config.json --json ./dist-docs/docs.json ",
     "build:tests": "vite build --mode=test --out-dir dist-tests",
     "lint:package": "pnpm publint",
     "lint:published-types": "attw *.tgz || exit 0",
