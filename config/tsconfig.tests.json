@@ -3,11 +3,9 @@
   "glint": {
     "environment": ["ember-loose", "ember-template-imports"]
   },
-  "include": ["../src", "../docs-app", "../tests"],
   "compilerOptions": {
-    "isolatedModules": true,
-    "verbatimModuleSyntax": true,
-    "rootDir": "..",
+    "composite": true,
+    "rootDir": "../tests",
     "types": [
       "ember-source/types",
       "vite/client",
@@ -15,6 +13,11 @@
       "@embroider/core/virtual",
       "unplugin-info/client"
     ],
-    "paths": {}
-  }
+    "paths": {
+      "@universal-ember/preem": ["../src/index.ts"]
+    }
+  },
+  "references": [
+    { "path": "./tsconfig.src.json" },
+  ]
 }

@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/ember/tsconfig.json",
   "compilerOptions": {
+    "composite": true,
     "baseUrl": "../",
     "paths": {
       "@universal-ember/preem": ["./src/index.ts"]
@@ -10,4 +11,7 @@
     "entryPoints": ["../declarations/*.d.ts", "../declarations/components/**.d.ts"]
   },
   "include": ["../declarations/*.d.ts", "../declarations/**/*.d.ts"]
+  "references": [
+    { "path": "./tsconfig.src.json" },
+  ]
 }
