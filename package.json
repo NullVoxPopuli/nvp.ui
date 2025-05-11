@@ -29,10 +29,10 @@
       "types": "./declarations/test-support/index.d.ts",
       "default": "./dist/test-support/index.js"
     },
-    "./addon-main": "./addon-main.cjs"
+    "./addon-main": "./config/addon-main.cjs"
   },
   "files": [
-    "addon-main.cjs",
+    "config",
     "dist",
     "declarations",
     "src"
@@ -162,7 +162,7 @@
   "ember-addon": {
     "version": 2,
     "type": "addon",
-    "main": "addon-main.cjs",
+    "main": "config/addon-main.cjs",
     "app-js": {}
   }
 }
