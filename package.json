@@ -61,6 +61,7 @@
     "test:launch": "cd dist-tests && testem --file ../testem.cjs server",
     "test:ci": "cd dist-tests && testem --file ../testem.cjs ci",
     "test": "pnpm build:tests && pnpm test:ci",
+    "prepare": "pnpm build && pnpm build:api-docs",
     "prepack": "rollup --config"
   },
   "dependencies": {
@@ -114,7 +115,7 @@
     "@types/qunit": "^2.19.12",
     "@types/rsvp": "^4.0.9",
     "@zamiell/typedoc-plugin-not-exported": "^0.3.0",
-    "babel-plugin-ember-template-compilation": "^3.0.0",
+    "babel-plugin-ember-template-compilation": "^2.4.1",
     "change-case": "^5.4.4",
     "concurrently": "^9.1.2",
     "content-tag": "^3.1.3",

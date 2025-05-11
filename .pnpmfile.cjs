@@ -8,7 +8,7 @@ const VIRTUAL_PACKAGES = [
   'ember-cached-decorator-polyfill',
 ];
 
-function readPackage(pkg, _context) {
+function readPackage(pkg) {
     if (!pkg['ember-addon']) {
         return pkg;
     }
