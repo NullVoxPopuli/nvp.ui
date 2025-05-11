@@ -2,6 +2,8 @@
   "extends": "@tsconfig/ember/tsconfig.json",
   "compilerOptions": {
     "composite": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
     "declarationDir": "declarations/typedoc",
     "baseUrl": "../",
     "paths": {

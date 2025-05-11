@@ -6,6 +6,8 @@
   "compilerOptions": {
     "composite": true,
     "rootDir": "../tests",
+    "noEmit": false,
+    "emitDeclarationOnly": true,
     "declarationDir": "declarations/tests",
     "types": [
       "ember-source/types",
