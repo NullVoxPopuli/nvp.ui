@@ -28,7 +28,7 @@ jobs:
       - run:  echo ${{ github.event.number }} > ./pr-number.txt
       - id: set-matrix
         run: |
-          echo "matrix=$(pnpm -s dlx @embroider/try list)" >> $GITHUB_OUTPUT
+          echo "matrix=$(pnpm -s try list)" >> $GITHUB_OUTPUT
 
   # Every PR will need linting. Turbo's cache can optimize per-package
   lint:
@@ -80,7 +80,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: pnpm
-      - run: pnpm dlx @embroider/try apply ${{ matrix.name }}
+      # TODO: uncomment this
+      # - run: pnpm dlx @embroider/try apply ${{ matrix.name }}
+      - run: pnpm install --no-lockfile --ignore-scripts
+      - run: pnpm try apply ${{ matrix.name }}
+      # The above can be deleted when my PR is merged
       - run: pnpm install --no-lockfile
       - run: pnpm test
         env: ${{ matrix.env }}
