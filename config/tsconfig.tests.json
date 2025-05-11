@@ -6,6 +6,7 @@
   "compilerOptions": {
     "composite": true,
     "rootDir": "../tests",
+    "declarationDir": "./declarations/tests",
     "types": [
       "ember-source/types",
       "vite/client",

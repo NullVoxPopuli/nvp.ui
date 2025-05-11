@@ -1,0 +1,24 @@
+{
+  "extends": "@ember/app-tsconfig",
+  "glint": {
+    "environment": ["ember-loose", "ember-template-imports"]
+  },
+  "compilerOptions": {
+    "composite": true,
+    "declarationDir": "./declarations-docs-app",
+    "rootDir": "../tests",
+    "types": [
+      "ember-source/types",
+      "vite/client",
+      "kolay/virtual",
+      "@embroider/core/virtual",
+      "unplugin-info/client"
+    ],
+    "paths": {
+      "@universal-ember/preem": ["../src/index.ts"]
+    }
+  },
+  "references": [
+    { "path": "./tsconfig.src.json" },
+  ]
+}

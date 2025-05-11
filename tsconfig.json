@@ -1,4 +1,7 @@
 {
+  "glint": {
+    "environment": ["ember-loose", "ember-template-imports"]
+  },
   "references": [
     { "path": "./config/tsconfig.src.json" },
     { "path": "./config/tsconfig.tests.json" },
