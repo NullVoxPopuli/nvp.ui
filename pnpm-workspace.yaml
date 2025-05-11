@@ -5,6 +5,7 @@ overrides:
   '@glimmer/component': ^2.0.0
   ember-source: 6.6.0-alpha.1
   '@embroider/macros': 1.17.3
+  '@glint/template': unstable
 packageExtensions:
   ember-mobile-menu:
     peerDependencies:

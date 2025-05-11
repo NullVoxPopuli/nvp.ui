@@ -3,7 +3,7 @@
 The accessible button is an improvement on the native `<button>` by providing additional information when disabled, tooltips, etc
 
 ```gjs live no-shadow
-import { Button, ExternalLink } from "@universal-ember/preem";
+import { Button, ExternalLink } from "nullui";
 import { PortalTargets } from "ember-primitives";
 
 const Reasoning = <template>
@@ -63,7 +63,7 @@ const Reasoning = <template>
 ## Installation
 
 ```bash
-pnpm add @universal-ember/preem
+pnpm add nullui
 ```
 
 ## API Reference

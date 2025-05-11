@@ -1,0 +1,16 @@
+{
+  "extends": "@ember/library-tsconfig",
+  "glint": {
+    "environment": ["ember-loose", "ember-template-imports"]
+  },
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": "../src",
+    "declarationDir": "declarations",
+    "emitDeclarationOnly": true,
+    "isolatedModules": true,
+    "types": [
+      "ember-source/types"
+    ]
+  }
+}

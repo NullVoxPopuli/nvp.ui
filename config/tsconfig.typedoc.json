@@ -1,13 +1,20 @@
 {
   "extends": "@tsconfig/ember/tsconfig.json",
   "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "declarationDir": "declarations/typedoc",
     "baseUrl": "../",
     "paths": {
-      "@universal-ember/preem": ["./src/index.ts"]
+      "nullui": ["./src/index.ts"]
     }
   },
   "typedocOptions": {
     "entryPoints": ["../declarations/*.d.ts", "../declarations/components/**.d.ts"]
   },
   "include": ["../declarations/*.d.ts", "../declarations/**/*.d.ts"]
+  "references": [
+    { "path": "./tsconfig.src.json" },
+  ]
 }

@@ -15,7 +15,7 @@ export default defineConfig({
   resolve: {
     extensions,
     alias: {
-      "@universal-ember/preem": `${process.cwd()}/src/index.ts`,
+      "nullui": `${process.cwd()}/src/index.ts`,
 
       // // bug? idk
       // "@glimmer/component": `${nm}/@glimmer/component/dist/index.js`,

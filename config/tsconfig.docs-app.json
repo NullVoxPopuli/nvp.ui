@@ -8,7 +8,7 @@
     "rootDir": "../tests",
     "noEmit": false,
     "emitDeclarationOnly": true,
-    "declarationDir": "declarations/tests",
+    "declarationDir": "declarations/app",
     "types": [
       "ember-source/types",
       "vite/client",

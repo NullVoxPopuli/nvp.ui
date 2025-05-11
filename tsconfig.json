@@ -1,18 +1,11 @@
 {
-  "extends": "@ember/library-tsconfig",
-  "exclude": ["docs-app", "tests", "declarations", "dist", "dist-app", "dist-docs"],
   "glint": {
     "environment": ["ember-loose", "ember-template-imports"]
   },
-  "compilerOptions": {
-    "declarationDir": "declarations",
-    "isolatedModules": true,
-    "types": [
-      "ember-source/types",
-      "vite/client",
-      "kolay/virtual",
-      "@embroider/core/virtual",
-      "unplugin-info/client"
-    ]
-  }
+  "references": [
+    { "path": "./config/tsconfig.src.json" },
+    { "path": "./config/tsconfig.tests.json" },
+    { "path": "./config/tsconfig.docs-app.json" },
+    { "path": "./config/tsconfig.typedoc.json" },
+  ]
 }
