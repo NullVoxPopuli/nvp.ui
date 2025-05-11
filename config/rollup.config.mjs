@@ -18,7 +18,7 @@ export default {
     babel({
       extensions: [".js", ".gjs", ".ts", ".gts"],
       babelHelpers: "bundled",
-      configFile: resolve(import.meta.dirname, "./config/babel.publish.config.cjs"),
+      configFile: resolve(import.meta.dirname, "./babel.publish.config.cjs"),
     }),
     addon.dependencies(),
     addon.gjs(),
