@@ -153,7 +153,7 @@
     "rollup": "~4.40.2",
     "rollup-plugin-copy": "^3.5.0",
     "shiki": "^3.4.0",
-    "testem": "NullVoxPopuli/testem:6691bdb",
+    "testem": "github:NullVoxPopuli/testem#6691bdb",
     "tracked-built-ins": "^4.0.0",
     "typedoc": "^0.28.4",
     "typescript": "^5.8.3",
