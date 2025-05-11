@@ -27,7 +27,7 @@ export default {
     }),
     addon.dependencies(),
     addon.gjs(),
-    addon.declarations("declarations", configs.ts),
+    addon.declarations("declarations", `pnpm glint --declaration --project ${configs.ts}`),
     addon.keepAssets(["**/*.css"]),
     addon.clean(),
   ],
