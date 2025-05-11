@@ -39,7 +39,7 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
       '@glint/template':
-        specifier: '>= 1.0.0'
+        specifier: '*'
         version: 1.5.2
       decorator-transforms:
         specifier: ^2.3.0
