@@ -1,0 +1,36 @@
+diff --git a/dist/components/mobile-menu.js b/dist/components/mobile-menu.js
+index bf672d4ce5a158b29120f5f6e4a34f4a812f83bc..a386741d34ecccfbc9e1b4bf55e01dd596eeb30b 100644
+--- a/dist/components/mobile-menu.js
++++ b/dist/components/mobile-menu.js
+@@ -16,7 +16,7 @@ import { precompileTemplate } from '@ember/template-compilation';
+ import { setComponentTemplate } from '@ember/component';
+ import { g, i, n } from 'decorator-transforms/runtime';
+ 
+-let cached = macroCondition(dependencySatisfies('ember-source', '>= 4.1.0-alpha.0')) ? importSync('@glimmer/tracking').cached : importSync('ember-cached-decorator-polyfill').cached;
++let cached = importSync('@glimmer/tracking').cached;
+ const _fn = function () {};
+ class StateResource {
+   static {
+diff --git a/package.json b/package.json
+index cde4f1863a41d3559286734fa36ee012d2c15f85..6189efed59294ab41fc23394d604d5e4210e3039 100644
+--- a/package.json
++++ b/package.json
+@@ -32,7 +32,6 @@
+     "@ember/test-waiters": "^3.0.0 || ^4.0.0",
+     "@embroider/addon-shim": "^1.8.9",
+     "decorator-transforms": "^2.2.2",
+-    "ember-cached-decorator-polyfill": "^1.0.2",
+     "ember-concurrency": "^3.0.0 || ^4.0.0",
+     "ember-gesture-modifiers": "^5.0.0 || ^6.0.0",
+     "ember-on-resize-modifier": "^2.0.0",
+@@ -63,9 +62,7 @@
+     "rollup-plugin-copy": "3.5.0"
+   },
+   "peerDependencies": {
+-    "ember-source": ">=3.28.0",
+-    "@glimmer/component": "^1.0.4 || >=2.0.0",
+-    "@glimmer/tracking": "^1.0.4"
++    "@glimmer/component": "^1.0.4 || >=2.0.0"
+   },
+   "publishConfig": {
+     "registry": "https://registry.npmjs.org"

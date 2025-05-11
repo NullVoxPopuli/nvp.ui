@@ -9,6 +9,7 @@ const nm = `${process.cwd()}/node_modules`;
 
 export default defineConfig({
   build: {
+    sourceMap: true,
     target: ["esnext"],
   },
   resolve: {
