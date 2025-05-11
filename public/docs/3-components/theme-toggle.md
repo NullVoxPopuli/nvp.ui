@@ -3,7 +3,7 @@
 Switches between light mode and dark mode
 
 ```gjs live no-shadow
-import { ThemeToggle } from "@universal-ember/preem";
+import { ThemeToggle } from "null.ui";
 
 <template>
   <div class="demo">
@@ -39,23 +39,23 @@ import { ThemeToggle } from "@universal-ember/preem";
 ## Installation
 
 ```bash
-pnpm add @universal-ember/preem
+pnpm add null.ui
 ```
 
 ## Anatomy
 
 ```js
-import { ThemeToggle } from "@universal-ember/preem";
+import { ThemeToggle } from "null.ui";
 ```
 
 or for non-tree-shaking environments:
 
 ```js
-import { ThemeToggle } from "@universal-ember/preem/components/theme-toggle";
+import { ThemeToggle } from "null.ui/components/theme-toggle";
 ```
 
 ```gjs
-import { ThemeToggle } from "@universal-ember/preem";
+import { ThemeToggle } from "null.ui";
 
 <template><ThemeToggle /></template>
 ```
