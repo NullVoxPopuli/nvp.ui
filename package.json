@@ -59,7 +59,7 @@
     "start:docs": "vite preview --outDir dist-app",
     "start:api-docs": "npx html-pages ./dist-docs --no-cache",
     "test:launch": "cd dist-tests && testem --file ../testem.cjs server",
-    "test:ci": "cd dist-tests && npm exec testem ci",
+    "test:ci": "cd dist-tests && ../node_modules/.bin/testem ci",
     "test": "pnpm build:tests && pnpm test:ci",
     "prepare": "pnpm build && pnpm build:api-docs",
     "prepack": "rollup --config"
