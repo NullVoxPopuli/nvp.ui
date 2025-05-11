@@ -5,8 +5,8 @@
   },
   "compilerOptions": {
     "composite": true,
-    "declarationDir": "./declarations-docs-app",
     "rootDir": "../tests",
+    "declarationDir": "declarations/app",
     "types": [
       "ember-source/types",
       "vite/client",
