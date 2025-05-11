@@ -26,6 +26,7 @@ jobs:
     steps:
       - uses: wyvox/action@v1
       - run:  echo ${{ github.event.number }} > ./pr-number.txt
+      - run: ls -la node_modules/.bin
       - id: set-matrix
         run: |
           echo "matrix=$(pnpm -s try list)" >> $GITHUB_OUTPUT
@@ -80,7 +81,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: pnpm
-      - run: pnpm try apply ${{ matrix.name }}
+      - run: pnpm @embroider/try apply ${{ matrix.name }}
       - run: pnpm install --no-lockfile
       - run: pnpm test
         env: ${{ matrix.env }}
