@@ -3,11 +3,11 @@
   "glint": {
     "environment": ["ember-loose", "ember-template-imports"]
   },
-  "include": ["src", "docs-app", "tests"],
+  "include": ["../src", "../docs-app", "../tests"],
   "compilerOptions": {
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
-    "rootDir": ".",
+    "rootDir": "..",
     "types": [
       "ember-source/types",
       "vite/client",

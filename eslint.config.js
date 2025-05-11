@@ -4,7 +4,7 @@ import { configs } from "@nullvoxpopuli/eslint-configs";
 
 const defaults = configs.ember(import.meta.dirname);
 
-const tsconfig = join(import.meta.dirname, "tsconfig.tests.json");
+const tsconfig = join(import.meta.dirname, "config/tsconfig.tests.json");
 
 const config = [
   {

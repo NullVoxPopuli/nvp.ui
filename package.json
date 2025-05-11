@@ -29,21 +29,22 @@
       "types": "./declarations/test-support/index.d.ts",
       "default": "./dist/test-support/index.js"
     },
-    "./addon-main": "./addon-main.cjs"
+    "./addon-main": "./config/addon-main.cjs"
   },
   "files": [
-    "addon-main.cjs",
+    "config",
     "dist",
     "declarations",
     "src"
   ],
   "scripts": {
+    ":vite": "vite --config ./config/vite.config.mjs",
     "deploy:prepare": "pnpm build && pnpm build:api-docs && pnpm build:app",
-    "deploy:preview": "pnpm deploy:prepare && pnpm vite preview --outDir dist-app",
-    "build": "rollup --config",
-    "build:app": "vite build --out-dir dist-app",
-    "build:api-docs": "typedoc --options ./typedoc.config.json --json ./dist-docs/docs.json ",
-    "build:tests": "vite build --mode=test --out-dir dist-tests",
+    "deploy:preview": "pnpm deploy:prepare && pnpm :vite preview --outDir dist-app",
+    "build": "rollup --config ./config/rollup.config.mjs",
+    "build:app": "pnpm :vite build --out-dir dist-app",
+    "build:api-docs": "typedoc --options ./config/typedoc.config.json --json ./dist-docs/docs.json ",
+    "build:tests": "pnpm :vite build --mode=test --out-dir dist-tests",
     "lint:package": "pnpm publint",
     "lint:published-types": "attw *.tgz || exit 0",
     "format": "prettier . --write",
@@ -54,9 +55,9 @@
     "lint:js": "eslint .",
     "lint:hbs:fix": "ember-template-lint . --fix --no-error-on-unmatched-pattern",
     "lint:js:fix": "eslint . --fix",
-    "lint:types": "glint --project ./tsconfig.tests.json",
-    "start": "vite dev",
-    "start:docs": "vite preview --outDir dist-app",
+    "lint:types": "glint --project ./config/tsconfig.tests.json",
+    "start": "pnpm :vite dev",
+    "start:docs": "pnpm :vite preview --outDir dist-app",
     "start:api-docs": "npx html-pages ./dist-docs --no-cache",
     "test:launch": "cd dist-tests && testem --file ../testem.cjs server",
     "test:ci": "cd dist-tests && ../node_modules/.bin/testem ci",
@@ -161,7 +162,7 @@
   "ember-addon": {
     "version": 2,
     "type": "addon",
-    "main": "addon-main.cjs",
+    "main": "config/addon-main.cjs",
     "app-js": {}
   }
 }
