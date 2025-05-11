@@ -33,7 +33,7 @@ export default class ApplicationRoute extends Route {
       resolve: {
         "ember-primitives": import("ember-primitives"),
         "ember-primitives/components/popover": import("ember-primitives/components/popover"),
-        "@universal-ember/preem": import("../../src/index"),
+        "nullui": import("../../src/index"),
         kolay: import("kolay"),
       },
       rehypePlugins: [

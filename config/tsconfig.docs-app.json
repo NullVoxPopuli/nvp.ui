@@ -17,7 +17,7 @@
       "unplugin-info/client"
     ],
     "paths": {
-      "@universal-ember/preem": ["../src/index.ts"]
+      "nullui": ["../src/index.ts"]
     }
   },
   "references": [
