@@ -11,7 +11,9 @@
   display: inline-grid;
   grid-auto-flow: column;
   gap: var(--gap);
+  align-items: baseline;
   padding: var(--padding-1) var(--padding-2);
+  line-height: var(--line-height);
 
   /* Borders */
   border-radius: var(--button-border-radius);
