@@ -19,8 +19,10 @@ export default defineConfig({
 
       // // bug? idk
       // "@glimmer/component": `${nm}/@glimmer/component/dist/index.js`,
-      // "@glimmer/tracking/primitives/cache": `${nm}/ember-source/dist/packages/@glimmer/tracking/primitives/cache`,
-      // "@glimmer/tracking": `${nm}/ember-source/dist/packages/@glimmer/tracking/index`,
+      // Need to do this until we eliminate `@glimmer/tracking` from all deps
+      "@glimmer/tracking/primitives/cache": `${nm}/ember-source/dist/packages/@glimmer/tracking/primitives/cache`,
+      "@glimmer/tracking": `${nm}/ember-source/dist/packages/@glimmer/tracking/index`,
+      "@glimmer/validator": `${nm}/ember-source/dist/packages/@glimmer/validator/index`,
 
       // All of this goes away when these addons are converted to V2
       // HOWEVER -- @ember/render-modifiers should be killed
@@ -46,7 +48,7 @@ export default defineConfig({
   ],
   optimizeDeps: {
     // a wasm-providing dependency
-    exclude: ["content-tag"],
+    exclude: ["content-tag", "@glimmer/tracking"],
     // for top-level-await, etc
     esbuildOptions: {
       target: "esnext",
