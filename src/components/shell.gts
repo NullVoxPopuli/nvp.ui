@@ -1,5 +1,7 @@
 import { colorScheme, sync } from "ember-primitives/color-scheme";
 
+import type { TOC } from "@ember/component/template-only";
+
 /**
  * Needed when there is the possibility that the set theme is different
  * from the user's prefers-color-scheme
@@ -20,4 +22,6 @@ function syncBodyClass() {
   }
 }
 
-export const Shell = <template>{{(syncBodyClass)}}{{yield}}</template>;
+export const Shell: TOC<{ Blocks: { default: [] } }> = <template>
+  {{(syncBodyClass)}}{{yield}}
+</template>;
