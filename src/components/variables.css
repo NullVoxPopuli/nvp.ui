@@ -1,4 +1,6 @@
 :root {
+  color-scheme: light dark;
+
   /* General */
   --radius: 0.25rem;
   --font: ui-sans-serif, sans-serif;
@@ -24,13 +26,7 @@
   --border-width: 1px;
   --border-style: solid;
 
-  /* Colors */
-  --color-primary: #00cdff;
-  --color-secondary: #5555ff;
-  --color-danger: #ee0055;
-
   /* Components */
-  --button-color: rgb(100, 100, 100);
   --button-border-color-mix: rgb(100, 100, 100);
   --button-hover-color-mix: rgb(255, 255, 255);
   --button-border-radius: var(--radius);
@@ -39,10 +35,43 @@
   --button-border-color: var(--border-color);
 }
 
+
+/* Default / light mode */
+:root {
+  /* Colors */
+  --color-text: #121212;
+  --color-primary: #88cdff;
+  --color-secondary: #aaaaff;
+  --color-danger: #ff66bb;
+  --color-disable-mix: #bbb;
+
+  /* Focus */
+  --ring-color: rgb(57 224 224 / var(--ring-opacity, 1));
+
+  /* Components */
+  --button-color: rgb(220, 220, 220);
+}
+
+.theme-dark {
+  /* Colors */
+  --color-text: #ffffff;
+  --color-primary: #00cdff;
+  --color-secondary: #5555ff;
+  --color-danger: #ee0055;
+  --color-disable-mix: #000;
+
+  /* Focus */
+  --ring-color: rgb(224 78 57 / var(--ring-opacity, 1));
+
+  /* Components */
+  --button-color: rgb(100, 100, 100);
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
+  accent-color: var(--color-primary);
 }
 
 html,

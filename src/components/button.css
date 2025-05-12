@@ -19,8 +19,8 @@
   border-style: var(--button-border-style);
 
   /* Colors */
-  box-shadow: 0 1px 3px var(--button-interact-spread) var(--button-background-color);
-  color: color-mix(in oklab, white 75%, #000 var(--button-disable-mix));
+  box-shadow: 0 1px 1px var(--button-interact-spread) var(--button-background-color);
+  color: color-mix(in oklab, var(--color-text) 75%, #000 var(--button-disable-mix));
   background: color-mix(
     in oklab,
     color-mix(
@@ -29,7 +29,7 @@
         var(--button-hover-color-mix) var(--button-hover-mix)
       )
       50%,
-    #000 var(--button-disable-mix)
+    var(--color-disable-mix) var(--button-disable-mix)
   );
   border-color: color-mix(
     in oklab,
@@ -39,7 +39,7 @@
         var(--button-border-color-mix) var(--button-hover-mix)
       )
       50%,
-    #000 var(--button-disable-mix)
+    var(--color-disable-mix) var(--button-disable-mix)
   );
 
   /* States */
@@ -82,7 +82,7 @@
     top: 0;
     left: 0;
     background: #222;
-    color: white;
+    color: var(--color-text);
     font-weight: bold;
     border-radius: 4px;
     font-size: 90%;

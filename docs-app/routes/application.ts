@@ -1,12 +1,10 @@
 import Route from "@ember/routing/route";
 
 import rehypeShikiFromHighlighter from "@shikijs/rehype/core";
-import { colorScheme, sync } from "ember-primitives/color-scheme";
+import { colorScheme } from "ember-primitives/color-scheme";
 import { setupKolay } from "kolay/setup";
 import { createHighlighterCore } from "shiki/core";
 import { createOnigurumaEngine } from "shiki/engine/oniguruma";
-
-sync();
 
 import type { Manifest } from "kolay";
 
