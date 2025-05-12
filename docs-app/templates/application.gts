@@ -9,6 +9,7 @@ import { pageTitle } from "ember-page-title";
 import Route from "ember-route-template";
 import { GroupNav, PageNav } from "kolay/components";
 
+import { ThemeToggle } from "#src/index.ts";
 import { abbreviatedSha } from "~build/git";
 
 import type { TOC } from "@ember/component/template-only";
@@ -61,6 +62,7 @@ export default Route(
         <header style="display: flex; align-items: baseline; gap: 1rem;">
           <mmw.Toggle><Menu /></mmw.Toggle>
           <GroupNav />
+          <ThemeToggle />
         </header>
 
         <div class="big-layout">
