@@ -4,7 +4,9 @@ import type { TOC } from "@ember/component/template-only";
 
 /**
  * Needed when there is the possibility that the set theme is different
- * from the user's prefers-color-scheme
+ * from the user's prefers-color-scheme.
+ *
+ * Reads in the localStorage setting, etc
  */
 sync();
 

@@ -22,7 +22,12 @@
 
   /* Colors */
   box-shadow: 0 1px 1px var(--button-interact-spread) var(--button-background-color);
-  color: color-mix(in oklab, var(--color-text) 75%, #000 var(--button-disable-mix));
+  color: color-mix(
+    in oklab,
+    var(--color-text) 75%,
+    var(--color-disable-mix) var(--button-disable-mix)
+  );
+
   background: color-mix(
     in oklab,
     color-mix(
@@ -33,6 +38,7 @@
       50%,
     var(--color-disable-mix) var(--button-disable-mix)
   );
+
   border-color: color-mix(
     in oklab,
     color-mix(
