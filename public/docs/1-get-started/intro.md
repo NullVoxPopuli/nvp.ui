@@ -5,7 +5,7 @@ UI Kit for building professional and sleek ember apps quickly.
 ## Install
 
 ```bash
-pnpm add preem
+pnpm add null.ui
 ```
 
 ## Compatibility
