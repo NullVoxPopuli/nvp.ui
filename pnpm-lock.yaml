@@ -73,8 +73,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(77301ff8039155cebc4c845e13057acd)
       '@embroider/addon-dev':
-        specifier: 8.0.1
-        version: 8.0.1(@glint/template@1.5.2)(rollup@4.40.2)
+        specifier: 8.1.0
+        version: 8.1.0(@glint/template@1.5.2)(rollup@4.40.2)
       '@embroider/compat':
         specifier: ^4.0.3
         version: 4.0.3(221f7b14780997ba018b01d6fa0111da)
@@ -88,8 +88,8 @@ importers:
         specifier: github:NullVoxPopuli/try#768631a
         version: https://codeload.github.com/NullVoxPopuli/try/tar.gz/768631a
       '@embroider/vite':
-        specifier: ^1.1.1
-        version: 1.1.1(eecac0a6098b4996af55f03aa191e387)
+        specifier: ^1.1.2
+        version: 1.1.2(2359ab670fad521fff2bf400ce7c4730)
       '@glint/core':
         specifier: unstable
         version: 1.4.1-unstable.d17c1f1(typescript@5.8.3)
@@ -254,10 +254,10 @@ importers:
         version: 5.8.3
       unplugin-info:
         specifier: ^1.2.2
-        version: 1.2.2(dec4757d3c123734906da9d140a2d83f)
+        version: 1.2.2(017bd10684e0b1d69c4ed117891272c4)
       vite:
         specifier: ^6.3.5
-        version: 6.3.5(58c756da3c32af19ea95d3a238a53b72)
+        version: 6.3.5(9f27cc78a50be6dba92749e399d5ebf5)
 
 packages:
 
@@ -923,8 +923,8 @@ packages:
   '@ember/test-waiters@4.1.0':
     resolution: {integrity: sha512-qRFA0OumYv7/C3hmx4ETC2dlPzyD549D+naPhcrnV2xCnc3AZlKouWyoFnNF+Cje918kRp9aEefVgV3vmGL5Bg==}
 
-  '@embroider/addon-dev@8.0.1':
-    resolution: {integrity: sha512-vb+qV+1sBosmm0rXBR3yKHP6scq6/n0bRZt7YGAmbt/8+8d+4pIjn6/PZzWIUkYD5MUO/GYbZ61nFgpA+ZpKHQ==}
+  '@embroider/addon-dev@8.1.0':
+    resolution: {integrity: sha512-bOsEqvpAH7pLphjDUMRQTjy6TTrvocvownIlUUFrIy6JCdfIpiirgrz55MJRxy6IIUtKR4jGBh2LxEZrRbL6PQ==}
     engines: {node: 12.* || 14.* || >= 16}
     hasBin: true
     peerDependencies:
@@ -980,8 +980,8 @@ packages:
     version: 0.0.5
     hasBin: true
 
-  '@embroider/vite@1.1.1':
-    resolution: {integrity: sha512-ETEL3Vbp4HkCXyD83GH5nyPj5YogpPlysy86dIIC/o47uRvecou70SxdegCn9hlfvhIbZNEQtsfbSbQY+gHfZA==}
+  '@embroider/vite@1.1.2':
+    resolution: {integrity: sha512-k4jsH+JULG7mI0i+ttSf3MIyVO6gaiuRp7JnQElShRSpI13uUWUZ/j9Iqnkj3gYZOGgf5fFUa5xOJLT59ikgow==}
     peerDependencies:
       '@embroider/core': ^4.0.3
       vite: '>= 5.2.0'
@@ -6756,8 +6756,8 @@ packages:
     resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
     engines: {node: '>=10'}
 
-  terser@5.39.0:
-    resolution: {integrity: sha512-LBAhFyLho16harJoWMg/nZsQYgTrg5jXOn2nCYjRUcZZEdE3qa2zb8QEDRUGVZBW4rlazf2fxkg8tztybTaqWw==}
+  terser@5.39.1:
+    resolution: {integrity: sha512-Mm6+uad0ZuDtcV8/4uOZQDQ8RuiC5Pu+iZRedJtF7yA/27sPL7d++In/AJKpWZlU3SYMPPkVfwetn6sgZ66pUA==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -8319,7 +8319,7 @@ snapshots:
       - '@glint/template'
       - supports-color
 
-  '@embroider/addon-dev@8.0.1(@glint/template@1.5.2)(rollup@4.40.2)':
+  '@embroider/addon-dev@8.1.0(@glint/template@1.5.2)(rollup@4.40.2)':
     dependencies:
       '@embroider/core': 4.0.3(@glint/template@1.5.2)
       '@rollup/pluginutils': 5.1.4(rollup@4.40.2)
@@ -8507,7 +8507,7 @@ snapshots:
 
   '@embroider/try@https://codeload.github.com/NullVoxPopuli/try/tar.gz/768631a': {}
 
-  '@embroider/vite@1.1.1(eecac0a6098b4996af55f03aa191e387)':
+  '@embroider/vite@1.1.2(2359ab670fad521fff2bf400ce7c4730)':
     dependencies:
       '@babel/core': 7.27.1
       '@embroider/core': 4.0.3(@glint/template@1.5.2)
@@ -8524,8 +8524,8 @@ snapshots:
       jsdom: 25.0.1
       send: 0.18.0
       source-map-url: 0.4.1
-      terser: 5.39.0
-      vite: 6.3.5(58c756da3c32af19ea95d3a238a53b72)
+      terser: 5.39.1
+      vite: 6.3.5(9f27cc78a50be6dba92749e399d5ebf5)
     transitivePeerDependencies:
       - '@glint/template'
       - bufferutil
@@ -15637,7 +15637,7 @@ snapshots:
       mkdirp: 1.0.4
       yallist: 4.0.0
 
-  terser@5.39.0:
+  terser@5.39.1:
     dependencies:
       '@jridgewell/source-map': 0.3.6
       acorn: 8.14.1
@@ -16079,7 +16079,7 @@ snapshots:
 
   unpipe@1.0.0: {}
 
-  unplugin-info@1.2.2(dec4757d3c123734906da9d140a2d83f):
+  unplugin-info@1.2.2(017bd10684e0b1d69c4ed117891272c4):
     dependencies:
       ci-info: 4.2.0
       git-url-parse: 16.1.0
@@ -16088,7 +16088,7 @@ snapshots:
     optionalDependencies:
       esbuild: 0.25.4
       rollup: 4.40.2
-      vite: 6.3.5(58c756da3c32af19ea95d3a238a53b72)
+      vite: 6.3.5(9f27cc78a50be6dba92749e399d5ebf5)
     transitivePeerDependencies:
       - supports-color
 
@@ -16203,7 +16203,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite@6.3.5(58c756da3c32af19ea95d3a238a53b72):
+  vite@6.3.5(9f27cc78a50be6dba92749e399d5ebf5):
     dependencies:
       esbuild: 0.25.4
       fdir: 6.4.4(picomatch@4.0.2)
@@ -16215,7 +16215,7 @@ snapshots:
       '@types/node': 22.15.17
       fsevents: 2.3.3
       jiti: 2.4.2
-      terser: 5.39.0
+      terser: 5.39.1
       yaml: 2.7.1
 
   volar-service-html@0.0.64(@volar/language-service@2.4.12):
