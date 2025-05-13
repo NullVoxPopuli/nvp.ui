@@ -9,7 +9,7 @@ import { pageTitle } from "ember-page-title";
 import Route from "ember-route-template";
 import { GroupNav, PageNav } from "kolay/components";
 
-import { Shell,ThemeToggle } from "#src/index.ts";
+import { Header,Shell, ThemeToggle } from "#src/index.ts";
 import { abbreviatedSha } from "~build/git";
 
 import type { TOC } from "@ember/component/template-only";
@@ -60,11 +60,11 @@ export default Route(
         </mmw.MobileMenu>
 
         <mmw.Content class="container">
-          <header style="display: flex; align-items: baseline; gap: 1rem;">
+          <Header>
             <mmw.Toggle><Menu /></mmw.Toggle>
             <GroupNav />
             <ThemeToggle />
-          </header>
+          </Header>
 
           <div class="big-layout">
             <SideNav />
@@ -81,10 +81,6 @@ export default Route(
       .mobile-menu-wrapper__content,
       .mobile-menu__tray {
         background: none;
-      }
-
-      header {
-        border-bottom: 1px solid currentColor;
       }
 
       header button.mobile-menu__toggle {

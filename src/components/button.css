@@ -81,6 +81,8 @@
     --button-interact-spread: -1px;
   }
 
+  --button-reason-border-target: white;
+
   .preem__button__disabled-reason {
     display: none;
     padding: var(--padding);
@@ -89,17 +91,17 @@
     text-align: left;
     top: 0;
     left: 0;
-    background: #222;
+    background: var(--reason-background-color);
+    border: var(--reason-border);
     color: var(--color-text);
-    font-weight: bold;
     border-radius: 4px;
     font-size: 90%;
-    filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.4));
+    filter: var(--reason-shadow);
     z-index: 10;
 
     .arrow {
       position: absolute;
-      background: #222;
+      background: var(--reason-background-color);
       width: 8px;
       height: 8px;
       transform: rotate(45deg);

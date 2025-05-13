@@ -58,6 +58,10 @@ const Reasoning = <template>
 pnpm add null.ui
 ```
 
+## Remaining tasks
+
+- [ ] the disable reason pop up should be focusable and in the taborder when it appears - this may mean converting it to a focus-activated menu
+
 ## API Reference
 
 ```gjs live

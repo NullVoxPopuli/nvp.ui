@@ -85,7 +85,7 @@ export const Button: TOC<Signature> = <template>
       {{popover.reference}}
     >
       {{#if @disabled}}
-        <popover.Content class="preem__button__disabled-reason">
+        <popover.Content tabindex="0" class="preem__button__disabled-reason">
           {{#if (isString @disabled)}}
             {{@disabled}}
           {{else}}

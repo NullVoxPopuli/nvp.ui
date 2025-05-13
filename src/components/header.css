@@ -1,0 +1,7 @@
+.preem__header {
+  filter: var(--shadow-xl);
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  background: var(--header-background);
+}
