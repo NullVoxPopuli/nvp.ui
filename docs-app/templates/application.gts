@@ -9,6 +9,7 @@ import { pageTitle } from "ember-page-title";
 import Route from "ember-route-template";
 import { GroupNav, PageNav } from "kolay/components";
 
+import { Header, Shell, ThemeToggle } from "#src/index.ts";
 import { abbreviatedSha } from "~build/git";
 
 import type { TOC } from "@ember/component/template-only";
@@ -50,37 +51,36 @@ const SideNav: TOC<{ Element: HTMLElement }> = <template>
 
 export default Route(
   <template>
-    {{pageTitle "Docs :: " abbreviatedSha}}
+    <Shell>
+      {{pageTitle "Docs :: " abbreviatedSha}}
 
-    <MenuWrapper as |mmw|>
-      <mmw.MobileMenu @mode="push" @maxWidth={{200}} as |mm|>
-        <SideNav {{on "click" mm.actions.close}} />
-      </mmw.MobileMenu>
+      <MenuWrapper as |mmw|>
+        <mmw.MobileMenu @mode="push" @maxWidth={{200}} as |mm|>
+          <SideNav {{on "click" mm.actions.close}} />
+        </mmw.MobileMenu>
 
-      <mmw.Content class="container">
-        <header style="display: flex; align-items: baseline; gap: 1rem;">
-          <mmw.Toggle><Menu /></mmw.Toggle>
-          <GroupNav />
-        </header>
+        <mmw.Content class="container">
+          <Header>
+            <mmw.Toggle><Menu /></mmw.Toggle>
+            <GroupNav />
+            <ThemeToggle />
+          </Header>
 
-        <div class="big-layout">
-          <SideNav />
+          <div class="big-layout">
+            <SideNav />
 
-          <main style="padding-top: 1rem;">
-            {{outlet}}
-          </main>
-        </div>
-      </mmw.Content>
-    </MenuWrapper>
+            <main style="padding-top: 1rem;">
+              {{outlet}}
+            </main>
+          </div>
+        </mmw.Content>
+      </MenuWrapper>
+    </Shell>
 
     <style>
       .mobile-menu-wrapper__content,
       .mobile-menu__tray {
         background: none;
-      }
-
-      header {
-        border-bottom: 1px solid currentColor;
       }
 
       header button.mobile-menu__toggle {

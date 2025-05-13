@@ -43,17 +43,9 @@ const Reasoning = <template>
 
   <br /><br />
   <Button @variant="primary" @disabled="Disabled for visual Demo">Primary</Button>
-
-  <br /><br />
-  <Button @variant="primary" @disabled="Disabled for visual Demo">Primary</Button>
   <Button @variant="secondary" @disabled="Disabled for visual Demo">Secondary</Button>
   <Button @variant="danger" @disabled="Disabled for visual Demo">Danger</Button>
 
-  <br /><br />
-  <Button
-    @variant="primary"
-    @disabled="You do not have permission to do this. You are missing the 'click-whatever-i-want' permission"
-  >Primary</Button>
   <br /><br />
   <Button @variant="primary" @disabled={{Reasoning}}>Create Blog Post</Button>
   <Button @variant="primary">Create Blog Post</Button>
@@ -65,6 +57,10 @@ const Reasoning = <template>
 ```bash
 pnpm add null.ui
 ```
+
+## Remaining tasks
+
+- [ ] the disable reason pop up should be focusable and in the taborder when it appears - this may mean converting it to a focus-activated menu
 
 ## API Reference
 

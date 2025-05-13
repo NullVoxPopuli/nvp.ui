@@ -29,8 +29,8 @@ import { ComponentSignature } from "kolay";
 
 <template>
   <ComponentSignature
-    @package="null.ui"
-    @module="declarations/components/external-link"
+    @package="."
+    @module="declarations/components/external-link.gts"
     @name="Signature"
   />
 </template>

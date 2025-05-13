@@ -11,10 +11,14 @@ textarea,
     outline: 2px solid transparent;
     outline-offset: 2px;
   }
+  /**
+   * Due to the size of the focus ring, every interactive must have at least 4px (--padding-1, by default)
+   * of space between it and a hard boundary
+   */
   &:focus-visible {
     box-shadow:
       0 0 0px 2px black,
-      0 0 0 3px var(--ring-color);
+      0 0 0 4px var(--ring-color);
     border-radius: var(--radius);
   }
 }

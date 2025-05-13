@@ -1,4 +1,6 @@
 :root {
+  color-scheme: light dark;
+
   /* General */
   --radius: 0.25rem;
   --font: ui-sans-serif, sans-serif;
@@ -9,6 +11,7 @@
   --gap-2: 0.5rem;
   --gap-3: 0.75rem;
   --gap-4: 1rem;
+  --line-height: 1.5rem;
 
   --padding: 0.5rem;
   --padding-1: 0.25rem;
@@ -24,25 +27,64 @@
   --border-width: 1px;
   --border-style: solid;
 
-  /* Colors */
-  --color-primary: #00cdff;
-  --color-secondary: #5555ff;
-  --color-danger: #ee0055;
+  /* Shadows */
+  --shadow-xl: drop-shadow(0px 2px 0.75rem rgba(0, 0, 0, 0.3));
+  --shadow-md: drop-shadow(0px 2px 0.25rem rgba(0, 0, 0, 0.2));
 
   /* Components */
-  --button-color: rgb(100, 100, 100);
   --button-border-color-mix: rgb(100, 100, 100);
   --button-hover-color-mix: rgb(255, 255, 255);
   --button-border-radius: var(--radius);
   --button-border-width: var(--border-width);
   --button-border-style: var(--border-style);
   --button-border-color: var(--border-color);
+
+  --reason-shadow: var(--shadow-md);
+}
+
+/* Default / light mode */
+:root,
+.theme-light {
+  /* Colors */
+  --color-text: #121212;
+  --color-primary: #88cdff;
+  --color-secondary: #aaaaff;
+  --color-danger: #ff66bb;
+  --color-disable-mix: #bbb;
+
+  /* Focus */
+  --ring-color: rgb(100 100 224 / var(--ring-opacity, 1));
+
+  /* Components */
+  --button-color: rgb(220, 220, 220);
+  --reason-background-color: rgb(240, 240, 240);
+  --reason-border: 2px solid #eee;
+  --header-background: #fff;
+}
+
+.theme-dark {
+  /* Colors */
+  --color-text: #ffffff;
+  --color-primary: #00cdff;
+  --color-secondary: #5555ff;
+  --color-danger: #ee0055;
+  --color-disable-mix: #000;
+
+  /* Focus */
+  --ring-color: rgb(224 78 57 / var(--ring-opacity, 1));
+
+  /* Components */
+  --button-color: rgb(100, 100, 100);
+  --reason-background-color: rgb(50, 50, 50);
+  --reason-border: 1px solid #222;
+  --header-background: #111;
 }
 
 html,
 body {
   margin: 0;
   padding: 0;
+  accent-color: var(--color-primary);
 }
 
 html,

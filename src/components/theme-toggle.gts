@@ -21,7 +21,11 @@ function isDark() {
   return colorScheme.current === "dark";
 }
 
-export const ThemeToggle: TOC<{ Element: Element }> = <template>
+export interface Signature {
+  Element: Element;
+}
+
+export const ThemeToggle: TOC<Signature> = <template>
   <Switch class="preem__site-theme-toggle" ...attributes as |s|>
     <s.Control name="color-scheme" checked={{(isDark)}} {{on "change" toggleTheme}} />
     <s.Label>

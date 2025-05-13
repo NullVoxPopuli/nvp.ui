@@ -62,7 +62,17 @@ import { ThemeToggle } from "null.ui";
 
 ## API Reference
 
-none
+```gjs live no-shadow
+import { ComponentSignature } from "kolay";
+
+<template>
+  <ComponentSignature
+    @package="."
+    @module="declarations/components/theme-toggle.gts"
+    @name="Signature"
+  />
+</template>
+```
 
 ### State Attributes
 
