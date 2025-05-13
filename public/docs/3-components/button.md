@@ -43,17 +43,9 @@ const Reasoning = <template>
 
   <br /><br />
   <Button @variant="primary" @disabled="Disabled for visual Demo">Primary</Button>
-
-  <br /><br />
-  <Button @variant="primary" @disabled="Disabled for visual Demo">Primary</Button>
   <Button @variant="secondary" @disabled="Disabled for visual Demo">Secondary</Button>
   <Button @variant="danger" @disabled="Disabled for visual Demo">Danger</Button>
 
-  <br /><br />
-  <Button
-    @variant="primary"
-    @disabled="You do not have permission to do this. You are missing the 'click-whatever-i-want' permission"
-  >Primary</Button>
   <br /><br />
   <Button @variant="primary" @disabled={{Reasoning}}>Create Blog Post</Button>
   <Button @variant="primary">Create Blog Post</Button>
@@ -72,7 +64,11 @@ pnpm add null.ui
 import { ComponentSignature } from "kolay";
 
 <template>
-  <ComponentSignature @package="." @module="declarations/components/button.gts" @name="Signature" />
+  <ComponentSignature 
+    @package="." 
+    @module="declarations/components/button.gts" 
+    @name="Signature" 
+  />
 </template>
 ```
 
