@@ -8,7 +8,7 @@
   "glint": {
     "environment": ["ember-loose", "ember-template-imports"]
   },
-  "include": ["./src", "./docs-app", "./tests"],
+  "exclude": ["dist", "dist-*", "declarations", "node_modules"],
   "compilerOptions": {
     "isolatedModules": true,
     "verbatimModuleSyntax": true,

@@ -6,7 +6,7 @@
   },
   "compilerOptions": {
     "baseUrl": "../",
-    "declarationDir": "declarations",
+    "declarationDir": "../declarations",
     "isolatedModules": true,
     "types": [
       "ember-source/types",
