@@ -38,7 +38,9 @@ export default class App extends Application {
     "docs-app/routes/application": ApplicationRoute,
     "docs-app/routes/index": IndexRoute,
     "docs-app/routes/page": PageRoute,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     "docs-app/templates/application": ApplicationTemplate,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     "docs-app/templates/page": PageTemplate,
 
     // From Libraries

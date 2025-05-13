@@ -1,20 +1,19 @@
 {
-  "extends": "@ember/app-tsconfig",
+  "extends": "@ember/library-tsconfig",
+  "include": ["../src"],
   "glint": {
     "environment": ["ember-loose", "ember-template-imports"]
   },
-  "include": ["../src", "../docs-app", "../tests"],
   "compilerOptions": {
+    "baseUrl": "../",
+    "declarationDir": "../declarations",
     "isolatedModules": true,
-    "verbatimModuleSyntax": true,
-    "rootDir": "..",
     "types": [
       "ember-source/types",
       "vite/client",
       "kolay/virtual",
       "@embroider/core/virtual",
       "unplugin-info/client"
-    ],
-    "paths": {}
+    ]
   }
 }

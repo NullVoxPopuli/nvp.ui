@@ -1,18 +1,25 @@
+/**
+ * This tsconfig is not used for publishing.
+ * It's only for the local editing experience
+ * (and linting)
+ */
 {
-  "extends": "@ember/library-tsconfig",
-  "exclude": ["docs-app", "tests", "declarations", "dist", "dist-app", "dist-docs"],
+  "extends": "@ember/app-tsconfig",
   "glint": {
     "environment": ["ember-loose", "ember-template-imports"]
   },
+  "exclude": ["dist", "dist-*", "declarations", "node_modules"],
   "compilerOptions": {
-    "declarationDir": "declarations",
     "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "rootDir": ".",
     "types": [
       "ember-source/types",
       "vite/client",
       "kolay/virtual",
       "@embroider/core/virtual",
       "unplugin-info/client"
-    ]
+    ],
+    "paths": {}
   }
 }

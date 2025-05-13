@@ -57,7 +57,7 @@
     "lint:js": "eslint .",
     "lint:hbs:fix": "ember-template-lint . --fix --no-error-on-unmatched-pattern",
     "lint:js:fix": "eslint . --fix",
-    "lint:types": "glint --project ./config/tsconfig.tests.json",
+    "lint:types": "glint",
     "start": "pnpm :vite dev",
     "start:docs": "pnpm :vite preview --outDir dist-app",
     "start:api-docs": "npx html-pages ./dist-docs --no-cache",

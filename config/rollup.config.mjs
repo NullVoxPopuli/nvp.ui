@@ -8,6 +8,11 @@ const addon = new Addon({
   destDir: "dist",
 });
 
+const configs = {
+  babel: resolve(import.meta.dirname, "./babel.publish.config.cjs"),
+  ts: resolve(import.meta.dirname, "./tsconfig.publish.json"),
+};
+
 export default {
   output: addon.output(),
   plugins: [
@@ -18,11 +23,11 @@ export default {
     babel({
       extensions: [".js", ".gjs", ".ts", ".gts"],
       babelHelpers: "bundled",
-      configFile: resolve(import.meta.dirname, "./babel.publish.config.cjs"),
+      configFile: configs.babel,
     }),
     addon.dependencies(),
     addon.gjs(),
-    addon.declarations("declarations"),
+    addon.declarations("declarations", `pnpm glint --declaration --project ${configs.ts}`),
     addon.keepAssets(["**/*.css"]),
     addon.clean(),
   ],
