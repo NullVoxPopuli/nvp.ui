@@ -9,7 +9,7 @@ import { pageTitle } from "ember-page-title";
 import Route from "ember-route-template";
 import { GroupNav, PageNav } from "kolay/components";
 
-import { Header,Shell, ThemeToggle } from "#src/index.ts";
+import { Header, Shell, ThemeToggle } from "#src/index.ts";
 import { abbreviatedSha } from "~build/git";
 
 import type { TOC } from "@ember/component/template-only";

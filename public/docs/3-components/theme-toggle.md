@@ -62,7 +62,6 @@ import { ThemeToggle } from "null.ui";
 
 ## API Reference
 
-
 ```gjs live no-shadow
 import { ComponentSignature } from "kolay";
 

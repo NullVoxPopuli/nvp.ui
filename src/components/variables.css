@@ -42,9 +42,9 @@
   --reason-shadow: var(--shadow-md);
 }
 
-
 /* Default / light mode */
-:root, .theme-light {
+:root,
+.theme-light {
   /* Colors */
   --color-text: #121212;
   --color-primary: #88cdff;
