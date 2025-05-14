@@ -21,14 +21,14 @@ const randomPercent = () => Math.random() * 100;
   <div style="display: flex; gap: 1.5rem">
     <ProgressCircle 
       @color="#FF1E7D" 
-      aria-label="demo-pink" 
       @value={{(randomValue)}} 
+      aria-label="demo-pink" 
     />
 
     <ProgressCircle 
       @color="#1EFF7D" 
-      aria-label="demo-green" 
       @value={{(randomValue)}} 
+      aria-label="demo-green" 
     />
   </div>
 </template>
