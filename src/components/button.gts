@@ -2,7 +2,7 @@ import "./variables.css";
 import "./focus.css";
 import "./button.css";
 
-import { Popover } from "ember-primitives";
+import { Popover } from "ember-primitives/components/popover";
 
 import type { TOC } from "@ember/component/template-only";
 import type { ComponentLike } from "@glint/template";
@@ -109,5 +109,6 @@ export const Button: TOC<Signature> = <template>
         <span>{{@end}}{{yield to="end"}}</span>
       {{/if}}
     </button>
+
   </Popover>
 </template>;
