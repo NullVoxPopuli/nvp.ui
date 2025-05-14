@@ -1,0 +1,51 @@
+import { Progress } from "ember-primitives";
+
+const r = 60;
+const size = Math.PI * 2 * r;
+const toOffset = (x) => ((100 - x) / 100) * size;
+
+export const ProgressCircle = <template>
+  <Progress @value={{@value}} ...attributes as |x|>
+    <x.Indicator class="preem_progress" />
+    <svg width="200" height="200" viewPort="0 0 100 100">
+      <circle
+        r={{r}}
+        cx="100"
+        cy="100"
+        fill="transparent"
+        stroke-dasharray={{size}}
+        stroke-dashoffset="0"
+      ></circle>
+      <circle
+        r={{r}}
+        cx="100"
+        cy="100"
+        fill="transparent"
+        style="stroke: {{@color}}"
+        stroke-linecap="round"
+        stroke-dasharray={{size}}
+        stroke-dashoffset="{{toOffset x.percent}}"
+      ></circle>
+    </svg>
+  </Progress>
+
+  <style>
+    .preem_progress {
+      height: 200px;
+      width: 200px;
+      position: absolute;
+      text-align: center;
+
+      + svg circle {
+        transition: stroke-dashoffset 0.5s linear;
+        stroke: #555;
+        stroke-width: 1rem;
+      }
+    }
+    .preem_progress:after {
+      content: attr(data-percent) "%";
+      line-height: 200px;
+      font-size: 1.5rem;
+    }
+  </style>
+</template>;
