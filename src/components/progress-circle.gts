@@ -38,6 +38,7 @@ export const ProgressCircle: TOC<Signature> = <template>
         stroke-dashoffset="{{toOffset x.percent}}"
       ></circle>
     </svg>
+    {{! template-lint-disable no-forbidden-elements }}
     <style>
       .preem_progress-circle {
         .preem_progress {
