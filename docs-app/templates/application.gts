@@ -61,9 +61,13 @@ export default Route(
 
         <mmw.Content class="container">
           <Header>
-            <mmw.Toggle><Menu /></mmw.Toggle>
-            <GroupNav />
-            <ThemeToggle />
+            <:left>
+              <mmw.Toggle><Menu /></mmw.Toggle>
+              <a href="/">null.ui</a>
+            </:left>
+            <:right>
+              <ThemeToggle />
+            </:right>
           </Header>
 
           <div class="big-layout">
