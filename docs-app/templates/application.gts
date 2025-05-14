@@ -7,9 +7,9 @@ import { pascalCase, sentenceCase } from "change-case";
 import MenuWrapper from "ember-mobile-menu/components/mobile-menu-wrapper";
 import { pageTitle } from "ember-page-title";
 import Route from "ember-route-template";
-import { GroupNav, PageNav } from "kolay/components";
+import { PageNav } from "kolay/components";
 
-import { Header, Shell, ThemeToggle } from "#src/index.ts";
+import { ExternalLink, Header, Shell, ThemeToggle } from "#src/index.ts";
 import { abbreviatedSha } from "~build/git";
 
 import type { TOC } from "@ember/component/template-only";
@@ -66,6 +66,7 @@ export default Route(
               <a href="/">null.ui</a>
             </:left>
             <:right>
+              <ExternalLink href="https://github.com/NullVoxPopuli/nullui">GitHub</ExternalLink>
               <ThemeToggle />
             </:right>
           </Header>
@@ -82,6 +83,10 @@ export default Route(
     </Shell>
 
     <style>
+      .mobile-menu-wrapper {
+        height: 100dvh;
+        overflow: auto;
+      }
       .mobile-menu-wrapper__content,
       .mobile-menu__tray {
         background: none;

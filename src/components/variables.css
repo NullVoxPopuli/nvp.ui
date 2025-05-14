@@ -9,6 +9,7 @@
   /* z-indexes */
   --z-hover: 10;
   --z-focused: 11;
+  --z-site-nav: 50;
 
   /* Spacing */
   --gap: 0.25rem;
