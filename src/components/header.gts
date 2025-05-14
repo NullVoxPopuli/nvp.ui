@@ -10,6 +10,11 @@ export interface Signature {
 
 export const Header: TOC<Signature> = <template>
   <header class="preem__header">
-    {{yield}}
+    <span class="preem__header__left">
+      {{yield to="left"}}
+    </span>
+    <span class="preem__header__right">
+      {{yield to="right"}}
+    </span>
   </header>
 </template>;

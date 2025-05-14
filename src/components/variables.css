@@ -6,6 +6,11 @@
   --font: ui-sans-serif, sans-serif;
   --fade-duration: 0.125s;
 
+  /* z-indexes */
+  --z-hover: 10;
+  --z-focused: 11;
+  --z-site-nav: 50;
+
   /* Spacing */
   --gap: 0.25rem;
   --gap-1: var(--gap);

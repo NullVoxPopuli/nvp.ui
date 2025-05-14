@@ -84,6 +84,24 @@ export const Button: TOC<Signature> = <template>
       type="button"
       {{popover.reference}}
     >
+      {{#if (or (has-block "start") @start)}}
+        <span>{{@start}}{{yield to="start"}}</span>
+      {{/if}}
+
+      {{#if (or (has-block) (has-block "text"))}}
+        <span class="preem__button__text">{{yield}}{{yield to="text"}}</span>
+      {{/if}}
+
+      {{#if (or (has-block "end") @end)}}
+        <span>{{@end}}{{yield to="end"}}</span>
+      {{/if}}
+
+      {{! This block must come after the main button content
+          so that screen readers read the button context and then
+          the disabled reason in that order.
+
+          It would be confusing to read the reason before you know what the reason is for.
+      }}
       {{#if @disabled}}
         {{! Needs more work -- maybe using a menu instead of popover }}
         {{! template-lint-disable no-nested-interactive }}
@@ -95,18 +113,6 @@ export const Button: TOC<Signature> = <template>
           {{/if}}
           <div class="arrow" {{popover.arrow}}></div>
         </popover.Content>
-      {{/if}}
-
-      {{#if (or (has-block "start") @start)}}
-        <span>{{@start}}{{yield to="start"}}</span>
-      {{/if}}
-
-      {{#if (or (has-block) (has-block "text"))}}
-        <span class="preem__button__text">{{yield}}{{yield to="text"}}</span>
-      {{/if}}
-
-      {{#if (or (has-block "end") @end)}}
-        <span>{{@end}}{{yield to="end"}}</span>
       {{/if}}
     </button>
 

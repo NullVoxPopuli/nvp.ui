@@ -3,5 +3,17 @@
   display: flex;
   align-items: baseline;
   gap: 1rem;
+  justify-content: space-between;
+  padding: 1rem;
   background: var(--header-background);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-site-nav);
+
+  .preem__header__left {
+  }
+  .preem__header__right {
+    display: flex;
+    gap: 1rem;
+  }
 }

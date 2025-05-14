@@ -52,17 +52,23 @@ const Reasoning = <template>
 </template>
 ```
 
-<br><br><br><br><br><br>
-
 ## Installation
 
 ```bash
 pnpm add null.ui
 ```
 
+## Accessibility
+
+- The button is always focusable with both mouse and keyboard
+- Usage of the `disabled` attribute is forbidden, as a button should explain _why_ it is disabled and ideally provided a call to action if the user can do something about that disabled state
+- screen-reader users will be able to read the disabled reason's text after the contents of the button
+  - sighted users have visual indication that a button may be disabled and hovering / focusing will reveal the reason
+  - the disabled reason tooltip is focusable so that both mouse and keyboard users can interact with the tooltip
+
 ## API Reference
 
-```gjs live
+```gjs live no-shadow
 import { ComponentSignature } from "kolay";
 
 <template>
