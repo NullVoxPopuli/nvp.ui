@@ -114,7 +114,8 @@ export default Route(
         gap: 2rem;
 
         main {
-          max-width: 100%;
+          max-width: 100dvw;
+          padding: 1.5rem;
           display: flex;
           flex-direction: column;
           overflow-x: hidden;

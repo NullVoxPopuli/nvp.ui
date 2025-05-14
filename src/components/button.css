@@ -83,42 +83,52 @@
 
   --button-reason-border-target: white;
 
-  .preem__button__disabled-reason {
-    display: none;
-    padding: var(--padding);
-    width: max-content;
-    position: absolute;
-    text-align: left;
-    top: 0;
-    left: 0;
-    background: var(--reason-background-color);
-    border: var(--reason-border);
-    color: var(--color-text);
-    border-radius: 4px;
-    font-size: 90%;
-    filter: var(--reason-shadow);
-    z-index: 10;
-
-    .arrow {
-      position: absolute;
-      background: var(--reason-background-color);
-      width: 8px;
-      height: 8px;
-      transform: rotate(45deg);
-    }
-
-    /* When hovering / focusing, don't close the tooltip */
-    &:hover,
-    &:focus-visible {
-      display: block;
-    }
-  }
-
   /* Control the tooltip from the button */
   &:hover,
   &:focus-visible {
     .preem__button__disabled-reason {
-      display: block;
+      opacity: 1;
     }
+  }
+}
+
+/**
+* IMPORTANT: In order for the tooltip to participate in
+*  the tab order, it can't be hidden (display: none)
+*  or (visibility: hidden)
+*/
+.preem__button__disabled-reason {
+  display: block;
+  opacity: 0;
+
+  padding: var(--padding);
+  width: max-content;
+  position: absolute;
+  text-align: left;
+  background: var(--reason-background-color);
+  border: var(--reason-border);
+  color: var(--color-text);
+  border-radius: 4px;
+  font-size: 90%;
+  filter: var(--reason-shadow);
+  z-index: 10;
+  transition: opacity var(--fade-duration);
+
+  .arrow {
+    position: absolute;
+    background: var(--reason-background-color);
+    width: 8px;
+    height: 8px;
+    transform: rotate(45deg);
+  }
+
+  /* When hovering / focusing, don't close the tooltip */
+  &:hover,
+  &:focus,
+  &:active,
+  &:focus-visible,
+  &:has(:focus),
+  &:has(:focus-visible) {
+    opacity: 1;
   }
 }
