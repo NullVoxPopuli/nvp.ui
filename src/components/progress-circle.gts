@@ -1,5 +1,3 @@
-import "./progress-circle.css";
-
 import { Progress } from "ember-primitives/components/progress";
 
 import type { TOC } from "@ember/component/template-only";
@@ -17,7 +15,7 @@ export interface Signature {
 }
 
 export const ProgressCircle: TOC<Signature> = <template>
-  <Progress @value={{@value}} ...attributes as |x|>
+  <Progress class="preem_progress-circle" @value={{@value}} ...attributes as |x|>
     <x.Indicator class="preem_progress" />
     <svg width="200" height="200" viewPort="0 0 100 100">
       <circle
@@ -40,5 +38,27 @@ export const ProgressCircle: TOC<Signature> = <template>
         stroke-dashoffset="{{toOffset x.percent}}"
       ></circle>
     </svg>
+    <style>
+      .preem_progress-circle {
+        .preem_progress {
+          height: 200px;
+          width: 200px;
+          position: absolute;
+          text-align: center;
+        }
+
+        svg circle {
+          transition: stroke-dashoffset 0.5s linear;
+          stroke: #555;
+          stroke-width: 1rem;
+        }
+
+        .preem_progress:after {
+          content: attr(data-percent) "%";
+          line-height: 200px;
+          font-size: 1.5rem;
+        }
+      }
+    </style>
   </Progress>
 </template>;
