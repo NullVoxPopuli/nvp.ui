@@ -1,4 +1,6 @@
-import { Progress } from "ember-primitives";
+import "./progress-circle.css";
+
+import { Progress } from "ember-primitives/components/progress";
 
 const r = 60;
 const size = Math.PI * 2 * r;
@@ -21,6 +23,7 @@ export const ProgressCircle = <template>
         cx="100"
         cy="100"
         fill="transparent"
+        {{! template-lint-disable no-inline-styles style-concatenation }}
         style="stroke: {{@color}}"
         stroke-linecap="round"
         stroke-dasharray={{size}}
@@ -28,24 +31,4 @@ export const ProgressCircle = <template>
       ></circle>
     </svg>
   </Progress>
-
-  <style>
-    .preem_progress {
-      height: 200px;
-      width: 200px;
-      position: absolute;
-      text-align: center;
-
-      + svg circle {
-        transition: stroke-dashoffset 0.5s linear;
-        stroke: #555;
-        stroke-width: 1rem;
-      }
-    }
-    .preem_progress:after {
-      content: attr(data-percent) "%";
-      line-height: 200px;
-      font-size: 1.5rem;
-    }
-  </style>
 </template>;

@@ -31,6 +31,7 @@ export default class ApplicationRoute extends Route {
       resolve: {
         "ember-primitives": import("ember-primitives"),
         "ember-primitives/components/popover": import("ember-primitives/components/popover"),
+        "ember-primitives/components/progress": import("ember-primitives/components/progress"),
         "null.ui": import("../../src/index"),
         "null.ui/components/progress-circle": import("../../src/components/progress-circle"),
         kolay: import("kolay"),
