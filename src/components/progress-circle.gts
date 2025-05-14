@@ -2,11 +2,21 @@ import "./progress-circle.css";
 
 import { Progress } from "ember-primitives/components/progress";
 
+import type { TOC } from "@ember/component/template-only";
+
 const r = 60;
 const size = Math.PI * 2 * r;
-const toOffset = (x) => ((100 - x) / 100) * size;
+const toOffset = (x: number) => ((100 - x) / 100) * size;
 
-export const ProgressCircle = <template>
+export interface Signature {
+  Element: HTMLElement;
+  Args: {
+    value: number;
+    color: string;
+  };
+}
+
+export const ProgressCircle: TOC<Signature> = <template>
   <Progress @value={{@value}} ...attributes as |x|>
     <x.Indicator class="preem_progress" />
     <svg width="200" height="200" viewPort="0 0 100 100">
