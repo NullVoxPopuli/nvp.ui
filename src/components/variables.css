@@ -4,6 +4,7 @@
   /* General */
   --radius: 0.25rem;
   --font: ui-sans-serif, sans-serif;
+  --fade-duration: 0.125s;
 
   /* Spacing */
   --gap: 0.25rem;
@@ -78,6 +79,10 @@
   --reason-background-color: rgb(50, 50, 50);
   --reason-border: 1px solid #222;
   --header-background: #111;
+}
+
+@media (prefers-reduced-motion) {
+  --fade-duration: 0s;
 }
 
 html,
