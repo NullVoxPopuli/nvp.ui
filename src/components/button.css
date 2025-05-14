@@ -88,6 +88,7 @@
   &:focus-visible {
     .preem__button__disabled-reason {
       opacity: 1;
+      pointer-events: all;
     }
   }
 }
@@ -100,6 +101,7 @@
 .preem__button__disabled-reason {
   display: block;
   opacity: 0;
+  pointer-events: none;
 
   padding: var(--padding);
   width: max-content;
@@ -130,5 +132,6 @@
   &:has(:focus),
   &:has(:focus-visible) {
     opacity: 1;
+    pointer-events: all;
   }
 }
