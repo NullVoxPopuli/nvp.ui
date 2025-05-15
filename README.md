@@ -3,7 +3,7 @@ null ui
 
 UI Kit
 
-Docs: https://preem-docs-app.vercel.app/3-components/theme-toggle
+Docs: https://nullui.vercel.app
 
 
 Contributing
