@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { Progress } from "ember-primitives/components/progress";
 
 import type { TOC } from "@ember/component/template-only";

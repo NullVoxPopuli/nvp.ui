@@ -71,12 +71,12 @@
     "@ember/test-helpers": ">= 5.2.1",
     "@ember/test-waiters": ">= 4.1.0",
     "@embroider/addon-shim": "^1.10.0",
-    "@embroider/macros": "1.17.3",
+    "@embroider/macros": "1.18.1",
     "@glimmer/component": "^2.0.0",
     "@glint/template": ">= 1.0.0",
     "decorator-transforms": "^2.3.0",
     "ember-modifier": ">= 4.2.0",
-    "ember-primitives": "^0.32.0",
+    "ember-primitives": "^0.40.0",
     "ember-resources": ">= 7.0.4"
   },
   "devDependencies": {
@@ -95,11 +95,9 @@
     "@embroider/try": "github:NullVoxPopuli/try#768631a",
     "@embroider/vite": "^1.1.2",
     "@glimmer/component": "^2.0.0",
-    "@glint/core": "unstable",
-    "@glint/environment-ember-loose": "unstable",
-    "@glint/environment-ember-template-imports": "unstable",
-    "@glint/template": "^1.5.2",
-    "@glint/tsserver-plugin": "unstable",
+    "@glint/core": "alpha",
+    "@glint/template": "alpha",
+    "@glint/tsserver-plugin": "alpha",
     "@nullvoxpopuli/eslint-configs": "^5.1.2",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-node-resolve": "^16.0.1",
@@ -145,7 +143,7 @@
     "qunit-dom": "^3.4.0",
     "reactiveweb": "^1.4.2",
     "release-plan": "^0.16.0",
-    "rollup": "~4.40.2",
+    "rollup": "~4.50.1",
     "rollup-plugin-copy": "^3.5.0",
     "shiki": "^3.4.0",
     "testem": "^3.16.0",
@@ -153,11 +151,17 @@
     "typedoc": "^0.28.4",
     "typescript": "^5.8.3",
     "unplugin-info": "^1.2.2",
-    "vite": "^6.3.5"
+    "vite": "^7.1.4"
   },
   "packageManager": "pnpm@10.10.0",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
+  },
+  "pnpm": {
+    "overrides": {
+      "@glint/template": "alpha",
+      "ember-modifier": "$ember-modifier"
+    }
   },
   "ember": {
     "edition": "octane"

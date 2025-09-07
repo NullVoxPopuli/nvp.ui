@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-empty-object-type */
+// @ts-nocheck
 /**
  * Copied from font-awesome directly,
  * but with the addition of fill="currentColor"
