@@ -155,6 +155,7 @@
   },
   "packageManager": "pnpm@10.10.0",
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org"
   },
   "pnpm": {
