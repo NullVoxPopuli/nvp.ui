@@ -2,6 +2,17 @@
 
 ## Release (2025-09-08)
 
+* null.ui 0.4.0 (minor)
+
+#### :rocket: Enhancement
+* `null.ui`
+  * [#50](https://github.com/NullVoxPopuli/nvp.ui/pull/50) Tweak the theme-toggle ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## Release (2025-09-08)
+
 * null.ui 0.3.0 (minor)
 
 #### :rocket: Enhancement

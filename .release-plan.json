@@ -2,21 +2,17 @@
   "solution": {
     "null.ui": {
       "impact": "minor",
-      "oldVersion": "0.2.0",
-      "newVersion": "0.3.0",
+      "oldVersion": "0.3.0",
+      "newVersion": "0.4.0",
       "tagName": "latest",
       "constraints": [
         {
           "impact": "minor",
           "reason": "Appears in changelog section :rocket: Enhancement"
-        },
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-09-08) \n\n* null.ui 0.3.0 (minor)\n\n#### :rocket: Enhancement\n* `null.ui`\n  * [#44](https://github.com/NullVoxPopuli/nvp.ui/pull/44) More style improvements ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#43](https://github.com/NullVoxPopuli/nvp.ui/pull/43) Focusable disable messaging ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#42](https://github.com/NullVoxPopuli/nvp.ui/pull/42) Work on styles'n'such ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#41](https://github.com/NullVoxPopuli/nvp.ui/pull/41) Rename package ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#30](https://github.com/NullVoxPopuli/nvp.ui/pull/30) New component: Button ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :house: Internal\n* `null.ui`\n  * [#49](https://github.com/NullVoxPopuli/nvp.ui/pull/49) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#39](https://github.com/NullVoxPopuli/nvp.ui/pull/39) Demo embroider PR 2474 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#38](https://github.com/NullVoxPopuli/nvp.ui/pull/38) Use @embroider/try from install, not from pnpm dlx ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#37](https://github.com/NullVoxPopuli/nvp.ui/pull/37) This sort of makes it clear that the testem runtime file is separate from he testem config ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#36](https://github.com/NullVoxPopuli/nvp.ui/pull/36) How much stuff can we put in the config directory ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#35](https://github.com/NullVoxPopuli/nvp.ui/pull/35) Get build and tests passing ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#33](https://github.com/NullVoxPopuli/nvp.ui/pull/33) Slowly converting everything to v2 / getting rid of the compat layers in my dependencies ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2025-09-08)\n\n* null.ui 0.4.0 (minor)\n\n#### :rocket: Enhancement\n* `null.ui`\n  * [#50](https://github.com/NullVoxPopuli/nvp.ui/pull/50) Tweak the theme-toggle ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }
