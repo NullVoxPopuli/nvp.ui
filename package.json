@@ -7,7 +7,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/universal-ember/preem.git"
+    "url": "git+https://github.com/NullVoxPopuli/nvp.ui.git"
   },
   "license": "MIT",
   "author": "nullvoxpopuli",
