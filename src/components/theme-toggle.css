@@ -40,7 +40,13 @@
     color: #f39c12;
   }
   label .ball {
-    background-color: #fff;
+    --button-background-mix: 100%;
+    --button-disable-background-mix: 100%;
+    --button-background-color: white;
+    --button-padding-y: 0;
+    --button-padding-x: 0;
+    --button-border-width: 0;
+    --button-shadow: none;
     width: 42%;
     height: 88%;
     position: absolute;

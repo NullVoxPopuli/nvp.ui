@@ -1,4 +1,7 @@
+import "./variables.css";
+import "./focus.css";
 import "./theme-toggle.css";
+import "./button.css";
 
 import { on } from "@ember/modifier";
 
@@ -36,7 +39,7 @@ export const ThemeToggle: TOC<Signature> = <template>
       }}
       <Moon />
       <Sun />
-      <span class="ball"></span>
+      <span class="ball preem__button"></span>
     </s.Label>
   </Switch>
 </template>;
