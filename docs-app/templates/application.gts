@@ -64,7 +64,7 @@ export default Route(
           <Header>
             <:left>
               <mmw.Toggle><Menu /></mmw.Toggle>
-              <a href="/">null.ui</a>
+              <a href="/">nvp.ui</a>
             </:left>
             <:right>
               <ExternalLink href="https://github.com/NullVoxPopuli/nullui">GitHub</ExternalLink>

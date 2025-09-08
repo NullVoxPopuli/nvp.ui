@@ -3,7 +3,7 @@
 A circular progress indicator
 
 ```gjs live preview
-import { ProgressCircle } from "null.ui/components/progress-circle";
+import { ProgressCircle } from "nvp.ui/components/progress-circle";
 import { cell, resource } from "ember-resources";
 
 const randomValue = resource(({ on }) => {

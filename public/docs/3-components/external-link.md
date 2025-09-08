@@ -7,7 +7,7 @@ The `<ExternalLink />` component is a light wrapper around the [Anchor element][
 This component always has `target=_blank` and `rel='noreferrer noopener'`.
 
 ```gjs live
-import { ExternalLink } from "null.ui";
+import { ExternalLink } from "nvp.ui";
 
 <template>
   <ExternalLink href="https://github.com/universal-ember/preem">
@@ -19,7 +19,7 @@ import { ExternalLink } from "null.ui";
 ## Installation
 
 ```bash
-pnpm add null.ui
+pnpm add nvp.ui
 ```
 
 ## API Reference

@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": "../",
     "paths": {
-      "null.ui": ["./src/index.ts"]
+      "nvp.ui": ["./src/index.ts"]
     }
   },
   "typedocOptions": {

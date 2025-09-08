@@ -3,7 +3,7 @@
 Switches between light mode and dark mode
 
 ```gjs live no-shadow
-import { ThemeToggle } from "null.ui";
+import { ThemeToggle } from "nvp.ui";
 
 <template>
   <div class="demo">
@@ -39,23 +39,23 @@ import { ThemeToggle } from "null.ui";
 ## Installation
 
 ```bash
-pnpm add null.ui
+pnpm add nvp.ui
 ```
 
 ## Anatomy
 
 ```js
-import { ThemeToggle } from "null.ui";
+import { ThemeToggle } from "nvp.ui";
 ```
 
 or for non-tree-shaking environments:
 
 ```js
-import { ThemeToggle } from "null.ui/components/theme-toggle";
+import { ThemeToggle } from "nvp.ui/components/theme-toggle";
 ```
 
 ```gjs
-import { ThemeToggle } from "null.ui";
+import { ThemeToggle } from "nvp.ui";
 
 <template><ThemeToggle /></template>
 ```

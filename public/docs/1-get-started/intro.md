@@ -1,11 +1,11 @@
-# null.ui
+# nvp.ui
 
 UI Kit for building professional and sleek ember apps quickly.
 
 ## Install
 
 ```bash
-pnpm add null.ui
+pnpm add nvp.ui
 ```
 
 ## Compatibility

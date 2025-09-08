@@ -3,7 +3,7 @@
 The accessible button is an improvement on the native `<button>` by providing additional information when disabled, tooltips, etc
 
 ```gjs live no-shadow
-import { Button, ExternalLink } from "null.ui";
+import { Button, ExternalLink } from "nvp.ui";
 import { PortalTargets } from "ember-primitives";
 
 const Reasoning = <template>
@@ -55,7 +55,7 @@ const Reasoning = <template>
 ## Installation
 
 ```bash
-pnpm add null.ui
+pnpm add nvp.ui
 ```
 
 ## Accessibility
