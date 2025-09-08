@@ -1,0 +1,69 @@
+.preem__site-theme-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 0;
+  transition: background 0.2s linear;
+
+  .preem__sr-only {
+    margin-left: -0.5rem;
+  }
+  input[type="checkbox"][role="switch"] {
+    opacity: 0;
+    position: absolute;
+  }
+  label {
+    background-color: #111;
+    min-width: 40px;
+    flex-grow: 1;
+    aspect-ratio: 2.1;
+    border-radius: 50px;
+    position: relative;
+    padding: 4% 8%;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: inset 1px 0px 1px gray;
+  }
+  svg {
+    fill: currentColor;
+    height: 90%;
+  }
+  .fa-moon {
+    color: #f1c40f;
+  }
+  .fa-sun {
+    color: #f39c12;
+  }
+  label .ball {
+    --button-background-mix: 100%;
+    --button-disable-background-mix: 100%;
+    --button-background-color: white;
+    --button-padding-y: 0;
+    --button-padding-x: 0;
+    --button-border-width: 0;
+    --button-shadow: none;
+    width: 42%;
+    height: 88%;
+    position: absolute;
+    left: 3%;
+    border-radius: 50%;
+    transition: transform 0.2s linear;
+  }
+
+  input[type="checkbox"][role="switch"]:checked + label .ball {
+    transform: translateX(120%);
+  }
+}
+.preem__sr-only {
+  width: 0px;
+  max-width: 0px;
+  height: 0px;
+  max-height: 0px;
+  overflow: hidden;
+  position: absolute;
+}
