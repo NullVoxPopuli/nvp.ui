@@ -45,6 +45,9 @@
       rgb(100 100 224 / var(--ring-opacity, 1)),
       rgb(224 78 57 / var(--ring-opacity, 1))
   );
+  --ring-shadow:
+      0 0 0px 2px var(--ring-inner-color),
+      0 0 0 var(--ring-size) var(--ring-color);
 
   /* Borders */
   --border-width: 1px;
