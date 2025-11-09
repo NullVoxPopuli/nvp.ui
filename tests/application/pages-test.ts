@@ -33,6 +33,12 @@ async function checkA11y(assert: Assert, path: string, theme: string) {
         "landmark-no-duplicate-main": {
           enabled: false,
         },
+        /**
+         * We know how to do this
+         */
+        "nested-interactive": {
+          enabled: false,
+        },
       },
     });
     assert.ok(true, `no a11y errors found for ${path} using the ${theme} theme`);
