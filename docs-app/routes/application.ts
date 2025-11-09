@@ -41,6 +41,7 @@ export default class ApplicationRoute extends Route {
         "nvp.ui/theme-toggle": import("../../src/components/theme-toggle"),
         "nvp.ui/progress-circle": import("../../src/components/progress-circle"),
         "nvp.ui/tabs": import("../../src/components/tabs"),
+        "nvp.ui/theme": import("../../src/components/theme"),
         kolay: import("kolay"),
       },
       rehypePlugins: [

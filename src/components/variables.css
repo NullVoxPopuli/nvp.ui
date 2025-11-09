@@ -2,16 +2,12 @@
   /**
     * NOTE: light-dark(light, dark);
     *       currently only is allowed for colors
+    *
+    *
+    *  Also NOTE: using `light-dark` is incompatible with
+    *             class-based theme switching
     */
   color-scheme: light dark;
-
-  /* Colors */
-  --color-text: light-dark(#121212, #ffffff);
-  --color-primary: light-dark(#88cdff, #00cdff);
-  --color-secondary: light-dark(#aaaaff, #5555ff);
-  --color-danger: light-dark(#ff66bb, #ee0055);
-  --color-disable-mix: light-dark(#bbb, #000);
-  --color-page-background: light-dark(#eee, #111);
 
   /* General */
   --radius: 0.25rem;
@@ -77,6 +73,14 @@
 /* Default / light mode */
 :root,
 .theme-light {
+  /* Colors */
+  --color-text: #121212;
+  --color-primary: #88cdff;
+  --color-secondary: #aaaaff;
+  --color-danger: #ff66bb;
+  --color-disable-mix: #bbb;
+  --color-page-background: #eee;
+
   /* Focus */
   --ring-size: 6px;
 
@@ -85,9 +89,20 @@
   --reason-background-color: rgb(240, 240, 240);
   --reason-border: 2px solid #eee;
   --header-background: #fff;
+
+  background: var(--color-page-background);
+  color: var(--color-text);
 }
 
 .theme-dark {
+  /* Colors */
+  --color-text: #ffffff;
+  --color-primary: #00cdff;
+  --color-secondary: #5555ff;
+  --color-danger: #ee0055;
+  --color-disable-mix: #000;
+  --color-page-background: #111;
+
   /* Focus */
   --ring-color: rgb(224 78 57 / var(--ring-opacity, 1));
 
@@ -96,6 +111,9 @@
   --reason-background-color: rgb(50, 50, 50);
   --reason-border: 1px solid #222;
   --header-background: #111;
+
+  background: var(--color-page-background);
+  color: var(--color-text);
 }
 
 @media (prefers-reduced-motion) {
