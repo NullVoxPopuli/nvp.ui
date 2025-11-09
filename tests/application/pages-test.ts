@@ -33,6 +33,9 @@ async function checkA11y(assert: Assert, path: string, theme: string) {
         "landmark-no-duplicate-main": {
           enabled: false,
         },
+        /**
+         * We know how to do this
+         */
         "nested-interactive": {
           enabled: false,
         },
