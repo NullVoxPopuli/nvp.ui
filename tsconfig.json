@@ -5,9 +5,6 @@
  */
 {
   "extends": "@ember/app-tsconfig",
-  "glint": {
-    "environment": ["ember-loose", "ember-template-imports"]
-  },
   "exclude": ["dist", "dist-*", "declarations", "node_modules"],
   "compilerOptions": {
     "isolatedModules": true,
@@ -18,7 +15,8 @@
       "vite/client",
       "kolay/virtual",
       "@embroider/core/virtual",
-      "unplugin-info/client"
+      "unplugin-info/client",
+      "@glint/ember-tsc/types"
     ],
     "paths": {}
   }
