@@ -122,12 +122,25 @@ export const Tabs: TOC<{
      * Default: top
      */
     orientation?: "top" | "left" | "right" | "bottom";
+
+    /**
+     * Override the default selection color to the tablist.
+     * This is the color to indicate the active tab.
+     *
+     * Default: 'primary'
+     */
+    variant?: "primary" | "secondary" | "danger";
   };
   Blocks: {
     default: [WithBoundArgs<typeof StyledTab, "tab">];
   };
 }> = <template>
-  <PrimitiveTabs class="nvp__tabs" data-orientation={{or @orientation "top"}} as |Tab|>
+  <PrimitiveTabs
+    class="nvp__tabs"
+    data-orientation={{or @orientation "top"}}
+    data-variant={{or @variant "primary"}}
+    as |Tab|
+  >
     {{yield (component StyledTab tab=Tab)}}
   </PrimitiveTabs>
 </template>;
