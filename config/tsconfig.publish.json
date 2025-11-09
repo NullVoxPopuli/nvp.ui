@@ -1,0 +1,17 @@
+{
+  "extends": "@ember/library-tsconfig",
+  "include": ["../src"],
+  "compilerOptions": {
+    "baseUrl": "../",
+    "declarationDir": "../declarations",
+    "isolatedModules": true,
+    "types": [
+      "ember-source/types",
+      "vite/client",
+      "kolay/virtual",
+      "@embroider/core/virtual",
+      "unplugin-info/client",
+      "@glint/ember-tsc/types"
+    ]
+  }
+}
