@@ -1,5 +1,17 @@
 :root {
+  /**
+    * NOTE: light-dark(light, dark);
+    *       currently only is allowed for colors
+    */
   color-scheme: light dark;
+
+  /* Colors */
+  --color-text: light-dark(#121212, #ffffff);
+  --color-primary: light-dark(#88cdff, #00cdff);
+  --color-secondary: light-dark(#aaaaff, #5555ff);
+  --color-danger: light-dark(#ff66bb, #ee0055);
+  --color-disable-mix: light-dark(#bbb, #000);
+  --color-page-background: light-dark(#eee, #111);
 
   /* General */
   --radius: 0.25rem;
@@ -27,7 +39,12 @@
 
   /* Focus */
   --ring-opacity: 1;
-  --ring-color: rgb(224 78 57 / var(--ring-opacity, 1));
+  --ring-size: 4px;
+  --ring-inner-color: light-dark(white, black);
+  --ring-color: light-dark(
+      rgb(100 100 224 / var(--ring-opacity, 1)),
+      rgb(224 78 57 / var(--ring-opacity, 1))
+  );
 
   /* Borders */
   --border-width: 1px;
@@ -57,15 +74,8 @@
 /* Default / light mode */
 :root,
 .theme-light {
-  /* Colors */
-  --color-text: #121212;
-  --color-primary: #88cdff;
-  --color-secondary: #aaaaff;
-  --color-danger: #ff66bb;
-  --color-disable-mix: #bbb;
-
   /* Focus */
-  --ring-color: rgb(100 100 224 / var(--ring-opacity, 1));
+  --ring-size: 6px;
 
   /* Components */
   --button-color: rgb(220, 220, 220);
@@ -75,13 +85,6 @@
 }
 
 .theme-dark {
-  /* Colors */
-  --color-text: #ffffff;
-  --color-primary: #00cdff;
-  --color-secondary: #5555ff;
-  --color-danger: #ee0055;
-  --color-disable-mix: #000;
-
   /* Focus */
   --ring-color: rgb(224 78 57 / var(--ring-opacity, 1));
 
@@ -101,6 +104,7 @@ body {
   margin: 0;
   padding: 0;
   accent-color: var(--color-primary);
+  background: var(--color-page-background);
 }
 
 html,
