@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-11-09)
+
+* nvp.ui 0.4.1 (patch)
+
+#### :house: Internal
+* `nvp.ui`
+  * [#54](https://github.com/NullVoxPopuli/nvp.ui/pull/54) Dep Upgrades ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2025-09-08)
 
 * nvp.ui 0.4.0 (minor)
