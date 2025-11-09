@@ -1,6 +1,4 @@
-/**
-Styled tabs for documentation
-*/
+import "./tabs.css";
 
 import {
   type ButtonType,
@@ -17,7 +15,7 @@ function isString(x: unknown): x is string {
 }
 
 const StyledButton: TOC<{ Args: { button: ButtonType }; Blocks: { default: [] } }> = <template>
-  <@button class="tab">
+  <@button class="nvp__tabs__tab">
     {{yield}}
   </@button>
 
@@ -31,10 +29,6 @@ const StyledButton: TOC<{ Args: { button: ButtonType }; Blocks: { default: [] } 
       font-weight: bold;
       cursor: pointer;
       box-shadow: inset 0 0px 1px black;
-    }
-    .tab[aria-selected="true"] {
-      background: white;
-      box-shadow: inset 0 -4px 0px orange;
     }
     .tab:first-of-type {
       border-top-left-radius: 0.25rem;
@@ -54,18 +48,11 @@ const StyledContent: TOC<{ Args: { content: ContentType }; Blocks: { default: []
     .tabpanel {
       color: black;
       overflow: auto;
-      max-height: 20rem;
       width: 100%;
       max-width: 100%;
       border-radius: 0.75rem;
-      background-image: linear-gradient(to right, var(--tw-gradient-stops));
-      --tw-gradient-from: #7c3aed var(--tw-gradient-from-position);
-      --tw-gradient-to: rgb(124 58 237 / 0) var(--tw-gradient-to-position);
-      --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-      --tw-gradient-to: #4f46e5 var(--tw-gradient-to-position);
       padding: 5rem;
-      --tw-text-opacity: 1;
-      color: rgb(248 250 252 / var(--tw-text-opacity, 1));
+      border: 1px solid;
     }
   </style>
 </template>;
@@ -128,22 +115,23 @@ const StyledTab: TOC<
 </template>;
 
 export const Tabs: TOC<{
+  Args: {
+    /**
+     * Override the default tab orientation relative to the tabpanel content
+     *
+     * Default: top
+     */
+    orientation?: "top" | "left" | "right" | "bottom";
+  };
   Blocks: {
     default: [WithBoundArgs<typeof StyledTab, "tab">];
   };
 }> = <template>
-  <PrimitiveTabs class="docs-tabs" as |Tab|>
+  <PrimitiveTabs class="nvp__tabs" data-orientation={{or @orientation "top"}} as |Tab|>
     {{yield (component StyledTab tab=Tab)}}
   </PrimitiveTabs>
-
-  <style scoped>
-    .docs-tabs {
-      padding: 1rem;
-
-      > [role="tablist"] {
-        min-width: 100%;
-        padding-left: 0.75rem;
-      }
-    }
-  </style>
 </template>;
+
+function or(x: string | undefined, y: string) {
+  return x ?? y;
+}

@@ -1,0 +1,39 @@
+/* See ./button.css for inherited styles */
+
+.nvp__tabs__tab {
+}
+
+.nvp__tabs {
+  --highlight-color: var(--color-primary);
+
+  > [role="tablist"] {
+    min-width: 100%;
+    padding-left: 0.75rem;
+  }
+
+  [aria-selected="true"] {
+    --button-hover-mix: 100%;
+    --button-hover-color-mix: #fff;
+  }
+
+  &[data-orientation="top"] {
+    [aria-selected="true"] {
+      box-shadow: inset 0 -4px 0px var(--highlight-color);
+    }
+  }
+  &[data-orientation="bottom"] {
+    [aria-selected="true"] {
+      box-shadow: inset 0 4px 0px var(--highlight-color);
+    }
+  }
+  &[data-orientation="left"] {
+    [aria-selected="true"] {
+      box-shadow: inset -4px 0px 0px var(--highlight-color);
+    }
+  }
+  &[data-orientation="right"] {
+    [aria-selected="true"] {
+      box-shadow: inset 4px 0px 0px var(--highlight-color);
+    }
+  }
+}

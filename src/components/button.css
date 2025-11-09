@@ -1,4 +1,5 @@
-.preem__button {
+.preem__button,
+.nvp__tabs__tab {
   --button-background-color: var(--button-color);
   --button-hover-mix: 0%;
   --button-interact-spread: 0;

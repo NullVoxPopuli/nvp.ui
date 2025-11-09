@@ -46,6 +46,12 @@
   --button-border-color: var(--border-color);
 
   --reason-shadow: var(--shadow-md);
+
+
+  /* Gradients */
+  --gradient-hero: linear-gradient(-45deg,#1252e3,#3357e4,#485de5,#6242e9 50%,#6d2fe8,#7812e5 66.67%,#3512c5);
+  --gradient-featured: linear-gradient(to right, rgb(124, 58, 237), rgb(79, 70, 229));
+
 }
 
 /* Default / light mode */

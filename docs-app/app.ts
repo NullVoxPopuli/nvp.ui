@@ -1,4 +1,5 @@
 import Application from "@ember/application";
+import setupInspector from "@embroider/legacy-inspector-support/ember-source-4.12";
 
 import * as PageTitle from "ember-page-title/services/page-title";
 import { sync } from "ember-primitives/color-scheme";
@@ -32,6 +33,7 @@ sync();
 
 export default class App extends Application {
   modulePrefix = config.modulePrefix;
+  inspector = setupInspector(this);
   Resolver = Resolver.withModules({
     // This App
     "docs-app/router": Router,

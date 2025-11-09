@@ -33,7 +33,11 @@ export default class ApplicationRoute extends Route {
         "ember-primitives/components/popover": import("ember-primitives/components/popover"),
         "ember-primitives/components/progress": import("ember-primitives/components/progress"),
         "nvp.ui": import("../../src/index"),
-        "nvp.ui/components/progress-circle": import("../../src/components/progress-circle"),
+        "nvp.ui/button": import("../../src/components/button"),
+        "nvp.ui/header": import("../../src/components/header"),
+        "nvp.ui/theme-toggle": import("../../src/components/theme-toggle"),
+        "nvp.ui/progress-circle": import("../../src/components/progress-circle"),
+        "nvp.ui/tabs": import("../../src/components/tabs"),
         kolay: import("kolay"),
       },
       rehypePlugins: [
