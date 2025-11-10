@@ -1,0 +1,39 @@
+# Surfaces
+
+
+The surfaces system automatically adjusts the background color of panels, buttons, and anything that _could_ be considered to have a "surface", if it were in the real physical world.
+
+How it works is that the more nesting there is, the closer it is assumed to be to the viewer's face -- that is, the greater the z-distance from the base of the page.
+
+
+
+```gjs live preview no-shadow
+
+<template>
+  <div class="surface">
+    text
+    <div class="surface">
+      text
+      <div class="surface">
+        text
+        <div class="surface">
+          text
+          <div class="surface">
+            text
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @scope {
+      div {
+        padding: var(--padding-4);
+      }
+    }
+  </style>
+
+</template>
+
+```

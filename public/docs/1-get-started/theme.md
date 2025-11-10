@@ -44,7 +44,7 @@ import { Button } from 'nvp.ui/button';
         display: flex;
         flex-direction: column;
         gap: var(--gap);
-        padding: 1rem;
+        padding: var(--padding-4);
       }
     }
   </style>
@@ -89,7 +89,7 @@ import { Button } from 'nvp.ui/button';
         display: flex;
         flex-direction: column;
         gap: var(--gap);
-        padding: 1rem;
+        padding: var(--padding-4);
       }
     }
   </style>

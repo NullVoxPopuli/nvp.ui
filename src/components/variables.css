@@ -141,3 +141,41 @@ button {
 main {
   padding: var(--padding);
 }
+
+.surface {
+  --surface-elevation: 2%;
+
+  background-color: color-mix(
+      in oklab,
+      var(--color-page-background)
+      100%,
+      white var(--surface-elevation)
+    );
+  .surface {
+    --surface-elevation: 4%;
+    .surface {
+      --surface-elevation: 6%;
+      .surface {
+        --surface-elevation: 8%;
+        .surface {
+          --surface-elevation: 10%;
+          .surface {
+            --surface-elevation: 12%;
+            .surface {
+              --surface-elevation: 14%;
+              .surface {
+                --surface-elevation: 16%;
+                .surface {
+                  --surface-elevation: 18%;
+                  .surface {
+                    --surface-elevation: 20%;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
