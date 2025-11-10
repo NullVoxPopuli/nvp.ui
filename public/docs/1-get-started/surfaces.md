@@ -1,4 +1,4 @@
-# Surfaces
+# Surfaces & Elevation
 
 
 The surfaces system automatically adjusts the background color of panels, buttons, and anything that _could_ be considered to have a "surface", if it were in the real physical world.
@@ -37,3 +37,5 @@ How it works is that the more nesting there is, the closer it is assumed to be t
 </template>
 
 ```
+
+Separate from the _nesting_, we can specify "elevation" which adds 

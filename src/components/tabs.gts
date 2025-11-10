@@ -19,7 +19,7 @@ const StyledButton: TOC<{ Args: { button: ButtonType }; Blocks: { default: [] } 
     {{yield}}
   </@button>
 
-  <style scoped>
+  <style>
     .tab {
       color: black;
       display: inline-block;
@@ -44,7 +44,7 @@ const StyledContent: TOC<{ Args: { content: ContentType }; Blocks: { default: []
     {{yield}}
   </@content>
 
-  <style scoped>
+  <style>
     .tabpanel {
       color: black;
       overflow: auto;
