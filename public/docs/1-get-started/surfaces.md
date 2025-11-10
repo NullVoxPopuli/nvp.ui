@@ -38,4 +38,36 @@ How it works is that the more nesting there is, the closer it is assumed to be t
 
 ```
 
-Separate from the _nesting_, we can specify "elevation" which adds 
+Separate from the _nesting_, we can specify "elevation" which adds a feeling of distance from the underlying layer.
+
+
+```gjs live preview no-shadow
+
+<template>
+  <div class="surface">
+    text
+    <div class="surface">
+      text
+      <div class="surface">
+        text
+        <div class="surface">
+          text
+          <div class="surface">
+            text
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @scope {
+      div {
+        padding: calc(2 * var(--padding-4));
+      }
+    }
+  </style>
+
+</template>
+
+```

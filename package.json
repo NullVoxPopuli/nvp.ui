@@ -44,7 +44,7 @@
     "build": "pnpm :rollup",
     "build:api-docs": "typedoc --options ./config/typedoc.config.json --json ./dist-docs/docs.json ",
     "build:app": "pnpm :vite build --out-dir dist-app",
-    "build:tests": "pnpm :vite build --mode=test --out-dir dist-tests",
+    "build:tests": "pnpm :vite build --mode=development --out-dir dist-tests",
     "deploy:prepare": "pnpm build && pnpm build:api-docs && pnpm build:app",
     "deploy:preview": "pnpm deploy:prepare && pnpm :vite preview --outDir dist-app",
     "format": "prettier . --write",
