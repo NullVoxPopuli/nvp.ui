@@ -18,54 +18,37 @@ const StyledButton: TOC<{ Args: { button: ButtonType }; Blocks: { default: [] } 
   <@button class="nvp__tabs__tab">
     {{yield}}
   </@button>
-
-  <style>
-    .tab {
-      color: black;
-      display: inline-block;
-      padding: 0.25rem 0.5rem;
-      background: hsl(220deg 20% 94%);
-      outline: none;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: inset 0 0px 1px black;
-    }
-    .tab:first-of-type {
-      border-top-left-radius: 0.25rem;
-    }
-    .tab:last-of-type {
-      border-top-right-radius: 0.25rem;
-    }
-  </style>
 </template>;
 
 const StyledContent: TOC<{ Args: { content: ContentType }; Blocks: { default: [] } }> = <template>
-  <@content class="tabpanel">
+  <@content class="nvp__tabs__tabpanel surface">
     {{yield}}
   </@content>
-
-  <style>
-    .tabpanel {
-      color: black;
-      overflow: auto;
-      width: 100%;
-      max-width: 100%;
-      border-radius: 0.75rem;
-      padding: 5rem;
-      border: 1px solid;
-    }
-  </style>
 </template>;
 
 const StyledTab: TOC<
   | {
       Args: {
         tab: ContainerType;
-        label: never;
-        content: never;
+        label: undefined;
+        content: undefined;
       };
       Blocks: {
-        default: [button: ButtonType, content: ContentType];
+        button: [];
+        content: [];
+        default: never;
+      };
+    }
+  | {
+      Args: {
+        tab: ContainerType;
+        label: string | ComponentLike;
+        content: undefined;
+      };
+      Blocks: {
+        default: [];
+        button: never;
+        content: never;
       };
     }
   | {
@@ -76,6 +59,8 @@ const StyledTab: TOC<
       };
       Blocks: {
         default: [];
+        button: never;
+        content: never;
       };
     }
 > = <template>
@@ -107,8 +92,12 @@ const StyledTab: TOC<
           {{/if}}
         </Content>
       {{else}}
-        {{! @glint-expect-error The types here are too crazy so I ignore them and define the public API}}
-        {{yield Button Content}}
+        <Button>
+          {{yield to="button"}}
+        </Button>
+        <Content>
+          {{yield to="content"}}
+        </Content>
       {{/if}}
     {{/let}}
   </@tab>

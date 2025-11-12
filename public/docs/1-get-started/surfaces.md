@@ -11,15 +11,10 @@ How it works is that the more nesting there is, the closer it is assumed to be t
 
 <template>
   <div class="surface">
-    text
     <div class="surface">
-      text
       <div class="surface">
-        text
         <div class="surface">
-          text
           <div class="surface">
-            text
           </div>
         </div>
       </div>
@@ -30,6 +25,7 @@ How it works is that the more nesting there is, the closer it is assumed to be t
     @scope {
       div {
         padding: var(--padding-4);
+        border: 1px solid var(--border-color);
       }
     }
   </style>
@@ -38,22 +34,17 @@ How it works is that the more nesting there is, the closer it is assumed to be t
 
 ```
 
-Separate from the _nesting_, we can specify "elevation" which adds a feeling of distance from the underlying layer.
+Separate from the _nesting_, we can specify "elevation" which adds a feeling of distance from the underlying layer -- the closer in elevation the two layers are, the smaller the shadow -- and likewise, the greater elevation the bigger the shadow.
 
 
 ```gjs live preview no-shadow
 
 <template>
-  <div class="surface">
-    text
-    <div class="surface">
-      text
-      <div class="surface">
-        text
-        <div class="surface">
-          text
-          <div class="surface">
-            text
+  <div class="surface elevation-sm">
+    <div class="surface elevation-md">
+      <div class="surface elevation-lg">
+        <div class="surface elevation-xl">
+          <div class="surface elevation-xl2">
           </div>
         </div>
       </div>
@@ -64,6 +55,7 @@ Separate from the _nesting_, we can specify "elevation" which adds a feeling of 
     @scope {
       div {
         padding: calc(2 * var(--padding-4));
+        border: 1px solid var(--border-color);
       }
     }
   </style>

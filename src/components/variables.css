@@ -50,8 +50,11 @@
   --border-style: solid;
 
   /* Shadows */
+  --shadow-xl2: drop-shadow(0px 2px 1rem rgba(0, 0, 0, 0.3));
   --shadow-xl: drop-shadow(0px 2px 0.75rem rgba(0, 0, 0, 0.3));
+  --shadow-lg: drop-shadow(0px 2px 0.5rem rgba(0, 0, 0, 0.25));
   --shadow-md: drop-shadow(0px 2px 0.25rem rgba(0, 0, 0, 0.2));
+  --shadow-sm: drop-shadow(0px 2px 0.125rem rgba(0, 0, 0, 0.15));
 
   /* Components */
   --button-border-color-mix: rgb(100, 100, 100);
@@ -84,6 +87,9 @@
   /* Focus */
   --ring-size: 6px;
 
+  /* Border */
+  --border-color: #efefef;
+
   /* Components */
   --button-color: rgb(220, 220, 220);
   --reason-background-color: rgb(240, 240, 240);
@@ -102,6 +108,9 @@
   --color-danger: #ee0055;
   --color-disable-mix: #000;
   --color-page-background: #111;
+
+  /* Border */
+  --border-color: #222;
 
   /* Focus */
   --ring-color: rgb(224 78 57 / var(--ring-opacity, 1));
@@ -143,32 +152,47 @@ main {
 }
 
 .surface {
-  --surface-elevation: 2%;
-
-  background-color: color-mix(
+ --surface-nesting-base: 2%;
+ --surface-nesting-multiplier: 3;
+ --surface-nesting: calc(var(--surface-nesting-multiplier) * var(--surface-nesting-base));
+ --surface-nesting-background-multiplier: 100%;
+ --surface-nesting-color-mix: white;
+ --surface-background-color: color-mix(
       in oklab,
       var(--color-page-background)
-      100%,
-      white var(--surface-elevation)
+      var(--surface-nesting-background-multiplier),
+      var(--surface-nesting-color-mix) var(--surface-nesting)
     );
+
+  --surface-elevation-shadow: none;
+
+  filter: var(--surface-elevation-shadow);
+  &.elevation-xl2 { --surface-elevation-shadow: var(--shadow-xl2); }
+  &.elevation-xl { --surface-elevation-shadow: var(--shadow-xl); }
+  &.elevation-lg { --surface-elevation-shadow: var(--shadow-lg); }
+  &.elevation-md { --surface-elevation-shadow: var(--shadow-md); }
+  &.elevation-sm { --surface-elevation-shadow: var(--shadow-sm); }
+
+
+  background-color: var(--surface-background-color);
   .surface {
-    --surface-elevation: 4%;
+    --surface-nesting: calc(2 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
     .surface {
-      --surface-elevation: 6%;
+      --surface-nesting: calc(3 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
       .surface {
-        --surface-elevation: 8%;
+        --surface-nesting: calc(4 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
         .surface {
-          --surface-elevation: 10%;
+          --surface-nesting: calc(5 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
           .surface {
-            --surface-elevation: 12%;
+            --surface-nesting: calc(6 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
             .surface {
-              --surface-elevation: 14%;
+              --surface-nesting: calc(7 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
               .surface {
-                --surface-elevation: 16%;
+                --surface-nesting: calc(8 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
                 .surface {
-                  --surface-elevation: 18%;
+                  --surface-nesting: calc(9 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
                   .surface {
-                    --surface-elevation: 20%;
+                    --surface-nesting: calc(10 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
                   }
                 }
               }
@@ -177,5 +201,18 @@ main {
         }
       }
     }
+  }
+}
+
+.theme-light {
+  /**
+    * In light mode we hit 100% pretty quick,
+    * so after a certain point we can't get any whiter for the surfaces
+    */
+  .surface {
+    --surface-nesting-color-mix: #fff;
+    --surface-nesting-base: 2%;
+    --surface-nesting-multiplier: 10;
+    --surface-nesting-background-multiplier: 50%;
   }
 }

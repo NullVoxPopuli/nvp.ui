@@ -7,9 +7,13 @@
   --tab-selected-height-correction: -6px;
   --tab-focused-shadow: 0 0 0 transparent;
 
+  --tabpanel-border-radius: var(--radius);
+  --tabpanel-border-style: var(--border-style);
+  --tabpanel-border-width: var(--border-width);
+  --tabpanel-background-color: var(--surface);
+
   > [role="tablist"] {
     min-width: 100%;
-    padding-left: 0.75rem;
   }
 
   [aria-selected="true"] {
@@ -25,12 +29,32 @@
       --tab-focused-shadow: var(--ring-shadow);
     }
   }
+  .nvp__tabs__tabpanel {
+      overflow: auto;
+      width: 100%;
+      max-width: 100%;
+      border-radius: var(--radius);
+      padding: var(--padding-3);
+      border-radius: var(--tabpanel-border-radius);
+      border-width: var(--tabpanel-border-width);
+      border-style: var(--tabpanel-border-style);
+      border-color: color-mix(
+        in oklab,
+          var(--surface-background-color)
+          100%,
+          black 30%
+      );
+  }
 
   &[data-orientation="top"] {
     .nvp__tabs__tab {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }
+    .nvp__tabs__tabpanel {
+      border-top-left-radius: 0;
+    }
+
     [aria-selected="true"] {
       --tab-selected-shadow: inset
         0 calc(-1 * var(--tab-selected-height))
@@ -42,6 +66,10 @@
     .nvp__tabs__tab {
       border-top-left-radius: 0;
       border-top-right-radius: 0;
+    }
+
+    .nvp__tabs__tabpanel {
+      border-bottom-left-radius: 0;
     }
 
     [aria-selected="true"] {
@@ -56,6 +84,12 @@
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
+
+    .nvp__tabs__tabpanel {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
     [aria-selected="true"] {
       --tab-selected-shadow: inset
         calc(-1 * var(--tab-selected-height)) 0px
@@ -69,6 +103,11 @@
       border-bottom-left-radius: 0;
     }
 
+    .nvp__tabs__tabpanel {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
     [aria-selected="true"] {
       --tab-selected-shadow: inset
         var(--tab-selected-height) 0px
@@ -76,4 +115,5 @@
         var(--highlight-color);
     }
   }
+
 }
