@@ -2,6 +2,7 @@ import Route from "@ember/routing/route";
 
 import rehypeShikiFromHighlighter from "@shikijs/rehype/core";
 import { colorScheme } from "ember-primitives/color-scheme";
+import { setupTabster } from "ember-primitives/tabster";
 import { setupKolay } from "kolay/setup";
 import { createHighlighterCore } from "shiki/core";
 import { createOnigurumaEngine } from "shiki/engine/oniguruma";
@@ -10,6 +11,8 @@ import type { Manifest } from "kolay";
 
 export default class ApplicationRoute extends Route {
   async model(): Promise<{ manifest: Manifest }> {
+    await setupTabster(this);
+
     const highlighter = await createHighlighterCore({
       themes: [import("shiki/themes/github-dark.mjs"), import("shiki/themes/github-light.mjs")],
       langs: [
@@ -33,7 +36,12 @@ export default class ApplicationRoute extends Route {
         "ember-primitives/components/popover": import("ember-primitives/components/popover"),
         "ember-primitives/components/progress": import("ember-primitives/components/progress"),
         "nvp.ui": import("../../src/index"),
-        "nvp.ui/components/progress-circle": import("../../src/components/progress-circle"),
+        "nvp.ui/button": import("../../src/components/button"),
+        "nvp.ui/header": import("../../src/components/header"),
+        "nvp.ui/theme-toggle": import("../../src/components/theme-toggle"),
+        "nvp.ui/progress-circle": import("../../src/components/progress-circle"),
+        "nvp.ui/tabs": import("../../src/components/tabs"),
+        "nvp.ui/theme": import("../../src/components/theme"),
         kolay: import("kolay"),
       },
       rehypePlugins: [
