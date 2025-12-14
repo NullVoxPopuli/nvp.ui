@@ -38,12 +38,10 @@
   --ring-size: 4px;
   --ring-inner-color: light-dark(white, black);
   --ring-color: light-dark(
-      rgb(100 100 224 / var(--ring-opacity, 1)),
-      rgb(224 78 57 / var(--ring-opacity, 1))
+    rgb(100 100 224 / var(--ring-opacity, 1)),
+    rgb(224 78 57 / var(--ring-opacity, 1))
   );
-  --ring-shadow:
-      0 0 0px 2px var(--ring-inner-color),
-      0 0 0 var(--ring-size) var(--ring-color);
+  --ring-shadow: 0 0 0px 2px var(--ring-inner-color), 0 0 0 var(--ring-size) var(--ring-color);
 
   /* Borders */
   --border-width: 1px;
@@ -66,11 +64,18 @@
 
   --reason-shadow: var(--shadow-md);
 
-
   /* Gradients */
-  --gradient-hero: linear-gradient(-45deg,#1252e3,#3357e4,#485de5,#6242e9 50%,#6d2fe8,#7812e5 66.67%,#3512c5);
+  --gradient-hero: linear-gradient(
+    -45deg,
+    #1252e3,
+    #3357e4,
+    #485de5,
+    #6242e9 50%,
+    #6d2fe8,
+    #7812e5 66.67%,
+    #3512c5
+  );
   --gradient-featured: linear-gradient(to right, rgb(124, 58, 237), rgb(79, 70, 229));
-
 }
 
 /* Default / light mode */
@@ -152,27 +157,35 @@ main {
 }
 
 .surface {
- --surface-nesting-base: 2%;
- --surface-nesting-multiplier: 3;
- --surface-nesting: calc(var(--surface-nesting-multiplier) * var(--surface-nesting-base));
- --surface-nesting-background-multiplier: 100%;
- --surface-nesting-color-mix: white;
- --surface-background-color: color-mix(
-      in oklab,
-      var(--color-page-background)
-      var(--surface-nesting-background-multiplier),
-      var(--surface-nesting-color-mix) var(--surface-nesting)
-    );
+  --surface-nesting-base: 2%;
+  --surface-nesting-multiplier: 3;
+  --surface-nesting: calc(var(--surface-nesting-multiplier) * var(--surface-nesting-base));
+  --surface-nesting-background-multiplier: 100%;
+  --surface-nesting-color-mix: white;
+  --surface-background-color: color-mix(
+    in oklab,
+    var(--color-page-background) var(--surface-nesting-background-multiplier),
+    var(--surface-nesting-color-mix) var(--surface-nesting)
+  );
 
   --surface-elevation-shadow: none;
 
   filter: var(--surface-elevation-shadow);
-  &.elevation-xl2 { --surface-elevation-shadow: var(--shadow-xl2); }
-  &.elevation-xl { --surface-elevation-shadow: var(--shadow-xl); }
-  &.elevation-lg { --surface-elevation-shadow: var(--shadow-lg); }
-  &.elevation-md { --surface-elevation-shadow: var(--shadow-md); }
-  &.elevation-sm { --surface-elevation-shadow: var(--shadow-sm); }
-
+  &.elevation-xl2 {
+    --surface-elevation-shadow: var(--shadow-xl2);
+  }
+  &.elevation-xl {
+    --surface-elevation-shadow: var(--shadow-xl);
+  }
+  &.elevation-lg {
+    --surface-elevation-shadow: var(--shadow-lg);
+  }
+  &.elevation-md {
+    --surface-elevation-shadow: var(--shadow-md);
+  }
+  &.elevation-sm {
+    --surface-elevation-shadow: var(--shadow-sm);
+  }
 
   background-color: var(--surface-background-color);
   .surface {
@@ -180,19 +193,33 @@ main {
     .surface {
       --surface-nesting: calc(3 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
       .surface {
-        --surface-nesting: calc(4 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
+        --surface-nesting: calc(
+          4 * var(--surface-nesting-multiplier) * var(--surface-nesting-base)
+        );
         .surface {
-          --surface-nesting: calc(5 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
+          --surface-nesting: calc(
+            5 * var(--surface-nesting-multiplier) * var(--surface-nesting-base)
+          );
           .surface {
-            --surface-nesting: calc(6 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
+            --surface-nesting: calc(
+              6 * var(--surface-nesting-multiplier) * var(--surface-nesting-base)
+            );
             .surface {
-              --surface-nesting: calc(7 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
+              --surface-nesting: calc(
+                7 * var(--surface-nesting-multiplier) * var(--surface-nesting-base)
+              );
               .surface {
-                --surface-nesting: calc(8 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
+                --surface-nesting: calc(
+                  8 * var(--surface-nesting-multiplier) * var(--surface-nesting-base)
+                );
                 .surface {
-                  --surface-nesting: calc(9 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
+                  --surface-nesting: calc(
+                    9 * var(--surface-nesting-multiplier) * var(--surface-nesting-base)
+                  );
                   .surface {
-                    --surface-nesting: calc(10 * var(--surface-nesting-multiplier) * var(--surface-nesting-base));
+                    --surface-nesting: calc(
+                      10 * var(--surface-nesting-multiplier) * var(--surface-nesting-base)
+                    );
                   }
                 }
               }

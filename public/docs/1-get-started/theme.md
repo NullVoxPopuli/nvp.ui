@@ -11,8 +11,8 @@ The only benefit that the `Theme` component provides over the theme classes is s
 <div>
 
 ```gjs live preview no-shadow
-import { Theme } from 'nvp.ui/theme';
-import { Button } from 'nvp.ui/button';
+import { Theme } from "nvp.ui/theme";
+import { Button } from "nvp.ui/button";
 
 <template>
   With the theme component:
@@ -24,7 +24,7 @@ import { Button } from 'nvp.ui/button';
     <Theme @name="dark">
       dark theme
       <Button>a button</Button>
-    
+
       <Theme @name="light">
         light theme
         <Button>a button</Button>
@@ -40,7 +40,7 @@ import { Button } from 'nvp.ui/button';
   <style>
     @scope {
       div {
-        border-radius: var(--radius); 
+        border-radius: var(--radius);
         display: flex;
         flex-direction: column;
         gap: var(--gap);
@@ -55,12 +55,11 @@ import { Button } from 'nvp.ui/button';
 <div>
 
 ```gjs live preview no-shadow
-import { Theme } from 'nvp.ui/theme';
-import { Button } from 'nvp.ui/button';
+import { Theme } from "nvp.ui/theme";
+import { Button } from "nvp.ui/button";
 
 <template>
   With the theme classes:
-
 
   <div class="theme-light">
     light theme
@@ -84,8 +83,8 @@ import { Button } from 'nvp.ui/button';
 
   <style>
     @scope {
-      div[class*=theme] {
-        border-radius: var(--radius); 
+      div[class*="theme"] {
+        border-radius: var(--radius);
         display: flex;
         flex-direction: column;
         gap: var(--gap);
@@ -97,6 +96,5 @@ import { Button } from 'nvp.ui/button';
 ```
 
 </div>
-
 
 </div>

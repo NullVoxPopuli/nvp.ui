@@ -21,7 +21,6 @@
     --button-hover-color-mix: #fff;
   }
 
-
   .nvp__tabs__tab {
     box-shadow: var(--tab-focused-shadow), var(--tab-selected-shadow) !important;
 
@@ -30,20 +29,15 @@
     }
   }
   .nvp__tabs__tabpanel {
-      overflow: auto;
-      width: 100%;
-      max-width: 100%;
-      border-radius: var(--radius);
-      padding: var(--padding-3);
-      border-radius: var(--tabpanel-border-radius);
-      border-width: var(--tabpanel-border-width);
-      border-style: var(--tabpanel-border-style);
-      border-color: color-mix(
-        in oklab,
-          var(--surface-background-color)
-          100%,
-          black 30%
-      );
+    overflow: auto;
+    width: 100%;
+    max-width: 100%;
+    border-radius: var(--radius);
+    padding: var(--padding-3);
+    border-radius: var(--tabpanel-border-radius);
+    border-width: var(--tabpanel-border-width);
+    border-style: var(--tabpanel-border-style);
+    border-color: color-mix(in oklab, var(--surface-background-color) 100%, black 30%);
   }
 
   &[data-orientation="top"] {
@@ -56,10 +50,8 @@
     }
 
     [aria-selected="true"] {
-      --tab-selected-shadow: inset
-        0 calc(-1 * var(--tab-selected-height))
-        0 var(--tab-selected-height-correction)
-        var(--highlight-color);
+      --tab-selected-shadow: inset 0 calc(-1 * var(--tab-selected-height)) 0
+        var(--tab-selected-height-correction) var(--highlight-color);
     }
   }
   &[data-orientation="bottom"] {
@@ -73,10 +65,8 @@
     }
 
     [aria-selected="true"] {
-      --tab-selected-shadow: inset
-        0 var(--tab-selected-height)
-        0px var(--tab-selected-height-correction)
-        var(--highlight-color);
+      --tab-selected-shadow: inset 0 var(--tab-selected-height) 0px
+        var(--tab-selected-height-correction) var(--highlight-color);
     }
   }
   &[data-orientation="left"] {
@@ -91,10 +81,8 @@
     }
 
     [aria-selected="true"] {
-      --tab-selected-shadow: inset
-        calc(-1 * var(--tab-selected-height)) 0px
-        0px var(--tab-selected-height-correction)
-        var(--highlight-color);
+      --tab-selected-shadow: inset calc(-1 * var(--tab-selected-height)) 0px 0px
+        var(--tab-selected-height-correction) var(--highlight-color);
     }
   }
   &[data-orientation="right"] {
@@ -109,11 +97,8 @@
     }
 
     [aria-selected="true"] {
-      --tab-selected-shadow: inset
-        var(--tab-selected-height) 0px
-        0px var(--tab-selected-height-correction)
-        var(--highlight-color);
+      --tab-selected-shadow: inset var(--tab-selected-height) 0px 0px
+        var(--tab-selected-height-correction) var(--highlight-color);
     }
   }
-
 }

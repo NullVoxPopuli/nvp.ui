@@ -1,11 +1,9 @@
 # Tabs
 
-
 tabs do x y z
 
-
 ```gjs live no-shadow
-import { Tabs } from 'nvp.ui/tabs';
+import { Tabs } from "nvp.ui/tabs";
 
 <template>
   <Tabs as |Tab|>
@@ -20,8 +18,6 @@ import { Tabs } from 'nvp.ui/tabs';
 
 ### Classes & Attributes
 
-
-| Attribute | Values |    |
-| --------- | ------ | -- |
+| Attribute          | Values                                   |                                                                                          |
+| ------------------ | ---------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `data-orientation` | `'top' \| 'bottom' \| 'left' \| 'right'` | represents the current tab orientation, as set by `@orientation` (or the default: `top`) |
-
