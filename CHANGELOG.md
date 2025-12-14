@@ -1,5 +1,20 @@
 # Changelog
 
+## Release (2025-12-14)
+
+* nvp.ui 0.5.0 (minor)
+
+#### :rocket: Enhancement
+* `nvp.ui`
+  * [#56](https://github.com/NullVoxPopuli/nvp.ui/pull/56) Tabs ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :house: Internal
+* `nvp.ui`
+  * [#54](https://github.com/NullVoxPopuli/nvp.ui/pull/54) Dep Upgrades ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2025-09-08)
 
 * nvp.ui 0.4.0 (minor)
