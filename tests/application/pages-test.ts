@@ -73,11 +73,6 @@ module("Application | Pages", function (hooks) {
   setupApplicationTest(hooks);
 
   for (const page of pages) {
-    if (page.path.includes("progress-circle")) {
-      console.debug(`Kolay needs upgraded to re-enable this test`);
-      continue;
-    }
-
     test(`${page.path}`, async function (assert) {
       const path = page.path.replace(".md", "");
 
