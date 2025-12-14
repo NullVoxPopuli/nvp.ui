@@ -6,7 +6,7 @@ settings:
   peersSuffixMaxLength: 40
 
 overrides:
-  '@glint/template': '>= 1.0.0'
+  '@glint/template': ^1.7.3
   '@glimmer/template': ^2.0.0
   ember-modifier: '>= 4.2.0'
 
@@ -997,7 +997,7 @@ packages:
     resolution: {integrity: sha512-gJztS8dI7Jt8ohFQptEDJAgpl9DG84IpqwQoR1JDpVIBy2uLbf8KFD6S3h3LfyMsgJce6G38cOvyQv6BDgcnsA==}
     engines: {node: '>= 18'}
     peerDependencies:
-      '@glint/template': '>= 1.0.0'
+      '@glint/template': ^1.7.3
       ember-source: '>= 4.0.0'
     peerDependenciesMeta:
       '@glint/template':
@@ -1052,7 +1052,7 @@ packages:
     resolution: {integrity: sha512-AUrmHQdixczIU3ouv/+HzWxwYVsw/NwssZxAQnXfBDJ3d3/CRtAvGRu3JhY6OT3AAPFwfa2WT66tB5jeAa7r5g==}
     engines: {node: 12.* || 14.* || >= 16}
     peerDependencies:
-      '@glint/template': '>= 1.0.0'
+      '@glint/template': ^1.7.3
     peerDependenciesMeta:
       '@glint/template':
         optional: true
@@ -1061,7 +1061,7 @@ packages:
     resolution: {integrity: sha512-zwpe7J9jyh8YPLzblk8WR3AQf6m+Ln/8Prlz9/DEwHD1m7GjJog1TIT0Sjv8guEj/hXCGntbNOzfE2Vj1T0Uug==}
     engines: {node: 12.* || 14.* || >= 16}
     peerDependencies:
-      '@glint/template': '>= 1.0.0'
+      '@glint/template': ^1.7.3
     peerDependenciesMeta:
       '@glint/template':
         optional: true
@@ -3463,7 +3463,7 @@ packages:
     resolution: {integrity: sha512-Ikwl2YwXVe8aBwrT1deWTcUVxVu6KxS1qeU1ks3EML1Q/nxwKgxCkGqTJavxczawO8H/SIW45dV4r7z5Yqd2Xg==}
     engines: {node: 16.* || >= 18}
     peerDependencies:
-      '@glint/template': '>= 1.0.0'
+      '@glint/template': ^1.7.3
     peerDependenciesMeta:
       '@glint/template':
         optional: true
@@ -3527,7 +3527,7 @@ packages:
       '@ember/test-helpers': '>= 3.2.0'
       '@ember/test-waiters': '>= 3.0.2'
       '@glimmer/component': ^2.0.0
-      '@glint/template': '>= 1.0.0'
+      '@glint/template': ^1.7.3
       ember-modifier: '>= 4.2.0'
       ember-resources: '>= 6.1.0'
     peerDependenciesMeta:
@@ -3542,7 +3542,7 @@ packages:
       '@ember/test-helpers': '>= 3.2.0'
       '@ember/test-waiters': '>= 3.0.2'
       '@glimmer/component': ^2.0.0
-      '@glint/template': '>= 1.0.0'
+      '@glint/template': ^1.7.3
       ember-modifier: '>= 4.2.0'
       ember-resources: '>= 6.1.0'
     peerDependenciesMeta:
@@ -3557,7 +3557,7 @@ packages:
       '@ember/test-helpers': '>= 3.2.0'
       '@ember/test-waiters': '>= 3.0.2'
       '@glimmer/component': ^2.0.0
-      '@glint/template': '>= 1.0.0'
+      '@glint/template': ^1.7.3
       ember-modifier: '>= 4.2.0'
       ember-resources: '>= 6.1.0'
     peerDependenciesMeta:
@@ -3577,7 +3577,7 @@ packages:
     peerDependencies:
       '@glimmer/compiler': '>= 0.86.0'
       '@glimmer/syntax': '>= 0.86.0'
-      '@glint/template': '>= 1.0.0'
+      '@glint/template': ^1.7.3
       webpack: '>= 5.92.0'
     peerDependenciesMeta:
       '@glimmer/compiler':
@@ -3599,7 +3599,7 @@ packages:
     resolution: {integrity: sha512-0tEfLTi9hHNwZaBsTjLf+by+YXHL4Zj2VITLfFkcqJiwHIIsBnOddxtTSrjRmYLJd6L3JXfaMcVdUwT+B050Ww==}
     peerDependencies:
       '@glimmer/component': '>= 1.1.2 || >= 2.0.0'
-      '@glint/template': '>= 1.0.0'
+      '@glint/template': ^1.7.3
     peerDependenciesMeta:
       '@glimmer/component':
         optional: true
@@ -5065,7 +5065,7 @@ packages:
     resolution: {integrity: sha512-74MW59MtTquPUmzJZFYvYQLPbE0TuwwR58hJ9IddCN8tWq5lbUoIsVf7b/eGK3BD5Fuv9rRSgOAgPg2rPrusow==}
     engines: {node: '>= 18'}
     peerDependencies:
-      '@glint/template': '>= 1.0.0'
+      '@glint/template': ^1.7.3
 
   ky@1.14.0:
     resolution: {integrity: sha512-Rczb6FMM6JT0lvrOlP5WUOCB7s9XKxzwgErzhKlKde1bEV90FXplV1o87fpt4PU/asJFiqjYJxAJyzJhcrxOsQ==}
