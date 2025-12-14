@@ -130,6 +130,7 @@ export const Tabs: TOC<{
     data-variant={{or @variant "primary"}}
     as |Tab|
   >
+    {{! @glint-expect-error }}
     {{yield (component StyledTab tab=Tab)}}
   </PrimitiveTabs>
 </template>;
