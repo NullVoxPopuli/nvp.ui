@@ -32,7 +32,6 @@
     "./addon-main": "./config/addon-main.cjs"
   },
   "files": [
-    "config",
     "dist",
     "declarations",
     "src"

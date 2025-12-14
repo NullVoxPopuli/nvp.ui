@@ -40,9 +40,9 @@ export default class App extends Application {
     "docs-app/routes/application": ApplicationRoute,
     "docs-app/routes/index": IndexRoute,
     "docs-app/routes/page": PageRoute,
-     
+
     "docs-app/templates/application": ApplicationTemplate,
-     
+
     "docs-app/templates/page": PageTemplate,
 
     // From Libraries
