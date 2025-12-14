@@ -51,7 +51,7 @@ import { ThemeToggle } from "nvp.ui";
 or for non-tree-shaking environments:
 
 ```js
-import { ThemeToggle } from "nvp.ui/components/theme-toggle";
+import { ThemeToggle } from "nvp.ui/theme-toggle";
 ```
 
 ```gjs

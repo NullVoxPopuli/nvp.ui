@@ -39,7 +39,7 @@ export default class ApplicationRoute extends Route {
         "nvp.ui/button": import("../../src/components/button"),
         "nvp.ui/header": import("../../src/components/header"),
         "nvp.ui/theme-toggle": import("../../src/components/theme-toggle"),
-        "nvp.ui/components/progress-circle": import("../../src/components/progress-circle"),
+        "nvp.ui/progress-circle": import("../../src/components/progress-circle"),
         "nvp.ui/tabs": import("../../src/components/tabs"),
         "nvp.ui/theme": import("../../src/components/theme"),
         kolay: import("kolay"),
