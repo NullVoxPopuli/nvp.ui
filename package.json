@@ -115,7 +115,7 @@
     "ember-on-resize-modifier": "^2.0.2",
     "ember-page-title": "^9.0.1",
     "ember-qunit": "^9.0.4",
-    "ember-repl": "^6.0.0",
+    "ember-repl": "^7.0.1",
     "ember-resize-observer-service": "^1.1.0",
     "ember-resolver": "^13.1.0",
     "ember-route-template": "^1.0.3",
