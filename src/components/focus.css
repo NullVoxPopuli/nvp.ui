@@ -5,6 +5,8 @@ select,
 textarea,
 [role="switch"],
 [role="button"],
+[role="tab"],
+[role="tab"][aria-selected],
 [tabindex] {
   &:focus,
   &:focus-visible {
@@ -17,11 +19,9 @@ textarea,
    * of space between it and a hard boundary
    */
   &:focus-visible {
-    box-shadow:
-      0 0 0px 2px black,
-      0 0 0 4px var(--ring-color);
-    border-radius: var(--radius);
-    z-index: var(--z-focused);
+    box-shadow: var(--ring-shadow);
+    border-radius: var(--radius) !important;
+    z-index: var(--z-focused) !important;
   }
 }
 
@@ -37,8 +37,8 @@ textarea,
   &:has(:focus-visible) {
     label {
       box-shadow:
-        0 0 0px 2px black,
-        0 0 0 4px var(--ring-color);
+        0 0 0px 2px var(--ring-inner-color),
+        0 0 0 var(--rink-size) var(--ring-color);
       border-radius: var(--radius);
       z-index: var(--z-focused);
     }

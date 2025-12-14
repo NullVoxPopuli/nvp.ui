@@ -39,6 +39,13 @@ async function checkA11y(assert: Assert, path: string, theme: string) {
         "nested-interactive": {
           enabled: false,
         },
+        /**
+         * Disabled because markdown tables don't have titles, and usually using <h1-h6>
+         * to provide that information.
+         */
+        "empty-table-header": {
+          enabled: false,
+        },
       },
     });
     assert.ok(true, `no a11y errors found for ${path} using the ${theme} theme`);

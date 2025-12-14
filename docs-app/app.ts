@@ -1,4 +1,5 @@
 import Application from "@ember/application";
+import setupInspector from "@embroider/legacy-inspector-support/ember-source-4.12";
 
 import * as PageTitle from "ember-page-title/services/page-title";
 import { sync } from "ember-primitives/color-scheme";
@@ -32,15 +33,16 @@ sync();
 
 export default class App extends Application {
   modulePrefix = config.modulePrefix;
+  inspector = setupInspector(this);
   Resolver = Resolver.withModules({
     // This App
     "docs-app/router": Router,
     "docs-app/routes/application": ApplicationRoute,
     "docs-app/routes/index": IndexRoute,
     "docs-app/routes/page": PageRoute,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
     "docs-app/templates/application": ApplicationTemplate,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
     "docs-app/templates/page": PageTemplate,
 
     // From Libraries
