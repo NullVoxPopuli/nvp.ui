@@ -48,7 +48,7 @@ export default defineConfig({
   ],
   optimizeDeps: {
     // a wasm-providing dependency
-    exclude: ["content-tag", "@glimmer/tracking"],
+    exclude: ["content-tag"],
     // for top-level-await, etc
     esbuildOptions: {
       target: "esnext",

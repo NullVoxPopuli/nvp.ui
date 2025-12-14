@@ -39,6 +39,13 @@ async function checkA11y(assert: Assert, path: string, theme: string) {
         "nested-interactive": {
           enabled: false,
         },
+        /**
+         * Disabled because markdown tables don't have titles, and usually using <h1-h6>
+         * to provide that information.
+         */
+        "empty-table-header": {
+          enabled: false,
+        },
       },
     });
     assert.ok(true, `no a11y errors found for ${path} using the ${theme} theme`);
@@ -66,6 +73,11 @@ module("Application | Pages", function (hooks) {
   setupApplicationTest(hooks);
 
   for (const page of pages) {
+    if (page.path.includes("progress-circle")) {
+      console.debug(`Kolay needs upgraded to re-enable this test`);
+      continue;
+    }
+
     test(`${page.path}`, async function (assert) {
       const path = page.path.replace(".md", "");
 
