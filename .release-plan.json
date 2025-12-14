@@ -1,18 +1,22 @@
 {
   "solution": {
-    "null.ui": {
+    "nvp.ui": {
       "impact": "minor",
-      "oldVersion": "0.3.0",
-      "newVersion": "0.4.0",
+      "oldVersion": "0.4.0",
+      "newVersion": "0.5.0",
       "tagName": "latest",
       "constraints": [
         {
           "impact": "minor",
           "reason": "Appears in changelog section :rocket: Enhancement"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :house: Internal"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-09-08)\n\n* nvp.ui 0.4.0 (minor)\n\n#### :rocket: Enhancement\n* `nvp.ui`\n  * [#50](https://github.com/NullVoxPopuli/nvp.ui/pull/50) Tweak the theme-toggle ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2025-12-14)\n\n* nvp.ui 0.5.0 (minor)\n\n#### :rocket: Enhancement\n* `nvp.ui`\n  * [#56](https://github.com/NullVoxPopuli/nvp.ui/pull/56) Tabs ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :house: Internal\n* `nvp.ui`\n  * [#54](https://github.com/NullVoxPopuli/nvp.ui/pull/54) Dep Upgrades ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }
