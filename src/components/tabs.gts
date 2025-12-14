@@ -15,7 +15,7 @@ function isString(x: unknown): x is string {
 }
 
 const StyledButton: TOC<{ Args: { button: ButtonType }; Blocks: { default: [] } }> = <template>
-  <@button class="nvp__tabs__tab">
+  <@button class="nvp__tabs__tab surface">
     {{yield}}
   </@button>
 </template>;
