@@ -34,7 +34,8 @@
   "files": [
     "dist",
     "declarations",
-    "src"
+    "src",
+    "config/addon-main.cjs"
   ],
   "scripts": {
     ":rollup": "rollup --config ./config/rollup.config.mjs",
