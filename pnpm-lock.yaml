@@ -98,8 +98,8 @@ importers:
         specifier: ^2.0.8
         version: 2.0.8
       '@nullvoxpopuli/eslint-configs':
-        specifier: ^5.4.0
-        version: 5.4.0(3098850d8e378e5a7b9f8008939655a2)
+        specifier: ^5.4.1
+        version: 5.4.1(3098850d8e378e5a7b9f8008939655a2)
       '@rollup/plugin-babel':
         specifier: ^6.1.0
         version: 6.1.0(@babel/core@7.28.5)(rollup@4.53.3)
@@ -1687,8 +1687,8 @@ packages:
     resolution: {integrity: sha512-Yb00SWaL4F8w+K8YGhQ55+xE4RUNdMHV43WZGsiTM92gS+lC0mGsn7I4hLug7pbao035S6bj3Y3w0cUNGLfmkg==}
     engines: {node: ^18.17.0 || >=20.5.0}
 
-  '@nullvoxpopuli/eslint-configs@5.4.0':
-    resolution: {integrity: sha512-J7a1zsKBgaaSBZlESDx7nCT9iv9iCUU7lUuyOgp6+3F67dAc7qHhD2YGQk4t27iZAuGSMEVQjwZ3XQYDibFnnQ==}
+  '@nullvoxpopuli/eslint-configs@5.4.1':
+    resolution: {integrity: sha512-3ORKcF1ZIY8ntPoofKOjFZ8P2/SN9zEYUlG5i2Iyx5ZB6A+AiO4Hh/m+Me1Vjj3FpyoV4+eMQYOmxynWvbhiTg==}
     engines: {node: '>= v22.16.0'}
     peerDependencies:
       '@babel/core': ^7.22.10
@@ -3687,8 +3687,8 @@ packages:
       '@typescript-eslint/parser':
         optional: true
 
-  ember-eslint@0.6.0:
-    resolution: {integrity: sha512-gG3tjYioGMx4JxhGIXLDPFYhE1Qy+YWDPhfVEPpkDPXm0xa7C/1TzfKIzltxPOHiYD4NoguMTXTPPecDebgxwA==}
+  ember-eslint@0.6.1:
+    resolution: {integrity: sha512-9yxPYMntGEqv+8vG7nNTyDHvFIoR+6/Wc0ugkemYEOE+4V3ZTq3O6ktYWxv+OkrqvXjYQprPO3v4g+wPVcQd8w==}
 
   ember-focus-trap@1.1.1:
     resolution: {integrity: sha512-5tOWu6eV1UoNZE+P9Gl9lJXNrENZVCoOXi52ePb7JOrOZ3ckOk1OkPsFwR4Jym9VJ7vZ6S3Z3D8BrkFa2aCpYw==}
@@ -10154,13 +10154,13 @@ snapshots:
     dependencies:
       which: 5.0.0
 
-  '@nullvoxpopuli/eslint-configs@5.4.0(3098850d8e378e5a7b9f8008939655a2)':
+  '@nullvoxpopuli/eslint-configs@5.4.1(3098850d8e378e5a7b9f8008939655a2)':
     dependencies:
       '@babel/core': 7.28.5
       '@eslint/js': 9.39.2
       '@typescript-eslint/parser': 8.49.0(a9a2b15499f9c7bdb413ffe7d1d4dbf6)
       cosmiconfig: 9.0.0(typescript@5.9.3)
-      ember-eslint: 0.6.0(a862eb4782d7827d093738109814d137)
+      ember-eslint: 0.6.1(a862eb4782d7827d093738109814d137)
       eslint: 9.39.2(jiti@2.4.2)
       eslint-import-resolver-typescript: 4.4.4(73b01d574a0c36858caa9b7cecb671b9)
       eslint-plugin-decorator-position: 6.0.0(16d4d456b16f87898c2c5cb711519ce9)
@@ -12499,7 +12499,7 @@ snapshots:
       - eslint
       - typescript
 
-  ember-eslint@0.6.0(a862eb4782d7827d093738109814d137):
+  ember-eslint@0.6.1(a862eb4782d7827d093738109814d137):
     dependencies:
       '@babel/eslint-parser': 7.28.5(2259dde3a5508c1109cbb6f987aabddb)
       '@eslint/js': 9.39.2
