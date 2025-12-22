@@ -131,7 +131,9 @@
 }
 
 @media (prefers-reduced-motion) {
-  --fade-duration: 0s;
+  :root {
+    --fade-duration: 0s;
+  }
 }
 
 html,
