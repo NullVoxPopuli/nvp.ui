@@ -1,6 +1,6 @@
 {
   "name": "nvp.ui",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "UI Kit for building professional and sleek looking ember apps quickly",
   "keywords": [
     "ember-addon"

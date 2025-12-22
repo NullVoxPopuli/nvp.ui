@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-12-22)
+
+* nvp.ui 0.5.1 (patch)
+
+#### :bug: Bug Fix
+* `nvp.ui`
+  * [#59](https://github.com/NullVoxPopuli/nvp.ui/pull/59) Fix CSS for reduced motion ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2025-12-14)
 
 * nvp.ui 0.5.0 (minor)
