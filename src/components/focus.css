@@ -1,0 +1,46 @@
+a,
+button,
+input,
+select,
+textarea,
+[role="switch"],
+[role="button"],
+[role="tab"],
+[role="tab"][aria-selected],
+[tabindex] {
+  &:focus,
+  &:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    z-index: var(--z-focused);
+  }
+  /**
+   * Due to the size of the focus ring, every interactive must have at least 4px (--padding-1, by default)
+   * of space between it and a hard boundary
+   */
+  &:focus-visible {
+    box-shadow: var(--ring-shadow);
+    border-radius: var(--radius) !important;
+    z-index: var(--z-focused) !important;
+  }
+}
+
+.preem__site-theme-toggle {
+  &:has(:focus),
+  &:has(:focus-visible) {
+    label {
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      z-index: var(--z-focused);
+    }
+  }
+  &:has(:focus-visible) {
+    label {
+      box-shadow:
+        0 0 0px 2px var(--ring-inner-color),
+        0 0 0 var(--rink-size) var(--ring-color);
+      border-radius: var(--radius);
+      z-index: var(--z-focused);
+    }
+  }
+}

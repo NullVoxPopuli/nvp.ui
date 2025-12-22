@@ -1,0 +1,149 @@
+.preem__button,
+.nvp__tabs__tab {
+  --button-background-color: var(--button-color);
+  --button-hover-mix: 0%;
+  --button-interact-spread: 0;
+  --button-background-mix: 75%;
+  --button-disable-mix: 0%;
+  --button-disable-background-mix: 50%;
+  --button-disable-border-mix: 50%;
+  --button-padding-y: var(--padding-1);
+  --button-padding-x: var(--padding-3);
+  --button-shadow-offset-y: 1px;
+  --button-shadow-offset-x: 0px;
+  --button-shadow-blur: 1px;
+  --button-shadow: var(--button-shadow-offset-x) var(--button-shadow-offset-y)
+    var(--button-shadow-blur) var(--button-interact-spread) var(--button-background-color);
+
+  /* Behaviors */
+  transition: all 0.2s;
+
+  /* Layout */
+  position: relative;
+  display: inline-grid;
+  grid-auto-flow: column;
+  gap: var(--gap);
+  align-items: baseline;
+  padding: var(--button-padding-y) var(--button-padding-x);
+  line-height: var(--line-height);
+
+  /* Borders */
+  border-radius: var(--button-border-radius);
+  border-width: var(--button-border-width);
+  border-style: var(--button-border-style);
+
+  /* Colors */
+  box-shadow: var(--button-shadow);
+  color: color-mix(
+    in oklab,
+    var(--color-text) 85%,
+    var(--color-disable-mix) calc(var(--button-disable-mix) / 3)
+  );
+
+  background: color-mix(
+    in oklab,
+    color-mix(
+        in oklab,
+        var(--button-background-color) var(--button-background-mix),
+        var(--button-hover-color-mix) var(--button-hover-mix)
+      )
+      var(--button-disable-background-mix),
+    var(--color-disable-mix) var(--button-disable-mix)
+  );
+
+  border-color: color-mix(
+    in oklab,
+    color-mix(
+        in oklab,
+        var(--button-background-color) var(--button-background-mix),
+        var(--button-border-color-mix) var(--button-hover-mix)
+      )
+      var(--button-disable-border-mix),
+    var(--color-disable-mix) var(--button-disable-mix)
+  );
+
+  /* States */
+  &[data-variant="primary"] {
+    --button-background-color: var(--color-primary);
+  }
+  &[data-variant="secondary"] {
+    --button-background-color: var(--color-secondary);
+  }
+  &[data-variant="danger"] {
+    --button-background-color: var(--color-danger);
+  }
+
+  &:hover {
+    --button-hover-mix: 30%;
+    --button-interact-spread: 1px;
+  }
+
+  /* Press, tap, etc */
+  &:active {
+    --button-hover-mix: 30%;
+    --button-hover-color-mix: #000;
+    --button-interact-spread: -1px;
+    .preem__button__text {
+      transform: scale(0.98);
+    }
+  }
+
+  &[aria-disabled] {
+    --button-disable-mix: 50%;
+    --button-interact-spread: -1px;
+  }
+
+  --button-reason-border-target: white;
+
+  /* Control the tooltip from the button */
+  &:hover,
+  &:focus-visible {
+    .preem__button__disabled-reason {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}
+
+/**
+* IMPORTANT: In order for the tooltip to participate in
+*  the tab order, it can't be hidden (display: none)
+*  or (visibility: hidden)
+*/
+.preem__button__disabled-reason {
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+
+  padding: var(--padding);
+  width: max-content;
+  position: absolute;
+  text-align: left;
+  background: var(--reason-background-color);
+  border: var(--reason-border);
+  color: var(--color-text);
+  border-radius: 4px;
+  font-size: 90%;
+  filter: var(--reason-shadow);
+  z-index: 10;
+  transition: opacity var(--fade-duration);
+
+  .arrow {
+    position: absolute;
+    background: var(--reason-background-color);
+    width: 8px;
+    height: 8px;
+    transform: rotate(45deg);
+  }
+
+  /* When hovering / focusing, don't close the tooltip */
+  &:hover,
+  &:focus,
+  &:active,
+  &:focus-visible,
+  &:has(:focus),
+  &:has(:focus-visible) {
+    opacity: 1;
+    pointer-events: all;
+  }
+}

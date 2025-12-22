@@ -1,0 +1,1 @@
+{"version":3,"file":"external-link.d.ts","sourceRoot":"","sources":["../../src/components/external-link.gts"],"names":[],"mappings":"AAqBA,OAAO,qBAAqB,CAAC;AAM7B,OAAO,KAAK,EAAE,GAAG,EAAE,MAAM,gCAAgC,CAAC;AAE1D,MAAM,WAAW,SAAS;IACxB,OAAO,EAAE,iBAAiB,CAAC;IAC3B,MAAM,EAAE;QACN,OAAO,EAAE,EAAE,CAAC;KACb,CAAC;CACH;AAED,eAAO,MAAM,YAAY,EAAE,GAAG,CAAC,SAAS,CA0BtC,CAAC"}
