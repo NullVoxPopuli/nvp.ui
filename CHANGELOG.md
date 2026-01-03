@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2026-01-03)
+
+* nvp.ui 0.5.2 (patch)
+
+#### :bug: Bug Fix
+* `nvp.ui`
+  * [#61](https://github.com/NullVoxPopuli/nvp.ui/pull/61) Use the correct dirname for addon-shim ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2025-12-22)
 
 * nvp.ui 0.5.1 (patch)
