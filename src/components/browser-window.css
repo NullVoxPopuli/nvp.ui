@@ -1,0 +1,76 @@
+/**
+ * Browser Window Component Styles
+ * Renders a mockup of a browser chrome for demos and documentation
+ */
+
+.nvp__browser-window {
+  --browser-window-border-radius: 8px;
+  --browser-window-border-color: color-mix(in oklab, var(--color-text) 20%, transparent);
+  --browser-window-chrome-bg: color-mix(in oklab, var(--color-text) 5%, transparent);
+  --browser-window-address-bg: color-mix(in oklab, var(--color-text) 10%, transparent);
+  --browser-window-button-size: 12px;
+  --browser-window-button-gap: 8px;
+  --browser-window-chrome-padding: 12px;
+  --browser-window-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  border: 1px solid var(--browser-window-border-color);
+  border-radius: var(--browser-window-border-radius);
+  overflow: hidden;
+  box-shadow: var(--browser-window-shadow);
+  background: var(--color-background);
+}
+
+.nvp__browser-window__chrome {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  padding: var(--browser-window-chrome-padding);
+  background: var(--browser-window-chrome-bg);
+  border-bottom: 1px solid var(--browser-window-border-color);
+}
+
+.nvp__browser-window__buttons {
+  display: flex;
+  gap: var(--browser-window-button-gap);
+  align-items: center;
+}
+
+.nvp__browser-window__button {
+  width: var(--browser-window-button-size);
+  height: var(--browser-window-button-size);
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: default;
+}
+
+.nvp__browser-window__button--close {
+  background: #ff5f56;
+}
+
+.nvp__browser-window__button--minimize {
+  background: #ffbd2e;
+}
+
+.nvp__browser-window__button--maximize {
+  background: #27c93f;
+}
+
+.nvp__browser-window__address-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 4px 12px;
+  background: var(--browser-window-address-bg);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  color: color-mix(in oklab, var(--color-text) 60%, transparent);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nvp__browser-window__content {
+  padding: var(--padding);
+  overflow: auto;
+}
