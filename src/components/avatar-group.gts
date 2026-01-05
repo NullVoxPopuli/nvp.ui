@@ -8,10 +8,6 @@ export interface Signature {
   Element: HTMLDivElement;
   Args: {
     /**
-     * Maximum number of avatars to display before showing "+X more"
-     */
-    max?: number;
-    /**
      * Size variant for all avatars in the group
      */
     size?: "small" | "medium" | "large";

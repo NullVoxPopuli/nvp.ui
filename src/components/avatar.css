@@ -1,7 +1,7 @@
 .nvp__avatar {
   --avatar-size: 2.5rem;
   --avatar-border-width: 2px;
-  --avatar-border-color: var(--color-background);
+  --avatar-border-color: var(--color-page-background);
 
   display: inline-flex;
   align-items: center;
@@ -10,7 +10,7 @@
   height: var(--avatar-size);
   border-radius: 50%;
   overflow: hidden;
-  background: color-mix(in oklab, var(--color-primary) 20%, var(--color-background) 80%);
+  background: color-mix(in oklab, var(--color-primary) 20%, var(--color-page-background) 80%);
   border: var(--avatar-border-width) solid var(--avatar-border-color);
   position: relative;
 }
