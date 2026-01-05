@@ -12,19 +12,19 @@ import { Menu } from "nvp.ui/menu";
     </menu.Trigger>
 
     <menu.Content as |Items|>
-      <Items.Item @onSelect={{fn (mut this.selectedItem) "New"}}>
+      <Items.Item>
         New File
       </Items.Item>
-      <Items.Item @onSelect={{fn (mut this.selectedItem) "Open"}}>
+      <Items.Item>
         Open...
       </Items.Item>
-      <Items.Item @onSelect={{fn (mut this.selectedItem) "Save"}}>
+      <Items.Item>
         Save
       </Items.Item>
 
       <Items.Separator />
 
-      <Items.Item @onSelect={{fn (mut this.selectedItem) "Exit"}}>
+      <Items.Item>
         Exit
       </Items.Item>
     </menu.Content>
@@ -88,17 +88,17 @@ import { Menu } from "nvp.ui/menu";
     </menu.Trigger>
 
     <menu.Content as |Items|>
-      <Items.LinkItem @href="/home">
+      <Items.LinkItem @href="/">
         Home
       </Items.LinkItem>
-      <Items.LinkItem @href="/about">
-        About
+      <Items.LinkItem @href="/1-get-started/intro">
+        Intro
       </Items.LinkItem>
 
       <Items.Separator />
 
-      <Items.LinkItem @href="/settings">
-        Settings
+      <Items.LinkItem @href="/3-components/menu">
+        Menu
       </Items.LinkItem>
     </menu.Content>
   </Menu>
