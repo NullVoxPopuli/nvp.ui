@@ -1,3 +1,5 @@
+export { Avatar } from "./components/avatar.gts";
+export { AvatarGroup } from "./components/avatar-group.gts";
 export { Button } from "./components/button.gts";
 export { ExternalLink } from "./components/external-link.gts";
 export { Header } from "./components/header.gts";

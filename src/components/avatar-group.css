@@ -1,0 +1,35 @@
+.nvp__avatar-group {
+  --avatar-overlap: -0.5rem;
+
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.nvp__avatar-group > * {
+  margin-left: var(--avatar-overlap);
+  transition: transform 0.2s ease-in-out;
+}
+
+.nvp__avatar-group > *:first-child {
+  margin-left: 0;
+}
+
+/* Hover effect to reveal overlapped avatars */
+.nvp__avatar-group:hover > * {
+  transform: translateX(calc(var(--avatar-overlap) * -1));
+}
+
+.nvp__avatar-group:hover > *:first-child {
+  transform: translateX(0);
+}
+
+/* Different overlap sizes based on avatar size */
+.nvp__avatar-group[data-size="small"] {
+  --avatar-overlap: -0.35rem;
+}
+
+.nvp__avatar-group[data-size="large"] {
+  --avatar-overlap: -0.75rem;
+}
