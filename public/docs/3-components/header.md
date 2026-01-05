@@ -5,7 +5,7 @@ The `<Header />` component provides a navigation bar for your application that c
 This component is ideal for app navigation, offering a clean and flexible layout with left and right content areas.
 
 ```gjs live
-import { Header, Button } from "nvp.ui";
+import { Header } from "nvp.ui";
 
 <template>
   <Header>
@@ -13,9 +13,8 @@ import { Header, Button } from "nvp.ui";
       <a href="/">nvp.ui</a>
     </:left>
     <:right>
-      <Button @onClick={{() => alert('Clicked!')}}>
-        Action
-      </Button>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
     </:right>
   </Header>
 </template>
