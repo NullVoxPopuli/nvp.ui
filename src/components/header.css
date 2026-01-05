@@ -12,6 +12,12 @@
   /* Default to top positioning */
   top: 0;
 
+  /* Explicit top positioning */
+  &[data-position="top"] {
+    top: 0;
+    bottom: auto;
+  }
+
   /* Bottom positioning when specified */
   &[data-position="bottom"] {
     top: auto;
