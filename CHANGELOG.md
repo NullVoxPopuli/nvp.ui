@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2026-01-11)
+
+* nvp.ui 0.5.3 (patch)
+
+#### :house: Internal
+* `nvp.ui`
+  * [#70](https://github.com/NullVoxPopuli/nvp.ui/pull/70) Update deps ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2026-01-03)
 
 * nvp.ui 0.5.2 (patch)
