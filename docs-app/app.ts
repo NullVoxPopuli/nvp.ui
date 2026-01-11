@@ -10,7 +10,6 @@ import Resolver from "ember-resolver";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import * as SetBodyClassService from "ember-set-body-class/addon/services/body-class";
-import { registry as kolayServices } from "kolay";
 
 import config from "./config.ts";
 import * as Router from "./router.ts";
@@ -47,7 +46,6 @@ export default class App extends Application {
 
     // From Libraries
     "docs-app/services/page-title": PageTitle,
-    ...kolayServices("docs-app"),
 
     // From V1 libraries...
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
