@@ -31,18 +31,19 @@ export default class ApplicationRoute extends Route {
     });
 
     const manifest = await setupKolay(this, {
-      resolve: {
-        "ember-primitives": import("ember-primitives"),
-        "ember-primitives/components/popover": import("ember-primitives/components/popover"),
-        "ember-primitives/components/progress": import("ember-primitives/components/progress"),
-        "nvp.ui": import("../../src/index"),
-        "nvp.ui/button": import("../../src/components/button"),
-        "nvp.ui/header": import("../../src/components/header"),
-        "nvp.ui/theme-toggle": import("../../src/components/theme-toggle"),
-        "nvp.ui/progress-circle": import("../../src/components/progress-circle"),
-        "nvp.ui/tabs": import("../../src/components/tabs"),
-        "nvp.ui/theme": import("../../src/components/theme"),
-        kolay: import("kolay"),
+      modules: {
+        "ember-primitives": () => import("ember-primitives"),
+        "ember-primitives/components/popover": () => import("ember-primitives/components/popover"),
+        "ember-primitives/components/progress": () =>
+          import("ember-primitives/components/progress"),
+        "nvp.ui": () => import("../../src/index"),
+        "nvp.ui/button": () => import("../../src/components/button"),
+        "nvp.ui/header": () => import("../../src/components/header"),
+        "nvp.ui/theme-toggle": () => import("../../src/components/theme-toggle"),
+        "nvp.ui/progress-circle": () => import("../../src/components/progress-circle"),
+        "nvp.ui/tabs": () => import("../../src/components/tabs"),
+        "nvp.ui/theme": () => import("../../src/components/theme"),
+        kolay: () => import("kolay"),
       },
       rehypePlugins: [
         // @shikijs/rehype
