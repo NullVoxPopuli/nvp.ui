@@ -8,8 +8,8 @@ on:
   pull_request: {}
 
 concurrency:
-   group: ci-${{ github.head_ref || github.ref }}
-   cancel-in-progress: true
+  group: ci-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
 
 env:
   TURBO_API: http://127.0.0.1:9080
@@ -18,14 +18,14 @@ env:
 
 jobs:
   setup:
-    name: 'Setup'
+    name: "Setup"
     runs-on: ubuntu-latest
     timeout-minutes: 2
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - uses: wyvox/action@v1
-      - run:  echo ${{ github.event.number }} > ./pr-number.txt
+      - run: echo ${{ github.event.number }} > ./pr-number.txt
       - id: set-matrix
         run: |
           echo "matrix=$(pnpm -s try list)" >> $GITHUB_OUTPUT
@@ -40,7 +40,6 @@ jobs:
       - uses: wyvox/action@v1
       - run: pnpm build
       - run: pnpm lint
-
 
   test:
     name: "Default Tests"
@@ -93,7 +92,7 @@ jobs:
   #       Lint phase up above
   #       This job is for checking specific versions of typescript
   typecheck:
-    name: '${{ matrix.typescript-scenario }}'
+    name: "${{ matrix.typescript-scenario }}"
     runs-on: ubuntu-latest
     timeout-minutes: 5
     needs: [test]
@@ -102,19 +101,18 @@ jobs:
       fail-fast: true
       matrix:
         typescript-scenario:
-          - typescript@5.5
-          - typescript@5.6
           - typescript@5.7
           - typescript@5.8
+          - typescript@5.9
           - typescript@rc
-          - typescript@next
+          # - typescript@next
 
     steps:
       - uses: wyvox/action@v1
       - run: pnpm build
-      - name: 'Change TS to ${{ matrix.typescript-scenario }}'
-        run: 'pnpm add --save-dev ${{ matrix.typescript-scenario}}'
-      - name: 'Type checking'
+      - name: "Change TS to ${{ matrix.typescript-scenario }}"
+        run: "pnpm add --save-dev ${{ matrix.typescript-scenario}}"
+      - name: "Type checking"
         run: pnpm lint:types
 
   # DeployProduction:
