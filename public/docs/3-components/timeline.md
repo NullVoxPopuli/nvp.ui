@@ -25,6 +25,76 @@ import { Timeline } from "nvp.ui/timeline";
 </template>
 ```
 
+## Add items dynamically
+
+New items animate in as they appear. Click **+ Add event** to see each item pop in with the dot, slide the content in, and draw the connector line down to the next one. **Clear** resets the list so you can replay.
+
+```gjs live no-shadow
+import { Timeline } from "nvp.ui/timeline";
+import { cell } from "ember-resources";
+import { on } from "@ember/modifier";
+
+const EVENTS = [
+  { label: "Jan 2025", title: "Project Kickoff",   body: "Requirements gathering complete." },
+  { label: "Mar 2025", title: "Design Phase",       body: "Wireframes and mockups approved." },
+  { label: "Jun 2025", title: "Development Sprint", body: "Core features implemented." },
+  { label: "Sep 2025", title: "Beta Release 🧪",    body: "First beta shipped to early users." },
+  { label: "Dec 2025", title: "Launch 🚀",          body: "Successfully shipped to production!" },
+];
+
+const items = cell([]);
+
+function add() {
+  const next = EVENTS[items.current.length];
+  if (next) items.current = [...items.current, next];
+}
+
+function clear() {
+  items.current = [];
+}
+
+const canAdd = () => items.current.length < EVENTS.length;
+
+<template>
+  <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 32rem;">
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+      <button
+        type="button"
+        disabled={{(unless (canAdd) true)}}
+        {{on "click" add}}
+        style="padding: 0.375rem 0.875rem; border-radius: 0.25rem; border: 1px solid currentColor; background: transparent; cursor: pointer; color: inherit; font: inherit;"
+      >
+        + Add event
+      </button>
+      <button
+        type="button"
+        {{on "click" clear}}
+        style="padding: 0.375rem 0.875rem; border-radius: 0.25rem; border: 1px solid currentColor; background: transparent; cursor: pointer; color: inherit; font: inherit;"
+      >
+        Clear
+      </button>
+      <span style="opacity: 0.6; font-size: 0.8125rem;">
+        {{items.current.length}} / {{EVENTS.length}} events
+      </span>
+    </div>
+
+    {{#if items.current.length}}
+      <Timeline as |Item|>
+        {{#each items.current key="title" as |event|}}
+          <Item @label={{event.label}} @title={{event.title}}>
+            {{event.body}}
+          </Item>
+        {{/each}}
+      </Timeline>
+    {{else}}
+      <p style="opacity: 0.5; font-style: italic; margin: 0;">
+        Click "+ Add event" to build the timeline.
+      </p>
+    {{/if}}
+  </div>
+</template>
+```
+
 ## Without labels
 
 ```gjs live no-shadow

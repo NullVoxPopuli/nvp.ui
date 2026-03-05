@@ -44,6 +44,7 @@ export default class ApplicationRoute extends Route {
         "nvp.ui/tabs": () => import("../../src/components/tabs"),
         "nvp.ui/theme": () => import("../../src/components/theme"),
         "nvp.ui/timeline": () => import("../../src/components/timeline"),
+        "ember-resources": () => import("ember-resources"),
         kolay: () => import("kolay"),
       },
       rehypePlugins: [
