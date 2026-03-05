@@ -3,6 +3,7 @@
 // See https://typed-ember.gitbook.io/glint/using-glint/ember/authoring-addons
 
 import type { ThemeToggle } from "./components/theme-toggle";
+import type { Timeline, TimelineItem } from "./components/timeline";
 
 // import type MyComponent from './components/my-component';
 
@@ -11,4 +12,6 @@ import type { ThemeToggle } from "./components/theme-toggle";
 export default interface Registry {
   // components
   ThemeToggle: typeof ThemeToggle;
+  Timeline: typeof Timeline;
+  TimelineItem: typeof TimelineItem;
 }

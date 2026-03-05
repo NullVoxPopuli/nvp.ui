@@ -43,6 +43,7 @@ export default class ApplicationRoute extends Route {
         "nvp.ui/progress-circle": () => import("../../src/components/progress-circle"),
         "nvp.ui/tabs": () => import("../../src/components/tabs"),
         "nvp.ui/theme": () => import("../../src/components/theme"),
+        "nvp.ui/timeline": () => import("../../src/components/timeline"),
         kolay: () => import("kolay"),
       },
       rehypePlugins: [
