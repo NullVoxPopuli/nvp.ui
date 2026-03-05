@@ -2,6 +2,8 @@
 
 The `<Timeline />` component renders a vertical list of events or milestones. Each item can display an optional label (e.g. a date), an optional title, and freeform block content.
 
+Items animate into view as they scroll into the viewport: the dot pops in, the content slides in from the left, and the connector line grows downward to the next item. Animations respect `prefers-reduced-motion`.
+
 ```gjs live no-shadow
 import { Timeline } from "nvp.ui/timeline";
 
@@ -89,6 +91,12 @@ Public CSS custom properties on `.nvp__timeline`:
 | `--timeline-line-width`          | `2px`                                              | Width of the vertical connector line  |
 | `--timeline-gap`                 | `var(--gap-4)`                                     | Vertical gap between items            |
 | `--timeline-content-gap`         | `var(--gap-2)`                                     | Gap between label, title, and body    |
+| `--timeline-enter-duration`      | `0.45s`                                            | Duration of the content slide-in      |
+| `--timeline-enter-easing`        | `cubic-bezier(0.22, 1, 0.36, 1)`                   | Easing for content slide-in           |
+| `--timeline-dot-easing`          | `cubic-bezier(0.34, 1.56, 0.64, 1)`               | Easing for the dot pop (spring)       |
+| `--timeline-line-duration`       | `0.6s`                                             | Duration of the connector line grow   |
+| `--timeline-line-delay`          | `0.2s`                                             | Delay before the connector line starts growing |
+| `--timeline-content-delay`       | `0.05s`                                            | Delay before content starts sliding in |
 
 Public selectors:
 
@@ -96,6 +104,7 @@ Public selectors:
 | --------------------------- | ------------------------------------------------- |
 | `.nvp__timeline`            | The outer `<ol>` list element                     |
 | `.nvp__timeline__item`      | Each `<li>` timeline entry                        |
+| `.nvp__timeline__item[data-visible]` | Added when the item enters the viewport  |
 | `.nvp__timeline__marker`    | The marker column (contains the dot or icon)      |
 | `.nvp__timeline__dot`       | The default circular dot indicator                |
 | `.nvp__timeline__content`   | The content column (label, title, body)           |

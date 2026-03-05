@@ -8,6 +8,14 @@
   --timeline-gap: var(--gap-4);
   --timeline-content-gap: var(--gap-2);
 
+  /* Animation timing */
+  --timeline-enter-duration: 0.45s;
+  --timeline-enter-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  --timeline-dot-easing: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --timeline-line-duration: 0.6s;
+  --timeline-line-delay: 0.2s;
+  --timeline-content-delay: 0.05s;
+
   list-style: none;
   margin: 0;
   padding: 0;
@@ -15,13 +23,48 @@
   flex-direction: column;
 }
 
+/* ─── Keyframes ─────────────────────────────────────────── */
+
+@keyframes nvp-timeline-slide-in {
+  from {
+    opacity: 0;
+    translate: -0.5rem 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes nvp-timeline-dot-pop {
+  from {
+    scale: 0;
+    opacity: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+@keyframes nvp-timeline-line-grow {
+  from {
+    scale: 1 0;
+  }
+  to {
+    scale: 1 1;
+  }
+}
+
+/* ─── Item layout ───────────────────────────────────────── */
+
 .nvp__timeline__item {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
   column-gap: var(--timeline-gap);
 
-  /* The dot column */
+  /* The vertical connector line */
   &::before {
     content: "";
     display: block;
@@ -30,12 +73,29 @@
     width: var(--timeline-line-width);
     background-color: var(--timeline-line-color);
     justify-self: center;
+    transform-origin: top;
+
+    /* Start hidden; animate when visible */
+    scale: 1 0;
+    transition: scale var(--timeline-line-duration)
+      var(--timeline-enter-easing) var(--timeline-line-delay);
   }
 
   &:last-child::before {
     display: none;
   }
+
+  /* ── Visible state (added by IntersectionObserver) ──── */
+
+  &[data-visible] {
+    /* Animate the connector line growing downward */
+    &::before {
+      scale: 1 1;
+    }
+  }
 }
+
+/* ─── Marker (dot / icon) ───────────────────────────────── */
 
 .nvp__timeline__marker {
   grid-row: 1;
@@ -54,7 +114,18 @@
   background-color: var(--timeline-dot-color);
   border: var(--timeline-dot-border-width) solid var(--timeline-dot-border-color);
   flex-shrink: 0;
+
+  /* Start invisible; animate when parent item is visible */
+  scale: 0;
+  opacity: 0;
+
+  .nvp__timeline__item[data-visible] & {
+    animation: nvp-timeline-dot-pop var(--timeline-enter-duration)
+      var(--timeline-dot-easing) both;
+  }
 }
+
+/* ─── Content column ────────────────────────────────────── */
 
 .nvp__timeline__content {
   grid-row: 1;
@@ -63,6 +134,15 @@
   display: flex;
   flex-direction: column;
   gap: var(--timeline-content-gap);
+
+  /* Start invisible; animate when parent item is visible */
+  opacity: 0;
+  translate: -0.5rem 0;
+
+  .nvp__timeline__item[data-visible] & {
+    animation: nvp-timeline-slide-in var(--timeline-enter-duration)
+      var(--timeline-enter-easing) var(--timeline-content-delay) both;
+  }
 }
 
 .nvp__timeline__label {
@@ -79,4 +159,15 @@
 
 .nvp__timeline__body {
   line-height: var(--line-height);
+}
+
+/* ─── Reduced motion ────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .nvp__timeline {
+    --timeline-enter-duration: 0s;
+    --timeline-line-duration: 0s;
+    --timeline-dot-easing: linear;
+    --timeline-enter-easing: linear;
+  }
 }

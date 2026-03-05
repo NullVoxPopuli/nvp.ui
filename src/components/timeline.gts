@@ -1,9 +1,49 @@
 import "./timeline.css";
 
+import { modifier } from "ember-modifier";
+
 import type { TOC } from "@ember/component/template-only";
 import type { ComponentLike, WithBoundArgs } from "@glint/template";
 
 const isString = (x: unknown): x is string => typeof x === "string";
+
+/**
+ * A single shared IntersectionObserver that marks each item with `data-visible`
+ * the first time it enters the viewport, then stops watching it.
+ * Using one observer for all items is more efficient than creating one per item.
+ */
+let sharedObserver: IntersectionObserver | undefined;
+
+function getObserver(): IntersectionObserver {
+  if (!sharedObserver) {
+    sharedObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.setAttribute("data-visible", "");
+            sharedObserver?.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.1 },
+    );
+  }
+
+  return sharedObserver;
+}
+
+/**
+ * Observes when an element scrolls into the viewport and marks it with
+ * `data-visible` so CSS animations can trigger. Uses a shared observer
+ * instance across all timeline items for efficiency.
+ */
+const inView = modifier((element: Element) => {
+  const observer = getObserver();
+
+  observer.observe(element);
+
+  return () => observer.unobserve(element);
+});
 
 export interface TimelineItemSignature {
   Element: HTMLLIElement;
@@ -35,7 +75,7 @@ export interface TimelineItemSignature {
 }
 
 export const TimelineItem: TOC<TimelineItemSignature> = <template>
-  <li class="nvp__timeline__item" ...attributes>
+  <li class="nvp__timeline__item" {{inView}} ...attributes>
     <div class="nvp__timeline__marker">
       {{#if @icon}}
         <@icon />
