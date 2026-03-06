@@ -1,0 +1,41 @@
+.nvp__tabbed-shell-script {
+  font-family: ui-monospace, monospace;
+
+  .nvp__tabs__tabpanel {
+    padding: var(--padding-2);
+  }
+
+  pre {
+    margin: 0;
+    padding: var(--padding-2);
+    overflow-x: auto;
+    font-size: 0.9em;
+  }
+
+  .nvp__tabbed-shell-script__row {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-2);
+    justify-content: space-between;
+  }
+
+  .nvp__tabbed-shell-script__copy {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: var(--padding-1);
+    color: currentColor;
+    opacity: 0.6;
+    border-radius: var(--radius);
+    flex-shrink: 0;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      box-shadow: var(--ring-shadow);
+      outline: none;
+    }
+  }
+}
