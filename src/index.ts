@@ -1,7 +1,13 @@
+export { Accordion } from "./components/accordion.gts";
+export { Avatar } from "./components/avatar.gts";
+export { Breadcrumb } from "./components/breadcrumb.gts";
 export { Button } from "./components/button.gts";
+export { Dialog } from "./components/dialog.gts";
+export { Drawer } from "./components/drawer.gts";
 export { ExternalLink } from "./components/external-link.gts";
 export { Header } from "./components/header.gts";
 export { InstallDependency } from "./components/install-dependency.gts";
+export { Menu } from "./components/menu.gts";
 export { Shell } from "./components/shell.gts";
 export { TabbedShellScript } from "./components/tabbed-shell-script.gts";
 export { ThemeToggle } from "./components/theme-toggle.gts";

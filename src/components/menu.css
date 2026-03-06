@@ -1,0 +1,50 @@
+.nvp__menu__content {
+  background: var(--surface-background-color, var(--color-page-background));
+  border: var(--border-width) var(--border-style) var(--border-color);
+  border-radius: var(--radius);
+  padding: var(--padding-1) 0;
+  min-width: 10rem;
+  filter: var(--shadow-lg);
+  z-index: var(--z-hover);
+  animation: nvp-menu-show 0.1s ease-out;
+
+  .nvp__menu__item {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-2);
+    width: 100%;
+    padding: var(--padding-2) var(--padding-3);
+    background: none;
+    border: none;
+    color: currentColor;
+    text-align: left;
+    font-size: 0.875rem;
+    font-family: inherit;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      background: color-mix(in oklab, var(--surface-background-color, var(--color-page-background)) 80%, currentColor 20%);
+      outline: none;
+    }
+  }
+
+  .nvp__menu__separator {
+    height: 1px;
+    background: var(--border-color);
+    margin: var(--padding-1) 0;
+  }
+}
+
+@keyframes nvp-menu-show {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

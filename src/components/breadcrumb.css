@@ -1,0 +1,41 @@
+.nvp__breadcrumb {
+  nav {
+    font-size: 0.875rem;
+
+    ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--gap-1);
+    }
+
+    li {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--gap-1);
+    }
+
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    [aria-current="page"] {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+  }
+
+  .nvp__breadcrumb__separator {
+    color: color-mix(in oklab, var(--color-text) 50%, transparent 50%);
+    font-size: 0.875em;
+    user-select: none;
+  }
+}

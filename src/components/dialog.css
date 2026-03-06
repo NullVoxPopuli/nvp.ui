@@ -1,0 +1,83 @@
+.nvp__dialog-backdrop {
+  /* backdrop for <dialog> element */
+}
+
+dialog.nvp__dialog {
+  background: var(--surface-background-color, var(--color-page-background));
+  color: var(--color-text);
+  border: var(--border-width) var(--border-style) var(--border-color);
+  border-radius: var(--radius);
+  padding: 0;
+  max-width: min(90vw, 32rem);
+  width: 100%;
+  filter: var(--shadow-xl);
+  animation: nvp-dialog-show 0.15s ease-out;
+
+  &::backdrop {
+    background: rgb(0 0 0 / 0.5);
+    backdrop-filter: blur(2px);
+  }
+
+  .nvp__dialog__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--padding-4);
+    border-bottom: var(--border-width) var(--border-style) var(--border-color);
+    gap: var(--gap-2);
+  }
+
+  .nvp__dialog__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+    flex: 1;
+  }
+
+  .nvp__dialog__close {
+    background: none;
+    border: none;
+    padding: var(--padding-1);
+    cursor: pointer;
+    color: currentColor;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--ring-shadow);
+    }
+  }
+
+  .nvp__dialog__body {
+    padding: var(--padding-4);
+  }
+
+  .nvp__dialog__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--gap-2);
+    padding: var(--padding-3) var(--padding-4);
+    border-top: var(--border-width) var(--border-style) var(--border-color);
+  }
+}
+
+@keyframes nvp-dialog-show {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
