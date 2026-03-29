@@ -1,25 +1,7 @@
 import "./polite-header.css";
 
-import { modifier } from "ember-modifier";
+import type { TOC } from "@ember/component/template-only";
 
-/**
- * A modifier that makes a sticky/fixed header "polite" —
- * it hides when the user scrolls down and reveals when
- * the user scrolls up, staying out of the way while reading.
- *
- * The header is always visible at the top of the page.
- *
- * @example
- * ```gts
- * import { politeHeader } from "nvp.ui/polite-header";
- *
- * <template>
- *   <header {{politeHeader}}>
- *     My Header
- *   </header>
- * </template>
- * ```
- */
 function findScrollParent(el: HTMLElement): HTMLElement | Window {
   let node = el.parentElement;
 
@@ -40,43 +22,87 @@ function getScrollY(target: HTMLElement | Window): number {
   return target instanceof Window ? target.scrollY : target.scrollTop;
 }
 
-export const politeHeader = modifier((element: HTMLElement) => {
+function wireUpPoliteHeader(element: HTMLElement) {
   const scrollTarget = findScrollParent(element);
   let lastScrollY = getScrollY(scrollTarget);
   let isHidden = false;
 
-  element.classList.add("preem__polite-header");
+  scrollTarget.addEventListener(
+    "scroll",
+    () => {
+      const currentScrollY = getScrollY(scrollTarget);
 
-  function update() {
-    const currentScrollY = getScrollY(scrollTarget);
+      if (currentScrollY <= 0) {
+        if (isHidden) {
+          element.style.transform = "";
+          element.classList.remove("nvp__polite-header--hidden");
+          isHidden = false;
+        }
+      } else if (currentScrollY > lastScrollY) {
+        if (!isHidden) {
+          element.style.transform = "translate3d(0, -100%, 0)";
+          element.classList.add("nvp__polite-header--hidden");
+          isHidden = true;
+        }
+      } else if (currentScrollY < lastScrollY) {
+        if (isHidden) {
+          element.style.transform = "";
+          element.classList.remove("nvp__polite-header--hidden");
+          isHidden = false;
+        }
+      }
 
-    if (currentScrollY <= 0) {
-      // At the top — always show
-      if (isHidden) {
-        element.classList.remove("preem__polite-header--hidden");
-        isHidden = false;
-      }
-    } else if (currentScrollY > lastScrollY) {
-      // Scrolling down — hide
-      if (!isHidden) {
-        element.classList.add("preem__polite-header--hidden");
-        isHidden = true;
-      }
-    } else {
-      // Scrolling up — show
-      if (isHidden) {
-        element.classList.remove("preem__polite-header--hidden");
-        isHidden = false;
-      }
-    }
+      lastScrollY = currentScrollY;
+    },
+    { passive: true },
+  );
+}
 
-    lastScrollY = currentScrollY;
+/**
+ * Custom element that self-wires the polite header behavior.
+ * Used internally by the PoliteHeader component.
+ */
+class PoliteHeaderElement extends HTMLElement {
+  connectedCallback() {
+    // Defer to ensure parent styles are applied
+    requestAnimationFrame(() => {
+      if (this.isConnected) {
+        wireUpPoliteHeader(this);
+      }
+    });
   }
+}
 
-  scrollTarget.addEventListener("scroll", update, { passive: true });
+if (typeof customElements !== "undefined" && !customElements.get("nvp-polite-header")) {
+  customElements.define("nvp-polite-header", PoliteHeaderElement);
+}
 
-  return () => {
-    scrollTarget.removeEventListener("scroll", update);
-    element.classList.remove("preem__polite-header", "preem__polite-header--hidden");
+export interface PoliteHeaderSignature {
+  Element: HTMLElement;
+  Blocks: {
+    default: [];
   };
-});
+}
+
+/**
+ * A component that renders a polite sticky header —
+ * it hides when the user scrolls down and reveals when
+ * the user scrolls up, staying out of the way while reading.
+ *
+ * @example
+ * ```gts
+ * import { PoliteHeader } from "nvp.ui/polite-header";
+ *
+ * <template>
+ *   <PoliteHeader>
+ *     My Header Content
+ *   </PoliteHeader>
+ * </template>
+ * ```
+ */
+export const PoliteHeader: TOC<PoliteHeaderSignature> = <template>
+  {{! @glint-ignore: custom element }}
+  <nvp-polite-header class="nvp__polite-header" role="banner" ...attributes>
+    {{yield}}
+  </nvp-polite-header>
+</template>;

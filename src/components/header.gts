@@ -3,13 +3,14 @@ import "./header.css";
 import type { TOC } from "@ember/component/template-only";
 
 export interface Signature {
+  Element: HTMLElement;
   Blocks: {
     default: [];
   };
 }
 
 export const Header: TOC<Signature> = <template>
-  <header class="preem__header">
+  <header class="preem__header" ...attributes>
     <span class="preem__header__left">
       {{yield to="left"}}
     </span>
