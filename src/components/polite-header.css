@@ -1,0 +1,14 @@
+.preem__polite-header {
+  transition: transform var(--polite-header-duration, 0.3s) ease;
+  will-change: transform;
+}
+
+.preem__polite-header--hidden {
+  transform: translate3d(0, -100%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preem__polite-header {
+    transition-duration: 0s;
+  }
+}
