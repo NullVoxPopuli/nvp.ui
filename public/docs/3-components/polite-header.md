@@ -8,7 +8,12 @@ Inspired by [vue-use-fixed-header](https://github.com/smastrom/vue-use-fixed-hea
 import { politeHeader } from "nvp.ui/polite-header";
 
 <template>
-  <div style="height: 300px; overflow-y: scroll; position: relative; border: 1px solid var(--border-color); border-radius: var(--radius);">
+  <div
+    tabindex="0"
+    role="region"
+    aria-label="Polite header demo"
+    style="height: 300px; overflow-y: scroll; position: relative; border: 1px solid var(--border-color); border-radius: var(--radius);"
+  >
     <header
       {{politeHeader}}
       style="position: sticky; top: 0; padding: 1rem; background: var(--header-background); filter: var(--shadow-xl); z-index: 1;"
@@ -17,15 +22,25 @@ import { politeHeader } from "nvp.ui/polite-header";
     </header>
     <div style="padding: 1rem;">
       <p>Scroll this container to see the header hide and reveal.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-      <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
-      <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.</p>
-      <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
-      <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
-      <p>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+        nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+        laudantium, totam rem aperiam.</p>
+      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+        consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+      <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+        velit.</p>
+      <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+        voluptatum deleniti atque corrupti.</p>
+      <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta
+        nobis est eligendi optio cumque nihil impedit quo minus.</p>
+      <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet
+        ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+      <p>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores
+        alias consequatur aut perferendis doloribus asperiores repellat.</p>
     </div>
   </div>
 </template>
@@ -40,7 +55,12 @@ import { Header } from "nvp.ui/header";
 import { politeHeader } from "nvp.ui/polite-header";
 
 <template>
-  <div style="height: 250px; overflow-y: scroll; position: relative; border: 1px solid var(--border-color); border-radius: var(--radius);">
+  <div
+    tabindex="0"
+    role="region"
+    aria-label="Polite header with Header component demo"
+    style="height: 250px; overflow-y: scroll; position: relative; border: 1px solid var(--border-color); border-radius: var(--radius);"
+  >
     <div {{politeHeader}}>
       <Header>
         <:left>My App</:left>
@@ -49,11 +69,15 @@ import { politeHeader } from "nvp.ui/polite-header";
     </div>
     <div style="padding: 1rem;">
       <p>The Header component is wrapped in a div with the politeHeader modifier.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+        nulla pariatur.</p>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+        laudantium.</p>
       <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
-      <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+      <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+        velit.</p>
       <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
       <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore.</p>
     </div>
@@ -92,19 +116,23 @@ The transition duration can be adjusted via a CSS custom property:
 import { ComponentSignature } from "kolay";
 
 <template>
-  <ComponentSignature @package="." @module="declarations/components/polite-header.gts" @name="politeHeader" />
+  <ComponentSignature
+    @package="."
+    @module="declarations/components/polite-header.gts"
+    @name="politeHeader"
+  />
 </template>
 ```
 
 ### CSS Classes
 
-| class | description |
-| :---: | :---------- |
-| `.preem__polite-header` | Applied to the element when the modifier is active |
+|              class              | description                                        |
+| :-----------------------------: | :------------------------------------------------- |
+|     `.preem__polite-header`     | Applied to the element when the modifier is active |
 | `.preem__polite-header--hidden` | Applied when the header is hidden (scrolling down) |
 
 ### CSS Custom Properties
 
-| property | default | description |
-| :---: | :---: | :---------- |
-| `--polite-header-duration` | `0.3s` | Transition duration for the hide/show animation |
+|          property          | default | description                                     |
+| :------------------------: | :-----: | :---------------------------------------------- |
+| `--polite-header-duration` | `0.3s`  | Transition duration for the hide/show animation |
