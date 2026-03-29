@@ -16,9 +16,7 @@ import { PoliteHeader } from "nvp.ui/polite-header";
     aria-label="Polite header demo"
     style="height: 180px; overflow-y: scroll; position: relative; border: 1px solid var(--border-color); border-radius: var(--radius);"
   >
-    <PoliteHeader
-      style="padding: 0.75rem 1rem; background: var(--header-background); filter: var(--shadow-xl); z-index: 1; font-weight: 600;"
-    >
+    <PoliteHeader style="padding: 0.75rem 1rem; filter: var(--shadow-xl); font-weight: 600;">
       I hide on scroll down, reveal on scroll up
     </PoliteHeader>
     <div style="padding: 1rem;">
