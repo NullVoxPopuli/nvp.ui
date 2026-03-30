@@ -1,5 +1,7 @@
 import "./polite-header.css";
 
+import { modifier } from "ember-modifier";
+
 import type { TOC } from "@ember/component/template-only";
 
 function findScrollParent(el: HTMLElement): HTMLElement | Window {
@@ -22,7 +24,7 @@ function getScrollY(target: HTMLElement | Window): number {
   return target instanceof Window ? target.scrollY : target.scrollTop;
 }
 
-function wireUpPoliteHeader(element: HTMLElement) {
+function wireUp(element: HTMLElement) {
   const scrollTarget = findScrollParent(element);
   let lastScrollY = getScrollY(scrollTarget);
   let isHidden = false;
@@ -59,23 +61,20 @@ function wireUpPoliteHeader(element: HTMLElement) {
 }
 
 /**
- * Custom element that self-wires the polite header behavior.
- * Used internally by the PoliteHeader component.
+ * A modifier that makes any sticky/fixed element "polite" —
+ * hides on scroll down, reveals on scroll up.
  */
-class PoliteHeaderElement extends HTMLElement {
-  connectedCallback() {
-    // Defer to ensure parent styles are applied
-    requestAnimationFrame(() => {
-      if (this.isConnected) {
-        wireUpPoliteHeader(this);
-      }
-    });
-  }
-}
+export const politeHeader = modifier((element: HTMLElement) => {
+  element.classList.add("nvp__polite-header");
 
-if (typeof customElements !== "undefined" && !customElements.get("nvp-polite-header")) {
-  customElements.define("nvp-polite-header", PoliteHeaderElement);
-}
+  // Defer to next frame so ancestor styles (overflow-y) are resolved
+  // and findScrollParent can locate the correct scroll container.
+  requestAnimationFrame(() => {
+    if (element.isConnected) {
+      wireUp(element);
+    }
+  });
+});
 
 export interface PoliteHeaderSignature {
   Element: HTMLElement;
@@ -101,8 +100,7 @@ export interface PoliteHeaderSignature {
  * ```
  */
 export const PoliteHeader: TOC<PoliteHeaderSignature> = <template>
-  {{! @glint-ignore: custom element }}
-  <nvp-polite-header class="nvp__polite-header" role="banner" ...attributes>
+  <header class="nvp__polite-header" {{politeHeader}} ...attributes>
     {{yield}}
-  </nvp-polite-header>
+  </header>
 </template>;
