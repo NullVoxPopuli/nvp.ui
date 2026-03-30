@@ -26,13 +26,16 @@ function isFooter(element: HTMLElement): boolean {
   return element.tagName.toLowerCase() === "footer";
 }
 
-function wireUp(element: HTMLElement, footer: boolean) {
+function wireUp(element: HTMLElement) {
+  const footer = isFooter(element);
   const scrollTarget = findScrollParent(element);
   let lastScrollY = getScrollY(scrollTarget);
   let isHidden = false;
 
   const hiddenClass = footer ? "nvp__polite--footer-hidden" : "nvp__polite--header-hidden";
   const hideTransform = footer ? "translate3d(0, 100%, 0)" : "translate3d(0, -100%, 0)";
+
+  element.classList.add("nvp__polite", footer ? "nvp__polite--footer" : "nvp__polite--header");
 
   function show() {
     if (!isHidden) return;
@@ -102,13 +105,9 @@ function wireUp(element: HTMLElement, footer: boolean) {
  * ```
  */
 export const polite = modifier((element: HTMLElement) => {
-  const footer = isFooter(element);
-
-  element.classList.add("nvp__polite", footer ? "nvp__polite--footer" : "nvp__polite--header");
-
   // Defer to next frame so ancestor styles (overflow-y) are resolved
   // and findScrollParent can locate the correct scroll container.
   requestAnimationFrame(() => {
-    wireUp(element, footer);
+    wireUp(element);
   });
 });
