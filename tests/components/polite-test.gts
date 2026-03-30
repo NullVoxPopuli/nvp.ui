@@ -1,5 +1,3 @@
-import "./polite-test.css";
-
 import { find, render, settled } from "@ember/test-helpers";
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
@@ -28,9 +26,9 @@ module("polite", function (hooks) {
     test("adds polite classes to a header element", async function (assert) {
       await render(
         <template>
-<div class="scroll-container">
+          <div class="scroll-container" style="height: 100px; overflow-y: scroll;">
             <header {{polite}}>Header</header>
-            <div class="tall"></div>
+            <div style="height: 1000px;"></div>
           </div>
         </template>,
       );
@@ -42,9 +40,9 @@ module("polite", function (hooks) {
     test("hides on scroll down", async function (assert) {
       await render(
         <template>
-<div class="scroll-container">
+          <div class="scroll-container" style="height: 100px; overflow-y: scroll;">
             <header {{polite}}>Header</header>
-            <div class="tall"></div>
+            <div style="height: 1000px;"></div>
           </div>
         </template>,
       );
@@ -60,9 +58,9 @@ module("polite", function (hooks) {
     test("reveals on scroll up", async function (assert) {
       await render(
         <template>
-<div class="scroll-container">
+          <div class="scroll-container" style="height: 100px; overflow-y: scroll;">
             <header {{polite}}>Header</header>
-            <div class="tall"></div>
+            <div style="height: 1000px;"></div>
           </div>
         </template>,
       );
@@ -80,9 +78,9 @@ module("polite", function (hooks) {
     test("always visible at scroll top", async function (assert) {
       await render(
         <template>
-<div class="scroll-container">
+          <div class="scroll-container" style="height: 100px; overflow-y: scroll;">
             <header {{polite}}>Header</header>
-            <div class="tall"></div>
+            <div style="height: 1000px;"></div>
           </div>
         </template>,
       );
@@ -101,8 +99,8 @@ module("polite", function (hooks) {
     test("adds polite classes to a footer element", async function (assert) {
       await render(
         <template>
-<div class="scroll-container">
-            <div class="tall"></div>
+          <div class="scroll-container" style="height: 100px; overflow-y: scroll;">
+            <div style="height: 1000px;"></div>
             <footer {{polite}}>Footer</footer>
           </div>
         </template>,
@@ -115,8 +113,8 @@ module("polite", function (hooks) {
     test("hides on scroll up", async function (assert) {
       await render(
         <template>
-<div class="scroll-container">
-            <div class="tall"></div>
+          <div class="scroll-container" style="height: 100px; overflow-y: scroll;">
+            <div style="height: 1000px;"></div>
             <footer {{polite}}>Footer</footer>
           </div>
         </template>,
@@ -136,8 +134,8 @@ module("polite", function (hooks) {
     test("reveals on scroll down", async function (assert) {
       await render(
         <template>
-<div class="scroll-container">
-            <div class="tall"></div>
+          <div class="scroll-container" style="height: 100px; overflow-y: scroll;">
+            <div style="height: 1000px;"></div>
             <footer {{polite}}>Footer</footer>
           </div>
         </template>,
@@ -160,9 +158,9 @@ module("polite", function (hooks) {
     test("treats non-footer elements as headers", async function (assert) {
       await render(
         <template>
-<div class="scroll-container">
+          <div class="scroll-container" style="height: 100px; overflow-y: scroll;">
             <nav {{polite}}>Nav bar</nav>
-            <div class="tall"></div>
+            <div style="height: 1000px;"></div>
           </div>
         </template>,
       );
