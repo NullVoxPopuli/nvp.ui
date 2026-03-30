@@ -1,13 +1,14 @@
 # Polite Header
 
-A component that renders a polite sticky header — it hides when the user scrolls down and reveals when they scroll up, staying out of the way while reading content.
+A modifier that makes any sticky header "polite" — it hides when the user scrolls down and reveals when they scroll up, staying out of the way while reading content.
 
 Inspired by [vue-use-fixed-header](https://github.com/smastrom/vue-use-fixed-header) and the "polite sticky header" pattern.
 
 Scroll down inside the box below — the header slides away. Scroll back up — it reappears.
 
 ```gjs live no-shadow
-import { PoliteHeader } from "nvp.ui/polite-header";
+import { Header } from "nvp.ui/header";
+import { politeHeader } from "nvp.ui/polite-header";
 
 <template>
   <div
@@ -16,9 +17,10 @@ import { PoliteHeader } from "nvp.ui/polite-header";
     aria-label="Polite header demo"
     style="height: 180px; overflow-y: scroll; position: relative; border: 1px solid var(--border-color); border-radius: var(--radius);"
   >
-    <PoliteHeader style="padding: 0.75rem 1rem; filter: var(--shadow-xl); font-weight: 600;">
-      I hide on scroll down, reveal on scroll up
-    </PoliteHeader>
+    <Header {{politeHeader}}>
+      <:left>My App</:left>
+      <:right>Menu</:right>
+    </Header>
     <div style="padding: 1rem;">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
         ut labore et dolore magna aliqua.</p>

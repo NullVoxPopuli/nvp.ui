@@ -2,8 +2,6 @@ import "./polite-header.css";
 
 import { modifier } from "ember-modifier";
 
-import type { TOC } from "@ember/component/template-only";
-
 function findScrollParent(el: HTMLElement): HTMLElement | Window {
   let node = el.parentElement;
 
@@ -63,6 +61,18 @@ function wireUp(element: HTMLElement) {
 /**
  * A modifier that makes any sticky/fixed element "polite" —
  * hides on scroll down, reveals on scroll up.
+ *
+ * @example
+ * ```gts
+ * import { politeHeader } from "nvp.ui/polite-header";
+ * import { Header } from "nvp.ui/header";
+ *
+ * <template>
+ *   <Header {{politeHeader}}>
+ *     <:left>My App</:left>
+ *   </Header>
+ * </template>
+ * ```
  */
 export const politeHeader = modifier((element: HTMLElement) => {
   element.classList.add("nvp__polite-header");
@@ -73,32 +83,3 @@ export const politeHeader = modifier((element: HTMLElement) => {
     wireUp(element);
   });
 });
-
-export interface PoliteHeaderSignature {
-  Element: HTMLElement;
-  Blocks: {
-    default: [];
-  };
-}
-
-/**
- * A component that renders a polite sticky header —
- * it hides when the user scrolls down and reveals when
- * the user scrolls up, staying out of the way while reading.
- *
- * @example
- * ```gts
- * import { PoliteHeader } from "nvp.ui/polite-header";
- *
- * <template>
- *   <PoliteHeader>
- *     My Header Content
- *   </PoliteHeader>
- * </template>
- * ```
- */
-export const PoliteHeader: TOC<PoliteHeaderSignature> = <template>
-  <header class="nvp__polite-header" {{politeHeader}} ...attributes>
-    {{yield}}
-  </header>
-</template>;
