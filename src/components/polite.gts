@@ -23,7 +23,7 @@ function getScrollY(target: HTMLElement | Window): number {
 }
 
 function isFooter(element: HTMLElement): boolean {
-  return element.tagName === "FOOTER" || element.getAttribute("role") === "contentinfo";
+  return element.tagName.toLowerCase() === "footer";
 }
 
 function wireUp(element: HTMLElement, footer: boolean) {
@@ -34,51 +34,41 @@ function wireUp(element: HTMLElement, footer: boolean) {
   const hiddenClass = footer ? "nvp__polite--footer-hidden" : "nvp__polite--header-hidden";
   const hideTransform = footer ? "translate3d(0, 100%, 0)" : "translate3d(0, -100%, 0)";
 
+  function show() {
+    if (!isHidden) return;
+
+    element.style.transform = "";
+    element.classList.remove(hiddenClass);
+    isHidden = false;
+  }
+
+  function hide() {
+    if (isHidden) return;
+
+    element.style.transform = hideTransform;
+    element.classList.add(hiddenClass);
+    isHidden = true;
+  }
+
   scrollTarget.addEventListener(
     "scroll",
     () => {
       const currentScrollY = getScrollY(scrollTarget);
-
-      if (currentScrollY <= 0 && !footer) {
-        // At top — always show header
-        if (isHidden) {
-          element.style.transform = "";
-          element.classList.remove(hiddenClass);
-          isHidden = false;
-        }
-      } else if (currentScrollY > lastScrollY) {
-        // Scrolling down — hide header, show footer
-        if (footer) {
-          if (isHidden) {
-            element.style.transform = "";
-            element.classList.remove(hiddenClass);
-            isHidden = false;
-          }
-        } else {
-          if (!isHidden) {
-            element.style.transform = hideTransform;
-            element.classList.add(hiddenClass);
-            isHidden = true;
-          }
-        }
-      } else if (currentScrollY < lastScrollY) {
-        // Scrolling up — show header, hide footer
-        if (footer) {
-          if (!isHidden) {
-            element.style.transform = hideTransform;
-            element.classList.add(hiddenClass);
-            isHidden = true;
-          }
-        } else {
-          if (isHidden) {
-            element.style.transform = "";
-            element.classList.remove(hiddenClass);
-            isHidden = false;
-          }
-        }
-      }
+      const scrollingDown = currentScrollY > lastScrollY;
+      const scrollingUp = currentScrollY < lastScrollY;
 
       lastScrollY = currentScrollY;
+
+      if (footer) {
+        if (scrollingDown) show();
+        if (scrollingUp) hide();
+
+        return;
+      }
+
+      if (currentScrollY <= 0) show();
+      else if (scrollingDown) hide();
+      else if (scrollingUp) show();
     },
     { passive: true },
   );
@@ -91,10 +81,9 @@ function wireUp(element: HTMLElement, footer: boolean) {
  * On a `<header>` (or any non-footer element): hides on scroll down,
  * reveals on scroll up.
  *
- * On a `<footer>` (or `role="contentinfo"`): hides on scroll up,
- * reveals on scroll down.
+ * On a `<footer>`: hides on scroll up, reveals on scroll down.
  *
- * The element type is detected automatically.
+ * The element type is detected automatically from the tag name.
  *
  * @example
  * ```gts
