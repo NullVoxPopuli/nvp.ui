@@ -105,9 +105,5 @@ function wireUp(element: HTMLElement) {
  * ```
  */
 export const polite = modifier((element: HTMLElement) => {
-  // Defer to next frame so ancestor styles (overflow-y) are resolved
-  // and findScrollParent can locate the correct scroll container.
-  requestAnimationFrame(() => {
-    wireUp(element);
-  });
+  wireUp(element);
 });
