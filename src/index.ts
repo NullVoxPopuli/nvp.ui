@@ -1,6 +1,6 @@
 export { Button } from "./components/button.gts";
 export { ExternalLink } from "./components/external-link.gts";
 export { Header } from "./components/header.gts";
-export { politeHeader } from "./components/polite-header.gts";
+export { polite } from "./components/polite.gts";
 export { Shell } from "./components/shell.gts";
 export { ThemeToggle } from "./components/theme-toggle.gts";

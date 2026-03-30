@@ -1,0 +1,125 @@
+import "./polite.css";
+
+import { modifier } from "ember-modifier";
+
+function findScrollParent(el: HTMLElement): HTMLElement | Window {
+  let node = el.parentElement;
+
+  while (node && node !== document.documentElement) {
+    const { overflowY } = getComputedStyle(node);
+
+    if (overflowY === "auto" || overflowY === "scroll") {
+      return node;
+    }
+
+    node = node.parentElement;
+  }
+
+  return window;
+}
+
+function getScrollY(target: HTMLElement | Window): number {
+  return target instanceof Window ? target.scrollY : target.scrollTop;
+}
+
+function isFooter(element: HTMLElement): boolean {
+  return element.tagName === "FOOTER" || element.getAttribute("role") === "contentinfo";
+}
+
+function wireUp(element: HTMLElement, footer: boolean) {
+  const scrollTarget = findScrollParent(element);
+  let lastScrollY = getScrollY(scrollTarget);
+  let isHidden = false;
+
+  const hiddenClass = footer ? "nvp__polite--footer-hidden" : "nvp__polite--header-hidden";
+  const hideTransform = footer ? "translate3d(0, 100%, 0)" : "translate3d(0, -100%, 0)";
+
+  scrollTarget.addEventListener(
+    "scroll",
+    () => {
+      const currentScrollY = getScrollY(scrollTarget);
+
+      if (currentScrollY <= 0 && !footer) {
+        // At top — always show header
+        if (isHidden) {
+          element.style.transform = "";
+          element.classList.remove(hiddenClass);
+          isHidden = false;
+        }
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling down — hide header, show footer
+        if (footer) {
+          if (isHidden) {
+            element.style.transform = "";
+            element.classList.remove(hiddenClass);
+            isHidden = false;
+          }
+        } else {
+          if (!isHidden) {
+            element.style.transform = hideTransform;
+            element.classList.add(hiddenClass);
+            isHidden = true;
+          }
+        }
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up — show header, hide footer
+        if (footer) {
+          if (!isHidden) {
+            element.style.transform = hideTransform;
+            element.classList.add(hiddenClass);
+            isHidden = true;
+          }
+        } else {
+          if (isHidden) {
+            element.style.transform = "";
+            element.classList.remove(hiddenClass);
+            isHidden = false;
+          }
+        }
+      }
+
+      lastScrollY = currentScrollY;
+    },
+    { passive: true },
+  );
+}
+
+/**
+ * A modifier that makes a sticky header or footer "polite" —
+ * it stays out of the way while reading content.
+ *
+ * On a `<header>` (or any non-footer element): hides on scroll down,
+ * reveals on scroll up.
+ *
+ * On a `<footer>` (or `role="contentinfo"`): hides on scroll up,
+ * reveals on scroll down.
+ *
+ * The element type is detected automatically.
+ *
+ * @example
+ * ```gts
+ * import { polite } from "nvp.ui/polite";
+ * import { Header } from "nvp.ui/header";
+ *
+ * <template>
+ *   <Header {{polite}}>
+ *     <:left>My App</:left>
+ *   </Header>
+ *
+ *   <footer {{polite}}>
+ *     Footer content
+ *   </footer>
+ * </template>
+ * ```
+ */
+export const polite = modifier((element: HTMLElement) => {
+  const footer = isFooter(element);
+
+  element.classList.add("nvp__polite", footer ? "nvp__polite--footer" : "nvp__polite--header");
+
+  // Defer to next frame so ancestor styles (overflow-y) are resolved
+  // and findScrollParent can locate the correct scroll container.
+  requestAnimationFrame(() => {
+    wireUp(element, footer);
+  });
+});

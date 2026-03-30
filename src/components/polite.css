@@ -1,15 +1,22 @@
-.nvp__polite-header {
+.nvp__polite {
   display: block;
   position: sticky;
-  top: 0;
   background: var(--header-background, var(--color-page-background, #fff));
   z-index: var(--z-site-nav, 50);
-  transition: transform var(--polite-header-duration, 0.3s) ease;
+  transition: transform var(--polite-duration, 0.3s) ease;
   will-change: transform;
 }
 
+.nvp__polite--header {
+  top: 0;
+}
+
+.nvp__polite--footer {
+  bottom: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .nvp__polite-header {
+  .nvp__polite {
     transition-duration: 0s;
   }
 }
