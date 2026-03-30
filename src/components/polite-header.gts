@@ -70,9 +70,7 @@ export const politeHeader = modifier((element: HTMLElement) => {
   // Defer to next frame so ancestor styles (overflow-y) are resolved
   // and findScrollParent can locate the correct scroll container.
   requestAnimationFrame(() => {
-    if (element.isConnected) {
-      wireUp(element);
-    }
+    wireUp(element);
   });
 });
 
