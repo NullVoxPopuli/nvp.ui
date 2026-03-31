@@ -32,76 +32,46 @@ function detectFooter(element: HTMLElement): boolean {
   return element.tagName.toLowerCase() === "footer";
 }
 
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max);
+}
+
 function wireUp(element: HTMLElement) {
   const footer = detectFooter(element);
   const scrollTarget = findScrollParent(element);
   let lastScrollY = getScrollY(scrollTarget);
-  let directionChangeY = lastScrollY;
-  let isHidden = false;
-  let wasScrollingDown = false;
-
-  const threshold = 10;
-  const hideTransform = footer ? "translate3d(0, 101%, 0)" : "translate3d(0, -101%, 0)";
+  let offset = 0;
 
   element.classList.add("nvp__polite", footer ? "nvp__polite__footer" : "nvp__polite__header");
 
-  function onTransitionEnd() {
-    if (isHidden) {
-      element.style.visibility = "hidden";
-    }
-  }
-
-  element.addEventListener("transitionend", onTransitionEnd);
-
-  function show() {
-    if (!isHidden) return;
-
-    element.style.visibility = "";
-    element.style.transform = "";
-    isHidden = false;
-  }
-
-  function hide() {
-    if (isHidden) return;
-
-    element.style.transform = hideTransform;
-    isHidden = true;
-    // visibility: hidden is set in onTransitionEnd after animation completes
-  }
-
   function onScroll() {
     const currentScrollY = getScrollY(scrollTarget);
-    const scrollingDown = currentScrollY > lastScrollY;
-    const scrollingUp = currentScrollY < lastScrollY;
-
-    if (scrollingDown !== wasScrollingDown) {
-      directionChangeY = lastScrollY;
-      wasScrollingDown = scrollingDown;
-    }
-
-    const distance = Math.abs(currentScrollY - directionChangeY);
+    const delta = currentScrollY - lastScrollY;
+    const height = element.offsetHeight;
 
     lastScrollY = currentScrollY;
 
     if (footer) {
-      if (scrollingDown && distance > threshold) show();
-      if (scrollingUp && distance > threshold) hide();
-
-      return;
+      // Footer: scrolling up pushes it down (positive offset), scrolling down pulls it back
+      offset = clamp(offset - delta, 0, height);
+    } else {
+      // Header: scrolling down pushes it up (negative offset), scrolling up pulls it back
+      // At scroll top, always fully visible
+      if (currentScrollY <= 0) {
+        offset = 0;
+      } else {
+        offset = clamp(offset - delta, -height, 0);
+      }
     }
 
-    if (currentScrollY <= 0) show();
-    else if (scrollingDown && distance > threshold) hide();
-    else if (scrollingUp && distance > threshold) show();
+    element.style.setProperty("--polite-offset", `${offset}px`);
   }
 
   scrollTarget.addEventListener("scroll", onScroll, { passive: true });
 
   return () => {
     scrollTarget.removeEventListener("scroll", onScroll);
-    element.removeEventListener("transitionend", onTransitionEnd);
-    element.style.transform = "";
-    element.style.visibility = "";
+    element.style.removeProperty("--polite-offset");
     element.classList.remove("nvp__polite");
     element.classList.remove(footer ? "nvp__polite__footer" : "nvp__polite__header");
   };
@@ -111,12 +81,15 @@ function wireUp(element: HTMLElement) {
  * A modifier that makes a sticky header or footer "polite" —
  * it stays out of the way while reading content.
  *
- * On a `<header>` (or any non-footer element): hides on scroll down,
- * reveals on scroll up.
+ * On a `<header>` (or any non-footer element): slides up as the
+ * user scrolls down, slides back as they scroll up.
  *
- * On a `<footer>`: hides on scroll up, reveals on scroll down.
+ * On a `<footer>`: slides down as the user scrolls up, slides
+ * back as they scroll down.
  *
  * The element type is detected automatically from the tag name.
+ * The animation is scroll-linked — the element tracks the scroll
+ * position 1:1 via a CSS custom property `--polite-offset`.
  *
  * @example
  * ```gts

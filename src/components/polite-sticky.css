@@ -3,7 +3,7 @@
   position: sticky;
   background: var(--header-background, var(--color-page-background, #fff));
   z-index: var(--z-site-nav, 50);
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(var(--polite-offset, 0px));
 }
 
 .nvp__polite__header {
@@ -12,10 +12,4 @@
 
 .nvp__polite__footer {
   bottom: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .nvp__polite {
-    transition-duration: 0s;
-  }
 }
