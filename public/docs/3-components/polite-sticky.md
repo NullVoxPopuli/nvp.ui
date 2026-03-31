@@ -12,7 +12,7 @@ The element type is detected automatically from the tag name (`<header>` vs `<fo
 Scroll down inside the box — the header slides away. Scroll back up — it reappears.
 
 ```gjs live no-shadow
-import { polite } from "nvp.ui/polite";
+import { politeSticky } from "nvp.ui/polite-sticky";
 
 <template>
   <div
@@ -21,7 +21,7 @@ import { polite } from "nvp.ui/polite";
     aria-label="Polite header demo"
     style="height: 180px; overflow-y: scroll; position: relative; border: 1px solid var(--border-color); border-radius: var(--radius);"
   >
-    <header {{polite}} style="padding: 0.75rem 1rem; font-weight: 600;">
+    <header {{politeSticky}} style="padding: 0.75rem 1rem; font-weight: 600;">
       Polite Header
     </header>
     <div style="padding: 1rem;">
@@ -46,7 +46,7 @@ import { polite } from "nvp.ui/polite";
 
 ```gjs live no-shadow
 import { Header } from "nvp.ui/header";
-import { polite } from "nvp.ui/polite";
+import { politeSticky } from "nvp.ui/polite-sticky";
 
 <template>
   <div
@@ -55,7 +55,7 @@ import { polite } from "nvp.ui/polite";
     aria-label="Polite Header component demo"
     style="height: 180px; overflow-y: scroll; position: relative; border: 1px solid var(--border-color); border-radius: var(--radius);"
   >
-    <Header {{polite}}>
+    <Header {{politeSticky}}>
       <:left>My App</:left>
       <:right>Menu</:right>
     </Header>
@@ -82,7 +82,7 @@ import { polite } from "nvp.ui/polite";
 Scroll up inside the box — the footer slides away. Scroll back down — it reappears.
 
 ```gjs live no-shadow
-import { polite } from "nvp.ui/polite";
+import { politeSticky } from "nvp.ui/polite-sticky";
 
 <template>
   <div
@@ -105,7 +105,10 @@ import { polite } from "nvp.ui/polite";
       <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
         consequuntur magni dolores.</p>
     </div>
-    <footer {{polite}} style="padding: 0.75rem 1rem; filter: var(--shadow-xl); font-weight: 600;">
+    <footer
+      {{politeSticky}}
+      style="padding: 0.75rem 1rem; filter: var(--shadow-xl); font-weight: 600;"
+    >
       Polite Footer
     </footer>
   </div>

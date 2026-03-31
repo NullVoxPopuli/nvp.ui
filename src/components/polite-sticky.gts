@@ -1,4 +1,4 @@
-import "./polite.css";
+import "./polite-sticky.css";
 
 import { modifier } from "ember-modifier";
 
@@ -104,17 +104,17 @@ function wireUp(element: HTMLElement) {
  *
  * @example
  * ```gts
- * import { polite } from "nvp.ui/polite";
+ * import { politeSticky } from "nvp.ui/polite-sticky";
  *
  * <template>
- *   <header {{polite}}>
+ *   <header {{politeSticky}}>
  *     My App
  *   </header>
  *
- *   <footer {{polite}}>
+ *   <footer {{politeSticky}}>
  *     Footer content
  *   </footer>
  * </template>
  * ```
  */
-export const polite = modifier(wireUp);
+export const politeSticky = modifier(wireUp);

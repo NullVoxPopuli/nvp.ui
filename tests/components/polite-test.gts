@@ -2,7 +2,7 @@ import { find, render, settled } from "@ember/test-helpers";
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 
-import { polite } from "#src/index.ts";
+import { politeSticky as polite } from "#src/index.ts";
 
 function scrollContainer(): Element {
   const el = find(".scroll-container");
