@@ -59,7 +59,6 @@
     "lint:published-types": "attw *.tgz || exit 0",
     "lint:types": "ember-tsc --noEmit",
     "prepack": "pnpm :rollup",
-    "prepare": "pnpm build && pnpm build:api-docs",
     "start": "pnpm :vite dev",
     "start:api-docs": "npx html-pages ./dist-docs --no-cache",
     "start:docs": "pnpm :vite preview --outDir dist-app",
