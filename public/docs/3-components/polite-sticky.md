@@ -15,7 +15,13 @@ Scroll down inside the box — the header slides away. Scroll back up — it rea
 import { politeSticky } from "nvp.ui/polite-sticky";
 
 <template>
-  <div class="demo" style="height: 180px; overflow-y: scroll; position: relative;" tabindex="0" role="region" aria-label="Polite header demo">
+  <div
+    class="demo"
+    style="height: 180px; overflow-y: scroll; position: relative;"
+    tabindex="0"
+    role="region"
+    aria-label="Polite header demo"
+  >
 
     <header {{politeSticky}}>
       Polite Header
@@ -64,7 +70,13 @@ import { Header } from "nvp.ui/header";
 import { politeSticky } from "nvp.ui/polite-sticky";
 
 <template>
-  <div class="demo" style="height: 180px; overflow-y: scroll; position: relative;" tabindex="0" role="region" aria-label="Polite Header component demo">
+  <div
+    class="demo"
+    style="height: 180px; overflow-y: scroll; position: relative;"
+    tabindex="0"
+    role="region"
+    aria-label="Polite Header component demo"
+  >
 
     <Header {{politeSticky}}>
       <:left>My App</:left>
@@ -108,7 +120,13 @@ Scroll up inside the box — the footer slides away. Scroll back down — it rea
 import { politeSticky } from "nvp.ui/polite-sticky";
 
 <template>
-  <div class="demo" style="height: 180px; overflow-y: scroll; position: relative;" tabindex="0" role="region" aria-label="Polite footer demo">
+  <div
+    class="demo"
+    style="height: 180px; overflow-y: scroll; position: relative;"
+    tabindex="0"
+    role="region"
+    aria-label="Polite footer demo"
+  >
     <div class="content">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
         ut labore et dolore magna aliqua.</p>
