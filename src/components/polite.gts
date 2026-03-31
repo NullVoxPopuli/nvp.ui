@@ -6,9 +6,18 @@ function findScrollParent(el: HTMLElement): HTMLElement | Window {
   let node = el.parentElement;
 
   while (node && node !== document.documentElement) {
+    // Check both computed style and inline style attribute.
+    // In some rendering contexts (e.g. live code demos), computed
+    // styles may not be resolved yet when the modifier runs.
     const { overflowY } = getComputedStyle(node);
 
     if (overflowY === "auto" || overflowY === "scroll") {
+      return node;
+    }
+
+    const inlineOverflow = node.style.overflowY || node.style.overflow;
+
+    if (inlineOverflow === "auto" || inlineOverflow === "scroll") {
       return node;
     }
 

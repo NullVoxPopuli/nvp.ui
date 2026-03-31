@@ -9,20 +9,75 @@ The element type is detected automatically from the tag name (`<header>` vs `<fo
 
 Inspired by [vue-use-fixed-header](https://github.com/smastrom/vue-use-fixed-header) and the "polite sticky header" pattern.
 
-## Usage
+## Header
 
-```gts
-import { polite } from "nvp.ui/polite";
+Scroll down inside the box — the header slides away. Scroll back up — it reappears.
+
+```gjs live no-shadow
 import { Header } from "nvp.ui/header";
+import { polite } from "nvp.ui/polite";
 
 <template>
-  <Header {{polite}}>
-    <:left>My App</:left>
-  </Header>
+  <div
+    tabindex="0"
+    role="region"
+    aria-label="Polite header demo"
+    style="height: 180px; overflow-y: scroll; position: relative; border: 1px solid var(--border-color); border-radius: var(--radius);"
+  >
+    <Header {{polite}}>
+      <:left>Polite Header</:left>
+      <:right>Menu</:right>
+    </Header>
+    <div style="padding: 1rem;">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua.</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+        nulla pariatur.</p>
+      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.</p>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+        laudantium, totam rem aperiam.</p>
+      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+        consequuntur magni dolores.</p>
+    </div>
+  </div>
+</template>
+```
 
-  <footer {{polite}}>
-    Footer content
-  </footer>
+## Footer
+
+Scroll up inside the box — the footer slides away. Scroll back down — it reappears.
+
+```gjs live no-shadow
+import { polite } from "nvp.ui/polite";
+
+<template>
+  <div
+    tabindex="0"
+    role="region"
+    aria-label="Polite footer demo"
+    style="height: 180px; overflow-y: scroll; position: relative; border: 1px solid var(--border-color); border-radius: var(--radius);"
+  >
+    <div style="padding: 1rem;">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua.</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+        nulla pariatur.</p>
+      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.</p>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+        laudantium, totam rem aperiam.</p>
+      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+        consequuntur magni dolores.</p>
+    </div>
+    <footer {{polite}} style="padding: 0.75rem 1rem; filter: var(--shadow-xl); font-weight: 600;">
+      Polite Footer — scroll up to hide, scroll down to reveal
+    </footer>
+  </div>
 </template>
 ```
 
