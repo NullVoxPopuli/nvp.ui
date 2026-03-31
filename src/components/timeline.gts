@@ -34,7 +34,7 @@ interface ItemSignature {
 }
 
 const TimelineItem: TOC<ItemSignature> = <template>
-  <div class="nvp__timeline__item" data-status={{@status}} ...attributes>
+  <div class="nvp__timeline__item" role="listitem" data-status={{@status}} ...attributes>
     <div class="nvp__timeline__indicator">
       <div class="nvp__timeline__dot" data-status={{@status}}>
         {{yield to="indicator"}}
