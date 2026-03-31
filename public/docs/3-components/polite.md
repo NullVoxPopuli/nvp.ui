@@ -101,22 +101,10 @@ import { PoliteFooter } from "nvp.ui/polite";
 - **Auto-detects header vs footer** — applies the correct scroll behavior based on element type
 - **GPU-accelerated** — uses `translate3d` for smooth, composited animations
 - **Respects `prefers-reduced-motion`** — disables transitions when the user prefers reduced motion
-- **Customizable timing** — set the `--polite-duration` CSS custom property to control transition speed
-
 ## Installation
 
 ```bash
 pnpm add nvp.ui
-```
-
-## Customization
-
-The transition duration can be adjusted via a CSS custom property:
-
-```css
-:root {
-  --polite-duration: 0.5s; /* default: 0.3s */
-}
 ```
 
 ## API Reference
@@ -131,8 +119,3 @@ The transition duration can be adjusted via a CSS custom property:
 | `.nvp__polite--header-hidden` | Applied when the header is hidden (scrolling down) |
 | `.nvp__polite--footer-hidden` | Applied when the footer is hidden (scrolling up)   |
 
-### CSS Custom Properties
-
-|      property       | default | description                                     |
-| :-----------------: | :-----: | :---------------------------------------------- |
-| `--polite-duration` | `0.3s`  | Transition duration for the hide/show animation |
