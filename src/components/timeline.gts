@@ -2,22 +2,27 @@ import "./timeline.css";
 
 import type { TOC } from "@ember/component/template-only";
 
-interface ItemSignature {
+export interface ItemSignature {
   Element: HTMLDivElement;
   Args: {
     /**
-     * Visual status of this timeline entry.
+     * Controls the **color** of the indicator dot.
      *
-     * - `complete` — green indicator
-     * - `current`  — primary-color indicator with a pulse ring
-     * - `incomplete` (default) — neutral indicator
+     * This is independent of the `<:indicator>` block, which controls
+     * the **content** (icon/text) rendered inside the dot.
+     *
+     * - `complete` — green dot
+     * - `current`  — primary-color dot with a pulse ring
+     * - `incomplete` (default) — neutral dot
      */
     status?: "complete" | "current" | "incomplete";
   };
   Blocks: {
     /**
-     * The icon or symbol inside the indicator dot.
-     * If omitted, a plain dot is rendered.
+     * Custom icon or symbol rendered **inside** the indicator dot.
+     *
+     * If omitted, a smaller plain dot is rendered instead.
+     * This is independent of `@status`, which controls the dot's **color**.
      */
     indicator: [];
     /**

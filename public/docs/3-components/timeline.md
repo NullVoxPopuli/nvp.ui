@@ -202,27 +202,44 @@ import { Timeline } from "nvp.ui/timeline";
 </template>
 ```
 
+## Status vs indicator
+
+`@status` and `<:indicator>` control different things:
+
+- **`@status`** sets the dot's **color** — green for `complete`, primary for `current`, neutral for `incomplete`
+- **`<:indicator>`** sets the dot's **content** — an icon, emoji, or text rendered inside it
+
+They're independent. You can combine any status color with any icon, or omit the indicator for a plain dot.
+
 ## API Reference
 
 ### Timeline
 
-|      Arg      |   Type    | Default | Description               |
-| :-----------: | :-------: | :-----: | :------------------------ |
-| `@horizontal` | `boolean` | `false` | Horizontal stepper layout |
+```gjs live no-shadow
+import { ComponentSignature } from "kolay";
+
+<template>
+  <ComponentSignature
+    @package="."
+    @module="declarations/components/timeline.gts"
+    @name="TimelineSignature"
+  />
+</template>
+```
 
 ### Item (yielded)
 
-|    Arg    |                   Type                    |    Default     | Description                |
-| :-------: | :---------------------------------------: | :------------: | :------------------------- |
-| `@status` | `'complete' \| 'current' \| 'incomplete'` | `'incomplete'` | Visual status of the entry |
+```gjs live no-shadow
+import { ComponentSignature } from "kolay";
 
-### Named Blocks
-
-|     Block      | Description                                                                           |
-| :------------: | :------------------------------------------------------------------------------------ |
-| `<:indicator>` | Icon or symbol inside the dot. Omit for a plain dot.                                  |
-|  `<:content>`  | Main content for the entry.                                                           |
-|   `<:block>`   | Optional expanded content (e.g. comment card), subgrid-aligned to the content column. |
+<template>
+  <ComponentSignature
+    @package="."
+    @module="declarations/components/timeline.gts"
+    @name="ItemSignature"
+  />
+</template>
+```
 
 ### CSS Custom Properties
 
