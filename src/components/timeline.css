@@ -155,12 +155,12 @@
   padding-inline: var(--timeline-item-gap);
 }
 
-/* Horizontal line */
+/* Horizontal line — extend into inline padding to bridge adjacent items */
 .nvp__timeline[data-horizontal="true"] .nvp__timeline__indicator::before {
   inset-block: unset;
   top: 50%;
-  left: 0;
-  right: 0;
+  left: calc(-1 * var(--timeline-item-gap));
+  right: calc(-1 * var(--timeline-item-gap));
   width: auto;
   height: var(--timeline-line-width);
   translate: 0 -50%;
