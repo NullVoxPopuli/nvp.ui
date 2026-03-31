@@ -1,8 +1,5 @@
 .nvp__polite {
-  display: block;
   position: sticky;
-  background: var(--header-background, var(--color-page-background, #fff));
-  z-index: var(--z-site-nav, 50);
   transform: translateY(var(--polite-offset, 0px));
 }
 
