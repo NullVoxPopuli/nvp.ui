@@ -3,7 +3,7 @@
   position: sticky;
   background: var(--header-background, var(--color-page-background, #fff));
   z-index: var(--z-site-nav, 50);
-  transition: transform var(--polite-duration, 0.3s) ease;
+  transition: transform var(--polite-duration, 0.5s) cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
 }
 
