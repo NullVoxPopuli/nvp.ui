@@ -39,8 +39,11 @@ function wireUp(element: HTMLElement) {
   const footer = detectFooter(element);
   const scrollTarget = findScrollParent(element);
   let lastScrollY = getScrollY(scrollTarget);
+  let directionChangeY = lastScrollY;
   let isHidden = false;
+  let wasScrollingDown = false;
 
+  const threshold = 5;
   const hiddenClass = footer ? "nvp__polite__footer-hidden" : "nvp__polite__header-hidden";
   const hideTransform = footer ? "translate3d(0, 100%, 0)" : "translate3d(0, -100%, 0)";
 
@@ -67,18 +70,26 @@ function wireUp(element: HTMLElement) {
     const scrollingDown = currentScrollY > lastScrollY;
     const scrollingUp = currentScrollY < lastScrollY;
 
+    // Track where scroll direction last changed
+    if (scrollingDown !== wasScrollingDown) {
+      directionChangeY = lastScrollY;
+      wasScrollingDown = scrollingDown;
+    }
+
+    const distance = Math.abs(currentScrollY - directionChangeY);
+
     lastScrollY = currentScrollY;
 
     if (footer) {
-      if (scrollingDown) show();
-      if (scrollingUp) hide();
+      if (scrollingDown && distance > threshold) show();
+      if (scrollingUp && distance > threshold) hide();
 
       return;
     }
 
     if (currentScrollY <= 0) show();
-    else if (scrollingDown) hide();
-    else if (scrollingUp) show();
+    else if (scrollingDown && distance > threshold) hide();
+    else if (scrollingUp && distance > threshold) show();
   }
 
   scrollTarget.addEventListener("scroll", onScroll, { passive: true });
