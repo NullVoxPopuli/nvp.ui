@@ -15,6 +15,27 @@ Scroll down inside the box — the header slides away. Scroll back up — it rea
 import { politeSticky } from "nvp.ui/polite-sticky";
 
 <template>
+  <div class="demo" tabindex="0" role="region" aria-label="Polite header demo">
+
+    <header {{politeSticky}}>
+      Polite Header
+    </header>
+
+    <div class="content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua.</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+        nulla pariatur.</p>
+      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.</p>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+        laudantium, totam rem aperiam.</p>
+      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+        consequuntur magni dolores.</p>
+    </div>
+  </div>
   <style>
     @scope {
       .demo {
@@ -36,10 +57,23 @@ import { politeSticky } from "nvp.ui/polite-sticky";
       }
     }
   </style>
-  <div class="demo" tabindex="0" role="region" aria-label="Polite header demo">
-    <header {{politeSticky}}>
-      Polite Header
-    </header>
+</template>
+```
+
+### With the Header component
+
+```gjs live no-shadow
+import { Header } from "nvp.ui/header";
+import { politeSticky } from "nvp.ui/polite-sticky";
+
+<template>
+  <div class="demo" tabindex="0" role="region" aria-label="Polite Header component demo">
+
+    <Header {{politeSticky}}>
+      <:left>My App</:left>
+      <:right>Menu</:right>
+    </Header>
+
     <div class="content">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
         ut labore et dolore magna aliqua.</p>
@@ -55,16 +89,6 @@ import { politeSticky } from "nvp.ui/polite-sticky";
         consequuntur magni dolores.</p>
     </div>
   </div>
-</template>
-```
-
-### With the Header component
-
-```gjs live no-shadow
-import { Header } from "nvp.ui/header";
-import { politeSticky } from "nvp.ui/polite-sticky";
-
-<template>
   <style>
     @scope {
       .demo {
@@ -79,11 +103,18 @@ import { politeSticky } from "nvp.ui/polite-sticky";
       }
     }
   </style>
-  <div class="demo" tabindex="0" role="region" aria-label="Polite Header component demo">
-    <Header {{politeSticky}}>
-      <:left>My App</:left>
-      <:right>Menu</:right>
-    </Header>
+</template>
+```
+
+## Footer
+
+Scroll up inside the box — the footer slides away. Scroll back down — it reappears.
+
+```gjs live no-shadow
+import { politeSticky } from "nvp.ui/polite-sticky";
+
+<template>
+  <div class="demo" tabindex="0" role="region" aria-label="Polite footer demo">
     <div class="content">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
         ut labore et dolore magna aliqua.</p>
@@ -98,18 +129,12 @@ import { politeSticky } from "nvp.ui/polite-sticky";
       <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
         consequuntur magni dolores.</p>
     </div>
+
+    <footer {{politeSticky}}>
+      Polite Footer
+    </footer>
+
   </div>
-</template>
-```
-
-## Footer
-
-Scroll up inside the box — the footer slides away. Scroll back down — it reappears.
-
-```gjs live no-shadow
-import { politeSticky } from "nvp.ui/polite-sticky";
-
-<template>
   <style>
     @scope {
       .demo {
@@ -131,25 +156,6 @@ import { politeSticky } from "nvp.ui/polite-sticky";
       }
     }
   </style>
-  <div class="demo" tabindex="0" role="region" aria-label="Polite footer demo">
-    <div class="content">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
-        ut labore et dolore magna aliqua.</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.</p>
-      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-        nulla pariatur.</p>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-        anim id est laborum.</p>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-        laudantium, totam rem aperiam.</p>
-      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-        consequuntur magni dolores.</p>
-    </div>
-    <footer {{politeSticky}}>
-      Polite Footer
-    </footer>
-  </div>
 </template>
 ```
 
