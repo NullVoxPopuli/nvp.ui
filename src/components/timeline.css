@@ -37,11 +37,11 @@
   position: relative;
   align-self: stretch;
 
-  /* Connecting line — runs the full height of the column */
+  /* Connecting line — extends into padding so it bridges adjacent items */
   &::before {
     content: "";
     position: absolute;
-    inset-block: 0;
+    inset-block: calc(-1 * var(--timeline-item-gap));
     left: 50%;
     width: var(--timeline-line-width);
     translate: -50% 0;
