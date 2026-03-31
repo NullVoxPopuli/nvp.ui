@@ -7,11 +7,11 @@
   will-change: transform;
 }
 
-.nvp__polite--header {
+.nvp__polite__header {
   top: 0;
 }
 
-.nvp__polite--footer {
+.nvp__polite__footer {
   bottom: 0;
 }
 

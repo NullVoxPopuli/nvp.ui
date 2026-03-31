@@ -41,10 +41,10 @@ function wireUp(element: HTMLElement) {
   let lastScrollY = getScrollY(scrollTarget);
   let isHidden = false;
 
-  const hiddenClass = footer ? "nvp__polite--footer-hidden" : "nvp__polite--header-hidden";
+  const hiddenClass = footer ? "nvp__polite__footer-hidden" : "nvp__polite__header-hidden";
   const hideTransform = footer ? "translate3d(0, 100%, 0)" : "translate3d(0, -100%, 0)";
 
-  element.classList.add("nvp__polite", footer ? "nvp__polite--footer" : "nvp__polite--header");
+  element.classList.add("nvp__polite", footer ? "nvp__polite__footer" : "nvp__polite__header");
 
   function show() {
     if (!isHidden) return;
@@ -62,28 +62,33 @@ function wireUp(element: HTMLElement) {
     isHidden = true;
   }
 
-  scrollTarget.addEventListener(
-    "scroll",
-    () => {
-      const currentScrollY = getScrollY(scrollTarget);
-      const scrollingDown = currentScrollY > lastScrollY;
-      const scrollingUp = currentScrollY < lastScrollY;
+  function onScroll() {
+    const currentScrollY = getScrollY(scrollTarget);
+    const scrollingDown = currentScrollY > lastScrollY;
+    const scrollingUp = currentScrollY < lastScrollY;
 
-      lastScrollY = currentScrollY;
+    lastScrollY = currentScrollY;
 
-      if (footer) {
-        if (scrollingDown) show();
-        if (scrollingUp) hide();
+    if (footer) {
+      if (scrollingDown) show();
+      if (scrollingUp) hide();
 
-        return;
-      }
+      return;
+    }
 
-      if (currentScrollY <= 0) show();
-      else if (scrollingDown) hide();
-      else if (scrollingUp) show();
-    },
-    { passive: true },
-  );
+    if (currentScrollY <= 0) show();
+    else if (scrollingDown) hide();
+    else if (scrollingUp) show();
+  }
+
+  scrollTarget.addEventListener("scroll", onScroll, { passive: true });
+
+  return () => {
+    scrollTarget.removeEventListener("scroll", onScroll);
+    element.style.transform = "";
+    element.classList.remove("nvp__polite", hiddenClass);
+    element.classList.remove(footer ? "nvp__polite__footer" : "nvp__polite__header");
+  };
 }
 
 /**
@@ -100,12 +105,11 @@ function wireUp(element: HTMLElement) {
  * @example
  * ```gts
  * import { polite } from "nvp.ui/polite";
- * import { Header } from "nvp.ui/header";
  *
  * <template>
- *   <Header {{polite}}>
- *     <:left>My App</:left>
- *   </Header>
+ *   <header {{polite}}>
+ *     My App
+ *   </header>
  *
  *   <footer {{polite}}>
  *     Footer content

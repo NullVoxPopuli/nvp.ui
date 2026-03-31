@@ -34,7 +34,7 @@ module("polite", function (hooks) {
       );
 
       assert.dom("header").hasClass("nvp__polite");
-      assert.dom("header").hasClass("nvp__polite--header");
+      assert.dom("header").hasClass("nvp__polite__header");
     });
 
     test("hides on scroll down", async function (assert) {
@@ -51,7 +51,7 @@ module("polite", function (hooks) {
 
       await scroll(container, 200);
 
-      assert.dom("header").hasClass("nvp__polite--header-hidden");
+      assert.dom("header").hasClass("nvp__polite__header-hidden");
       assert.dom("header").hasAttribute("style", "transform: translate3d(0px, -100%, 0px);");
     });
 
@@ -68,10 +68,10 @@ module("polite", function (hooks) {
       const container = scrollContainer();
 
       await scroll(container, 200);
-      assert.dom("header").hasClass("nvp__polite--header-hidden");
+      assert.dom("header").hasClass("nvp__polite__header-hidden");
 
       await scroll(container, 50);
-      assert.dom("header").doesNotHaveClass("nvp__polite--header-hidden");
+      assert.dom("header").doesNotHaveClass("nvp__polite__header-hidden");
       assert.dom("header").hasAttribute("style", "");
     });
 
@@ -88,10 +88,10 @@ module("polite", function (hooks) {
       const container = scrollContainer();
 
       await scroll(container, 200);
-      assert.dom("header").hasClass("nvp__polite--header-hidden");
+      assert.dom("header").hasClass("nvp__polite__header-hidden");
 
       await scroll(container, 0);
-      assert.dom("header").doesNotHaveClass("nvp__polite--header-hidden");
+      assert.dom("header").doesNotHaveClass("nvp__polite__header-hidden");
     });
   });
 
@@ -107,7 +107,7 @@ module("polite", function (hooks) {
       );
 
       assert.dom("footer").hasClass("nvp__polite");
-      assert.dom("footer").hasClass("nvp__polite--footer");
+      assert.dom("footer").hasClass("nvp__polite__footer");
     });
 
     test("hides on scroll up", async function (assert) {
@@ -124,10 +124,10 @@ module("polite", function (hooks) {
 
       // Scroll down first, then up
       await scroll(container, 500);
-      assert.dom("footer").doesNotHaveClass("nvp__polite--footer-hidden");
+      assert.dom("footer").doesNotHaveClass("nvp__polite__footer-hidden");
 
       await scroll(container, 200);
-      assert.dom("footer").hasClass("nvp__polite--footer-hidden");
+      assert.dom("footer").hasClass("nvp__polite__footer-hidden");
       assert.dom("footer").hasAttribute("style", "transform: translate3d(0px, 100%, 0px);");
     });
 
@@ -146,10 +146,10 @@ module("polite", function (hooks) {
       // Scroll down, then up to hide, then down to reveal
       await scroll(container, 500);
       await scroll(container, 200);
-      assert.dom("footer").hasClass("nvp__polite--footer-hidden");
+      assert.dom("footer").hasClass("nvp__polite__footer-hidden");
 
       await scroll(container, 400);
-      assert.dom("footer").doesNotHaveClass("nvp__polite--footer-hidden");
+      assert.dom("footer").doesNotHaveClass("nvp__polite__footer-hidden");
       assert.dom("footer").hasAttribute("style", "");
     });
   });
@@ -165,7 +165,7 @@ module("polite", function (hooks) {
         </template>,
       );
 
-      assert.dom("[class*=polite]").hasClass("nvp__polite--header");
+      assert.dom("[class*=polite]").hasClass("nvp__polite__header");
     });
   });
 });
