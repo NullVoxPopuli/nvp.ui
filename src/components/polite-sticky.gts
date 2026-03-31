@@ -40,14 +40,23 @@ function wireUp(element: HTMLElement) {
   let isHidden = false;
   let wasScrollingDown = false;
 
-  const threshold = 5;
-  const hideTransform = footer ? "translate3d(0, 100%, 0)" : "translate3d(0, -100%, 0)";
+  const threshold = 10;
+  const hideTransform = footer ? "translate3d(0, 101%, 0)" : "translate3d(0, -101%, 0)";
 
   element.classList.add("nvp__polite", footer ? "nvp__polite__footer" : "nvp__polite__header");
+
+  function onTransitionEnd() {
+    if (isHidden) {
+      element.style.visibility = "hidden";
+    }
+  }
+
+  element.addEventListener("transitionend", onTransitionEnd);
 
   function show() {
     if (!isHidden) return;
 
+    element.style.visibility = "";
     element.style.transform = "";
     isHidden = false;
   }
@@ -57,6 +66,7 @@ function wireUp(element: HTMLElement) {
 
     element.style.transform = hideTransform;
     isHidden = true;
+    // visibility: hidden is set in onTransitionEnd after animation completes
   }
 
   function onScroll() {
@@ -89,7 +99,9 @@ function wireUp(element: HTMLElement) {
 
   return () => {
     scrollTarget.removeEventListener("scroll", onScroll);
+    element.removeEventListener("transitionend", onTransitionEnd);
     element.style.transform = "";
+    element.style.visibility = "";
     element.classList.remove("nvp__polite");
     element.classList.remove(footer ? "nvp__polite__footer" : "nvp__polite__header");
   };

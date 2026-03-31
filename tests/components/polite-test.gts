@@ -57,7 +57,7 @@ module("polite", function (hooks) {
 
       await scroll(scrollContainer(), 200);
 
-      assert.strictEqual(politeElement().style.transform, "translate3d(0px, -100%, 0px)");
+      assert.strictEqual(politeElement().style.transform, "translate3d(0px, -101%, 0px)");
     });
 
     test("reveals on scroll up", async function (assert) {
@@ -73,7 +73,7 @@ module("polite", function (hooks) {
       const container = scrollContainer();
 
       await scroll(container, 200);
-      assert.strictEqual(politeElement().style.transform, "translate3d(0px, -100%, 0px)");
+      assert.strictEqual(politeElement().style.transform, "translate3d(0px, -101%, 0px)");
 
       await scroll(container, 50);
       assert.strictEqual(politeElement().style.transform, "");
@@ -92,7 +92,7 @@ module("polite", function (hooks) {
       const container = scrollContainer();
 
       await scroll(container, 200);
-      assert.strictEqual(politeElement().style.transform, "translate3d(0px, -100%, 0px)");
+      assert.strictEqual(politeElement().style.transform, "translate3d(0px, -101%, 0px)");
 
       await scroll(container, 0);
       assert.strictEqual(politeElement().style.transform, "");
@@ -130,7 +130,7 @@ module("polite", function (hooks) {
       assert.strictEqual(politeElement().style.transform, "");
 
       await scroll(container, 200);
-      assert.strictEqual(politeElement().style.transform, "translate3d(0px, 100%, 0px)");
+      assert.strictEqual(politeElement().style.transform, "translate3d(0px, 101%, 0px)");
     });
 
     test("reveals on scroll down", async function (assert) {
@@ -147,7 +147,7 @@ module("polite", function (hooks) {
 
       await scroll(container, 500);
       await scroll(container, 200);
-      assert.strictEqual(politeElement().style.transform, "translate3d(0px, 100%, 0px)");
+      assert.strictEqual(politeElement().style.transform, "translate3d(0px, 101%, 0px)");
 
       await scroll(container, 400);
       assert.strictEqual(politeElement().style.transform, "");

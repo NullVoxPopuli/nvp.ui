@@ -1,11 +1,9 @@
 .nvp__polite {
   display: block;
-  position: fixed;
-  left: 0;
-  right: 0;
+  position: sticky;
   background: var(--header-background, var(--color-page-background, #fff));
   z-index: var(--z-site-nav, 50);
-  transition: transform 0.4s ease-out;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nvp__polite__header {
