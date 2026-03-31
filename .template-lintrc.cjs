@@ -10,5 +10,11 @@ module.exports = {
         "no-forbidden-elements": false,
       },
     },
+    {
+      files: ["tests/**"],
+      rules: {
+        "no-inline-styles": false,
+      },
+    },
   ],
 };
