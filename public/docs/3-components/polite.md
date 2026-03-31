@@ -5,17 +5,33 @@ A modifier that makes sticky headers and footers "polite" — they stay out of t
 - On a **header**: hides on scroll down, reveals on scroll up
 - On a **footer**: hides on scroll up, reveals on scroll down
 
-The element type is detected automatically from the tag name (`<header>` vs `<footer>`) or ARIA role.
+The element type is detected automatically from the tag name (`<header>` vs `<footer>`).
 
 Inspired by [vue-use-fixed-header](https://github.com/smastrom/vue-use-fixed-header) and the "polite sticky header" pattern.
+
+## Usage
+
+```gts
+import { polite } from "nvp.ui/polite";
+import { Header } from "nvp.ui/header";
+
+<template>
+  <Header {{polite}}>
+    <:left>My App</:left>
+  </Header>
+
+  <footer {{polite}}>
+    Footer content
+  </footer>
+</template>
+```
 
 ## Header
 
 Scroll down inside the box — the header slides away. Scroll back up — it reappears.
 
 ```gjs live no-shadow
-import { Header } from "nvp.ui/header";
-import { polite } from "nvp.ui/polite";
+import { PoliteHeader } from "nvp.ui/polite";
 
 <template>
   <div
@@ -24,10 +40,9 @@ import { polite } from "nvp.ui/polite";
     aria-label="Polite header demo"
     style="height: 180px; overflow-y: scroll; position: relative; border: 1px solid var(--border-color); border-radius: var(--radius);"
   >
-    <Header {{polite}}>
-      <:left>My App</:left>
-      <:right>Menu</:right>
-    </Header>
+    <PoliteHeader style="padding: 0.75rem 1rem; filter: var(--shadow-xl); font-weight: 600;">
+      I hide on scroll down, reveal on scroll up
+    </PoliteHeader>
     <div style="padding: 1rem;">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
         ut labore et dolore magna aliqua.</p>
@@ -51,7 +66,7 @@ import { polite } from "nvp.ui/polite";
 Scroll up inside the box — the footer slides away. Scroll back down — it reappears.
 
 ```gjs live no-shadow
-import { polite } from "nvp.ui/polite";
+import { PoliteFooter } from "nvp.ui/polite";
 
 <template>
   <div
@@ -74,9 +89,9 @@ import { polite } from "nvp.ui/polite";
       <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
         consequuntur magni dolores.</p>
     </div>
-    <footer {{polite}} style="padding: 0.75rem 1rem; filter: var(--shadow-xl); font-weight: 600;">
-      Footer — scroll up to hide me, scroll down to reveal
-    </footer>
+    <PoliteFooter style="padding: 0.75rem 1rem; filter: var(--shadow-xl); font-weight: 600;">
+      I hide on scroll up, reveal on scroll down
+    </PoliteFooter>
   </div>
 </template>
 ```

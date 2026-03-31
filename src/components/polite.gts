@@ -2,6 +2,8 @@ import "./polite.css";
 
 import { modifier } from "ember-modifier";
 
+import type { TOC } from "@ember/component/template-only";
+
 function findScrollParent(el: HTMLElement): HTMLElement | Window {
   let node = el.parentElement;
 
@@ -22,12 +24,12 @@ function getScrollY(target: HTMLElement | Window): number {
   return target instanceof Window ? target.scrollY : target.scrollTop;
 }
 
-function isFooter(element: HTMLElement): boolean {
-  return element.tagName.toLowerCase() === "footer";
+function detectFooter(element: HTMLElement): boolean {
+  return element.tagName.toLowerCase() === "footer" || element.hasAttribute("data-polite-footer");
 }
 
 function wireUp(element: HTMLElement) {
-  const footer = isFooter(element);
+  const footer = detectFooter(element);
   const scrollTarget = findScrollParent(element);
   let lastScrollY = getScrollY(scrollTarget);
   let isHidden = false;
@@ -107,3 +109,55 @@ function wireUp(element: HTMLElement) {
 export const polite = modifier((element: HTMLElement) => {
   wireUp(element);
 });
+
+// Custom element for docs demos where ember-modifier
+// can't be used in Kolay's live code blocks.
+class PoliteElement extends HTMLElement {
+  connectedCallback() {
+    requestAnimationFrame(() => {
+      if (this.isConnected) {
+        wireUp(this);
+      }
+    });
+  }
+}
+
+if (typeof customElements !== "undefined" && !customElements.get("nvp-polite")) {
+  customElements.define("nvp-polite", PoliteElement);
+}
+
+export interface PoliteHeaderSignature {
+  Element: HTMLElement;
+  Blocks: {
+    default: [];
+  };
+}
+
+/**
+ * A polite header component for use in docs demos.
+ * Prefer using the `polite` modifier directly with `<Header {{polite}}>`.
+ */
+export const PoliteHeader: TOC<PoliteHeaderSignature> = <template>
+  {{! @glint-ignore: custom element }}
+  <nvp-polite class="nvp__polite" ...attributes>
+    {{yield}}
+  </nvp-polite>
+</template>;
+
+export interface PoliteFooterSignature {
+  Element: HTMLElement;
+  Blocks: {
+    default: [];
+  };
+}
+
+/**
+ * A polite footer component for use in docs demos.
+ * Prefer using the `polite` modifier directly with `<footer {{polite}}>`.
+ */
+export const PoliteFooter: TOC<PoliteFooterSignature> = <template>
+  {{! @glint-ignore: custom element }}
+  <nvp-polite data-polite-footer class="nvp__polite" ...attributes>
+    {{yield}}
+  </nvp-polite>
+</template>;
