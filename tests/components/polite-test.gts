@@ -100,10 +100,7 @@ module("polite", function (hooks) {
       // Scroll up a small amount — less than the header height
       await scroll(container, 190);
 
-      assert.true(
-        politeOffset() > hiddenOffset,
-        "offset should be closer to 0 after scrolling up",
-      );
+      assert.true(politeOffset() > hiddenOffset, "offset should be closer to 0 after scrolling up");
     });
 
     test("always visible at scroll top", async function (assert) {
