@@ -6,9 +6,6 @@ function findScrollParent(el: HTMLElement): HTMLElement | Window {
   let node = el.parentElement;
 
   while (node && node !== document.documentElement) {
-    // Check both computed style and inline style attribute.
-    // In some rendering contexts (e.g. live code demos), computed
-    // styles may not be resolved yet when the modifier runs.
     const { overflowY } = getComputedStyle(node);
 
     if (overflowY === "auto" || overflowY === "scroll") {
@@ -35,39 +32,6 @@ function detectFooter(element: HTMLElement): boolean {
   return element.tagName.toLowerCase() === "footer";
 }
 
-const DURATION = 400;
-
-function animateTransform(
-  element: HTMLElement,
-  from: number,
-  to: number,
-  footer: boolean,
-): { cancel: () => void } {
-  const start = performance.now();
-  let rafId = 0;
-
-  function tick(now: number) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / DURATION, 1);
-    // ease-out: 1 - (1 - t)^3
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const current = from + (to - from) * eased;
-    const axis = footer ? `0, ${current}%, 0` : `0, ${current}%, 0`;
-
-    element.style.transform = current === 0 ? "" : `translate3d(${axis})`;
-
-    if (progress < 1) {
-      rafId = requestAnimationFrame(tick);
-    }
-  }
-
-  rafId = requestAnimationFrame(tick);
-
-  return {
-    cancel: () => cancelAnimationFrame(rafId),
-  };
-}
-
 function wireUp(element: HTMLElement) {
   const footer = detectFooter(element);
   const scrollTarget = findScrollParent(element);
@@ -75,31 +39,23 @@ function wireUp(element: HTMLElement) {
   let directionChangeY = lastScrollY;
   let isHidden = false;
   let wasScrollingDown = false;
-  let currentAnimation: { cancel: () => void } | null = null;
 
   const threshold = 5;
-  const hiddenClass = footer ? "nvp__polite__footer-hidden" : "nvp__polite__header-hidden";
-  const hideTarget = footer ? 100 : -100;
+  const hideTransform = footer ? "translate3d(0, 100%, 0)" : "translate3d(0, -100%, 0)";
 
   element.classList.add("nvp__polite", footer ? "nvp__polite__footer" : "nvp__polite__header");
 
   function show() {
     if (!isHidden) return;
 
-    if (currentAnimation) currentAnimation.cancel();
-
-    currentAnimation = animateTransform(element, hideTarget, 0, footer);
-    element.classList.remove(hiddenClass);
+    element.style.transform = "";
     isHidden = false;
   }
 
   function hide() {
     if (isHidden) return;
 
-    if (currentAnimation) currentAnimation.cancel();
-
-    currentAnimation = animateTransform(element, 0, hideTarget, footer);
-    element.classList.add(hiddenClass);
+    element.style.transform = hideTransform;
     isHidden = true;
   }
 
@@ -133,11 +89,8 @@ function wireUp(element: HTMLElement) {
 
   return () => {
     scrollTarget.removeEventListener("scroll", onScroll);
-
-    if (currentAnimation) currentAnimation.cancel();
-
     element.style.transform = "";
-    element.classList.remove("nvp__polite", hiddenClass);
+    element.classList.remove("nvp__polite");
     element.classList.remove(footer ? "nvp__polite__footer" : "nvp__polite__header");
   };
 }
