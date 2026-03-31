@@ -15,6 +15,14 @@
   bottom: 0;
 }
 
+.nvp__polite__header-hidden {
+  transform: translate3d(0, -100%, 0);
+}
+
+.nvp__polite__footer-hidden {
+  transform: translate3d(0, 100%, 0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nvp__polite {
     transition-duration: 0s;

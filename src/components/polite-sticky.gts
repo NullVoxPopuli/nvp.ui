@@ -45,14 +45,12 @@ function wireUp(element: HTMLElement) {
 
   const threshold = 5;
   const hiddenClass = footer ? "nvp__polite__footer-hidden" : "nvp__polite__header-hidden";
-  const hideTransform = footer ? "translate3d(0, 100%, 0)" : "translate3d(0, -100%, 0)";
 
   element.classList.add("nvp__polite", footer ? "nvp__polite__footer" : "nvp__polite__header");
 
   function show() {
     if (!isHidden) return;
 
-    element.style.transform = "";
     element.classList.remove(hiddenClass);
     isHidden = false;
   }
@@ -60,7 +58,6 @@ function wireUp(element: HTMLElement) {
   function hide() {
     if (isHidden) return;
 
-    element.style.transform = hideTransform;
     element.classList.add(hiddenClass);
     isHidden = true;
   }
@@ -96,7 +93,6 @@ function wireUp(element: HTMLElement) {
 
   return () => {
     scrollTarget.removeEventListener("scroll", onScroll);
-    element.style.transform = "";
     element.classList.remove("nvp__polite", hiddenClass);
     element.classList.remove(footer ? "nvp__polite__footer" : "nvp__polite__header");
   };

@@ -52,7 +52,6 @@ module("polite", function (hooks) {
       await scroll(container, 200);
 
       assert.dom("header").hasClass("nvp__polite__header-hidden");
-      assert.dom("header").hasAttribute("style", "transform: translate3d(0px, -100%, 0px);");
     });
 
     test("reveals on scroll up", async function (assert) {
@@ -72,7 +71,6 @@ module("polite", function (hooks) {
 
       await scroll(container, 50);
       assert.dom("header").doesNotHaveClass("nvp__polite__header-hidden");
-      assert.dom("header").hasAttribute("style", "");
     });
 
     test("always visible at scroll top", async function (assert) {
@@ -128,7 +126,6 @@ module("polite", function (hooks) {
 
       await scroll(container, 200);
       assert.dom("footer").hasClass("nvp__polite__footer-hidden");
-      assert.dom("footer").hasAttribute("style", "transform: translate3d(0px, 100%, 0px);");
     });
 
     test("reveals on scroll down", async function (assert) {
@@ -150,7 +147,6 @@ module("polite", function (hooks) {
 
       await scroll(container, 400);
       assert.dom("footer").doesNotHaveClass("nvp__polite__footer-hidden");
-      assert.dom("footer").hasAttribute("style", "");
     });
   });
 
