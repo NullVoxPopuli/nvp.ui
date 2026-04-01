@@ -123,27 +123,27 @@ import { ComponentSignature } from "kolay";
 
 ### CSS Custom Properties
 
-|        Property         |                 Default                  | Description                        |
-| :---------------------: | :--------------------------------------: | :--------------------------------- |
-|       `--bw-bg`         | `light-dark(#fff, #2a2a2e)`             | Window background color            |
-|       `--bw-fg`         | `light-dark(#000, #fff)`                | Window text color                  |
-|     `--bw-border`       | `light-dark(rgba(0,0,0,.15), rgba(255,255,255,.1))` | Window border color  |
-|   `--bw-header-bg`      | `light-dark(#e8e8e8, #38383d)`          | Header/title bar background        |
-|     `--bw-url-bg`       | `light-dark(#fff, #1e1e21)`             | URL bar background                 |
-|     `--bw-url-fg`       | `light-dark(#666, #aaa)`               | URL bar text color                 |
-|  `--bw-circle-close`    | `#ff5f56`                               | Close circle color (red)           |
-| `--bw-circle-minimize`  | `#ffbd2e`                               | Minimize circle color (yellow)     |
-| `--bw-circle-maximize`  | `#27c93f`                               | Maximize circle color (green)      |
-|   `--bw-circle-size`    | `0.75em`                                | Diameter of traffic-light circles  |
-|     `--bw-radius`       | `0.5rem`                                | Window border radius               |
+|        Property        |                       Default                       | Description                       |
+| :--------------------: | :-------------------------------------------------: | :-------------------------------- |
+|       `--bw-bg`        |             `light-dark(#fff, #2a2a2e)`             | Window background color           |
+|       `--bw-fg`        |              `light-dark(#000, #fff)`               | Window text color                 |
+|     `--bw-border`      | `light-dark(rgba(0,0,0,.15), rgba(255,255,255,.1))` | Window border color               |
+|    `--bw-header-bg`    |           `light-dark(#e8e8e8, #38383d)`            | Header/title bar background       |
+|     `--bw-url-bg`      |             `light-dark(#fff, #1e1e21)`             | URL bar background                |
+|     `--bw-url-fg`      |              `light-dark(#666, #aaa)`               | URL bar text color                |
+|  `--bw-circle-close`   |                      `#ff5f56`                      | Close circle color (red)          |
+| `--bw-circle-minimize` |                      `#ffbd2e`                      | Minimize circle color (yellow)    |
+| `--bw-circle-maximize` |                      `#27c93f`                      | Maximize circle color (green)     |
+|   `--bw-circle-size`   |                      `0.75em`                       | Diameter of traffic-light circles |
+|     `--bw-radius`      |                      `0.5rem`                       | Window border radius              |
 
 ### CSS Classes
 
-|              Class               | Description                          |
-| :------------------------------: | :----------------------------------- |
-|     `.nvp__browser-window`       | The outer window container           |
-| `.nvp__browser-window__header`   | The title bar with circles & URL     |
-| `.nvp__browser-window__circles`  | Container for the three circles      |
-|  `.nvp__browser-window__circle`  | Individual traffic-light circle      |
-|   `.nvp__browser-window__url`    | The URL/address bar                  |
-|   `.nvp__browser-window__body`   | The content area                     |
+|              Class              | Description                      |
+| :-----------------------------: | :------------------------------- |
+|     `.nvp__browser-window`      | The outer window container       |
+| `.nvp__browser-window__header`  | The title bar with circles & URL |
+| `.nvp__browser-window__circles` | Container for the three circles  |
+| `.nvp__browser-window__circle`  | Individual traffic-light circle  |
+|   `.nvp__browser-window__url`   | The URL/address bar              |
+|  `.nvp__browser-window__body`   | The content area                 |
