@@ -30,7 +30,7 @@ import { ComponentSignature } from "kolay";
 <template>
   <ComponentSignature
     @package="."
-    @module="declarations/components/external-link.gts"
+    @module="declarations/components/external-link"
     @name="Signature"
   />
 </template>

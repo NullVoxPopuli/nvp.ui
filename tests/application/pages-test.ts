@@ -1,4 +1,4 @@
-import { findAll, settled, visit, waitUntil } from "@ember/test-helpers";
+import { currentURL, findAll, settled, visit, waitUntil } from "@ember/test-helpers";
 import { module, test } from "qunit";
 import { setupApplicationTest } from "ember-qunit";
 
@@ -73,12 +73,23 @@ async function checkA11y(assert: Assert, path: string, theme: string) {
 module("Application | Pages", function (hooks) {
   setupApplicationTest(hooks);
 
+  test("/ redirects to the first docs page", async function (assert) {
+    await visit("/");
+    assert.ok(
+      currentURL().startsWith("/Docs/"),
+      `Expected redirect to /Docs/..., got ${currentURL()}`,
+    );
+  });
+
   for (const page of pages) {
     test(`${page.path}`, async function (assert) {
       const path = page.path.replace(".md", "");
 
       await visit(path);
       await waitUntil(() => findAll("nav a").length !== 0);
+
+      assert.dom("[data-page-error]").doesNotExist(`${path} should render without errors`);
+
       await checkA11y(assert, path, "default");
 
       colorScheme.update("dark");
