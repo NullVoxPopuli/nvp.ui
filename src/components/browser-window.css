@@ -1,5 +1,5 @@
 /* ───────────────────────────────────────────
-   BrowserWindow — Safari-esque window mockup
+   BrowserWindow — browser window mockup
    ─────────────────────────────────────────── */
 
 .nvp__browser-window {
@@ -36,7 +36,9 @@
   user-select: none;
 }
 
-/* ── Traffic-light circles ───────────────── */
+/* ═══════════════════════════════════════════
+   macOS style (default)
+   ═══════════════════════════════════════════ */
 
 .nvp__browser-window__circles {
   display: flex;
@@ -62,7 +64,56 @@
   background-color: var(--bw-circle-maximize);
 }
 
-/* ── URL bar ─────────────────────────────── */
+/* ── Grayscale variant (macOS only) ──────── */
+
+.nvp__browser-window[data-grayscale] .nvp__browser-window__circle {
+  background-color: light-dark(#e0e0e0, #555) !important;
+}
+
+/* ═══════════════════════════════════════════
+   Windows style
+   ═══════════════════════════════════════════ */
+
+.nvp__browser-window[data-os="windows"] {
+  --bw-header-bg: light-dark(#f0f0f0, #2b2b2b);
+  --bw-radius: 0.375rem;
+}
+
+.nvp__browser-window[data-os="windows"] .nvp__browser-window__header {
+  flex-direction: row;
+}
+
+.nvp__browser-window__controls {
+  display: flex;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.nvp__browser-window__controls svg {
+  width: 2em;
+  height: 1.5em;
+  padding: 0.25em 0.5em;
+  color: light-dark(#333, #ccc);
+}
+
+.nvp__browser-window__controls svg:last-child:hover {
+  background: #e81123;
+  color: #fff;
+}
+
+/* ═══════════════════════════════════════════
+   Generic style (no window controls)
+   ═══════════════════════════════════════════ */
+
+.nvp__browser-window[data-os="generic"] {
+  --bw-radius: 0.375rem;
+}
+
+.nvp__browser-window[data-os="generic"] .nvp__browser-window__header {
+  justify-content: center;
+}
+
+/* ── URL bar (shared) ────────────────────── */
 
 .nvp__browser-window__url {
   flex: 1;
@@ -103,10 +154,4 @@
     0.1px 2.4px 3.6px light-dark(rgba(0, 0, 0, 0.07), rgba(0, 0, 0, 0.14)),
     0.1px 4.3px 6.5px light-dark(rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.22)),
     0.2px 6.7px 10.1px light-dark(rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.29));
-}
-
-/* ── Grayscale variant ───────────────────── */
-
-.nvp__browser-window[data-grayscale] .nvp__browser-window__circle {
-  background-color: light-dark(#e0e0e0, #555) !important;
 }
