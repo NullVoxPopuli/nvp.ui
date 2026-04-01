@@ -127,7 +127,7 @@
     "execa": "^9.6.1",
     "highlight.js": "^11.11.1",
     "highlightjs-glimmer": "^2.2.2",
-    "kolay": "^5.1.4",
+    "kolay": "^5.2.0",
     "lodash.sortby": "^4.7.0",
     "lorem-ipsum": "^2.0.8",
     "prettier": "^3.7.4",

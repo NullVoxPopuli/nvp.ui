@@ -194,8 +194,8 @@ importers:
         specifier: ^2.2.2
         version: 2.2.2(highlight.js@11.11.1)
       kolay:
-        specifier: ^5.1.4
-        version: 5.1.4(f65bb2ba8bf6696cd6c9844a4c8697e4)
+        specifier: ^5.2.0
+        version: 5.2.0(f65bb2ba8bf6696cd6c9844a4c8697e4)
       lodash.sortby:
         specifier: ^4.7.0
         version: 4.7.0
@@ -5402,8 +5402,8 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  kolay@5.1.4:
-    resolution: {integrity: sha512-rq+LJ1Z9Yw+uCOclSAuP52ckEsEoVVHZXZcz4n01wjzZztTKe3PSeeGisrC+JODbdJwpOGI1RXghYISQrMDjSQ==}
+  kolay@5.2.0:
+    resolution: {integrity: sha512-0ExGdvBmlmitKeL8nAit4GCKZO5T+Ya1FqIOI1c/Qnv64wDLoz0LBFye9iXDH8fTM/BhbT+uw2qadhjsiuxtWQ==}
     engines: {node: '>= 18'}
 
   ky@1.14.2:
@@ -14962,7 +14962,7 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  kolay@5.1.4(f65bb2ba8bf6696cd6c9844a4c8697e4):
+  kolay@5.2.0(f65bb2ba8bf6696cd6c9844a4c8697e4):
     dependencies:
       '@ember/test-waiters': 4.1.1(e36bea8b02087eee87d28ed2727a0989)
       '@embroider/addon-shim': 1.10.2
