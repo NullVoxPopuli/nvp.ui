@@ -220,7 +220,7 @@ import { ComponentSignature } from "kolay";
 <template>
   <ComponentSignature
     @package="."
-    @module="declarations/components/timeline.gts"
+    @module="declarations/components/timeline"
     @name="TimelineSignature"
   />
 </template>
@@ -234,7 +234,7 @@ import { ComponentSignature } from "kolay";
 <template>
   <ComponentSignature
     @package="."
-    @module="declarations/components/timeline.gts"
+    @module="declarations/components/timeline"
     @name="ItemSignature"
   />
 </template>
