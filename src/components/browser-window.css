@@ -190,6 +190,10 @@
   text-overflow: ellipsis;
 }
 
+.nvp__browser-window:not([data-os="mac"]) .nvp__browser-window__url {
+  text-align: left;
+}
+
 /* ── Content area ────────────────────────── */
 
 .nvp__browser-window__body {
