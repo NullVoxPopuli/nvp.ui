@@ -4,45 +4,35 @@ A timeline component built on CSS grid + subgrid. Supports vertical activity fee
 
 ## Vertical
 
+Use `@indicator` for a compact syntax with the default block for content.
+
 ```gjs live no-shadow
 import { Timeline } from "nvp.ui/timeline";
 
 <template>
   <Timeline as |Item|>
-    <Item @status="complete">
-      <:indicator>&#x2714;</:indicator>
-      <:content>
-        <strong>alice</strong>
-        approved these changes
-        <div class="meta">Today</div>
-      </:content>
+    <Item @status="complete" @indicator="&#x2714;">
+      <strong>alice</strong>
+      approved these changes
+      <div class="meta">Today</div>
     </Item>
 
-    <Item @status="complete">
-      <:indicator>&#x1F3F7;</:indicator>
-      <:content>
-        <strong>bob</strong>
-        added tag
-        <code>feature</code>
-        <div class="meta">2 days ago</div>
-      </:content>
+    <Item @status="complete" @indicator="&#x1F3F7;">
+      <strong>bob</strong>
+      added tag
+      <code>feature</code>
+      <div class="meta">2 days ago</div>
     </Item>
 
-    <Item @status="current">
-      <:indicator>&#x25B6;</:indicator>
-      <:content>
-        <strong>ci</strong>
-        running deploy pipeline
-        <div class="meta">Just now</div>
-      </:content>
+    <Item @status="current" @indicator="&#x25B6;">
+      <strong>ci</strong>
+      running deploy pipeline
+      <div class="meta">Just now</div>
     </Item>
 
-    <Item>
-      <:indicator>&#x1F680;</:indicator>
-      <:content>
-        Release to production
-        <div class="meta">Pending</div>
-      </:content>
+    <Item @indicator="&#x1F680;">
+      Release to production
+      <div class="meta">Pending</div>
     </Item>
   </Timeline>
 
@@ -64,9 +54,36 @@ import { Timeline } from "nvp.ui/timeline";
 </template>
 ```
 
+## Named blocks
+
+For more control, use `<:indicator>` and `<:content>` named blocks instead.
+
+```gjs live no-shadow
+import { Timeline } from "nvp.ui/timeline";
+
+<template>
+  <Timeline as |Item|>
+    <Item @status="complete">
+      <:indicator>&#x2714;</:indicator>
+      <:content>
+        <strong>alice</strong>
+        approved these changes
+      </:content>
+    </Item>
+    <Item @status="current">
+      <:indicator>&#x25B6;</:indicator>
+      <:content>
+        <strong>ci</strong>
+        running deploy pipeline
+      </:content>
+    </Item>
+  </Timeline>
+</template>
+```
+
 ## Plain dots
 
-Omit the `<:indicator>` block for a simple dot style.
+Omit `@indicator` and the `<:indicator>` block for a simple dot style.
 
 ```gjs live no-shadow
 import { Timeline } from "nvp.ui/timeline";
@@ -161,18 +178,9 @@ import { Timeline } from "nvp.ui/timeline";
 
 <template>
   <Timeline @horizontal={{true}} as |Item|>
-    <Item @status="complete">
-      <:indicator>&#x1F4B3;</:indicator>
-      <:content>Confirmed</:content>
-    </Item>
-    <Item @status="current">
-      <:indicator>&#x1F69A;</:indicator>
-      <:content>On its way</:content>
-    </Item>
-    <Item>
-      <:indicator>&#x1F3E0;</:indicator>
-      <:content>Delivered</:content>
-    </Item>
+    <Item @status="complete" @indicator="&#x1F4B3;">Confirmed</Item>
+    <Item @status="current" @indicator="&#x1F69A;">On its way</Item>
+    <Item @indicator="&#x1F3E0;">Delivered</Item>
   </Timeline>
 </template>
 ```
@@ -194,9 +202,8 @@ import { Timeline } from "nvp.ui/timeline";
 
 <template>
   <Timeline as |Item|>
-    <Item @status="complete">
-      <:indicator>icon</:indicator>
-      <:content>Description</:content>
+    <Item @status="complete" @indicator="✓">
+      Description goes here
     </Item>
   </Timeline>
 </template>

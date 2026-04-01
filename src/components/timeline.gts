@@ -1,6 +1,10 @@
 import "./timeline.css";
 
 import type { TOC } from "@ember/component/template-only";
+import type { ComponentLike } from "@glint/template";
+
+const or = (a: unknown, b: unknown) => a || b;
+const isString = (x: unknown) => typeof x === "string";
 
 export interface ItemSignature {
   Element: HTMLDivElement;
@@ -8,27 +12,47 @@ export interface ItemSignature {
     /**
      * Controls the **color** of the indicator dot.
      *
-     * This is independent of the `<:indicator>` block, which controls
-     * the **content** (icon/text) rendered inside the dot.
+     * This is independent of the indicator content (`@indicator` arg
+     * or `<:indicator>` block), which controls what is rendered
+     * inside the dot.
      *
      * - `complete` — green dot
      * - `current`  — primary-color dot with a pulse ring
      * - `incomplete` (default) — neutral dot
      */
     status?: "complete" | "current" | "incomplete";
+
+    /**
+     * Icon or symbol rendered **inside** the indicator dot.
+     *
+     * Accepts a string (e.g. an emoji) or a component.
+     * If omitted and no `<:indicator>` block is provided,
+     * a smaller plain dot is rendered instead.
+     *
+     * The `<:indicator>` block should not be used if using this arg.
+     */
+    indicator?: string | ComponentLike;
   };
   Blocks: {
     /**
      * Custom icon or symbol rendered **inside** the indicator dot.
      *
-     * If omitted, a smaller plain dot is rendered instead.
-     * This is independent of `@status`, which controls the dot's **color**.
+     * If omitted (and no `@indicator` arg is provided),
+     * a smaller plain dot is rendered instead.
+     *
+     * The `@indicator` arg should not be used if using this block.
      */
     indicator: [];
     /**
      * Main content for this timeline entry.
+     * When using `@indicator`, you can use the default block instead.
      */
     content: [];
+    /**
+     * Default block — an alias for `<:content>`.
+     * Available when using `@indicator` for a more compact syntax.
+     */
+    default: [];
     /**
      * Optional expanded block (e.g. an inline comment card).
      * Placed below the content, aligned to the content column
@@ -42,12 +66,20 @@ const TimelineItem: TOC<ItemSignature> = <template>
   <div class="nvp__timeline__item" role="listitem" data-status={{@status}} ...attributes>
     <div class="nvp__timeline__indicator">
       <div class="nvp__timeline__dot" data-status={{@status}}>
-        {{yield to="indicator"}}
+        {{#if (or (has-block "indicator") @indicator)}}
+          {{#if (isString @indicator)}}
+            {{@indicator}}
+          {{else if @indicator}}
+            <@indicator />
+          {{/if}}
+          {{yield to="indicator"}}
+        {{/if}}
       </div>
     </div>
 
     <div class="nvp__timeline__content">
       {{yield to="content"}}
+      {{yield}}
     </div>
 
     {{#if (has-block "block")}}
@@ -83,17 +115,11 @@ export interface TimelineSignature {
  *
  * <template>
  *   <Timeline as |Item|>
- *     <Item @status="complete">
- *       <:indicator>✓</:indicator>
- *       <:content>
- *         <p><strong>alice</strong> merged the PR</p>
- *       </:content>
+ *     <Item @status="complete" @indicator="✓">
+ *       <strong>alice</strong> merged the PR
  *     </Item>
- *     <Item @status="current">
- *       <:indicator>→</:indicator>
- *       <:content>
- *         <p>Deploying to production…</p>
- *       </:content>
+ *     <Item @status="current" @indicator="→">
+ *       Deploying to production…
  *     </Item>
  *   </Timeline>
  * </template>
@@ -102,15 +128,9 @@ export interface TimelineSignature {
  * @example Horizontal stepper
  * ```gts
  * <Timeline @horizontal={{true}} as |Item|>
- *   <Item @status="complete">
- *     <:content>Confirmed</:content>
- *   </Item>
- *   <Item @status="current">
- *     <:content>On its way</:content>
- *   </Item>
- *   <Item>
- *     <:content>Delivered</:content>
- *   </Item>
+ *   <Item @status="complete" @indicator="💳">Confirmed</Item>
+ *   <Item @status="current" @indicator="🚚">On its way</Item>
+ *   <Item @indicator="🏠">Delivered</Item>
  * </Timeline>
  * ```
  */
