@@ -1,6 +1,7 @@
 import { ember, extensions } from "@embroider/vite";
 
 import { babel } from "@rollup/plugin-babel";
+import rehypeShiki from "@shikijs/rehype";
 import { kolay } from "kolay/vite";
 import info from "unplugin-info/vite";
 import { defineConfig } from "vite";
@@ -15,6 +16,13 @@ export default defineConfig({
   resolve: {
     extensions,
     alias: {
+      "nvp.ui/button": `${process.cwd()}/src/components/button.gts`,
+      "nvp.ui/header": `${process.cwd()}/src/components/header.gts`,
+      "nvp.ui/polite-sticky": `${process.cwd()}/src/components/polite-sticky.gts`,
+      "nvp.ui/theme-toggle": `${process.cwd()}/src/components/theme-toggle.gts`,
+      "nvp.ui/progress-circle": `${process.cwd()}/src/components/progress-circle.gts`,
+      "nvp.ui/tabs": `${process.cwd()}/src/components/tabs.gts`,
+      "nvp.ui/theme": `${process.cwd()}/src/components/theme.gts`,
       "nvp.ui": `${process.cwd()}/src/index.ts`,
 
       // // bug? idk
@@ -49,6 +57,18 @@ export default defineConfig({
         },
       ],
       packages: ["."],
+      rehypePlugins: [
+        [
+          rehypeShiki,
+          {
+            themes: {
+              light: "github-light",
+              dark: "github-dark",
+            },
+            defaultColor: "light-dark()",
+          },
+        ],
+      ],
       scope: `
         import { ComponentSignature } from 'kolay';
       `,
