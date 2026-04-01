@@ -90,18 +90,10 @@ import { Timeline } from "nvp.ui/timeline";
 
 <template>
   <Timeline as |Item|>
-    <Item @status="complete">
-      <:content>Project kickoff</:content>
-    </Item>
-    <Item @status="complete">
-      <:content>Design review</:content>
-    </Item>
-    <Item @status="current">
-      <:content>Implementation</:content>
-    </Item>
-    <Item>
-      <:content>Launch</:content>
-    </Item>
+    <Item @status="complete">Project kickoff</Item>
+    <Item @status="complete">Design review</Item>
+    <Item @status="current">Implementation</Item>
+    <Item>Launch</Item>
   </Timeline>
 </template>
 ```
