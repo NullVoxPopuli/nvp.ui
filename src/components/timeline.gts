@@ -10,7 +10,7 @@ const isString = (x: unknown) => typeof x === "string";
  * Item signature — two usage modes:
  *
  * **Compact:** `@indicator` arg + default block for content.
- * **Named blocks:** `<:indicator>`, `<:content>`, and `<:block>` for full control.
+ * **Named blocks:** `<:indicator>`, `<:summary>`, and `<:content>` for full control.
  */
 export type ItemSignature =
   | {
@@ -38,8 +38,8 @@ export type ItemSignature =
          */
         default: [];
         indicator: never;
+        summary: never;
         content: never;
-        block: never;
       };
     }
   | {
@@ -64,15 +64,15 @@ export type ItemSignature =
          */
         indicator: [];
         /**
-         * Main content for this timeline entry.
+         * Brief headline for this timeline entry.
          */
-        content: [];
+        summary: [];
         /**
-         * Optional expanded block (e.g. an inline comment card).
-         * Placed below the content, aligned to the content column
+         * Optional expanded content (e.g. an inline comment card).
+         * Placed below the summary, aligned to the content column
          * via CSS subgrid.
          */
-        block: [];
+        content: [];
         default: never;
       };
     };
@@ -92,14 +92,14 @@ const TimelineItem: TOC<ItemSignature> = <template>
       </div>
     </div>
 
-    <div class="nvp__timeline__content">
-      {{yield to="content"}}
+    <div class="nvp__timeline__summary">
+      {{yield to="summary"}}
       {{yield}}
     </div>
 
-    {{#if (has-block "block")}}
-      <div class="nvp__timeline__block">
-        {{yield to="block"}}
+    {{#if (has-block "content")}}
+      <div class="nvp__timeline__content">
+        {{yield to="content"}}
       </div>
     {{/if}}
   </div>

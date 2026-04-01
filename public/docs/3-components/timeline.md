@@ -56,7 +56,7 @@ import { Timeline } from "nvp.ui/timeline";
 
 ## Named blocks
 
-For more control, use `<:indicator>` and `<:content>` named blocks instead.
+For more control, use `<:indicator>` and `<:summary>` named blocks instead.
 
 ```gjs live no-shadow
 import { Timeline } from "nvp.ui/timeline";
@@ -65,17 +65,17 @@ import { Timeline } from "nvp.ui/timeline";
   <Timeline as |Item|>
     <Item @status="complete">
       <:indicator>&#x2714;</:indicator>
-      <:content>
+      <:summary>
         <strong>alice</strong>
         approved these changes
-      </:content>
+      </:summary>
     </Item>
     <Item @status="current">
       <:indicator>&#x25B6;</:indicator>
-      <:content>
+      <:summary>
         <strong>ci</strong>
         running deploy pipeline
-      </:content>
+      </:summary>
     </Item>
   </Timeline>
 </template>
@@ -98,9 +98,9 @@ import { Timeline } from "nvp.ui/timeline";
 </template>
 ```
 
-## Inline block content
+## Expanded content
 
-Use the `<:block>` named block for expanded content (comments, cards, details). It aligns to the content column via CSS subgrid.
+Use the `<:content>` named block for expanded detail (comments, cards). It aligns to the summary column via CSS subgrid.
 
 ```gjs live no-shadow
 import { Timeline } from "nvp.ui/timeline";
@@ -109,35 +109,35 @@ import { Timeline } from "nvp.ui/timeline";
   <Timeline as |Item|>
     <Item @status="complete">
       <:indicator>&#x1F441;</:indicator>
-      <:content>
+      <:summary>
         <strong>curtisss</strong>
         requested a review from
         <strong>james_rob</strong>
         <div class="meta">4 days ago</div>
-      </:content>
+      </:summary>
     </Item>
 
     <Item @status="complete">
       <:indicator>&#x1F4AC;</:indicator>
-      <:content>
+      <:summary>
         <strong>james_rob</strong>
         commented
         <div class="meta">4 days ago</div>
-      </:content>
-      <:block>
+      </:summary>
+      <:content>
         <div class="comment-card">
           Contrast slider goes a bit wild on the edges. Might want to clamp the range.
         </div>
-      </:block>
+      </:content>
     </Item>
 
     <Item @status="complete">
       <:indicator>&#x2714;</:indicator>
-      <:content>
+      <:summary>
         <strong>james_rob</strong>
         approved these changes
         <div class="meta">Today</div>
-      </:content>
+      </:summary>
     </Item>
   </Timeline>
 
@@ -203,10 +203,10 @@ import { Timeline } from "nvp.ui/timeline";
 
 ## Status vs indicator
 
-`@status` and `<:indicator>` control different things:
+`@status` and `@indicator` / `<:indicator>` control different things:
 
 - **`@status`** sets the dot's **color** — green for `complete`, primary for `current`, neutral for `incomplete`
-- **`<:indicator>`** sets the dot's **content** — an icon, emoji, or text rendered inside it
+- **`@indicator`** (or `<:indicator>`) sets the dot's **content** — an icon, emoji, or text rendered inside it
 
 They're independent. You can combine any status color with any icon, or omit the indicator for a plain dot.
 
@@ -256,11 +256,11 @@ import { ComponentSignature } from "kolay";
 
 ### CSS Classes
 
-|            Class            | Description                                  |
-| :-------------------------: | :------------------------------------------- |
-|      `.nvp__timeline`       | The grid container                           |
-|   `.nvp__timeline__item`    | A single timeline entry (subgrid row)        |
-| `.nvp__timeline__indicator` | The indicator column (draws connecting line) |
-|    `.nvp__timeline__dot`    | The circular dot/icon                        |
-|  `.nvp__timeline__content`  | The content area                             |
-|   `.nvp__timeline__block`   | Expanded inline block (subgrid-aligned)      |
+|            Class            | Description                                      |
+| :-------------------------: | :----------------------------------------------- |
+|      `.nvp__timeline`       | The grid container                               |
+|   `.nvp__timeline__item`    | A single timeline entry (subgrid row)            |
+| `.nvp__timeline__indicator` | The indicator column (draws connecting line)     |
+|    `.nvp__timeline__dot`    | The circular dot/icon                            |
+|  `.nvp__timeline__summary`  | The summary/headline area                        |
+|  `.nvp__timeline__content`  | Expanded inline content detail (subgrid-aligned) |

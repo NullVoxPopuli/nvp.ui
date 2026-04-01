@@ -111,23 +111,23 @@
   }
 }
 
-/* ── Content ──────────────────────────────── */
+/* ── Summary ──────────────────────────────── */
 
-.nvp__timeline__content {
+.nvp__timeline__summary {
   min-height: var(--timeline-dot-size);
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-/* ── Block (expanded inline content) ──────── */
+/* ── Content (expanded inline detail) ─────── */
 
-.nvp__timeline__block {
+.nvp__timeline__content {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: subgrid;
 
-  /* Content sits in the second (content) column */
+  /* Detail sits in the second (summary) column */
   > * {
     grid-column: 2;
   }
@@ -181,13 +181,13 @@
   bottom: unset;
 }
 
-.nvp__timeline[data-horizontal="true"] .nvp__timeline__content {
+.nvp__timeline[data-horizontal="true"] .nvp__timeline__summary {
   text-align: center;
   min-height: unset;
 }
 
-/* Blocks don't apply in horizontal mode — fall back to a single column */
-.nvp__timeline[data-horizontal="true"] .nvp__timeline__block {
+/* Content detail doesn't apply in horizontal mode — fall back to a single column */
+.nvp__timeline[data-horizontal="true"] .nvp__timeline__content {
   grid-column: auto;
   grid-row: auto;
   display: block;
