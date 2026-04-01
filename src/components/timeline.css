@@ -26,6 +26,33 @@
   column-gap: var(--timeline-content-gap);
   padding-block: var(--timeline-item-gap);
   align-items: start;
+  position: relative;
+
+  /*
+   * Connecting line — on the item (not the indicator) so it spans
+   * the full height even when a <:content> block adds extra rows.
+   */
+  &::before {
+    content: "";
+    position: absolute;
+    inset-block: calc(-1 * var(--timeline-item-gap));
+    left: calc(var(--timeline-dot-size) / 2);
+    width: var(--timeline-line-width);
+    translate: -50% 0;
+    background: var(--timeline-line-color);
+  }
+
+  &:first-child::before {
+    top: calc(var(--timeline-item-gap) + var(--timeline-dot-size) / 2);
+  }
+
+  &:last-child::before {
+    bottom: calc(var(--timeline-item-gap) + var(--timeline-dot-size) / 2);
+  }
+
+  &:only-child::before {
+    display: none;
+  }
 }
 
 /* ── Indicator column ─────────────────────── */
@@ -34,34 +61,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  align-self: stretch;
-
-  /* Connecting line — extends into padding so it bridges adjacent items */
-  &::before {
-    content: "";
-    position: absolute;
-    inset-block: calc(-1 * var(--timeline-item-gap));
-    left: 50%;
-    width: var(--timeline-line-width);
-    translate: -50% 0;
-    background: var(--timeline-line-color);
-  }
-}
-
-/* Clip line above the first item's dot */
-.nvp__timeline__item:first-child > .nvp__timeline__indicator::before {
-  top: 50%;
-}
-
-/* Clip line below the last item's dot */
-.nvp__timeline__item:last-child > .nvp__timeline__indicator::before {
-  bottom: 50%;
-}
-
-/* Single item — no line at all */
-.nvp__timeline__item:only-child > .nvp__timeline__indicator::before {
-  display: none;
 }
 
 /* ── Dot / icon ───────────────────────────── */
@@ -155,10 +154,10 @@
   padding-inline: var(--timeline-item-gap);
 }
 
-/* Horizontal line — extend into inline padding to bridge adjacent items */
-.nvp__timeline[data-horizontal="true"] .nvp__timeline__indicator::before {
+/* Horizontal line — on the item, running through the indicator row */
+.nvp__timeline[data-horizontal="true"] .nvp__timeline__item::before {
   inset-block: unset;
-  top: 50%;
+  top: calc(var(--timeline-dot-size) / 2);
   left: calc(-1 * var(--timeline-item-gap));
   right: calc(-1 * var(--timeline-item-gap));
   width: auto;
@@ -166,19 +165,12 @@
   translate: 0 -50%;
 }
 
-.nvp__timeline[data-horizontal="true"]
-  .nvp__timeline__item:first-child
-  > .nvp__timeline__indicator::before {
-  top: 50%;
-  bottom: unset;
+.nvp__timeline[data-horizontal="true"] .nvp__timeline__item:first-child::before {
   left: 50%;
 }
 
-.nvp__timeline[data-horizontal="true"]
-  .nvp__timeline__item:last-child
-  > .nvp__timeline__indicator::before {
+.nvp__timeline[data-horizontal="true"] .nvp__timeline__item:last-child::before {
   right: 50%;
-  bottom: unset;
 }
 
 .nvp__timeline[data-horizontal="true"] .nvp__timeline__summary {
