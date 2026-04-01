@@ -3,24 +3,24 @@
    ─────────────────────────────────────────── */
 
 .nvp__browser-window {
-  --bw-bg: light-dark(#fff, #2a2a2e);
-  --bw-fg: light-dark(#000, #fff);
-  --bw-border: light-dark(rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.1));
-  --bw-header-bg: light-dark(#f6f6f6, #3a3a3c);
-  --bw-url-bg: light-dark(#fff, #1e1e21);
-  --bw-url-fg: light-dark(#666, #aaa);
-  --bw-circle-close: #ff5f56;
-  --bw-circle-minimize: #ffbd2e;
-  --bw-circle-maximize: #27c93f;
-  --bw-circle-size: 0.75em;
-  --bw-radius: 0.5rem;
+  --browser-window-background: light-dark(#fff, #2a2a2e);
+  --browser-window-color: light-dark(#000, #fff);
+  --browser-window-border-color: light-dark(rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.1));
+  --browser-window-header-background: light-dark(#f6f6f6, #3a3a3c);
+  --browser-window-url-background: light-dark(#fff, #1e1e21);
+  --browser-window-url-color: light-dark(#666, #aaa);
+  --browser-window-circle-close: #ff5f56;
+  --browser-window-circle-minimize: #ffbd2e;
+  --browser-window-circle-maximize: #27c93f;
+  --browser-window-circle-size: 0.75em;
+  --browser-window-border-radius: 0.5rem;
 
   display: flex;
   flex-direction: column;
-  border-radius: var(--bw-radius);
-  border: 1px solid var(--bw-border);
-  background: var(--bw-bg);
-  color: var(--bw-fg);
+  border-radius: var(--browser-window-border-radius);
+  border: 1px solid var(--browser-window-border-color);
+  background: var(--browser-window-background);
+  color: var(--browser-window-color);
   overflow: hidden;
   min-width: 12rem;
 }
@@ -32,7 +32,7 @@
   align-items: center;
   gap: 0.5em;
   padding: 0.625em 0.75em;
-  background: var(--bw-header-bg);
+  background: var(--browser-window-header-background);
   user-select: none;
 }
 
@@ -47,22 +47,22 @@
 }
 
 .nvp__browser-window__circle {
-  width: var(--bw-circle-size);
-  height: var(--bw-circle-size);
+  width: var(--browser-window-circle-size);
+  height: var(--browser-window-circle-size);
   border-radius: 50%;
   transition: filter 0.15s;
 }
 
 .nvp__browser-window__circle:nth-child(1) {
-  background-color: var(--bw-circle-close);
+  background-color: var(--browser-window-circle-close);
 }
 
 .nvp__browser-window__circle:nth-child(2) {
-  background-color: var(--bw-circle-minimize);
+  background-color: var(--browser-window-circle-minimize);
 }
 
 .nvp__browser-window__circle:nth-child(3) {
-  background-color: var(--bw-circle-maximize);
+  background-color: var(--browser-window-circle-maximize);
 }
 
 .nvp__browser-window__circle:hover {
@@ -80,8 +80,8 @@
    ═══════════════════════════════════════════ */
 
 .nvp__browser-window[data-os="windows"] {
-  --bw-header-bg: light-dark(#fff, #1f1f1f);
-  --bw-radius: 0.375rem;
+  --browser-window-header-background: light-dark(#fff, #1f1f1f);
+  --browser-window-border-radius: 0.375rem;
 }
 
 .nvp__browser-window[data-os="windows"] .nvp__browser-window__header {
@@ -118,8 +118,8 @@
    ═══════════════════════════════════════════ */
 
 .nvp__browser-window[data-os="ubuntu"] {
-  --bw-header-bg: light-dark(#fff, #2e2e32);
-  --bw-radius: 0.75rem;
+  --browser-window-header-background: light-dark(#fff, #2e2e32);
+  --browser-window-border-radius: 0.75rem;
 }
 
 .nvp__browser-window[data-os="ubuntu"] .nvp__browser-window__header {
@@ -159,7 +159,7 @@
    ═══════════════════════════════════════════ */
 
 .nvp__browser-window[data-os="generic"] {
-  --bw-radius: 0.375rem;
+  --browser-window-border-radius: 0.375rem;
 }
 
 .nvp__browser-window[data-os="generic"] .nvp__browser-window__header {
@@ -182,8 +182,8 @@
   line-height: 1.5;
   padding: 0.125em 0.5em;
   border-radius: 0.25em;
-  background: var(--bw-url-bg);
-  color: var(--bw-url-fg);
+  background: var(--browser-window-url-background);
+  color: var(--browser-window-url-color);
   text-align: center;
   overflow: hidden;
   white-space: nowrap;

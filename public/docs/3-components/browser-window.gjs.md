@@ -209,19 +209,19 @@ import { ComponentSignature } from "kolay";
 
 ### CSS Custom Properties
 
-| Property               | Default                                             | Description                           |
-| ---------------------- | --------------------------------------------------- | ------------------------------------- |
-| `--bw-bg`              | `light-dark(#fff, #2a2a2e)`                         | Window background color               |
-| `--bw-fg`              | `light-dark(#000, #fff)`                            | Window text color                     |
-| `--bw-border`          | `light-dark(rgba(0,0,0,.15), rgba(255,255,255,.1))` | Window border color                   |
-| `--bw-header-bg`       | `light-dark(#f6f6f6, #3a3a3c)`                      | Header/title bar background           |
-| `--bw-url-bg`          | `light-dark(#fff, #1e1e21)`                         | URL bar background                    |
-| `--bw-url-fg`          | `light-dark(#666, #aaa)`                            | URL bar text color                    |
-| `--bw-circle-close`    | `#ff5f56`                                           | Close circle color (red, macOS only)  |
-| `--bw-circle-minimize` | `#ffbd2e`                                           | Minimize circle color (yellow, macOS) |
-| `--bw-circle-maximize` | `#27c93f`                                           | Maximize circle color (green, macOS)  |
-| `--bw-circle-size`     | `0.75em`                                            | Diameter of traffic-light circles     |
-| `--bw-radius`          | `0.5rem`                                            | Window border radius                  |
+| Property                             | Default                                             | Description                           |
+| ------------------------------------ | --------------------------------------------------- | ------------------------------------- |
+| `--browser-window-background`        | `light-dark(#fff, #2a2a2e)`                         | Window background color               |
+| `--browser-window-color`             | `light-dark(#000, #fff)`                            | Window text color                     |
+| `--browser-window-border-color`      | `light-dark(rgba(0,0,0,.15), rgba(255,255,255,.1))` | Window border color                   |
+| `--browser-window-header-background` | `light-dark(#f6f6f6, #3a3a3c)`                      | Header/title bar background           |
+| `--browser-window-url-background`    | `light-dark(#fff, #1e1e21)`                         | URL bar background                    |
+| `--browser-window-url-color`         | `light-dark(#666, #aaa)`                            | URL bar text color                    |
+| `--browser-window-circle-close`      | `#ff5f56`                                           | Close circle color (red, macOS only)  |
+| `--browser-window-circle-minimize`   | `#ffbd2e`                                           | Minimize circle color (yellow, macOS) |
+| `--browser-window-circle-maximize`   | `#27c93f`                                           | Maximize circle color (green, macOS)  |
+| `--browser-window-circle-size`       | `0.75em`                                            | Diameter of traffic-light circles     |
+| `--browser-window-border-radius`     | `0.5rem`                                            | Window border radius                  |
 
 ### CSS Classes
 
