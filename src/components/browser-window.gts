@@ -16,9 +16,10 @@ export interface BrowserWindowSignature {
      *
      * - `"mac"` (default) — macOS traffic-light circles
      * - `"windows"` — Windows-style minimize / maximize / close icons (right-aligned)
+     * - `"ubuntu"` — Ubuntu/GNOME-style with rounded close / minimize / maximize buttons
      * - `"generic"` — Plain bar with no window controls
      */
-    os?: "mac" | "windows" | "generic";
+    os?: "mac" | "windows" | "ubuntu" | "generic";
 
     /**
      * Remove padding from the content area and let content
@@ -121,6 +122,39 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
               stroke-width="1.2"
             /></svg>
         </div>
+      {{else if (isUbuntu @os)}}
+        <div class="nvp__browser-window__controls">
+          {{! close }}
+          <svg viewBox="0 0 12 12" aria-hidden="true"><path
+              d="M3.5 3.5l5 5M8.5 3.5l-5 5"
+              stroke="currentColor"
+              stroke-width="1.2"
+              stroke-linecap="round"
+            /></svg>
+          {{! minimize }}
+          <svg viewBox="0 0 12 12" aria-hidden="true"><rect
+              y="5.5"
+              width="12"
+              height="1"
+              rx="0.5"
+              fill="currentColor"
+            /></svg>
+          {{! maximize }}
+          <svg viewBox="0 0 12 12" aria-hidden="true"><rect
+              x="1.5"
+              y="1.5"
+              width="9"
+              height="9"
+              rx="1"
+              stroke="currentColor"
+              stroke-width="1"
+              fill="none"
+            /></svg>
+        </div>
+
+        {{#if @url}}
+          <div class="nvp__browser-window__url">{{@url}}</div>
+        {{/if}}
       {{else if (isGeneric @os)}}
         {{#if @url}}
           <div class="nvp__browser-window__url">{{@url}}</div>
@@ -145,4 +179,5 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
 </template>;
 
 const isWindows = (os: string | undefined) => os === "windows";
+const isUbuntu = (os: string | undefined) => os === "ubuntu";
 const isGeneric = (os: string | undefined) => os === "generic";

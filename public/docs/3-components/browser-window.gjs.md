@@ -32,6 +32,21 @@ import { BrowserWindow } from "nvp.ui/browser-window";
 </template>
 ```
 
+## Ubuntu / GNOME
+
+Use `@os="ubuntu"` for Ubuntu/GNOME-style window controls with an orange close button.
+
+```gjs live no-shadow
+import { BrowserWindow } from "nvp.ui/browser-window";
+
+<template>
+  <BrowserWindow @os="ubuntu" @url="https://example.com">
+    <h3>Hello world!</h3>
+    <p>GNOME-style controls — close, minimize, maximize. Hover to reveal icons.</p>
+  </BrowserWindow>
+</template>
+```
+
 ## Generic
 
 Use `@os="generic"` for a plain title bar with no window controls.
