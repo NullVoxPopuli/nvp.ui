@@ -22,6 +22,23 @@ export interface BrowserWindowSignature {
     os?: "mac" | "windows" | "ubuntu" | "generic";
 
     /**
+     * Tab labels to display in a tab bar.
+     * The first tab is rendered as active.
+     */
+    tabs?: string[];
+
+    /**
+     * Which tab visual style to use.
+     *
+     * - `"safari"` — rounded pill tabs (default when `@os` is `"mac"`)
+     * - `"chrome"` — Material-style rounded rectangle tabs
+     * - `"firefox"` — Proton-style rounded rectangle tabs with blue active accent
+     *
+     * Defaults to `"safari"` when `@os` is `"mac"`, `"firefox"` otherwise.
+     */
+    tabStyle?: "safari" | "chrome" | "firefox";
+
+    /**
      * Remove padding from the content area and let content
      * (images, iframes) fill edge-to-edge.
      */
@@ -61,23 +78,15 @@ export interface BrowserWindowSignature {
  * </template>
  * ```
  *
- * @example Windows style
+ * @example With tabs
  * ```gts
  * import { BrowserWindow } from "nvp.ui/browser-window";
  *
  * <template>
- *   <BrowserWindow @os="windows" @url="https://example.com">
- *     <p>Hello world!</p>
- *   </BrowserWindow>
- * </template>
- * ```
- *
- * @example Generic (no window controls)
- * ```gts
- * import { BrowserWindow } from "nvp.ui/browser-window";
- *
- * <template>
- *   <BrowserWindow @os="generic" @url="https://example.com">
+ *   <BrowserWindow
+ *     @url="https://example.com"
+ *     @tabs={{(array "Home" "About" "Contact")}}
+ *   >
  *     <p>Hello world!</p>
  *   </BrowserWindow>
  * </template>
@@ -87,6 +96,7 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
   <div
     class="nvp__browser-window"
     data-os={{if @os @os "mac"}}
+    data-tab-style={{if @tabs (resolveTabStyle @tabStyle @os)}}
     data-flush={{if @flush "true"}}
     data-shadow={{if @shadow "true"}}
     data-grayscale={{if @grayscale "true"}}
@@ -94,9 +104,11 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
   >
     <div class="nvp__browser-window__header">
       {{#if (isWindows @os)}}
-        {{#if @url}}
-          <div class="nvp__browser-window__url">{{@url}}</div>
-        {{/if}}
+        {{#unless @tabs}}
+          {{#if @url}}
+            <div class="nvp__browser-window__url">{{@url}}</div>
+          {{/if}}
+        {{/unless}}
         <div class="nvp__browser-window__controls">
           {{! minimize }}
           <svg viewBox="0 0 12 12" aria-hidden="true"><rect
@@ -123,18 +135,20 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
             /></svg>
         </div>
       {{else if (isUbuntu @os)}}
-        {{#if @url}}
-          <div class="nvp__browser-window__url">{{@url}}</div>
-        {{/if}}
+        {{#unless @tabs}}
+          {{#if @url}}
+            <div class="nvp__browser-window__url">{{@url}}</div>
+          {{/if}}
+        {{/unless}}
         <div class="nvp__browser-window__controls">
-          {{! minimize — horizontal dash }}
+          {{! minimize }}
           <svg viewBox="0 0 16 16" aria-hidden="true"><path
               d="M4 8h8"
               stroke="currentColor"
               stroke-width="1.2"
               stroke-linecap="round"
             /></svg>
-          {{! maximize — overlapping rectangles }}
+          {{! maximize }}
           <svg viewBox="0 0 16 16" aria-hidden="true"><rect
               x="3"
               y="3"
@@ -145,7 +159,7 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
               stroke-width="1.2"
               fill="none"
             /></svg>
-          {{! close — × }}
+          {{! close }}
           <svg viewBox="0 0 16 16" aria-hidden="true"><path
               d="M4.5 4.5l7 7M11.5 4.5l-7 7"
               stroke="currentColor"
@@ -154,9 +168,11 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
             /></svg>
         </div>
       {{else if (isGeneric @os)}}
-        {{#if @url}}
-          <div class="nvp__browser-window__url">{{@url}}</div>
-        {{/if}}
+        {{#unless @tabs}}
+          {{#if @url}}
+            <div class="nvp__browser-window__url">{{@url}}</div>
+          {{/if}}
+        {{/unless}}
       {{else}}
         <div class="nvp__browser-window__circles">
           <div class="nvp__browser-window__circle"></div>
@@ -164,11 +180,52 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
           <div class="nvp__browser-window__circle"></div>
         </div>
 
+        {{#unless @tabs}}
+          {{#if @url}}
+            <div class="nvp__browser-window__url">{{@url}}</div>
+          {{/if}}
+        {{/unless}}
+      {{/if}}
+
+      {{#if @tabs}}
+        <div class="nvp__browser-window__tabs" role="tablist">
+          {{#each @tabs as |tab index|}}
+            <div
+              class="nvp__browser-window__tab"
+              data-active={{if (isFirst index) "true"}}
+              role="tab"
+            >{{tab}}</div>
+          {{/each}}
+        </div>
+      {{/if}}
+    </div>
+
+    {{#if @tabs}}
+      <div class="nvp__browser-window__toolbar">
+        {{! back }}
+        <svg class="nvp__browser-window__nav" viewBox="0 0 16 16" aria-hidden="true"><path
+            d="M10 3L5 8l5 5"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+          /></svg>
+        {{! forward }}
+        <svg class="nvp__browser-window__nav" viewBox="0 0 16 16" aria-hidden="true"><path
+            d="M6 3l5 5-5 5"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+          /></svg>
+
         {{#if @url}}
           <div class="nvp__browser-window__url">{{@url}}</div>
         {{/if}}
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
 
     <div class="nvp__browser-window__body">
       {{yield}}
@@ -179,3 +236,10 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
 const isWindows = (os: string | undefined) => os === "windows";
 const isUbuntu = (os: string | undefined) => os === "ubuntu";
 const isGeneric = (os: string | undefined) => os === "generic";
+const isFirst = (index: number) => index === 0;
+
+function resolveTabStyle(tabStyle: string | undefined, os: string | undefined): string {
+  if (tabStyle) return tabStyle;
+
+  return os === "mac" || !os ? "safari" : "firefox";
+}

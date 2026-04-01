@@ -194,6 +194,112 @@
   text-align: left;
 }
 
+/* ═══════════════════════════════════════════
+   Tabs — shared
+   ═══════════════════════════════════════════ */
+
+.nvp__browser-window__tabs {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  gap: 0.125em;
+  align-items: end;
+  align-self: stretch;
+}
+
+.nvp__browser-window__tab {
+  padding: 0.25em 0.75em;
+  font-family: system-ui, sans-serif;
+  font-size: 0.75em;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 12em;
+  cursor: default;
+  color: var(--browser-window-url-color);
+}
+
+.nvp__browser-window__tab[data-active="true"] {
+  color: var(--browser-window-color);
+}
+
+/* ── Toolbar (shown when tabs are present) ── */
+
+.nvp__browser-window__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.375em;
+  padding: 0.375em 0.75em;
+  background: var(--browser-window-background);
+  border-top: 1px solid var(--browser-window-border-color);
+}
+
+/* ── Nav back/forward buttons ────────────── */
+
+.nvp__browser-window__nav {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  color: var(--browser-window-url-color);
+}
+
+/* ═══════════════════════════════════════════
+   Tab style: Safari
+   Rounded pill tabs
+   ═══════════════════════════════════════════ */
+
+.nvp__browser-window[data-tab-style="safari"] .nvp__browser-window__tab {
+  border-radius: 0.375em;
+  transition: background-color 0.15s;
+}
+
+.nvp__browser-window[data-tab-style="safari"] .nvp__browser-window__tab:hover {
+  background: light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
+}
+
+.nvp__browser-window[data-tab-style="safari"] .nvp__browser-window__tab[data-active="true"] {
+  background: var(--browser-window-url-background);
+  box-shadow: 0 0.5px 2px light-dark(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.4));
+}
+
+/* ═══════════════════════════════════════════
+   Tab style: Chrome
+   Material rounded rectangle tabs
+   ═══════════════════════════════════════════ */
+
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab {
+  border-radius: 0.5em 0.5em 0 0;
+  transition: background-color 0.15s;
+}
+
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab:hover {
+  background: light-dark(rgba(0, 0, 0, 0.04), rgba(255, 255, 255, 0.06));
+}
+
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"] {
+  background: var(--browser-window-background);
+}
+
+/* ═══════════════════════════════════════════
+   Tab style: Firefox (Proton)
+   Rounded rectangle tabs with blue active accent
+   ═══════════════════════════════════════════ */
+
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab {
+  border-radius: 0.375em 0.375em 0 0;
+  transition: background-color 0.15s;
+}
+
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab:hover {
+  background: light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.08));
+}
+
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab[data-active="true"] {
+  background: var(--browser-window-background);
+  box-shadow: inset 0 2px 0 0 #0060df;
+}
+
 /* ── Content area ────────────────────────── */
 
 .nvp__browser-window__body {

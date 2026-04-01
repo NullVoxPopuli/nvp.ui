@@ -44,6 +44,51 @@ import { BrowserWindow } from "nvp.ui/browser-window";
 </template>
 ```
 
+## Tabs
+
+Pass `@tabs` with an array of strings to render a tab bar. The first tab is active. When tabs are present, a toolbar row with back/forward navigation and the URL bar appears below the tabs.
+
+The `@tabStyle` defaults to `"safari"` on macOS and `"firefox"` on other OS styles.
+
+```gjs live no-shadow
+import { BrowserWindow } from "nvp.ui/browser-window";
+
+<template>
+  <div class="gallery">
+    <BrowserWindow @url="https://example.com" @tabs={{(array "Home" "About" "Blog")}}>
+      <p>Safari tabs (default on macOS)</p>
+    </BrowserWindow>
+
+    <BrowserWindow
+      @os="windows"
+      @url="https://example.com"
+      @tabs={{(array "Home" "About" "Blog")}}
+      @tabStyle="chrome"
+    >
+      <p>Chrome tabs</p>
+    </BrowserWindow>
+
+    <BrowserWindow @os="ubuntu" @url="https://example.com" @tabs={{(array "Home" "About" "Blog")}}>
+      <p>Firefox tabs (default on non-macOS)</p>
+    </BrowserWindow>
+  </div>
+
+  <style>
+    @scope {
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .gallery > * {
+        flex: 1 1 18rem;
+        min-width: 0;
+      }
+    }
+  </style>
+</template>
+```
+
 ## Without URL bar
 
 Omit `@url` to show just the header chrome.
@@ -225,12 +270,16 @@ import { ComponentSignature } from "kolay";
 
 ### CSS Classes
 
-| Class                            | Description                                  |
-| -------------------------------- | -------------------------------------------- |
-| `.nvp__browser-window`           | The outer window container                   |
-| `.nvp__browser-window__header`   | The title bar                                |
-| `.nvp__browser-window__circles`  | Container for macOS traffic-light dots       |
-| `.nvp__browser-window__circle`   | Individual macOS traffic-light circle        |
-| `.nvp__browser-window__controls` | Container for Windows / Ubuntu control icons |
-| `.nvp__browser-window__url`      | The URL/address bar                          |
-| `.nvp__browser-window__body`     | The content area                             |
+| Class                            | Description                                            |
+| -------------------------------- | ------------------------------------------------------ |
+| `.nvp__browser-window`           | The outer window container                             |
+| `.nvp__browser-window__header`   | The title bar                                          |
+| `.nvp__browser-window__circles`  | Container for macOS traffic-light dots                 |
+| `.nvp__browser-window__circle`   | Individual macOS traffic-light circle                  |
+| `.nvp__browser-window__controls` | Container for Windows / Ubuntu control icons           |
+| `.nvp__browser-window__tabs`     | Tab bar container                                      |
+| `.nvp__browser-window__tab`      | Individual tab                                         |
+| `.nvp__browser-window__toolbar`  | Toolbar row with nav buttons and URL (shown with tabs) |
+| `.nvp__browser-window__nav`      | Back/forward navigation arrow                          |
+| `.nvp__browser-window__url`      | The URL/address bar                                    |
+| `.nvp__browser-window__body`     | The content area                                       |

@@ -149,4 +149,116 @@ module("BrowserWindow", function (hooks) {
       assert.dom(".nvp__browser-window__url").exists();
     });
   });
+
+  module("Tabs", function () {
+    const tabs = ["Home", "About", "Contact"];
+
+    test("renders tab bar with tabs", async function (assert) {
+      await render(
+        <template>
+          <BrowserWindow @tabs={{tabs}}>
+            content
+          </BrowserWindow>
+        </template>,
+      );
+
+      assert.dom(".nvp__browser-window__tabs").exists();
+      assert.dom(".nvp__browser-window__tab").exists({ count: 3 });
+      assert.dom(".nvp__browser-window__tab:nth-child(1)").hasText("Home");
+      assert.dom(".nvp__browser-window__tab:nth-child(2)").hasText("About");
+      assert.dom(".nvp__browser-window__tab:nth-child(3)").hasText("Contact");
+    });
+
+    test("marks the first tab as active", async function (assert) {
+      await render(
+        <template>
+          <BrowserWindow @tabs={{tabs}}>
+            content
+          </BrowserWindow>
+        </template>,
+      );
+
+      assert.dom(".nvp__browser-window__tab:nth-child(1)").hasAttribute("data-active", "true");
+      assert.dom(".nvp__browser-window__tab:nth-child(2)").doesNotHaveAttribute("data-active");
+    });
+
+    test("shows toolbar with nav buttons when tabs are present", async function (assert) {
+      await render(
+        <template>
+          <BrowserWindow @tabs={{tabs}} @url="https://example.com">
+            content
+          </BrowserWindow>
+        </template>,
+      );
+
+      assert.dom(".nvp__browser-window__toolbar").exists();
+      assert.dom(".nvp__browser-window__nav").exists({ count: 2 });
+      assert.dom(".nvp__browser-window__toolbar .nvp__browser-window__url").exists();
+    });
+
+    test("moves URL from header to toolbar when tabs are present", async function (assert) {
+      await render(
+        <template>
+          <BrowserWindow @tabs={{tabs}} @url="https://example.com">
+            content
+          </BrowserWindow>
+        </template>,
+      );
+
+      assert.dom(".nvp__browser-window__header .nvp__browser-window__url").doesNotExist();
+      assert
+        .dom(".nvp__browser-window__toolbar .nvp__browser-window__url")
+        .hasText("https://example.com");
+    });
+
+    test("defaults to safari tab style on mac", async function (assert) {
+      await render(
+        <template>
+          <BrowserWindow @tabs={{tabs}}>
+            content
+          </BrowserWindow>
+        </template>,
+      );
+
+      assert.dom(".nvp__browser-window").hasAttribute("data-tab-style", "safari");
+    });
+
+    test("defaults to firefox tab style on non-mac", async function (assert) {
+      await render(
+        <template>
+          <BrowserWindow @os="windows" @tabs={{tabs}}>
+            content
+          </BrowserWindow>
+        </template>,
+      );
+
+      assert.dom(".nvp__browser-window").hasAttribute("data-tab-style", "firefox");
+    });
+
+    test("respects explicit @tabStyle", async function (assert) {
+      await render(
+        <template>
+          <BrowserWindow @tabs={{tabs}} @tabStyle="chrome">
+            content
+          </BrowserWindow>
+        </template>,
+      );
+
+      assert.dom(".nvp__browser-window").hasAttribute("data-tab-style", "chrome");
+    });
+
+    test("does not render tabs or toolbar when @tabs is not provided", async function (assert) {
+      await render(
+        <template>
+          <BrowserWindow @url="https://example.com">
+            content
+          </BrowserWindow>
+        </template>,
+      );
+
+      assert.dom(".nvp__browser-window__tabs").doesNotExist();
+      assert.dom(".nvp__browser-window__toolbar").doesNotExist();
+      assert.dom(".nvp__browser-window__nav").doesNotExist();
+    });
+  });
 });
