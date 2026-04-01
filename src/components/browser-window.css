@@ -6,7 +6,7 @@
   --bw-bg: light-dark(#fff, #2a2a2e);
   --bw-fg: light-dark(#000, #fff);
   --bw-border: light-dark(rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.1));
-  --bw-header-bg: light-dark(#e8e8e8, #38383d);
+  --bw-header-bg: light-dark(#f6f6f6, #3a3a3c);
   --bw-url-bg: light-dark(#fff, #1e1e21);
   --bw-url-fg: light-dark(#666, #aaa);
   --bw-circle-close: #ff5f56;
@@ -80,7 +80,7 @@
    ═══════════════════════════════════════════ */
 
 .nvp__browser-window[data-os="windows"] {
-  --bw-header-bg: light-dark(#f0f0f0, #2b2b2b);
+  --bw-header-bg: light-dark(#fff, #1f1f1f);
   --bw-radius: 0.375rem;
 }
 
@@ -118,7 +118,7 @@
    ═══════════════════════════════════════════ */
 
 .nvp__browser-window[data-os="ubuntu"] {
-  --bw-header-bg: light-dark(#ebebeb, #303030);
+  --bw-header-bg: light-dark(#fff, #2e2e32);
   --bw-radius: 0.75rem;
 }
 
