@@ -49,7 +49,9 @@ module("Timeline", function (hooks) {
     });
 
     test("renders a component indicator", async function (assert) {
-      const Icon = <template><span data-test-icon>icon</span></template>;
+      const Icon = <template>
+        <span data-test-icon>icon</span>
+      </template>;
 
       await render(
         <template>
