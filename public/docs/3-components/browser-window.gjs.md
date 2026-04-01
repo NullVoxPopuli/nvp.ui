@@ -53,22 +53,19 @@ The `@tabStyle` defaults to `"safari"` on macOS and `"firefox"` on other OS styl
 ```gjs live no-shadow
 import { BrowserWindow } from "nvp.ui/browser-window";
 
+const tabs = ["Home", "About", "Blog"];
+
 <template>
   <div class="gallery">
-    <BrowserWindow @url="https://example.com" @tabs={{(array "Home" "About" "Blog")}}>
+    <BrowserWindow @url="https://example.com" @tabs={{tabs}}>
       <p>Safari tabs (default on macOS)</p>
     </BrowserWindow>
 
-    <BrowserWindow
-      @os="windows"
-      @url="https://example.com"
-      @tabs={{(array "Home" "About" "Blog")}}
-      @tabStyle="chrome"
-    >
+    <BrowserWindow @os="windows" @url="https://example.com" @tabs={{tabs}} @tabStyle="chrome">
       <p>Chrome tabs</p>
     </BrowserWindow>
 
-    <BrowserWindow @os="ubuntu" @url="https://example.com" @tabs={{(array "Home" "About" "Blog")}}>
+    <BrowserWindow @os="ubuntu" @url="https://example.com" @tabs={{tabs}}>
       <p>Firefox tabs (default on non-macOS)</p>
     </BrowserWindow>
   </div>
