@@ -2,63 +2,45 @@
 
 A browser window mockup for demos, documentation, and screenshots. Inspired by [zachleat/browser-window](https://github.com/zachleat/browser-window).
 
-## macOS (default)
+## OS Styles
 
-The default style renders macOS-style traffic-light circles.
-
-```gjs live no-shadow
-import { BrowserWindow } from "nvp.ui/browser-window";
-
-<template>
-  <BrowserWindow @url="https://example.com">
-    <h3>Hello world!</h3>
-    <p>This is rendered inside a browser window mockup.</p>
-  </BrowserWindow>
-</template>
-```
-
-## Windows
-
-Use `@os="windows"` for Windows-style minimize / maximize / close controls.
+Use `@os` to choose a browser chrome style. The default is macOS.
 
 ```gjs live no-shadow
 import { BrowserWindow } from "nvp.ui/browser-window";
 
 <template>
-  <BrowserWindow @os="windows" @url="https://example.com">
-    <h3>Hello world!</h3>
-    <p>Windows-style window controls on the right.</p>
-  </BrowserWindow>
-</template>
-```
+  <div class="gallery">
+    <BrowserWindow @url="https://example.com">
+      <p>macOS (default)</p>
+    </BrowserWindow>
 
-## Ubuntu / GNOME
+    <BrowserWindow @os="windows" @url="https://example.com">
+      <p>Windows</p>
+    </BrowserWindow>
 
-Use `@os="ubuntu"` for Ubuntu/GNOME-style window controls with an orange close button.
+    <BrowserWindow @os="ubuntu" @url="https://example.com">
+      <p>Ubuntu / GNOME</p>
+    </BrowserWindow>
 
-```gjs live no-shadow
-import { BrowserWindow } from "nvp.ui/browser-window";
+    <BrowserWindow @os="generic" @url="https://example.com">
+      <p>Generic</p>
+    </BrowserWindow>
+  </div>
 
-<template>
-  <BrowserWindow @os="ubuntu" @url="https://example.com">
-    <h3>Hello world!</h3>
-    <p>GNOME-style controls — close, minimize, maximize. Hover to reveal icons.</p>
-  </BrowserWindow>
-</template>
-```
-
-## Generic
-
-Use `@os="generic"` for a plain title bar with no window controls.
-
-```gjs live no-shadow
-import { BrowserWindow } from "nvp.ui/browser-window";
-
-<template>
-  <BrowserWindow @os="generic" @url="https://example.com">
-    <h3>Hello world!</h3>
-    <p>No OS-specific chrome — just the URL bar.</p>
-  </BrowserWindow>
+  <style>
+    @scope {
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .gallery > * {
+        flex: 1 1 16rem;
+        min-width: 0;
+      }
+    }
+  </style>
 </template>
 ```
 
@@ -70,9 +52,33 @@ Omit `@url` to show just the header chrome.
 import { BrowserWindow } from "nvp.ui/browser-window";
 
 <template>
-  <BrowserWindow>
-    <p>No address bar, just content.</p>
-  </BrowserWindow>
+  <div class="gallery">
+    <BrowserWindow>
+      <p>macOS — no URL bar</p>
+    </BrowserWindow>
+
+    <BrowserWindow @os="windows">
+      <p>Windows — no URL bar</p>
+    </BrowserWindow>
+
+    <BrowserWindow @os="ubuntu">
+      <p>Ubuntu — no URL bar</p>
+    </BrowserWindow>
+  </div>
+
+  <style>
+    @scope {
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .gallery > * {
+        flex: 1 1 14rem;
+        min-width: 0;
+      }
+    }
+  </style>
 </template>
 ```
 
@@ -84,9 +90,29 @@ Use `@shadow` to add a layered drop shadow for a floating effect.
 import { BrowserWindow } from "nvp.ui/browser-window";
 
 <template>
-  <BrowserWindow @url="https://nullui.vercel.app" @shadow={{true}}>
-    <p>This window has a drop shadow.</p>
-  </BrowserWindow>
+  <div class="gallery">
+    <BrowserWindow @url="https://example.com" @shadow={{true}}>
+      <p>macOS with shadow</p>
+    </BrowserWindow>
+
+    <BrowserWindow @os="ubuntu" @url="https://example.com" @shadow={{true}}>
+      <p>Ubuntu with shadow</p>
+    </BrowserWindow>
+  </div>
+
+  <style>
+    @scope {
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .gallery > * {
+        flex: 1 1 16rem;
+        min-width: 0;
+      }
+    }
+  </style>
 </template>
 ```
 
@@ -112,14 +138,27 @@ Use `@flush` to remove body padding — useful for images or iframes that should
 import { BrowserWindow } from "nvp.ui/browser-window";
 
 <template>
-  <BrowserWindow @url="https://example.com" @flush={{true}} @shadow={{true}}>
-    <div class="placeholder">
-      Full-bleed content area
-    </div>
-  </BrowserWindow>
+  <div class="gallery">
+    <BrowserWindow @url="https://example.com" @flush={{true}} @shadow={{true}}>
+      <div class="placeholder">Full-bleed content</div>
+    </BrowserWindow>
+
+    <BrowserWindow @os="windows" @url="https://example.com" @flush={{true}} @shadow={{true}}>
+      <div class="placeholder">Full-bleed content</div>
+    </BrowserWindow>
+  </div>
 
   <style>
     @scope {
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .gallery > * {
+        flex: 1 1 16rem;
+        min-width: 0;
+      }
       .placeholder {
         background: linear-gradient(135deg, #667eea, #764ba2);
         color: white;
@@ -170,28 +209,28 @@ import { ComponentSignature } from "kolay";
 
 ### CSS Custom Properties
 
-|        Property        |                       Default                       | Description                              |
-| :--------------------: | :-------------------------------------------------: | :--------------------------------------- |
-|       `--bw-bg`        |             `light-dark(#fff, #2a2a2e)`             | Window background color                  |
-|       `--bw-fg`        |              `light-dark(#000, #fff)`               | Window text color                        |
-|     `--bw-border`      | `light-dark(rgba(0,0,0,.15), rgba(255,255,255,.1))` | Window border color                      |
-|    `--bw-header-bg`    |           `light-dark(#e8e8e8, #38383d)`            | Header/title bar background              |
-|     `--bw-url-bg`      |             `light-dark(#fff, #1e1e21)`             | URL bar background                       |
-|     `--bw-url-fg`      |              `light-dark(#666, #aaa)`               | URL bar text color                       |
-|  `--bw-circle-close`   |                      `#ff5f56`                      | Close circle color (red, macOS only)     |
-| `--bw-circle-minimize` |                      `#ffbd2e`                      | Minimize circle color (yellow, macOS)    |
-| `--bw-circle-maximize` |                      `#27c93f`                      | Maximize circle color (green, macOS)     |
-|   `--bw-circle-size`   |                      `0.75em`                       | Diameter of traffic-light circles        |
-|     `--bw-radius`      |                      `0.5rem`                       | Window border radius (0.375rem on win32) |
+|        Property        |                       Default                       | Description                           |
+| :--------------------: | :-------------------------------------------------: | :------------------------------------ |
+|       `--bw-bg`        |             `light-dark(#fff, #2a2a2e)`             | Window background color               |
+|       `--bw-fg`        |              `light-dark(#000, #fff)`               | Window text color                     |
+|     `--bw-border`      | `light-dark(rgba(0,0,0,.15), rgba(255,255,255,.1))` | Window border color                   |
+|    `--bw-header-bg`    |           `light-dark(#e8e8e8, #38383d)`            | Header/title bar background           |
+|     `--bw-url-bg`      |             `light-dark(#fff, #1e1e21)`             | URL bar background                    |
+|     `--bw-url-fg`      |              `light-dark(#666, #aaa)`               | URL bar text color                    |
+|  `--bw-circle-close`   |                      `#ff5f56`                      | Close circle color (red, macOS only)  |
+| `--bw-circle-minimize` |                      `#ffbd2e`                      | Minimize circle color (yellow, macOS) |
+| `--bw-circle-maximize` |                      `#27c93f`                      | Maximize circle color (green, macOS)  |
+|   `--bw-circle-size`   |                      `0.75em`                       | Diameter of traffic-light circles     |
+|     `--bw-radius`      |                      `0.5rem`                       | Window border radius                  |
 
 ### CSS Classes
 
-|              Class               | Description                            |
-| :------------------------------: | :------------------------------------- |
-|      `.nvp__browser-window`      | The outer window container             |
-|  `.nvp__browser-window__header`  | The title bar                          |
-| `.nvp__browser-window__circles`  | Container for macOS traffic-light dots |
-|  `.nvp__browser-window__circle`  | Individual macOS traffic-light circle  |
-| `.nvp__browser-window__controls` | Container for Windows control icons    |
-|   `.nvp__browser-window__url`    | The URL/address bar                    |
-|   `.nvp__browser-window__body`   | The content area                       |
+|              Class               | Description                                  |
+| :------------------------------: | :------------------------------------------- |
+|      `.nvp__browser-window`      | The outer window container                   |
+|  `.nvp__browser-window__header`  | The title bar                                |
+| `.nvp__browser-window__circles`  | Container for macOS traffic-light dots       |
+|  `.nvp__browser-window__circle`  | Individual macOS traffic-light circle        |
+| `.nvp__browser-window__controls` | Container for Windows / Ubuntu control icons |
+|   `.nvp__browser-window__url`    | The URL/address bar                          |
+|   `.nvp__browser-window__body`   | The content area                             |

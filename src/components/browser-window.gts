@@ -123,38 +123,36 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
             /></svg>
         </div>
       {{else if (isUbuntu @os)}}
+        {{#if @url}}
+          <div class="nvp__browser-window__url">{{@url}}</div>
+        {{/if}}
         <div class="nvp__browser-window__controls">
-          {{! close }}
-          <svg viewBox="0 0 12 12" aria-hidden="true"><path
-              d="M3.5 3.5l5 5M8.5 3.5l-5 5"
+          {{! minimize — horizontal dash }}
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path
+              d="M4 8h8"
               stroke="currentColor"
               stroke-width="1.2"
               stroke-linecap="round"
             /></svg>
-          {{! minimize }}
-          <svg viewBox="0 0 12 12" aria-hidden="true"><rect
-              y="5.5"
-              width="12"
-              height="1"
-              rx="0.5"
-              fill="currentColor"
-            /></svg>
-          {{! maximize }}
-          <svg viewBox="0 0 12 12" aria-hidden="true"><rect
-              x="1.5"
-              y="1.5"
-              width="9"
-              height="9"
-              rx="1"
+          {{! maximize — overlapping rectangles }}
+          <svg viewBox="0 0 16 16" aria-hidden="true"><rect
+              x="3"
+              y="3"
+              width="10"
+              height="10"
+              rx="1.5"
               stroke="currentColor"
-              stroke-width="1"
+              stroke-width="1.2"
               fill="none"
             /></svg>
+          {{! close — × }}
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path
+              d="M4.5 4.5l7 7M11.5 4.5l-7 7"
+              stroke="currentColor"
+              stroke-width="1.2"
+              stroke-linecap="round"
+            /></svg>
         </div>
-
-        {{#if @url}}
-          <div class="nvp__browser-window__url">{{@url}}</div>
-        {{/if}}
       {{else if (isGeneric @os)}}
         {{#if @url}}
           <div class="nvp__browser-window__url">{{@url}}</div>
