@@ -72,7 +72,7 @@ pnpm add nvp.ui
 import { ComponentSignature } from "kolay";
 
 <template>
-  <ComponentSignature @package="." @module="declarations/components/button.gts" @name="Signature" />
+  <ComponentSignature @package="." @module="declarations/components/button" @name="Signature" />
 </template>
 ```
 

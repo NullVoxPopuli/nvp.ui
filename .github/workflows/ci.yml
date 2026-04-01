@@ -85,8 +85,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
+          node-version-file: package.json
           cache: pnpm
       # TODO: uncomment this
       # - run: pnpm dlx @embroider/try apply ${{ matrix.name }}

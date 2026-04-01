@@ -1,6 +1,7 @@
 import { ember, extensions } from "@embroider/vite";
 
 import { babel } from "@rollup/plugin-babel";
+import rehypeShiki from "@shikijs/rehype";
 import { kolay } from "kolay/vite";
 import info from "unplugin-info/vite";
 import { defineConfig } from "vite";
@@ -15,14 +16,14 @@ export default defineConfig({
   resolve: {
     extensions,
     alias: {
+      "nvp.ui/button": `${process.cwd()}/src/components/button.gts`,
+      "nvp.ui/header": `${process.cwd()}/src/components/header.gts`,
+      "nvp.ui/polite-sticky": `${process.cwd()}/src/components/polite-sticky.gts`,
+      "nvp.ui/theme-toggle": `${process.cwd()}/src/components/theme-toggle.gts`,
+      "nvp.ui/progress-circle": `${process.cwd()}/src/components/progress-circle.gts`,
+      "nvp.ui/tabs": `${process.cwd()}/src/components/tabs.gts`,
+      "nvp.ui/theme": `${process.cwd()}/src/components/theme.gts`,
       "nvp.ui": `${process.cwd()}/src/index.ts`,
-
-      // // bug? idk
-      // "@glimmer/component": `${nm}/@glimmer/component/dist/index.js`,
-      // Need to do this until we eliminate `@glimmer/tracking` from all deps
-      "@glimmer/tracking/primitives/cache": `${nm}/ember-source/dist/packages/@glimmer/tracking/primitives/cache`,
-      "@glimmer/tracking": `${nm}/ember-source/dist/packages/@glimmer/tracking/index`,
-      "@glimmer/validator": `${nm}/ember-source/dist/packages/@glimmer/validator/index`,
 
       // All of this goes away when these addons are converted to V2
       // HOWEVER -- @ember/render-modifiers should be killed
@@ -42,8 +43,28 @@ export default defineConfig({
     }),
     info(),
     kolay({
-      src: "public/docs",
+      groups: [
+        {
+          name: "Docs",
+          src: import.meta.resolve("../public/docs", import.meta.url),
+        },
+      ],
       packages: ["."],
+      rehypePlugins: [
+        [
+          rehypeShiki,
+          {
+            themes: {
+              light: "github-light",
+              dark: "github-dark",
+            },
+            defaultColor: "light-dark()",
+          },
+        ],
+      ],
+      scope: `
+        import { ComponentSignature } from 'kolay';
+      `,
     }),
   ],
   optimizeDeps: {

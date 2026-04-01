@@ -6,6 +6,12 @@ function removeLoader() {
   });
 }
 
+function errorMessage(error: string | { reason: string; original: Error }): string {
+  if (typeof error === "string") return error;
+
+  return error.reason;
+}
+
 <template>
   <Page>
     <:pending>
@@ -16,7 +22,7 @@ function removeLoader() {
 
     <:error as |error|>
       <div style="border: 1px solid red; padding: 1rem;" data-page-error>
-        {{error}}
+        {{errorMessage error}}
       </div>
       {{(removeLoader)}}
     </:error>

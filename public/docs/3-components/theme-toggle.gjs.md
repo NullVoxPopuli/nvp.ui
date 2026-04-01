@@ -68,7 +68,7 @@ import { ComponentSignature } from "kolay";
 <template>
   <ComponentSignature
     @package="."
-    @module="declarations/components/theme-toggle.gts"
+    @module="declarations/components/theme-toggle"
     @name="Signature"
   />
 </template>
