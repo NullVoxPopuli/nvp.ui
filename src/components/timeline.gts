@@ -7,6 +7,8 @@ const or = (a: unknown, b: unknown) => a || b;
 const isString = (x: unknown) => typeof x === "string";
 
 /**
+ * TODO: restore discriminated union type once universal-ember/kolay#294 lands.
+ *
  * Two usage modes:
  *
  * **Compact:** `@indicator` arg + default block for content.
