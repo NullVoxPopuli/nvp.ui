@@ -25,12 +25,6 @@ export default defineConfig({
       "nvp.ui/theme": `${process.cwd()}/src/components/theme.gts`,
       "nvp.ui": `${process.cwd()}/src/index.ts`,
 
-      // // bug? idk
-      // "@glimmer/component": `${nm}/@glimmer/component/dist/index.js`,
-      // Need to do this until we eliminate `@glimmer/tracking` from all deps
-      "@glimmer/tracking/primitives/cache": `${nm}/ember-source/dist/packages/@glimmer/tracking/primitives/cache`,
-      "@glimmer/tracking": `${nm}/ember-source/dist/packages/@glimmer/tracking/index`,
-      "@glimmer/validator": `${nm}/ember-source/dist/packages/@glimmer/validator/index`,
 
       // All of this goes away when these addons are converted to V2
       // HOWEVER -- @ember/render-modifiers should be killed
