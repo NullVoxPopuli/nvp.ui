@@ -25,7 +25,6 @@ export default defineConfig({
       "nvp.ui/theme": `${process.cwd()}/src/components/theme.gts`,
       "nvp.ui": `${process.cwd()}/src/index.ts`,
 
-
       // All of this goes away when these addons are converted to V2
       // HOWEVER -- @ember/render-modifiers should be killed
       "ember-a11y-testing/test-support": `${nm}/ember-a11y-testing/addon-test-support`,
