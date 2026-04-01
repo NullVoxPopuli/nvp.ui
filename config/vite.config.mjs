@@ -42,8 +42,16 @@ export default defineConfig({
     }),
     info(),
     kolay({
-      src: "public/docs",
+      groups: [
+        {
+          name: "Docs",
+          src: import.meta.resolve("../public/docs", import.meta.url),
+        },
+      ],
       packages: ["."],
+      scope: `
+        import { ComponentSignature } from 'kolay';
+      `,
     }),
   ],
   optimizeDeps: {
