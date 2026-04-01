@@ -23,6 +23,7 @@ export default defineConfig({
       "nvp.ui/progress-circle": `${process.cwd()}/src/components/progress-circle.gts`,
       "nvp.ui/tabs": `${process.cwd()}/src/components/tabs.gts`,
       "nvp.ui/theme": `${process.cwd()}/src/components/theme.gts`,
+      "nvp.ui/timeline": `${process.cwd()}/src/components/timeline.gts`,
       "nvp.ui": `${process.cwd()}/src/index.ts`,
 
       // All of this goes away when these addons are converted to V2
