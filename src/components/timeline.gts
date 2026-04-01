@@ -7,75 +7,59 @@ const or = (a: unknown, b: unknown) => a || b;
 const isString = (x: unknown) => typeof x === "string";
 
 /**
- * Item signature — two usage modes:
+ * Two usage modes:
  *
  * **Compact:** `@indicator` arg + default block for content.
+ *
  * **Named blocks:** `<:indicator>`, `<:summary>`, and `<:content>` for full control.
+ *
+ * When using `@indicator`, use the default block.
+ * When using named blocks, do not pass `@indicator`.
  */
-export type ItemSignature =
-  | {
-      Element: HTMLDivElement;
-      Args: {
-        /**
-         * Controls the **color** of the indicator dot.
-         *
-         * - `complete` — green dot
-         * - `current`  — primary-color dot with a pulse ring
-         * - `incomplete` (default) — neutral dot
-         */
-        status?: "complete" | "current" | "incomplete";
+export interface ItemSignature {
+  Element: HTMLDivElement;
+  Args: {
+    /**
+     * Controls the **color** of the indicator dot.
+     *
+     * - `complete` — green dot
+     * - `current`  — primary-color dot with a pulse ring
+     * - `incomplete` (default) — neutral dot
+     */
+    status?: "complete" | "current" | "incomplete";
 
-        /**
-         * Icon or symbol rendered **inside** the indicator dot.
-         *
-         * Accepts a string (e.g. an emoji) or a component.
-         */
-        indicator: string | ComponentLike;
-      };
-      Blocks: {
-        /**
-         * Main content for this timeline entry.
-         */
-        default: [];
-        indicator: never;
-        summary: never;
-        content: never;
-      };
-    }
-  | {
-      Element: HTMLDivElement;
-      Args: {
-        /**
-         * Controls the **color** of the indicator dot.
-         *
-         * - `complete` — green dot
-         * - `current`  — primary-color dot with a pulse ring
-         * - `incomplete` (default) — neutral dot
-         */
-        status?: "complete" | "current" | "incomplete";
-
-        indicator?: undefined;
-      };
-      Blocks: {
-        /**
-         * Custom icon or symbol rendered **inside** the indicator dot.
-         *
-         * If omitted, a smaller plain dot is rendered instead.
-         */
-        indicator: [];
-        /**
-         * Brief headline for this timeline entry.
-         */
-        summary: [];
-        /**
-         * Optional expanded content (e.g. an inline comment card).
-         * Placed below the summary, aligned to the content column
-         * via CSS subgrid.
-         */
-        content: [];
-        default: never;
-      };
-    };
+    /**
+     * Icon or symbol rendered **inside** the indicator dot.
+     *
+     * Accepts a string (e.g. an emoji) or a component.
+     * When used, content goes in the default block.
+     * When omitted, use `<:indicator>` and `<:summary>` blocks instead.
+     */
+    indicator?: string | ComponentLike;
+  };
+  Blocks: {
+    /**
+     * Default block — main content (when using `@indicator`).
+     */
+    default: [];
+    /**
+     * Custom icon or symbol rendered **inside** the indicator dot.
+     * Use instead of `@indicator` for full control.
+     */
+    indicator: [];
+    /**
+     * Brief headline for this timeline entry.
+     * Use instead of the default block for full control.
+     */
+    summary: [];
+    /**
+     * Optional expanded content (e.g. an inline comment card).
+     * Placed below the summary, aligned to the content column
+     * via CSS subgrid.
+     */
+    content: [];
+  };
+}
 
 const TimelineItem: TOC<ItemSignature> = <template>
   <div class="nvp__timeline__item" role="listitem" data-status={{@status}} ...attributes>
