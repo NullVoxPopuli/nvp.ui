@@ -134,25 +134,24 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
         {{/if}}
         <div class="nvp__browser-window__controls">
           {{! minimize }}
-          <svg viewBox="0 0 12 12" aria-hidden="true"><rect
-              y="5.5"
-              width="12"
-              height="1"
-              fill="currentColor"
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path
+              d="M4 8h8"
+              stroke="currentColor"
+              stroke-width="1.2"
             /></svg>
           {{! maximize }}
-          <svg viewBox="0 0 12 12" aria-hidden="true"><rect
-              x="1"
-              y="1"
+          <svg viewBox="0 0 16 16" aria-hidden="true"><rect
+              x="3"
+              y="3"
               width="10"
               height="10"
               stroke="currentColor"
-              stroke-width="1"
+              stroke-width="1.2"
               fill="none"
             /></svg>
           {{! close }}
-          <svg viewBox="0 0 12 12" aria-hidden="true"><path
-              d="M1 1l10 10M11 1L1 11"
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path
+              d="M4.5 4.5l7 7M11.5 4.5l-7 7"
               stroke="currentColor"
               stroke-width="1.2"
             /></svg>
