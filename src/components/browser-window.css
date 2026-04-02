@@ -357,6 +357,7 @@
 }
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -366,18 +367,19 @@
   transition: background-color 0.15s;
 }
 
-/* Thin separator between inactive Chrome tabs */
+/* Partial-height separator between Chrome tabs (centered, ~60% height).
+   Only on inactive tabs, and not on the tab right after the active one. */
 .nvp__browser-window[data-tab-style="chrome"]
-  .nvp__browser-window__tab
-  + .nvp__browser-window__tab:not([data-active="true"]) {
-  border-left: 1px solid light-dark(rgba(0, 0, 0, 0.12), rgba(255, 255, 255, 0.1));
-}
-
-/* Hide separator next to active tab */
-.nvp__browser-window[data-tab-style="chrome"]
-  .nvp__browser-window__tab[data-active="true"]
-  + .nvp__browser-window__tab {
-  border-left: none;
+  .nvp__browser-window__tab:not([data-active="true"])
+  + .nvp__browser-window__tab:not([data-active="true"])::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: light-dark(rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.1));
+  pointer-events: none;
 }
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab:hover {
