@@ -268,14 +268,15 @@
 }
 
 /* ═══════════════════════════════════════════
-   Tab style: Chrome
-   Larger rounded tabs with distinct raised feel.
-   Active tab stands out from the darker tab bar.
+   Tab style: Chrome (Material Design 3)
+   Very rounded top corners, darker tab bar,
+   active tab is white with no visible side borders.
    ═══════════════════════════════════════════ */
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__header {
   padding-bottom: 0;
   border-bottom: 1px solid var(--browser-window-border-color);
+  background: light-dark(#dee1e6, #292b2e);
 }
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tabs {
@@ -286,35 +287,32 @@
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab {
   display: flex;
   align-items: center;
-  border-radius: 0.5em 0.5em 0 0;
-  padding: 0.375em 0.75em;
+  border-radius: 0.625em 0.625em 0 0;
+  padding: 0.375em 1em;
   margin-bottom: -1px;
   transition: background-color 0.15s;
 }
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab:hover {
-  background: light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.08));
-  border-radius: 0.5em 0.5em 0 0;
+  background: light-dark(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.08));
 }
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"] {
   background: var(--browser-window-background);
-  border: 1px solid var(--browser-window-border-color);
-  border-bottom-color: var(--browser-window-background);
-  border-radius: 0.5em 0.5em 0 0;
+  border-bottom: 1px solid var(--browser-window-background);
 }
 
 /* ═══════════════════════════════════════════
    Tab style: Firefox (Proton)
-   Rounded tabs with visible borders on active.
-   Similar shape to Chrome but with a darker tab
-   bar and slightly different corner radius.
+   Boxier tabs with visible outlined borders on
+   the active tab. Less rounded than Chrome,
+   darker tab bar with clear contrast.
    ═══════════════════════════════════════════ */
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__header {
   padding-bottom: 0;
-  border-bottom: 1px solid var(--browser-window-border-color);
-  background: light-dark(#e0e0e4, #2b2a33);
+  border-bottom: 1px solid light-dark(#bbb, #444);
+  background: light-dark(#ddd, #2b2a33);
 }
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tabs {
@@ -325,19 +323,19 @@
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab {
   display: flex;
   align-items: center;
-  border-radius: 0.375em 0.375em 0 0;
+  border-radius: 0.25em 0.25em 0 0;
   padding: 0.375em 0.75em;
   margin-bottom: -1px;
   transition: background-color 0.15s;
 }
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab:hover {
-  background: light-dark(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.08));
+  background: light-dark(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.08));
 }
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab[data-active="true"] {
   background: var(--browser-window-background);
-  border: 1px solid var(--browser-window-border-color);
+  border: 1px solid light-dark(#bbb, #555);
   border-bottom-color: var(--browser-window-background);
 }
 
