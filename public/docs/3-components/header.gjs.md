@@ -52,30 +52,27 @@ pnpm add nvp.ui
 import { ComponentSignature } from "kolay";
 
 <template>
-  <ComponentSignature
-    @package="."
-    @module="declarations/components/header.gts"
-    @name="Signature"
-  />
+  <ComponentSignature @package="." @module="declarations/components/header" @name="Signature" />
 </template>
 ```
 
 ### State Attributes
 
-| key | description |
-| :---: | :--- |
+|       key       | description                                                |
+| :-------------: | :--------------------------------------------------------- |
 | `data-position` | Set to "top" or "bottom" based on the `@position` argument |
 
 ### Styling
 
 Public selectors:
 
-| key | description |
-| :---: | :--- |
-| `.preem__header` | The header element |
-| `.preem__header__left` | Container for left-aligned content |
+|           key           | description                         |
+| :---------------------: | :---------------------------------- |
+|    `.preem__header`     | The header element                  |
+| `.preem__header__left`  | Container for left-aligned content  |
 | `.preem__header__right` | Container for right-aligned content |
 
 The header uses `position: sticky` by default with:
+
 - `top: 0` for default or `@position="top"`
 - `bottom: 0` for `@position="bottom"`
