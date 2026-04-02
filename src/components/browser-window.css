@@ -263,6 +263,13 @@
   display: none;
 }
 
+/* Firefox only shows close button on the active tab */
+.nvp__browser-window[data-tab-style="firefox"]
+  .nvp__browser-window__tab:not([data-active="true"])
+  .nvp__browser-window__tab-close {
+  display: none;
+}
+
 /* ── New tab (+) button ─────────────────── */
 
 .nvp__browser-window__new-tab {
