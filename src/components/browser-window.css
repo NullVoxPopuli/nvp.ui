@@ -93,9 +93,9 @@
 }
 
 .nvp__browser-window[data-os="windows"] .nvp__browser-window__controls svg {
-  width: 2em;
-  height: 1.5em;
-  padding: 0.25em 0.5em;
+  width: 1.25em;
+  height: 1em;
+  padding: 0.375em 0.625em;
   color: light-dark(#333, #ccc);
   border-radius: 0;
   transition:
@@ -132,8 +132,8 @@
 }
 
 .nvp__browser-window[data-os="ubuntu"] .nvp__browser-window__controls svg {
-  width: 1.5em;
-  height: 1.5em;
+  width: 1em;
+  height: 1em;
   padding: 0.25em;
   border-radius: 50%;
   color: light-dark(#555, #999);
@@ -224,6 +224,54 @@
   color: var(--browser-window-color);
 }
 
+/* ── Tab close button ───────────────────── */
+
+.nvp__browser-window__tab-close {
+  width: 0.875em;
+  height: 0.875em;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: var(--browser-window-url-color);
+  opacity: 0.6;
+  transition: opacity 0.15s, background-color 0.15s;
+}
+
+.nvp__browser-window__tab:hover .nvp__browser-window__tab-close,
+.nvp__browser-window__tab[data-active="true"] .nvp__browser-window__tab-close {
+  opacity: 1;
+}
+
+.nvp__browser-window__tab-close:hover {
+  background: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.15));
+}
+
+/* Safari tabs don't show close buttons in a mockup */
+.nvp__browser-window[data-tab-style="safari"] .nvp__browser-window__tab-close {
+  display: none;
+}
+
+/* ── New tab (+) button ─────────────────── */
+
+.nvp__browser-window__new-tab {
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+  padding: 0.125em;
+  border-radius: 50%;
+  color: var(--browser-window-url-color);
+  transition: background-color 0.15s;
+  align-self: center;
+}
+
+.nvp__browser-window__new-tab:hover {
+  background: light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.08));
+}
+
+/* Safari doesn't show a new-tab button in the tab bar */
+.nvp__browser-window[data-tab-style="safari"] .nvp__browser-window__new-tab {
+  display: none;
+}
+
 /* ── Toolbar (shown when tabs are present) ── */
 
 .nvp__browser-window__toolbar {
@@ -239,7 +287,7 @@
   border-top: 1px solid var(--browser-window-border-color);
 }
 
-/* ── Nav back/forward buttons ────────────── */
+/* ── Nav back/forward/reload buttons ─────── */
 
 .nvp__browser-window__nav {
   width: 1em;
@@ -269,8 +317,11 @@
 
 /* ═══════════════════════════════════════════
    Tab style: Chrome (Material Design 3)
-   Subtle rounded top corners, darker tab bar,
-   active tab is white and merges with the toolbar.
+   Active tab has the signature curved "foot" —
+   an inverse radius at the base where the tab
+   meets the toolbar, created with radial-gradient
+   pseudo-elements. Tab sits on a darker strip
+   and merges into the white toolbar below.
    ═══════════════════════════════════════════ */
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__header {
@@ -282,24 +333,68 @@
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tabs {
   align-self: stretch;
   align-items: end;
+  gap: 0;
 }
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab {
   display: flex;
   align-items: center;
+  gap: 0.5em;
   border-radius: 0.5em 0.5em 0 0;
   padding: 0.375em 0.75em;
   margin-bottom: -1px;
   transition: background-color 0.15s;
 }
 
+/* Thin separator between inactive Chrome tabs */
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab + .nvp__browser-window__tab:not([data-active="true"]) {
+  border-left: 1px solid light-dark(rgba(0, 0, 0, 0.12), rgba(255, 255, 255, 0.1));
+}
+
+/* Hide separator next to active tab */
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"] + .nvp__browser-window__tab {
+  border-left: none;
+}
+
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab:hover {
   background: light-dark(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.08));
+  border-radius: 0.5em 0.5em 0 0;
 }
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"] {
+  position: relative;
   background: var(--browser-window-background);
   border-bottom: 1px solid var(--browser-window-background);
+  z-index: 1;
+}
+
+/* Chrome curved foot — inverse radius at bottom corners of active tab */
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"]::before,
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"]::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0.5em;
+  height: 0.5em;
+  pointer-events: none;
+}
+
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"]::before {
+  left: -0.5em;
+  background: radial-gradient(
+    circle at 100% 0,
+    transparent 0.5em,
+    var(--browser-window-background) 0.5em
+  );
+}
+
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"]::after {
+  right: -0.5em;
+  background: radial-gradient(
+    circle at 0 0,
+    transparent 0.5em,
+    var(--browser-window-background) 0.5em
+  );
 }
 
 /* Chrome URL bar is pill-shaped */
@@ -309,48 +404,61 @@
   background: light-dark(#f1f3f4, #202124);
 }
 
+/* Chrome toolbar gets a subtle bottom border */
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__toolbar {
+  border-bottom: 1px solid var(--browser-window-border-color);
+}
+
 /* ═══════════════════════════════════════════
    Tab style: Firefox (Proton)
-   Rounded top-corner tabs on a light tab strip.
-   Active tab is a raised rounded shape that
-   blends into the toolbar below.
+   Floating rounded-rectangle tabs that sit
+   within the tab strip without touching the
+   bottom edge — similar to Safari's pill style
+   but with a slightly boxier shape.
    ═══════════════════════════════════════════ */
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__header {
-  padding-bottom: 0;
+  padding-top: 0.5em;
+  padding-bottom: 0.375em;
   border-bottom: 1px solid light-dark(#ccc, #444);
   background: light-dark(#f0f0f4, #2b2a33);
 }
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tabs {
   align-self: stretch;
-  align-items: end;
+  align-items: center;
 }
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab {
   display: flex;
   align-items: center;
-  border-radius: 0.5em 0.5em 0 0;
-  padding: 0.375em 0.75em;
-  margin-bottom: -1px;
+  gap: 0.5em;
+  border-radius: 0.25em;
+  padding: 0.25em 0.625em;
   transition: background-color 0.15s;
 }
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab:hover {
-  background: light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.08));
+  background: light-dark(rgba(0, 0, 0, 0.07), rgba(255, 255, 255, 0.08));
 }
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab[data-active="true"] {
   background: var(--browser-window-background);
-  box-shadow: 0 0 0 1px light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
-  border-bottom: 1px solid var(--browser-window-background);
+  box-shadow:
+    0 1px 3px light-dark(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.3)),
+    0 0 0 0.5px light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
 }
 
-/* Firefox URL bar is pill-shaped */
+/* Firefox URL bar is a rounded rectangle */
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__url {
   border-radius: 0.5em;
   padding: 0.25em 0.625em;
   background: light-dark(#f0f0f4, #1c1b22);
+}
+
+/* Firefox toolbar gets a subtle bottom border */
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__toolbar {
+  border-bottom: 1px solid var(--browser-window-border-color);
 }
 
 /* ── Content area ────────────────────────── */
