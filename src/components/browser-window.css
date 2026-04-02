@@ -90,13 +90,15 @@
 
 .nvp__browser-window[data-os="windows"] .nvp__browser-window__controls {
   gap: 0;
+  align-self: stretch;
+  margin: -0.625em -0.75em -0.625em auto;
 }
 
 .nvp__browser-window[data-os="windows"] .nvp__browser-window__controls svg {
   box-sizing: content-box;
   width: 1em;
-  height: 1em;
-  padding: 0.375em 0.75em;
+  height: auto;
+  padding: 0 0.75em;
   color: light-dark(#333, #ccc);
   border-radius: 0;
   transition:
@@ -398,7 +400,7 @@
   .nvp__browser-window__tab[data-active="true"]::before {
   left: -0.5em;
   background: radial-gradient(
-    circle at 100% 0,
+    circle at 0 0,
     transparent 0.5em,
     var(--browser-window-background) 0.5em
   );
@@ -407,10 +409,21 @@
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"]::after {
   right: -0.5em;
   background: radial-gradient(
-    circle at 0 0,
+    circle at 100% 0,
     transparent 0.5em,
     var(--browser-window-background) 0.5em
   );
+}
+
+/* Chrome/Firefox tab styles change header padding — adjust controls margin */
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__controls,
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__controls {
+  margin-bottom: 0;
+}
+
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__controls {
+  margin-top: -0.5em;
+  margin-bottom: -0.375em;
 }
 
 /* Chrome URL bar is pill-shaped */
