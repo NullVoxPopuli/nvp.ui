@@ -89,7 +89,7 @@
 }
 
 .nvp__browser-window[data-os="windows"] .nvp__browser-window__controls {
-  margin-left: auto;
+  gap: 0;
 }
 
 .nvp__browser-window[data-os="windows"] .nvp__browser-window__controls svg {
@@ -127,7 +127,6 @@
 }
 
 .nvp__browser-window[data-os="ubuntu"] .nvp__browser-window__controls {
-  margin-left: auto;
   gap: 0.25em;
 }
 
@@ -171,6 +170,7 @@
 .nvp__browser-window__controls {
   display: flex;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 /* ── URL bar (shared) ────────────────────── */
@@ -213,11 +213,16 @@
   font-size: 0.75em;
   line-height: 1.5;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   max-width: 12em;
   cursor: default;
   color: var(--browser-window-url-color);
+}
+
+/* Truncate the label text, not the whole tab (which contains the close icon) */
+.nvp__browser-window__tab-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .nvp__browser-window__tab[data-active="true"] {

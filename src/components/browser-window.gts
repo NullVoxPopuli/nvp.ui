@@ -111,7 +111,7 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
                 class="nvp__browser-window__tab"
                 data-active={{if (isFirst index) "true"}}
                 role="tab"
-              >{{tab}}
+              ><span class="nvp__browser-window__tab-label">{{tab}}</span>
                 <svg class="nvp__browser-window__tab-close" viewBox="0 0 16 16" aria-hidden="true"><path
                     d="M4.5 4.5l7 7M11.5 4.5l-7 7"
                     stroke="currentColor"
@@ -120,14 +120,13 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
                   /></svg>
               </div>
             {{/each}}
+            <svg class="nvp__browser-window__new-tab" viewBox="0 0 16 16" aria-hidden="true"><path
+                d="M8 3v10M3 8h10"
+                stroke="currentColor"
+                stroke-width="1.3"
+                stroke-linecap="round"
+              /></svg>
           </div>
-          {{! new tab button }}
-          <svg class="nvp__browser-window__new-tab" viewBox="0 0 16 16" aria-hidden="true"><path
-              d="M8 3v10M3 8h10"
-              stroke="currentColor"
-              stroke-width="1.3"
-              stroke-linecap="round"
-            /></svg>
         {{else}}
           {{#if @url}}
             <div class="nvp__browser-window__url">{{@url}}</div>
@@ -166,7 +165,7 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
                 class="nvp__browser-window__tab"
                 data-active={{if (isFirst index) "true"}}
                 role="tab"
-              >{{tab}}
+              ><span class="nvp__browser-window__tab-label">{{tab}}</span>
                 <svg class="nvp__browser-window__tab-close" viewBox="0 0 16 16" aria-hidden="true"><path
                     d="M4.5 4.5l7 7M11.5 4.5l-7 7"
                     stroke="currentColor"
@@ -175,14 +174,13 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
                   /></svg>
               </div>
             {{/each}}
+            <svg class="nvp__browser-window__new-tab" viewBox="0 0 16 16" aria-hidden="true"><path
+                d="M8 3v10M3 8h10"
+                stroke="currentColor"
+                stroke-width="1.3"
+                stroke-linecap="round"
+              /></svg>
           </div>
-          {{! new tab button }}
-          <svg class="nvp__browser-window__new-tab" viewBox="0 0 16 16" aria-hidden="true"><path
-              d="M8 3v10M3 8h10"
-              stroke="currentColor"
-              stroke-width="1.3"
-              stroke-linecap="round"
-            /></svg>
         {{else}}
           {{#if @url}}
             <div class="nvp__browser-window__url">{{@url}}</div>
