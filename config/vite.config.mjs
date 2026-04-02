@@ -16,6 +16,7 @@ export default defineConfig({
   resolve: {
     extensions,
     alias: {
+      "nvp.ui/browser-window": `${process.cwd()}/src/components/browser-window.gts`,
       "nvp.ui/button": `${process.cwd()}/src/components/button.gts`,
       "nvp.ui/header": `${process.cwd()}/src/components/header.gts`,
       "nvp.ui/polite-sticky": `${process.cwd()}/src/components/polite-sticky.gts`,
