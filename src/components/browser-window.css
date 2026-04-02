@@ -242,7 +242,9 @@
   border-radius: 50%;
   color: var(--browser-window-url-color);
   opacity: 0.6;
-  transition: opacity 0.15s, background-color 0.15s;
+  transition:
+    opacity 0.15s,
+    background-color 0.15s;
 }
 
 .nvp__browser-window__tab:hover .nvp__browser-window__tab-close,
@@ -356,12 +358,16 @@
 }
 
 /* Thin separator between inactive Chrome tabs */
-.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab + .nvp__browser-window__tab:not([data-active="true"]) {
+.nvp__browser-window[data-tab-style="chrome"]
+  .nvp__browser-window__tab
+  + .nvp__browser-window__tab:not([data-active="true"]) {
   border-left: 1px solid light-dark(rgba(0, 0, 0, 0.12), rgba(255, 255, 255, 0.1));
 }
 
 /* Hide separator next to active tab */
-.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"] + .nvp__browser-window__tab {
+.nvp__browser-window[data-tab-style="chrome"]
+  .nvp__browser-window__tab[data-active="true"]
+  + .nvp__browser-window__tab {
   border-left: none;
 }
 
@@ -388,7 +394,8 @@
   pointer-events: none;
 }
 
-.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"]::before {
+.nvp__browser-window[data-tab-style="chrome"]
+  .nvp__browser-window__tab[data-active="true"]::before {
   left: -0.5em;
   background: radial-gradient(
     circle at 100% 0,

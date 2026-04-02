@@ -112,7 +112,13 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
                 data-active={{if (isFirst index) "true"}}
                 role="tab"
               ><span class="nvp__browser-window__tab-label">{{tab}}</span>
-                <svg class="nvp__browser-window__tab-close" viewBox="0 0 16 16" aria-hidden="true"><path
+                <svg
+                  class="nvp__browser-window__tab-close"
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                  role="presentation"
+                ><path
+                    role="presentation"
                     d="M4.5 4.5l7 7M11.5 4.5l-7 7"
                     stroke="currentColor"
                     stroke-width="1.5"
@@ -165,7 +171,13 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
                 data-active={{if (isFirst index) "true"}}
                 role="tab"
               ><span class="nvp__browser-window__tab-label">{{tab}}</span>
-                <svg class="nvp__browser-window__tab-close" viewBox="0 0 16 16" aria-hidden="true"><path
+                <svg
+                  class="nvp__browser-window__tab-close"
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                  role="presentation"
+                ><path
+                    role="presentation"
                     d="M4.5 4.5l7 7M11.5 4.5l-7 7"
                     stroke="currentColor"
                     stroke-width="1.5"
