@@ -269,58 +269,61 @@
 
 /* ═══════════════════════════════════════════
    Tab style: Chrome
-   Material rounded rectangle tabs — active tab
-   connects to the toolbar below
+   Larger rounded tabs with distinct raised feel.
+   Active tab stands out from the darker tab bar.
    ═══════════════════════════════════════════ */
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__header {
   padding-bottom: 0;
+  border-bottom: 1px solid var(--browser-window-border-color);
 }
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tabs {
   align-self: stretch;
-  align-items: stretch;
-  border-bottom: 1px solid var(--browser-window-border-color);
+  align-items: end;
 }
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab {
   display: flex;
   align-items: center;
   border-radius: 0.5em 0.5em 0 0;
+  padding: 0.375em 0.75em;
   margin-bottom: -1px;
   transition: background-color 0.15s;
 }
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab:hover {
-  background: light-dark(rgba(0, 0, 0, 0.04), rgba(255, 255, 255, 0.06));
+  background: light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.08));
+  border-radius: 0.5em 0.5em 0 0;
 }
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"] {
   background: var(--browser-window-background);
   border: 1px solid var(--browser-window-border-color);
   border-bottom-color: var(--browser-window-background);
+  border-radius: 0.5em 0.5em 0 0;
 }
 
 /* ═══════════════════════════════════════════
    Tab style: Firefox (Proton)
-   Rounded rectangle tabs — active tab is white,
-   connecting to the toolbar below
+   Subtle, flat tabs. Active tab is a quiet white
+   rectangle — no side borders, minimal chrome.
    ═══════════════════════════════════════════ */
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__header {
   padding-bottom: 0;
+  border-bottom: 1px solid var(--browser-window-border-color);
 }
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tabs {
   align-self: stretch;
   align-items: stretch;
-  border-bottom: 1px solid var(--browser-window-border-color);
 }
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab {
   display: flex;
   align-items: center;
-  border-radius: 0.375em 0.375em 0 0;
+  border-radius: 0.25em 0.25em 0 0;
   margin-bottom: -1px;
   transition: background-color 0.15s;
 }
@@ -331,8 +334,7 @@
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab[data-active="true"] {
   background: var(--browser-window-background);
-  border: 1px solid var(--browser-window-border-color);
-  border-bottom-color: var(--browser-window-background);
+  border-bottom: 1px solid var(--browser-window-background);
 }
 
 /* ── Content area ────────────────────────── */
