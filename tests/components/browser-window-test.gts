@@ -192,7 +192,7 @@ module("BrowserWindow", function (hooks) {
       );
 
       assert.dom(".nvp__browser-window__toolbar").exists();
-      assert.dom(".nvp__browser-window__nav").exists({ count: 2 });
+      assert.dom(".nvp__browser-window__nav").exists({ count: 3 });
       assert.dom(".nvp__browser-window__toolbar .nvp__browser-window__url").exists();
     });
 
