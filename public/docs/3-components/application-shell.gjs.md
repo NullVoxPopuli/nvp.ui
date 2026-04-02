@@ -30,7 +30,7 @@ import { ApplicationShell } from "nvp.ui";
       <:default>
         <p>Main content goes here. The sidebar is visible on desktop and collapses into a hamburger
           menu on mobile.</p>
-        <p>Try resizing the browser window to see the responsive behavior.</p>
+        <p>Drag the resize handle on the right edge below 768px to see the hamburger menu appear.</p>
       </:default>
     </ApplicationShell>
   </div>
@@ -39,7 +39,10 @@ import { ApplicationShell } from "nvp.ui";
     @scope {
       .demo-container {
         height: 20rem;
+        width: 100%;
+        min-width: 20rem;
         overflow: auto;
+        resize: horizontal;
         border: 1px solid light-dark(rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.1));
         border-radius: 0.5rem;
       }
@@ -123,7 +126,9 @@ import { ComponentSignature } from "kolay";
 
 ### Responsive behavior
 
-| Breakpoint | Sidebar | Hamburger toggle              |
-| :--------- | :------ | :---------------------------- |
-| `≥ 768px`  | Visible | Hidden                        |
-| `< 768px`  | Hidden  | Visible (opens mobile drawer) |
+Uses container queries, so the component responds to its container's width rather than the viewport.
+
+| Container width | Sidebar | Hamburger toggle              |
+| :-------------- | :------ | :---------------------------- |
+| `≥ 768px`       | Visible | Hidden                        |
+| `< 768px`       | Hidden  | Visible (opens mobile drawer) |
