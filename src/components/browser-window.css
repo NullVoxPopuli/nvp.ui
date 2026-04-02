@@ -97,7 +97,7 @@
 .nvp__browser-window[data-os="windows"] .nvp__browser-window__controls svg {
   box-sizing: content-box;
   width: 1em;
-  height: auto;
+  height: 100%;
   padding: 0 0.75em;
   color: light-dark(#333, #ccc);
   border-radius: 0;
