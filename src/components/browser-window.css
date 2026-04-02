@@ -269,13 +269,13 @@
 
 /* ═══════════════════════════════════════════
    Tab style: Chrome (Material Design 3)
-   Very rounded top corners, darker tab bar,
-   active tab is white with no visible side borders.
+   Subtle rounded top corners, darker tab bar,
+   active tab is white and merges with the toolbar.
    ═══════════════════════════════════════════ */
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__header {
   padding-bottom: 0;
-  border-bottom: 1px solid var(--browser-window-border-color);
+  border-bottom: 1px solid light-dark(#c8cacd, #3c3e41);
   background: light-dark(#dee1e6, #292b2e);
 }
 
@@ -287,14 +287,14 @@
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab {
   display: flex;
   align-items: center;
-  border-radius: 0.625em 0.625em 0 0;
-  padding: 0.375em 1em;
+  border-radius: 0.5em 0.5em 0 0;
+  padding: 0.375em 0.75em;
   margin-bottom: -1px;
   transition: background-color 0.15s;
 }
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab:hover {
-  background: light-dark(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.08));
+  background: light-dark(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.08));
 }
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"] {
@@ -302,17 +302,24 @@
   border-bottom: 1px solid var(--browser-window-background);
 }
 
+/* Chrome URL bar is pill-shaped */
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__url {
+  border-radius: 1em;
+  padding: 0.25em 0.75em;
+  background: light-dark(#f1f3f4, #202124);
+}
+
 /* ═══════════════════════════════════════════
    Tab style: Firefox (Proton)
-   Boxier tabs with visible outlined borders on
-   the active tab. Less rounded than Chrome,
-   darker tab bar with clear contrast.
+   Rounded top-corner tabs on a light tab strip.
+   Active tab is a raised rounded shape that
+   blends into the toolbar below.
    ═══════════════════════════════════════════ */
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__header {
   padding-bottom: 0;
-  border-bottom: 1px solid light-dark(#bbb, #444);
-  background: light-dark(#ddd, #2b2a33);
+  border-bottom: 1px solid light-dark(#ccc, #444);
+  background: light-dark(#f0f0f4, #2b2a33);
 }
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tabs {
@@ -323,20 +330,27 @@
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab {
   display: flex;
   align-items: center;
-  border-radius: 0.25em 0.25em 0 0;
+  border-radius: 0.5em 0.5em 0 0;
   padding: 0.375em 0.75em;
   margin-bottom: -1px;
   transition: background-color 0.15s;
 }
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab:hover {
-  background: light-dark(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.08));
+  background: light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.08));
 }
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab[data-active="true"] {
   background: var(--browser-window-background);
-  border: 1px solid light-dark(#bbb, #555);
-  border-bottom-color: var(--browser-window-background);
+  box-shadow: 0 0 0 1px light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
+  border-bottom: 1px solid var(--browser-window-background);
+}
+
+/* Firefox URL bar is pill-shaped */
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__url {
+  border-radius: 0.5em;
+  padding: 0.25em 0.625em;
+  background: light-dark(#f0f0f4, #1c1b22);
 }
 
 /* ── Content area ────────────────────────── */
