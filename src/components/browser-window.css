@@ -297,7 +297,7 @@
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab[data-active="true"] {
   background: var(--browser-window-background);
-  box-shadow: inset 0 2px 0 0 #0060df;
+  border-top: 2px solid #0060df;
 }
 
 /* ── Content area ────────────────────────── */

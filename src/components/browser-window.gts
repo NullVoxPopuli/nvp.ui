@@ -85,7 +85,7 @@ export interface BrowserWindowSignature {
  * <template>
  *   <BrowserWindow
  *     @url="https://example.com"
- *     @tabs={{(array "Home" "About" "Contact")}}
+ *     @tabs={{(Array "Home" "About" "Contact")}}
  *   >
  *     <p>Hello world!</p>
  *   </BrowserWindow>
@@ -104,11 +104,21 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
   >
     <div class="nvp__browser-window__header">
       {{#if (isWindows @os)}}
-        {{#unless @tabs}}
+        {{#if @tabs}}
+          <div class="nvp__browser-window__tabs" role="tablist">
+            {{#each @tabs as |tab index|}}
+              <div
+                class="nvp__browser-window__tab"
+                data-active={{if (isFirst index) "true"}}
+                role="tab"
+              >{{tab}}</div>
+            {{/each}}
+          </div>
+        {{else}}
           {{#if @url}}
             <div class="nvp__browser-window__url">{{@url}}</div>
           {{/if}}
-        {{/unless}}
+        {{/if}}
         <div class="nvp__browser-window__controls">
           {{! minimize }}
           <svg viewBox="0 0 12 12" aria-hidden="true"><rect
@@ -135,11 +145,21 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
             /></svg>
         </div>
       {{else if (isUbuntu @os)}}
-        {{#unless @tabs}}
+        {{#if @tabs}}
+          <div class="nvp__browser-window__tabs" role="tablist">
+            {{#each @tabs as |tab index|}}
+              <div
+                class="nvp__browser-window__tab"
+                data-active={{if (isFirst index) "true"}}
+                role="tab"
+              >{{tab}}</div>
+            {{/each}}
+          </div>
+        {{else}}
           {{#if @url}}
             <div class="nvp__browser-window__url">{{@url}}</div>
           {{/if}}
-        {{/unless}}
+        {{/if}}
         <div class="nvp__browser-window__controls">
           {{! minimize }}
           <svg viewBox="0 0 16 16" aria-hidden="true"><path
@@ -168,11 +188,21 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
             /></svg>
         </div>
       {{else if (isGeneric @os)}}
-        {{#unless @tabs}}
+        {{#if @tabs}}
+          <div class="nvp__browser-window__tabs" role="tablist">
+            {{#each @tabs as |tab index|}}
+              <div
+                class="nvp__browser-window__tab"
+                data-active={{if (isFirst index) "true"}}
+                role="tab"
+              >{{tab}}</div>
+            {{/each}}
+          </div>
+        {{else}}
           {{#if @url}}
             <div class="nvp__browser-window__url">{{@url}}</div>
           {{/if}}
-        {{/unless}}
+        {{/if}}
       {{else}}
         <div class="nvp__browser-window__circles">
           <div class="nvp__browser-window__circle"></div>
@@ -180,23 +210,21 @@ export const BrowserWindow: TOC<BrowserWindowSignature> = <template>
           <div class="nvp__browser-window__circle"></div>
         </div>
 
-        {{#unless @tabs}}
+        {{#if @tabs}}
+          <div class="nvp__browser-window__tabs" role="tablist">
+            {{#each @tabs as |tab index|}}
+              <div
+                class="nvp__browser-window__tab"
+                data-active={{if (isFirst index) "true"}}
+                role="tab"
+              >{{tab}}</div>
+            {{/each}}
+          </div>
+        {{else}}
           {{#if @url}}
             <div class="nvp__browser-window__url">{{@url}}</div>
           {{/if}}
-        {{/unless}}
-      {{/if}}
-
-      {{#if @tabs}}
-        <div class="nvp__browser-window__tabs" role="tablist">
-          {{#each @tabs as |tab index|}}
-            <div
-              class="nvp__browser-window__tab"
-              data-active={{if (isFirst index) "true"}}
-              role="tab"
-            >{{tab}}</div>
-          {{/each}}
-        </div>
+        {{/if}}
       {{/if}}
     </div>
 
