@@ -9,8 +9,9 @@
   overflow: auto;
 }
 
-.mobile-menu-wrapper__content,
-.mobile-menu__tray {
+/* Double-class for higher specificity to beat the android theme */
+.mobile-menu-wrapper__content.mobile-menu-wrapper__content,
+.mobile-menu__tray.mobile-menu__tray {
   background: none;
 }
 
