@@ -232,6 +232,10 @@
   gap: 0.375em;
   padding: 0.375em 0.75em;
   background: var(--browser-window-background);
+}
+
+/* Safari toolbar has a top border separating it from tabs */
+.nvp__browser-window[data-tab-style="safari"] .nvp__browser-window__toolbar {
   border-top: 1px solid var(--browser-window-border-color);
 }
 
@@ -265,11 +269,25 @@
 
 /* ═══════════════════════════════════════════
    Tab style: Chrome
-   Material rounded rectangle tabs
+   Material rounded rectangle tabs — active tab
+   connects to the toolbar below
    ═══════════════════════════════════════════ */
 
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__header {
+  padding-bottom: 0;
+}
+
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tabs {
+  align-self: stretch;
+  align-items: stretch;
+  border-bottom: 1px solid var(--browser-window-border-color);
+}
+
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab {
+  display: flex;
+  align-items: center;
   border-radius: 0.5em 0.5em 0 0;
+  margin-bottom: -1px;
   transition: background-color 0.15s;
 }
 
@@ -279,15 +297,31 @@
 
 .nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"] {
   background: var(--browser-window-background);
+  border: 1px solid var(--browser-window-border-color);
+  border-bottom-color: var(--browser-window-background);
 }
 
 /* ═══════════════════════════════════════════
    Tab style: Firefox (Proton)
-   Rounded rectangle tabs with blue active accent
+   Rounded rectangle tabs with blue active accent —
+   active tab connects to toolbar below
    ═══════════════════════════════════════════ */
 
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__header {
+  padding-bottom: 0;
+}
+
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tabs {
+  align-self: stretch;
+  align-items: stretch;
+  border-bottom: 1px solid var(--browser-window-border-color);
+}
+
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab {
+  display: flex;
+  align-items: center;
   border-radius: 0.375em 0.375em 0 0;
+  margin-bottom: -1px;
   transition: background-color 0.15s;
 }
 
@@ -297,6 +331,8 @@
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab[data-active="true"] {
   background: var(--browser-window-background);
+  border: 1px solid var(--browser-window-border-color);
+  border-bottom-color: var(--browser-window-background);
   border-top: 2px solid #0060df;
 }
 
