@@ -4,39 +4,97 @@ The `<Header />` component provides a navigation bar for your application that c
 
 This component is ideal for app navigation, offering a clean and flexible layout with left and right content areas.
 
-```gjs live
+```gjs live no-shadow
 import { Header } from "nvp.ui";
 
 <template>
-  <Header>
-    <:left>
-      <a href="/">nvp.ui</a>
-    </:left>
-    <:right>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-    </:right>
-  </Header>
+  <div class="scroll-container">
+    <Header>
+      <:left>
+        <a href="/">nvp.ui</a>
+      </:left>
+      <:right>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </:right>
+    </Header>
+
+    <div class="scroll-content">
+      <p>Scroll down to see the header stick to the top.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+      <p>Excepteur sint occaecat cupidatat non proident.</p>
+    </div>
+  </div>
+
+  <style>
+    @scope {
+      .scroll-container {
+        height: 12rem;
+        overflow-y: auto;
+        border: 1px solid light-dark(rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.1));
+        border-radius: 0.5rem;
+      }
+      .scroll-content {
+        padding: 1rem;
+      }
+      .scroll-content p {
+        margin: 1.5rem 0;
+        color: light-dark(#666, #aaa);
+      }
+    }
+  </style>
 </template>
 ```
 
 ## Bottom Positioning
 
-The header can also be positioned at the bottom of the screen by setting `@position="bottom"`:
+Use `@position="bottom"` to stick the header to the bottom. Scroll this container to see it stay anchored:
 
-```gjs live
+```gjs live no-shadow
 import { Header } from "nvp.ui";
 
 <template>
-  <Header @position="bottom">
-    <:left>
-      <span>Footer Navigation</span>
-    </:left>
-    <:right>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-    </:right>
-  </Header>
+  <div class="scroll-container">
+    <div class="scroll-content">
+      <p>Scroll down — the footer navigation stays at the bottom.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+      <p>Excepteur sint occaecat cupidatat non proident.</p>
+    </div>
+
+    <Header @position="bottom">
+      <:left>
+        <span>Footer Navigation</span>
+      </:left>
+      <:right>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </:right>
+    </Header>
+  </div>
+
+  <style>
+    @scope {
+      .scroll-container {
+        height: 12rem;
+        overflow-y: auto;
+        border: 1px solid light-dark(rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.1));
+        border-radius: 0.5rem;
+      }
+      .scroll-content {
+        padding: 1rem;
+      }
+      .scroll-content p {
+        margin: 1.5rem 0;
+        color: light-dark(#666, #aaa);
+      }
+    }
+  </style>
 </template>
 ```
 
