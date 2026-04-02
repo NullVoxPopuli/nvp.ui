@@ -303,8 +303,8 @@
 
 /* ═══════════════════════════════════════════
    Tab style: Firefox (Proton)
-   Rounded rectangle tabs with blue active accent —
-   active tab connects to toolbar below
+   Rounded rectangle tabs — active tab is white,
+   connecting to the toolbar below
    ═══════════════════════════════════════════ */
 
 .nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__header {
@@ -333,7 +333,6 @@
   background: var(--browser-window-background);
   border: 1px solid var(--browser-window-border-color);
   border-bottom-color: var(--browser-window-background);
-  border-top: 2px solid #0060df;
 }
 
 /* ── Content area ────────────────────────── */

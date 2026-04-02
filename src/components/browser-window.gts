@@ -32,7 +32,7 @@ export interface BrowserWindowSignature {
      *
      * - `"safari"` — rounded pill tabs (default when `@os` is `"mac"`)
      * - `"chrome"` — Material-style rounded rectangle tabs
-     * - `"firefox"` — Proton-style rounded rectangle tabs with blue active accent
+     * - `"firefox"` — Proton-style rounded rectangle tabs
      *
      * Defaults to `"safari"` when `@os` is `"mac"`, `"firefox"` otherwise.
      */
