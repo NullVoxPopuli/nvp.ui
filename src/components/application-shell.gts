@@ -1,5 +1,5 @@
-import "./application-shell.css";
 import "ember-mobile-menu/themes/android";
+import "./application-shell.css";
 
 import { on } from "@ember/modifier";
 
