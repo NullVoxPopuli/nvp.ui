@@ -7,8 +7,22 @@
   padding: 1rem;
   background: var(--header-background);
   position: sticky;
-  top: 0;
   z-index: var(--z-site-nav);
+
+  /* Default to top positioning */
+  top: 0;
+
+  /* Explicit top positioning */
+  &[data-position="top"] {
+    top: 0;
+    bottom: auto;
+  }
+
+  /* Bottom positioning when specified */
+  &[data-position="bottom"] {
+    top: auto;
+    bottom: 0;
+  }
 
   .preem__header__left {
   }
