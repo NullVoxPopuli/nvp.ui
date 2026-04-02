@@ -91,6 +91,7 @@
 .nvp__browser-window[data-os="windows"] .nvp__browser-window__controls {
   gap: 0;
   align-self: stretch;
+  min-height: 2em;
   margin: -0.625em -0.75em -0.625em auto;
 }
 
