@@ -2,7 +2,7 @@
 
 Display user profile images with graceful fallback to initials or icons. Group avatars together with an overlapping layout that expands on hover.
 
-```gjs live no-shadow
+```gjs live preview no-shadow
 import { Avatar, AvatarGroup } from "nvp.ui";
 
 <template>
