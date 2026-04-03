@@ -4,10 +4,12 @@ A dropdown menu with full keyboard navigation, variant theming, and keyboard sho
 
 ```gjs live preview no-shadow
 import { Menu } from "nvp.ui";
+import { PortalTargets } from "ember-primitives";
 
 const noop = () => {};
 
 <template>
+  <PortalTargets />
   <div style="display: flex; gap: 1rem; align-items: start;">
     <Menu as |menu|>
       <menu.Trigger>Actions</menu.Trigger>
