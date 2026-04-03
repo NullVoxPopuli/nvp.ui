@@ -17,8 +17,8 @@ export interface Signature {
 }
 
 export const ProgressCircle: TOC<Signature> = <template>
-  <Progress class="preem_progress-circle" @value={{@value}} ...attributes as |x|>
-    <x.Indicator class="preem_progress" />
+  <Progress class="nvp_progress-circle" @value={{@value}} ...attributes as |x|>
+    <x.Indicator class="nvp_progress" />
     <svg width="200" height="200" viewPort="0 0 100 100">
       <circle
         r={{r}}
@@ -42,8 +42,8 @@ export const ProgressCircle: TOC<Signature> = <template>
     </svg>
     {{! template-lint-disable no-forbidden-elements }}
     <style>
-      .preem_progress-circle {
-        .preem_progress {
+      .nvp_progress-circle {
+        .nvp_progress {
           height: 200px;
           width: 200px;
           position: absolute;
@@ -56,7 +56,7 @@ export const ProgressCircle: TOC<Signature> = <template>
           stroke-width: 1rem;
         }
 
-        .preem_progress:after {
+        .nvp_progress:after {
           content: attr(data-percent) "%";
           line-height: 200px;
           font-size: 1.5rem;

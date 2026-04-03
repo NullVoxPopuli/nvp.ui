@@ -78,7 +78,7 @@ const isString = (x: unknown) => typeof x === "string";
 export const Button: TOC<Signature> = <template>
   <Popover @inline={{true}} as |popover|>
     <button
-      class="preem__button"
+      class="nvp__button"
       data-variant={{@variant}}
       aria-disabled={{Boolean @disabled}}
       type="button"
@@ -89,7 +89,7 @@ export const Button: TOC<Signature> = <template>
       {{/if}}
 
       {{#if (or (has-block) (has-block "text"))}}
-        <span class="preem__button__text">{{yield}}{{yield to="text"}}</span>
+        <span class="nvp__button__text">{{yield}}{{yield to="text"}}</span>
       {{/if}}
 
       {{#if (or (has-block "end") @end)}}
@@ -105,7 +105,7 @@ export const Button: TOC<Signature> = <template>
       {{#if @disabled}}
         {{! Needs more work -- maybe using a menu instead of popover }}
         {{! template-lint-disable no-nested-interactive }}
-        <popover.Content tabindex="0" class="preem__button__disabled-reason">
+        <popover.Content tabindex="0" class="nvp__button__disabled-reason">
           {{#if (isString @disabled)}}
             {{@disabled}}
           {{else}}

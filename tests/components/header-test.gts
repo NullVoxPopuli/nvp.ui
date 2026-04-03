@@ -22,7 +22,7 @@ module("Header", function (hooks) {
     );
 
     assert.dom("header").exists();
-    assert.dom("header").hasClass("preem__header");
+    assert.dom("header").hasClass("nvp__header");
     assert.dom("[data-test-left]").hasText("Left Content");
     assert.dom("[data-test-right]").hasText("Right Content");
     assert.dom("header").doesNotHaveAttribute("data-position");
@@ -80,9 +80,9 @@ module("Header", function (hooks) {
       </template>,
     );
 
-    assert.dom(".preem__header__left").exists();
-    assert.dom(".preem__header__right").exists();
-    assert.dom(".preem__header__left a").hasText("Home");
-    assert.dom(".preem__header__right button").hasText("Action");
+    assert.dom(".nvp__header__left").exists();
+    assert.dom(".nvp__header__right").exists();
+    assert.dom(".nvp__header__left a").hasText("Home");
+    assert.dom(".nvp__header__right button").hasText("Action");
   });
 });

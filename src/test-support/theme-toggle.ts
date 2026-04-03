@@ -2,7 +2,7 @@ import { assert } from "@ember/debug";
 import { click, find } from "@ember/test-helpers";
 
 const selectors = {
-  root: "preem__site-theme-toggle",
+  root: "nvp__site-theme-toggle",
   checkbox: '[name="color-scheme"]',
 };
 

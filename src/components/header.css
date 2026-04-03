@@ -1,4 +1,4 @@
-.preem__header {
+.nvp__header {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -23,12 +23,12 @@
     bottom: 0;
   }
 
-  .preem__header__left {
+  .nvp__header__left {
     display: flex;
     align-items: center;
     gap: 0.75rem;
   }
-  .preem__header__right {
+  .nvp__header__right {
     display: flex;
     align-items: center;
     gap: 1rem;

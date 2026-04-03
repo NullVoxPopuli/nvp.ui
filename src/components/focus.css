@@ -25,7 +25,7 @@ textarea,
   }
 }
 
-.preem__site-theme-toggle {
+.nvp__site-theme-toggle {
   &:has(:focus),
   &:has(:focus-visible) {
     label {

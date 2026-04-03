@@ -29,17 +29,17 @@ export interface Signature {
 }
 
 export const ThemeToggle: TOC<Signature> = <template>
-  <Switch class="preem__site-theme-toggle" ...attributes as |s|>
+  <Switch class="nvp__site-theme-toggle" ...attributes as |s|>
     <s.Control name="color-scheme" checked={{(isDark)}} {{on "change" toggleTheme}} />
     <s.Label>
-      <span class="preem__sr-only">Toggle between light and dark mode</span>
+      <span class="nvp__sr-only">Toggle between light and dark mode</span>
       {{!
         🎵 It's raining, it's pouring, ... 🎵
         https://www.youtube.com/watch?v=ll5ykbAumD4
       }}
       <Moon />
       <Sun />
-      <span class="ball preem__button"></span>
+      <span class="ball nvp__button"></span>
     </s.Label>
   </Switch>
 </template>;

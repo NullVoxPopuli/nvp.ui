@@ -44,7 +44,7 @@ none
 
 Public selectors:
 
-|                  key                  | description                                  |
-| :-----------------------------------: | :------------------------------------------- |
-|        `.preem__external-link`        | The anchor class                             |
-| `.preem__external-link__link-content` | The wrapper element around the block content |
+|                 key                 | description                                  |
+| :---------------------------------: | :------------------------------------------- |
+|        `.nvp__external-link`        | The anchor class                             |
+| `.nvp__external-link__link-content` | The wrapper element around the block content |

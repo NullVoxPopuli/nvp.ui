@@ -18,11 +18,11 @@ export interface Signature {
 }
 
 export const Header: TOC<Signature> = <template>
-  <header class="preem__header surface elevation-xl2" data-position={{@position}} ...attributes>
-    <span class="preem__header__left">
+  <header class="nvp__header surface elevation-xl2" data-position={{@position}} ...attributes>
+    <span class="nvp__header__left">
       {{yield to="left"}}
     </span>
-    <span class="preem__header__right">
+    <span class="nvp__header__right">
       {{yield to="right"}}
     </span>
   </header>

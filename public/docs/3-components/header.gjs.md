@@ -124,11 +124,11 @@ import { ComponentSignature } from "kolay";
 
 Public selectors:
 
-|           key           | description                         |
-| :---------------------: | :---------------------------------- |
-|    `.preem__header`     | The header element                  |
-| `.preem__header__left`  | Container for left-aligned content  |
-| `.preem__header__right` | Container for right-aligned content |
+|          key          | description                         |
+| :-------------------: | :---------------------------------- |
+|    `.nvp__header`     | The header element                  |
+| `.nvp__header__left`  | Container for left-aligned content  |
+| `.nvp__header__right` | Container for right-aligned content |
 
 The header uses `position: sticky` by default with:
 
