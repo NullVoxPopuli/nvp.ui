@@ -8,8 +8,12 @@
   container-type: inline-size;
 }
 
-/* Double-class for higher specificity to beat the android theme */
-.mobile-menu-wrapper__content.mobile-menu-wrapper__content,
+/* Double-class for higher specificity to beat the android theme.
+   Use page background instead of none so scrolling doesn't reveal gaps. */
+.mobile-menu-wrapper__content.mobile-menu-wrapper__content {
+  background: var(--color-page-background, #eee);
+}
+
 .mobile-menu__tray.mobile-menu__tray {
   background: none;
 }
@@ -24,25 +28,75 @@
   line-height: 1.75rem;
 }
 
-/* ── Hamburger menu icon ────────────────── */
+/* ── Animated hamburger icon ─────────────── */
+/* Animation is driven by --menu-progress (0 = closed, 1 = open)
+   which tracks the menu's relative position for smooth, drag-aware
+   motion on touch devices. */
 
-.nvp__application-shell__menu-icon {
-  fill: currentColor;
+.nvp__hamburger {
+  --menu-progress: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 22px;
+  height: 22px;
+}
+
+.nvp__hamburger__bar {
+  display: block;
+  width: 100%;
+  height: 2.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transform-origin: center;
+}
+
+/* Top bar: translate down + rotate to 45deg, proportional to progress.
+   translateY = gap (6px) + bar height (2.5px) = 8.5px */
+.nvp__hamburger__bar:nth-child(1) {
+  transform: translateY(calc(8.5px * var(--menu-progress)))
+    rotate(calc(45deg * var(--menu-progress)));
+}
+
+/* Middle bar: fade + shrink proportional to progress */
+.nvp__hamburger__bar:nth-child(2) {
+  opacity: calc(1 - var(--menu-progress));
+  transform: scaleX(calc(1 - var(--menu-progress)));
+}
+
+/* Bottom bar: translate up + rotate to -45deg */
+.nvp__hamburger__bar:nth-child(3) {
+  transform: translateY(calc(-8.5px * var(--menu-progress)))
+    rotate(calc(-45deg * var(--menu-progress)));
 }
 
 /* ── Hamburger toggle button ────────────── */
 
 header button.mobile-menu__toggle {
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem;
   background: none;
+  border: none;
   color: currentColor;
-  width: 48px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   display: inline-flex;
   align-self: center;
   align-items: center;
   justify-content: center;
   margin: 0;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+header button.mobile-menu__toggle:hover {
+  background: light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.08));
+}
+
+header button.mobile-menu__toggle:active {
+  background: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.12));
 }
 
 @container (min-width: 768px) {

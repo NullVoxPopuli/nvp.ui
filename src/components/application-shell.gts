@@ -2,6 +2,7 @@ import "ember-mobile-menu/themes/android";
 import "./application-shell.css";
 
 import { on } from "@ember/modifier";
+import { htmlSafe } from "@ember/template";
 
 // @ts-expect-error no types for the mobile-menu
 import MenuWrapper from "ember-mobile-menu/components/mobile-menu-wrapper";
@@ -11,16 +12,9 @@ import { Shell } from "./shell.gts";
 
 import type { TOC } from "@ember/component/template-only";
 
-const MenuIcon: TOC<{ Element: SVGElement }> = <template>
-  <svg
-    class="nvp__application-shell__menu-icon"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 50 50"
-    ...attributes
-  ><path
-      d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z"
-    ></path></svg>
-</template>;
+function menuProgress(position: number) {
+  return htmlSafe(`--menu-progress: ${position ?? 0}`);
+}
 
 export interface ApplicationShellSignature {
   Element: HTMLDivElement;
@@ -45,7 +39,13 @@ export const ApplicationShell: TOC<ApplicationShellSignature> = <template>
       <mmw.Content>
         <Header>
           <:left>
-            <mmw.Toggle><MenuIcon /></mmw.Toggle>
+            <mmw.Toggle>
+              <span class="nvp__hamburger" style={{menuProgress mmw.relativePosition}}>
+                <span class="nvp__hamburger__bar"></span>
+                <span class="nvp__hamburger__bar"></span>
+                <span class="nvp__hamburger__bar"></span>
+              </span>
+            </mmw.Toggle>
             {{yield to="headerLeft"}}
           </:left>
           <:right>
