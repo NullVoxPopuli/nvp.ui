@@ -5,7 +5,7 @@
   gap: 1rem;
   justify-content: space-between;
   padding: 1rem;
-  background: var(--header-background);
+  background: var(--surface-background-color, var(--header-background));
   position: sticky;
   z-index: var(--z-site-nav);
 
