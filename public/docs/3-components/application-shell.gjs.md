@@ -4,52 +4,36 @@ A full application layout that combines theme management, a sticky header, a res
 
 Internally includes [`Shell`](/Docs/3-components/theme-toggle) (theme sync), [`Header`](/Docs/3-components/header), and a push-style mobile menu (via [ember-mobile-menu](https://github.com/nickschot/ember-mobile-menu)).
 
-```gjs live no-shadow
+```gjs
 import { ApplicationShell } from "nvp.ui";
 
 <template>
-  <div class="demo-container">
-    <ApplicationShell>
-      <:headerLeft>
-        <a href="/">My App</a>
-      </:headerLeft>
-      <:headerRight>
-        <a href="/about">About</a>
-        <a href="/docs">Docs</a>
-      </:headerRight>
-      <:nav>
-        <nav>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/getting-started">Getting Started</a></li>
-            <li><a href="/components">Components</a></li>
-            <li><a href="/guides">Guides</a></li>
-          </ul>
-        </nav>
-      </:nav>
-      <:default>
-        <p>Main content goes here. The sidebar is visible on desktop and collapses into a hamburger
-          menu on mobile.</p>
-        <p>Drag the resize handle on the right edge below 768px to see the hamburger menu appear.</p>
-      </:default>
-    </ApplicationShell>
-  </div>
-
-  <style>
-    @scope {
-      .demo-container {
-        height: 20rem;
-        width: 100%;
-        min-width: 20rem;
-        overflow: auto;
-        resize: horizontal;
-        border: 1px solid light-dark(rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.1));
-        border-radius: 0.5rem;
-      }
-    }
-  </style>
+  <ApplicationShell>
+    <:headerLeft>
+      <a href="/">My App</a>
+    </:headerLeft>
+    <:headerRight>
+      <a href="/about">About</a>
+      <a href="/docs">Docs</a>
+    </:headerRight>
+    <:nav>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/getting-started">Getting Started</a></li>
+          <li><a href="/components">Components</a></li>
+          <li><a href="/guides">Guides</a></li>
+        </ul>
+      </nav>
+    </:nav>
+    <:default>
+      <p>Your content here</p>
+    </:default>
+  </ApplicationShell>
 </template>
 ```
+
+This page itself uses `<ApplicationShell>` — the header, sidebar, and layout you see on this docs site is powered by it. Resize the browser window below 768px to see the hamburger menu.
 
 ## Named Blocks
 

@@ -57,9 +57,9 @@ export const ApplicationShell: TOC<ApplicationShellSignature> = <template>
           <div class="nvp__application-shell__sidebar">
             {{yield to="nav"}}
           </div>
-          <div class="nvp__application-shell__content">
+          <main class="nvp__application-shell__content">
             {{yield}}
-          </div>
+          </main>
         </div>
       </mmw.Content>
     </MenuWrapper>
