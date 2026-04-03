@@ -47,7 +47,9 @@ export default Route(
           <SideNav />
         </:nav>
         <:default>
-          {{outlet}}
+          <main>
+            {{outlet}}
+          </main>
         </:default>
       </ApplicationShell>
     </div>
