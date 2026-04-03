@@ -14,8 +14,8 @@ export interface Signature {
 }
 
 export const ExternalLink: TOC<Signature> = <template>
-  <PrimitiveExternalLink class="preem__external-link" ...attributes>
-    <span class="preem__external-link__link-content">{{yield}}</span>
+  <PrimitiveExternalLink class="nvp__external-link" ...attributes>
+    <span class="nvp__external-link__link-content">{{yield}}</span>
     <Arrow />
   </PrimitiveExternalLink>
 </template>;

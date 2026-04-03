@@ -82,9 +82,9 @@ none
 
 Public selectors:
 
-|             key             | description                                  |
-| :-------------------------: | :------------------------------------------- |
-| `.preem__site-theme-toggle` | Wrapper element around the underlying switch |
+|            key            | description                                  |
+| :-----------------------: | :------------------------------------------- |
+| `.nvp__site-theme-toggle` | Wrapper element around the underlying switch |
 
 ## Accessibility
 

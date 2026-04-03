@@ -1,4 +1,4 @@
-.preem__site-theme-toggle {
+.nvp__site-theme-toggle {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,7 +7,7 @@
   margin: 0;
   transition: background 0.2s linear;
 
-  .preem__sr-only {
+  .nvp__sr-only {
     margin-left: -0.5rem;
   }
   input[type="checkbox"][role="switch"] {
@@ -59,7 +59,7 @@
     transform: translateX(120%);
   }
 }
-.preem__sr-only {
+.nvp__sr-only {
   width: 0px;
   max-width: 0px;
   height: 0px;
