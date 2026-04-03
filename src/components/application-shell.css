@@ -1,0 +1,80 @@
+/* ───────────────────────────────────────────
+   ApplicationShell — app layout with mobile menu
+   ─────────────────────────────────────────── */
+
+/* ── Mobile menu overrides ──────────────── */
+
+.mobile-menu-wrapper {
+  container-type: inline-size;
+}
+
+/* Double-class for higher specificity to beat the android theme */
+.mobile-menu-wrapper__content.mobile-menu-wrapper__content,
+.mobile-menu__tray.mobile-menu__tray {
+  background: none;
+}
+
+.mobile-menu__tray {
+  overflow-x: hidden;
+}
+
+.mobile-menu__tray nav ul {
+  padding-left: 0.5rem;
+  list-style: none;
+  line-height: 1.75rem;
+}
+
+/* ── Hamburger menu icon ────────────────── */
+
+.nvp__application-shell__menu-icon {
+  fill: currentColor;
+}
+
+/* ── Hamburger toggle button ────────────── */
+
+header button.mobile-menu__toggle {
+  padding: 0.25rem 0.5rem;
+  background: none;
+  color: currentColor;
+  width: 48px;
+  height: 44px;
+  display: inline-flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+@container (min-width: 768px) {
+  header button.mobile-menu__toggle {
+    display: none;
+  }
+}
+
+/* ── Sidebar + main grid layout ─────────── */
+
+.nvp__application-shell__layout {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 2rem;
+
+  .nvp__application-shell__content {
+    max-width: 100dvw;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+}
+
+.nvp__application-shell__layout nav ul {
+  padding-left: 0.5rem;
+  list-style: none;
+  line-height: 1.75rem;
+}
+
+@container (max-width: 768px) {
+  .nvp__application-shell__sidebar {
+    display: none;
+  }
+}

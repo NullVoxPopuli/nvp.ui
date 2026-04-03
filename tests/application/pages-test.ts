@@ -35,6 +35,22 @@ async function checkA11y(assert: Assert, path: string, theme: string) {
           enabled: false,
         },
         /**
+         * The ApplicationShell demo page nests a full shell
+         * (with its own header/main) inside the page-level shell.
+         */
+        "landmark-no-duplicate-banner": {
+          enabled: false,
+        },
+        "landmark-unique": {
+          enabled: false,
+        },
+        "landmark-main-is-top-level": {
+          enabled: false,
+        },
+        "landmark-complementary-is-top-level": {
+          enabled: false,
+        },
+        /**
          * We know how to do this
          */
         "nested-interactive": {
