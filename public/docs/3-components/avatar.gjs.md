@@ -9,17 +9,20 @@ import { Avatar, AvatarGroup } from "nvp.ui";
   <p><strong>Single Avatars</strong></p>
   <div style="display: flex; gap: 1rem; align-items: center;">
     <Avatar
-      @src="https://robohash.org/zergling?set=set2&size=150x150"
+      @src="/images/zerg/zergling.jpg"
       @alt="Zergling"
       @size="small"
     >
       <:fallback>ZL</:fallback>
     </Avatar>
-    <Avatar @src="https://robohash.org/hydralisk?set=set2&size=150x150" @alt="Hydralisk">
+    <Avatar
+      @src="/images/zerg/hydralisk.jpg"
+      @alt="Hydralisk"
+    >
       <:fallback>HY</:fallback>
     </Avatar>
     <Avatar
-      @src="https://robohash.org/ultralisk?set=set2&size=150x150"
+      @src="/images/zerg/ultralisk.jpg"
       @alt="Ultralisk"
       @size="large"
     >
@@ -40,19 +43,34 @@ import { Avatar, AvatarGroup } from "nvp.ui";
 
   <p><strong>Avatar Group</strong></p>
   <AvatarGroup aria-label="Zerg swarm">
-    <Avatar @src="https://robohash.org/drone?set=set2&size=150x150" @alt="Drone">
+    <Avatar
+      @src="/images/zerg/drone.jpg"
+      @alt="Drone"
+    >
       <:fallback>DR</:fallback>
     </Avatar>
-    <Avatar @src="https://robohash.org/overlord?set=set2&size=150x150" @alt="Overlord">
+    <Avatar
+      @src="/images/zerg/overlord.jpg"
+      @alt="Overlord"
+    >
       <:fallback>OV</:fallback>
     </Avatar>
-    <Avatar @src="https://robohash.org/queen?set=set2&size=150x150" @alt="Queen">
+    <Avatar
+      @src="/images/zerg/queen.jpg"
+      @alt="Queen"
+    >
       <:fallback>QN</:fallback>
     </Avatar>
-    <Avatar @src="https://robohash.org/infestor?set=set2&size=150x150" @alt="Infestor">
-      <:fallback>IN</:fallback>
+    <Avatar
+      @src="/images/zerg/mutalisk.jpg"
+      @alt="Mutalisk"
+    >
+      <:fallback>MU</:fallback>
     </Avatar>
-    <Avatar @src="https://robohash.org/roach?set=set2&size=150x150" @alt="Roach">
+    <Avatar
+      @src="/images/zerg/roach.jpg"
+      @alt="Roach"
+    >
       <:fallback>RO</:fallback>
     </Avatar>
   </AvatarGroup>
