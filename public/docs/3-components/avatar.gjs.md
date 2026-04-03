@@ -8,44 +8,52 @@ import { Avatar, AvatarGroup } from "nvp.ui";
 <template>
   <p><strong>Single Avatars</strong></p>
   <div style="display: flex; gap: 1rem; align-items: center;">
-    <Avatar @src="https://i.pravatar.cc/150?u=alice" @alt="Alice" @size="small">
-      <:fallback>A</:fallback>
+    <Avatar
+      @src="https://robohash.org/zergling?set=set2&size=150x150"
+      @alt="Zergling"
+      @size="small"
+    >
+      <:fallback>ZL</:fallback>
     </Avatar>
-    <Avatar @src="https://i.pravatar.cc/150?u=bob" @alt="Bob">
-      <:fallback>B</:fallback>
+    <Avatar @src="https://robohash.org/hydralisk?set=set2&size=150x150" @alt="Hydralisk">
+      <:fallback>HY</:fallback>
     </Avatar>
-    <Avatar @src="https://i.pravatar.cc/150?u=carol" @alt="Carol" @size="large">
-      <:fallback>C</:fallback>
+    <Avatar
+      @src="https://robohash.org/ultralisk?set=set2&size=150x150"
+      @alt="Ultralisk"
+      @size="large"
+    >
+      <:fallback>UL</:fallback>
     </Avatar>
   </div>
 
   <p><strong>With Fallback (broken image)</strong></p>
   <div style="display: flex; gap: 1rem; align-items: center;">
     <Avatar @src="/broken.png" @alt="Default fallback" @size="small" />
-    <Avatar @src="/broken.png" @alt="With initials" @delayMs={{0}}>
-      <:fallback>NV</:fallback>
+    <Avatar @src="/broken.png" @alt="Mutalisk" @delayMs={{0}}>
+      <:fallback>MU</:fallback>
     </Avatar>
-    <Avatar @src="/broken.png" @alt="Large initials" @size="large" @delayMs={{0}}>
-      <:fallback>XY</:fallback>
+    <Avatar @src="/broken.png" @alt="Brood Lord" @size="large" @delayMs={{0}}>
+      <:fallback>BL</:fallback>
     </Avatar>
   </div>
 
   <p><strong>Avatar Group</strong></p>
-  <AvatarGroup aria-label="Team members">
-    <Avatar @src="https://i.pravatar.cc/150?u=1" @alt="User 1">
-      <:fallback>U1</:fallback>
+  <AvatarGroup aria-label="Zerg swarm">
+    <Avatar @src="https://robohash.org/drone?set=set2&size=150x150" @alt="Drone">
+      <:fallback>DR</:fallback>
     </Avatar>
-    <Avatar @src="https://i.pravatar.cc/150?u=2" @alt="User 2">
-      <:fallback>U2</:fallback>
+    <Avatar @src="https://robohash.org/overlord?set=set2&size=150x150" @alt="Overlord">
+      <:fallback>OV</:fallback>
     </Avatar>
-    <Avatar @src="https://i.pravatar.cc/150?u=3" @alt="User 3">
-      <:fallback>U3</:fallback>
+    <Avatar @src="https://robohash.org/queen?set=set2&size=150x150" @alt="Queen">
+      <:fallback>QN</:fallback>
     </Avatar>
-    <Avatar @src="https://i.pravatar.cc/150?u=4" @alt="User 4">
-      <:fallback>U4</:fallback>
+    <Avatar @src="https://robohash.org/infestor?set=set2&size=150x150" @alt="Infestor">
+      <:fallback>IN</:fallback>
     </Avatar>
-    <Avatar @src="https://i.pravatar.cc/150?u=5" @alt="User 5">
-      <:fallback>U5</:fallback>
+    <Avatar @src="https://robohash.org/roach?set=set2&size=150x150" @alt="Roach">
+      <:fallback>RO</:fallback>
     </Avatar>
   </AvatarGroup>
 </template>
@@ -71,7 +79,11 @@ pnpm add nvp.ui
 import { ComponentSignature } from "kolay";
 
 <template>
-  <ComponentSignature @package="." @module="declarations/components/avatar" @name="AvatarSignature" />
+  <ComponentSignature
+    @package="."
+    @module="declarations/components/avatar"
+    @name="AvatarSignature"
+  />
 </template>
 ```
 
@@ -81,21 +93,25 @@ import { ComponentSignature } from "kolay";
 import { ComponentSignature } from "kolay";
 
 <template>
-  <ComponentSignature @package="." @module="declarations/components/avatar" @name="AvatarGroupSignature" />
+  <ComponentSignature
+    @package="."
+    @module="declarations/components/avatar"
+    @name="AvatarGroupSignature"
+  />
 </template>
 ```
 
 ### State Attributes
 
-| attribute | values | description |
-| :-------: | :----- | :---------- |
+|  attribute  | values                     | description                |
+| :---------: | :------------------------- | :------------------------- |
 | `data-size` | `small`, `medium`, `large` | Controls avatar dimensions |
 
 ### Styling
 
 Public selectors:
 
-| key | description |
-| :-: | :---------- |
-| `.nvp__avatar` | Root avatar element |
+|         key          | description                         |
+| :------------------: | :---------------------------------- |
+|    `.nvp__avatar`    | Root avatar element                 |
 | `.nvp__avatar-group` | Group container with overlap layout |

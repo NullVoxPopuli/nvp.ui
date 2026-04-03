@@ -43,7 +43,9 @@
 
   .nvp__avatar {
     border: var(--avatar-border-width) solid var(--avatar-border-color);
-    transition: transform 0.2s, margin 0.2s;
+    transition:
+      transform 0.2s,
+      margin 0.2s;
   }
 
   .nvp__avatar + .nvp__avatar {

@@ -57,11 +57,7 @@ module("Avatar", function (hooks) {
   });
 
   test("renders default SVG fallback when no fallback block provided", async function (assert) {
-    await render(
-      <template>
-        <Avatar @src="/non-existent.png" @delayMs={{0}} />
-      </template>,
-    );
+    await render(<template><Avatar @src="/non-existent.png" @delayMs={{0}} /></template>);
 
     assert.dom(".nvp__avatar svg").exists();
   });
