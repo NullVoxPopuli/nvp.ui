@@ -1,4 +1,5 @@
 export { ApplicationShell } from "./components/application-shell.gts";
+export { Avatar, AvatarGroup } from "./components/avatar.gts";
 export { BrowserWindow } from "./components/browser-window.gts";
 export { Button } from "./components/button.gts";
 export { ExternalLink } from "./components/external-link.gts";
