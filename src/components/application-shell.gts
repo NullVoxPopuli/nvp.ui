@@ -34,7 +34,7 @@ export interface ApplicationShellSignature {
 
 export const ApplicationShell: TOC<ApplicationShellSignature> = <template>
   <Shell>
-    <MenuWrapper as |mmw|>
+    <MenuWrapper @embed={{true}} as |mmw|>
       <mmw.MobileMenu @mode="push" @maxWidth={{200}} as |mm|>
         {{! template-lint-disable no-invalid-interactive }}
         <div role="presentation" {{on "click" mm.actions.close}}>
@@ -57,9 +57,9 @@ export const ApplicationShell: TOC<ApplicationShellSignature> = <template>
           <div class="nvp__application-shell__sidebar">
             {{yield to="nav"}}
           </div>
-          <main>
+          <div class="nvp__application-shell__content">
             {{yield}}
-          </main>
+          </div>
         </div>
       </mmw.Content>
     </MenuWrapper>

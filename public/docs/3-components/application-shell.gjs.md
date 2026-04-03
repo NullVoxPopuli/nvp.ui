@@ -123,6 +123,7 @@ import { ComponentSignature } from "kolay";
 | :----------------------------------- | :--------------------------------------- |
 | `.nvp__application-shell__layout`    | The sidebar + main grid container        |
 | `.nvp__application-shell__sidebar`   | The sidebar wrapper (hidden below 768px) |
+| `.nvp__application-shell__content`   | The main content area                    |
 | `.nvp__application-shell__menu-icon` | The hamburger menu SVG icon              |
 
 ### Responsive behavior

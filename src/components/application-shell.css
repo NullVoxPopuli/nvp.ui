@@ -5,8 +5,6 @@
 /* ── Mobile menu overrides ──────────────── */
 
 .mobile-menu-wrapper {
-  height: 100%;
-  overflow: auto;
   container-type: inline-size;
 }
 
@@ -60,7 +58,7 @@ header button.mobile-menu__toggle {
   grid-template-columns: max-content 1fr;
   gap: 2rem;
 
-  main {
+  .nvp__application-shell__content {
     max-width: 100dvw;
     padding: 1.5rem;
     display: flex;
