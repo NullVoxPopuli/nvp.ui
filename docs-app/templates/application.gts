@@ -34,21 +34,29 @@ export default Route(
   <template>
     {{pageTitle "Docs :: " abbreviatedSha}}
 
-    <ApplicationShell>
-      <:headerLeft>
-        <a href="/">nvp.ui</a>
-      </:headerLeft>
-      <:headerRight>
-        <ExternalLink href="https://github.com/NullVoxPopuli/nullui">GitHub</ExternalLink>
-        <ThemeToggle />
-      </:headerRight>
-      <:nav>
-        <SideNav />
-      </:nav>
-      <:default>
-        {{outlet}}
-      </:default>
-    </ApplicationShell>
+    <div class="app-root">
+      <ApplicationShell>
+        <:headerLeft>
+          <a href="/">nvp.ui</a>
+        </:headerLeft>
+        <:headerRight>
+          <ExternalLink href="https://github.com/NullVoxPopuli/nullui">GitHub</ExternalLink>
+          <ThemeToggle />
+        </:headerRight>
+        <:nav>
+          <SideNav />
+        </:nav>
+        <:default>
+          {{outlet}}
+        </:default>
+      </ApplicationShell>
+    </div>
+
+    <style>
+      .app-root {
+        height: 100dvh;
+      }
+    </style>
   </template>,
 );
 

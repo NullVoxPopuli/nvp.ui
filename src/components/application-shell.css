@@ -5,7 +5,7 @@
 /* ── Mobile menu overrides ──────────────── */
 
 .mobile-menu-wrapper {
-  height: 100dvh;
+  height: 100%;
   overflow: auto;
   container-type: inline-size;
 }
@@ -76,7 +76,7 @@ header button.mobile-menu__toggle {
 }
 
 @container (max-width: 768px) {
-  .nvp__application-shell__layout > aside {
+  .nvp__application-shell__sidebar {
     display: none;
   }
 }

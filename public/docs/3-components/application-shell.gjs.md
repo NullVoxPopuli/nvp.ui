@@ -119,10 +119,11 @@ import { ComponentSignature } from "kolay";
 
 ### CSS Classes
 
-| Class                                | Description                       |
-| :----------------------------------- | :-------------------------------- |
-| `.nvp__application-shell__layout`    | The sidebar + main grid container |
-| `.nvp__application-shell__menu-icon` | The hamburger menu SVG icon       |
+| Class                                | Description                              |
+| :----------------------------------- | :--------------------------------------- |
+| `.nvp__application-shell__layout`    | The sidebar + main grid container        |
+| `.nvp__application-shell__sidebar`   | The sidebar wrapper (hidden below 768px) |
+| `.nvp__application-shell__menu-icon` | The hamburger menu SVG icon              |
 
 ### Responsive behavior
 
