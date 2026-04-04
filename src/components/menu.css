@@ -63,12 +63,13 @@
 }
 
 .nvp__menu__content {
+  position: relative;
   min-width: 10rem;
   border-radius: var(--radius);
   border: var(--border-width) var(--border-style) var(--border-color);
   padding: var(--padding-1) 0;
   z-index: var(--z-hover);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .nvp__menu__item,
@@ -101,9 +102,19 @@
 }
 
 .nvp__menu__kbd-hints {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100%);
+  z-index: -1;
+  background: var(--surface-background-color, var(--color-page-background));
+  border-radius: 0 0 var(--radius) var(--radius);
   padding: 0.1rem 0.6rem 0.3rem 1rem;
   font-size: 0.65rem;
   color: color-mix(in oklab, var(--color-text) 50%, transparent);
+  pointer-events: none;
+  display: flex;
+  gap: var(--gap-3);
 
   .ember-primitives__key {
     text-transform: uppercase;

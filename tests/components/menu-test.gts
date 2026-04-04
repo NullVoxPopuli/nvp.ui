@@ -63,7 +63,7 @@ module("Menu", function (hooks) {
     await click(".nvp__menu__trigger");
 
     assert.dom(".nvp__menu__kbd-hints").exists();
-    assert.dom(".nvp__menu__kbd-hints kbd").exists({ count: 1 });
+    assert.dom(".nvp__menu__kbd-hints kbd").exists({ count: 4 });
   });
 
   test("renders items, link items, and separators", async function (assert) {
