@@ -101,28 +101,24 @@
 }
 
 .nvp__menu__kbd-hints {
-  display: flex;
-  gap: var(--gap-3);
-  justify-content: center;
-  padding: var(--padding-1) var(--padding-2);
-  border-top: var(--border-width) var(--border-style) var(--border-color);
-  font-size: 0.7rem;
+  padding: 0.1rem 0.6rem 0.3rem 1rem;
+  font-size: 0.65rem;
   color: color-mix(in oklab, var(--color-text) 50%, transparent);
 
   .ember-primitives__key {
     text-transform: uppercase;
-    background-color: color-mix(in oklab, var(--color-text) 10%, transparent);
+    background-color: #eee;
     border-radius: 2px;
-    border: 1px solid color-mix(in oklab, var(--color-text) 20%, transparent);
+    border: 1px solid #b4b4b4;
     box-shadow:
-      0 1px 1px rgba(0, 0, 0, 0.1),
-      0 2px 0 0 rgba(255, 255, 255, 0.1) inset;
-    color: color-mix(in oklab, var(--color-text) 70%, transparent);
+      0 1px 1px rgba(0, 0, 0, 0.2),
+      0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+    color: #333;
     display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 600;
+    font-size: 0.65rem;
+    font-weight: 700;
     line-height: 1;
-    padding: 1px 4px;
+    padding: 2px 4px;
     white-space: nowrap;
   }
 }

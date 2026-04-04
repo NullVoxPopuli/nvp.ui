@@ -81,9 +81,9 @@ const StyledContent = <template>
       )
     }}
     <div class="nvp__menu__kbd-hints">
-      <span><Key>↑</Key> <Key>↓</Key> navigate</span>
-      <span><Key>enter</Key> select</span>
-      <span><Key>esc</Key> close</span>
+      press
+      <Key>esc</Key>
+      to close
     </div>
   </@Content>
 </template>;
