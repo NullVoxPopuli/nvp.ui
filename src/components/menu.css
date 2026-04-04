@@ -63,13 +63,12 @@
 }
 
 .nvp__menu__content {
-  position: relative;
+  anchor-name: --nvp-menu;
   min-width: 10rem;
   border-radius: var(--radius);
   border: var(--border-width) var(--border-style) var(--border-color);
   padding: 0;
   z-index: var(--z-hover);
-  overflow: visible;
   background: var(--color-page-background);
 }
 
@@ -103,12 +102,13 @@
 }
 
 .nvp__menu__kbd-hints {
-  position: absolute;
-  bottom: 0;
-  right: 0.25rem;
-  transform: translateY(100%);
+  position: fixed;
+  position-anchor: --nvp-menu;
+  top: anchor(bottom);
+  left: anchor(right);
+  translate: calc(-100% - 0.25rem) 0;
   width: max-content;
-  z-index: -1;
+  z-index: calc(var(--z-hover) - 1);
   border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
   padding: 0.15rem 0.5rem 0.25rem 0.5rem;

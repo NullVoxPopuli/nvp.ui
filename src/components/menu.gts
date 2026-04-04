@@ -59,7 +59,7 @@ export const Menu: TOC<Signature> = <template>
     {{yield
       (hash
         Trigger=(component StyledTrigger Trigger=menu.Trigger variant=@variant)
-        Content=(component StyledContent Content=menu.Content)
+        Content=(component StyledContent Content=menu.Content isOpen=menu.isOpen)
       )
     }}
   </PrimitiveMenu>
@@ -80,12 +80,14 @@ const StyledContent = <template>
         Separator=(component StyledSeparator Separator=items.Separator)
       )
     }}
+  </@Content>
+  {{#if @isOpen}}
     <div class="nvp__menu__kbd-hints surface elevation-lg">
       press
       <Key>esc</Key>
       to close
     </div>
-  </@Content>
+  {{/if}}
 </template>;
 
 const StyledItem = <template>
