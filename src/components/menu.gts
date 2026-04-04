@@ -80,7 +80,7 @@ const StyledContent = <template>
         Separator=(component StyledSeparator Separator=items.Separator)
       )
     }}
-    <div class="nvp__menu__kbd-hints surface">
+    <div class="nvp__menu__kbd-hints surface elevation-lg">
       press
       <Key>esc</Key>
       to close

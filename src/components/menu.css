@@ -67,7 +67,7 @@
   min-width: 10rem;
   border-radius: var(--radius);
   border: var(--border-width) var(--border-style) var(--border-color);
-  padding: var(--padding-1) 0;
+  padding: 0;
   z-index: var(--z-hover);
   overflow: visible;
   background: var(--color-page-background);
