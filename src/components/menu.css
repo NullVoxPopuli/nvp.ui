@@ -104,8 +104,9 @@
 .nvp__menu__kbd-hints {
   position: absolute;
   bottom: 0;
-  left: 0;
+  right: 0;
   transform: translateY(100%);
+  width: max-content;
   z-index: -1;
   background: var(--surface-background-color, var(--color-page-background));
   border-radius: 0 0 var(--radius) var(--radius);
