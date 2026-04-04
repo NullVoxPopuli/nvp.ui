@@ -104,14 +104,15 @@
 .nvp__menu__kbd-hints {
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: 0.25rem;
   transform: translateY(100%);
   width: max-content;
   z-index: -1;
   background: color-mix(in oklab, var(--color-page-background) 85%, var(--color-text));
   border-radius: 0 0 var(--radius) var(--radius);
-  padding: 0.15rem 0.6rem 0.3rem 0.6rem;
-  font-size: 0.65rem;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+  padding: 0.15rem 0.5rem 0.25rem 0.5rem;
+  font-size: 0.6rem;
   color: color-mix(in oklab, var(--color-text) 45%, transparent);
   pointer-events: none;
 
@@ -125,10 +126,10 @@
       0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
     color: #333;
     display: inline-block;
-    font-size: 0.65rem;
+    font-size: 0.55rem;
     font-weight: 700;
     line-height: 1;
-    padding: 2px 4px;
+    padding: 1px 3px;
     white-space: nowrap;
   }
 }
