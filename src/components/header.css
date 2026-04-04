@@ -1,0 +1,36 @@
+.nvp__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background: var(--surface-background-color, var(--header-background));
+  position: sticky;
+  z-index: var(--z-site-nav);
+
+  /* Default to top positioning */
+  top: 0;
+
+  /* Explicit top positioning */
+  &[data-position="top"] {
+    top: 0;
+    bottom: auto;
+  }
+
+  /* Bottom positioning when specified */
+  &[data-position="bottom"] {
+    top: auto;
+    bottom: 0;
+  }
+
+  .nvp__header__left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .nvp__header__right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
