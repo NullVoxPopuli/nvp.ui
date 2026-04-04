@@ -63,12 +63,13 @@
 }
 
 .nvp__menu__content {
+  anchor-name: --nvp-menu;
   min-width: 10rem;
   border-radius: var(--radius);
   border: var(--border-width) var(--border-style) var(--border-color);
-  padding: var(--padding-1) 0;
+  padding: 0;
   z-index: var(--z-hover);
-  overflow: hidden;
+  background: var(--color-page-background);
 }
 
 .nvp__menu__item,
@@ -101,28 +102,34 @@
 }
 
 .nvp__menu__kbd-hints {
-  display: flex;
-  gap: var(--gap-3);
-  justify-content: center;
-  padding: var(--padding-1) var(--padding-2);
-  border-top: var(--border-width) var(--border-style) var(--border-color);
-  font-size: 0.7rem;
-  color: color-mix(in oklab, var(--color-text) 50%, transparent);
+  position: fixed;
+  position-anchor: --nvp-menu;
+  top: anchor(bottom);
+  left: anchor(right);
+  translate: calc(-100% - 0.25rem) 0;
+  width: max-content;
+  z-index: calc(var(--z-hover) - 1);
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+  padding: 0.15rem 0.5rem 0.25rem 0.5rem;
+  font-size: 0.6rem;
+  color: color-mix(in oklab, var(--color-text) 60%, transparent);
+  pointer-events: none;
 
   .ember-primitives__key {
     text-transform: uppercase;
-    background-color: color-mix(in oklab, var(--color-text) 10%, transparent);
+    background-color: #eee;
     border-radius: 2px;
-    border: 1px solid color-mix(in oklab, var(--color-text) 20%, transparent);
+    border: 1px solid #b4b4b4;
     box-shadow:
-      0 1px 1px rgba(0, 0, 0, 0.1),
-      0 2px 0 0 rgba(255, 255, 255, 0.1) inset;
-    color: color-mix(in oklab, var(--color-text) 70%, transparent);
+      0 1px 1px rgba(0, 0, 0, 0.2),
+      0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+    color: #333;
     display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 600;
+    font-size: 0.55rem;
+    font-weight: 700;
     line-height: 1;
-    padding: 1px 4px;
+    padding: 1px 3px;
     white-space: nowrap;
   }
 }
