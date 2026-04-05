@@ -1,11 +1,15 @@
+export { AnimatedGradient } from "./components/animated-gradient.gts";
 export { ApplicationShell } from "./components/application-shell.gts";
 export { Avatar, AvatarGroup } from "./components/avatar.gts";
+export { Badge } from "./components/badge.gts";
 export { BrowserWindow } from "./components/browser-window.gts";
 export { Button } from "./components/button.gts";
 export { ExternalLink } from "./components/external-link.gts";
 export { Header } from "./components/header.gts";
+export { Marquee } from "./components/marquee.gts";
 export { Menu } from "./components/menu.gts";
 export { politeSticky } from "./components/polite-sticky.gts";
 export { Shell } from "./components/shell.gts";
+export { Spinner } from "./components/spinner.gts";
 export { ThemeToggle } from "./components/theme-toggle.gts";
 export { Timeline } from "./components/timeline.gts";
