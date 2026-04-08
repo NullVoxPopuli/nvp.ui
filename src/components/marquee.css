@@ -1,0 +1,97 @@
+@keyframes nvp__marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes nvp__marquee-scroll-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes nvp__marquee-scroll-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes nvp__marquee-scroll-vertical-reverse {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.nvp__marquee {
+  --marquee-duration: 20s;
+
+  overflow: hidden;
+  position: relative;
+}
+
+.nvp__marquee__track {
+  display: flex;
+  width: max-content;
+  animation: nvp__marquee-scroll var(--marquee-duration) linear infinite;
+}
+
+.nvp__marquee[data-direction="right"] .nvp__marquee__track {
+  animation-name: nvp__marquee-scroll-reverse;
+}
+
+.nvp__marquee[data-direction="up"] .nvp__marquee__track,
+.nvp__marquee[data-direction="down"] .nvp__marquee__track {
+  flex-direction: column;
+  width: 100%;
+  height: max-content;
+}
+
+.nvp__marquee[data-direction="up"] .nvp__marquee__track {
+  animation-name: nvp__marquee-scroll-vertical;
+}
+
+.nvp__marquee[data-direction="down"] .nvp__marquee__track {
+  animation-name: nvp__marquee-scroll-vertical-reverse;
+}
+
+.nvp__marquee[data-pause-on-hover]:hover .nvp__marquee__track {
+  animation-play-state: paused;
+}
+
+.nvp__marquee[data-fade] {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.nvp__marquee[data-fade][data-direction="up"],
+.nvp__marquee[data-fade][data-direction="down"] {
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+.nvp__marquee__content {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.nvp__marquee[data-direction="up"] .nvp__marquee__content,
+.nvp__marquee[data-direction="down"] .nvp__marquee__content {
+  flex-direction: column;
+}
+
+@media (prefers-reduced-motion) {
+  .nvp__marquee__track {
+    animation-play-state: paused;
+  }
+}
