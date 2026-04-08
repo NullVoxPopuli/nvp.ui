@@ -1,0 +1,41 @@
+@keyframes nvp__gradient-wave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.nvp__gradient-wave-text {
+  --wave-speed: 4s;
+  --wave-color-1: #ff0080;
+  --wave-color-2: #7928ca;
+  --wave-color-3: #0070f3;
+  --wave-color-4: #00dfd8;
+
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    var(--wave-color-1),
+    var(--wave-color-2),
+    var(--wave-color-3),
+    var(--wave-color-4),
+    var(--wave-color-1)
+  );
+  background-size: 300% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: nvp__gradient-wave var(--wave-speed) ease infinite;
+}
+
+@media (prefers-reduced-motion) {
+  .nvp__gradient-wave-text {
+    animation: none;
+    background-size: 100% 100%;
+  }
+}

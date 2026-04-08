@@ -1,0 +1,35 @@
+@keyframes nvp__shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.nvp__shimmer-text {
+  --shimmer-duration: 1.5s;
+  --shimmer-delay: 0s;
+  --shimmer-color: var(--color-primary);
+
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    var(--color-text) 40%,
+    var(--shimmer-color) 50%,
+    var(--color-text) 60%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: nvp__shimmer var(--shimmer-duration) var(--shimmer-delay) linear infinite;
+}
+
+@media (prefers-reduced-motion) {
+  .nvp__shimmer-text {
+    animation: none;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
+}
