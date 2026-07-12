@@ -1,0 +1,29 @@
+@keyframes nvp__slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(1em);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.nvp__slide-up-text {
+  display: block;
+}
+
+.nvp__slide-up-text__word {
+  display: inline-block;
+  opacity: 0;
+  animation: nvp__slide-up 0.5s cubic-bezier(0.625, 0.05, 0, 1) forwards;
+}
+
+@media (prefers-reduced-motion) {
+  .nvp__slide-up-text__word {
+    animation: none;
+    opacity: 1;
+  }
+}

@@ -1,0 +1,34 @@
+@keyframes nvp__blur-reveal {
+  from {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translateY(0.5em);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+.nvp__blur-reveal {
+  display: block;
+}
+
+.nvp__blur-reveal__char {
+  display: inline-block;
+  opacity: 0;
+  animation: nvp__blur-reveal 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+.nvp__blur-reveal__space {
+  display: inline;
+  white-space: pre;
+}
+
+@media (prefers-reduced-motion) {
+  .nvp__blur-reveal__char {
+    animation: none;
+    opacity: 1;
+  }
+}

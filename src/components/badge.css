@@ -1,0 +1,40 @@
+.nvp__badge {
+  --badge-background: color-mix(in oklab, var(--color-page-background) 70%, var(--color-text));
+  --badge-padding-y: 0.125rem;
+  --badge-padding-x: 0.5rem;
+  --badge-font-size: 0.75rem;
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-1);
+  padding: var(--badge-padding-y) var(--badge-padding-x);
+  border-radius: 9999px;
+  font-size: var(--badge-font-size);
+  font-weight: 500;
+  line-height: 1.25;
+  white-space: nowrap;
+  color: var(--color-text);
+  background: var(--badge-background);
+
+  &[data-variant="primary"] {
+    --badge-background: color-mix(in oklab, var(--color-primary) 30%, var(--color-page-background));
+  }
+
+  &[data-variant="secondary"] {
+    --badge-background: color-mix(
+      in oklab,
+      var(--color-secondary) 30%,
+      var(--color-page-background)
+    );
+  }
+
+  &[data-variant="danger"] {
+    --badge-background: color-mix(in oklab, var(--color-danger) 30%, var(--color-page-background));
+  }
+
+  &[data-size="small"] {
+    --badge-padding-y: 0.0625rem;
+    --badge-padding-x: 0.375rem;
+    --badge-font-size: 0.625rem;
+  }
+}
