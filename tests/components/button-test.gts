@@ -88,7 +88,7 @@ module("Button", function (hooks) {
     assert.dom(".nvp__button").hasClass("custom-class");
   });
 
-  test("splattributes compose with @onClick to form a toggle button", async function (assert) {
+  test("splatted attributes update reactively", async function (assert) {
     const state = new TrackedObject({ pressed: false });
     const toggle = () => (state.pressed = !state.pressed);
 

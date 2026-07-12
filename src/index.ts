@@ -9,3 +9,4 @@ export { politeSticky } from "./components/polite-sticky.gts";
 export { Shell } from "./components/shell.gts";
 export { ThemeToggle } from "./components/theme-toggle.gts";
 export { Timeline } from "./components/timeline.gts";
+export { ToggleButton } from "./components/toggle-button.gts";
