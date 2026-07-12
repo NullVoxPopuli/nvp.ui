@@ -1,5 +1,37 @@
 # Changelog
 
+## Release (2026-07-12)
+
+* nvp.ui 0.6.0 (minor)
+
+#### :rocket: Enhancement
+* `nvp.ui`
+  * [#92](https://github.com/NullVoxPopuli/nvp.ui/pull/92) Match Limber's kbd hint style in Menu ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+  * [#91](https://github.com/NullVoxPopuli/nvp.ui/pull/91) Add styled Menu component with keyboard hints ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+  * [#90](https://github.com/NullVoxPopuli/nvp.ui/pull/90) Add Avatar and AvatarGroup components ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+  * [#89](https://github.com/NullVoxPopuli/nvp.ui/pull/89) Rename preem__ CSS prefix to nvp__ ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+  * [#88](https://github.com/NullVoxPopuli/nvp.ui/pull/88) Animated hamburger icon and header surface integration ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+  * [#87](https://github.com/NullVoxPopuli/nvp.ui/pull/87) Add ApplicationShell component ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+  * [#86](https://github.com/NullVoxPopuli/nvp.ui/pull/86) Add position argument to Header for top/bottom placement ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+  * [#84](https://github.com/NullVoxPopuli/nvp.ui/pull/84) Add BrowserWindow component ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+  * [#82](https://github.com/NullVoxPopuli/nvp.ui/pull/82) Add Timeline component (CSS grid + subgrid) ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+  * [#78](https://github.com/NullVoxPopuli/nvp.ui/pull/78) Add polite header modifier ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+#### :bug: Bug Fix
+* `nvp.ui`
+  * [#94](https://github.com/NullVoxPopuli/nvp.ui/pull/94) Wire up Button's @onClick argument ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+#### :house: Internal
+* `nvp.ui`
+  * [#95](https://github.com/NullVoxPopuli/nvp.ui/pull/95) Update release plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#85](https://github.com/NullVoxPopuli/nvp.ui/pull/85) Add rendering tests for Timeline component ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+  * [#83](https://github.com/NullVoxPopuli/nvp.ui/pull/83) Upgrade kolay v4 → v5 for ComponentSignature rendering ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+  * [#80](https://github.com/NullVoxPopuli/nvp.ui/pull/80) Build once in Setup, share via artifacts to scenario jobs ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+#### Committers: 2
+- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2026-01-11)
 
 * nvp.ui 0.5.3 (patch)
