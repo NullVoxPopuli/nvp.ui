@@ -12,10 +12,13 @@ import type { ComponentLike } from "@glint/template";
 
 export interface Signature {
   /**
-   * The underlying button element is not exposed,
-   * as doing so could lead to misuse.
+   * The underlying `<button>` element.
+   *
+   * Attributes and modifiers are forwarded via `...attributes`,
+   * enabling toggle-button state (`aria-pressed`), extra event
+   * listeners, test selectors, etc.
    */
-  Element: null;
+  Element: HTMLButtonElement;
   Args: {
     /**
      * The `@disabled` describes why a button is disabled.
@@ -95,6 +98,7 @@ export const Button: TOC<Signature> = <template>
       data-variant={{@variant}}
       aria-disabled={{Boolean @disabled}}
       type="button"
+      ...attributes
       {{popover.reference}}
       {{on "click" (fn handleClick @disabled @onClick)}}
     >

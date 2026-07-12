@@ -88,6 +88,13 @@
     }
   }
 
+  /* Toggle buttons (aria-pressed via ...attributes) look held-down while pressed */
+  &[aria-pressed="true"] {
+    --button-hover-mix: 30%;
+    --button-hover-color-mix: #000;
+    --button-interact-spread: -1px;
+  }
+
   &[aria-disabled] {
     --button-disable-mix: 50%;
     --button-interact-spread: -1px;
