@@ -2,6 +2,9 @@ import "./variables.css";
 import "./focus.css";
 import "./button.css";
 
+import { fn } from "@ember/helper";
+import { on } from "@ember/modifier";
+
 import { Popover } from "ember-primitives/components/popover";
 
 import type { TOC } from "@ember/component/template-only";
@@ -23,12 +26,12 @@ export interface Signature {
      *
      * Sets the `aria-disabled` attribute as well.
      */
-    disabled: string | ComponentLike;
+    disabled?: string | ComponentLike;
 
     /**
      * What action to perform upon click
      */
-    onClick: (event: Event) => void;
+    onClick?: (event: Event) => void;
 
     /**
      * What colors to make the button.
@@ -75,6 +78,16 @@ export interface Signature {
 const or = (a: unknown, b: unknown) => a || b;
 const isString = (x: unknown) => typeof x === "string";
 
+function handleClick(
+  disabled: Signature["Args"]["disabled"],
+  onClick: Signature["Args"]["onClick"],
+  event: Event,
+) {
+  if (disabled) return;
+
+  onClick?.(event);
+}
+
 export const Button: TOC<Signature> = <template>
   <Popover @inline={{true}} as |popover|>
     <button
@@ -83,6 +96,7 @@ export const Button: TOC<Signature> = <template>
       aria-disabled={{Boolean @disabled}}
       type="button"
       {{popover.reference}}
+      {{on "click" (fn handleClick @disabled @onClick)}}
     >
       {{#if (or (has-block "start") @start)}}
         <span>{{@start}}{{yield to="start"}}</span>
