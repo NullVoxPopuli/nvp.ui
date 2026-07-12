@@ -74,8 +74,8 @@
     "@glimmer/component": "^2.0.0",
     "@glint/template": "^1.7.7",
     "decorator-transforms": "^2.3.1",
-    "ember-modifier": ">= 4.2.0",
     "ember-mobile-menu": "^6.0.0",
+    "ember-modifier": ">= 4.2.0",
     "ember-primitives": "^0.55.0",
     "ember-resources": ">= 7.0.4"
   },
@@ -137,7 +137,7 @@
     "qunit-assertions-extra": "^1.0.3",
     "qunit-dom": "^3.4.0",
     "reactiveweb": "^1.9.1",
-    "release-plan": "^0.17.4",
+    "release-plan": "^0.18.0",
     "rollup": "~4.55.1",
     "rollup-plugin-copy": "^3.5.0",
     "shiki": "^3.21.0",
@@ -148,18 +148,18 @@
     "unplugin-info": "^1.2.2",
     "vite": "^7.3.1"
   },
+  "packageManager": "pnpm@10.10.0",
   "volta": {
     "node": "24.0.1"
   },
-  "packageManager": "pnpm@10.10.0",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
   "pnpm": {
     "overrides": {
-      "@glint/template": "$@glint/template",
       "@glimmer/template": "$@glimmer/component",
+      "@glint/template": "$@glint/template",
       "ember-modifier": "$ember-modifier"
     }
   },
