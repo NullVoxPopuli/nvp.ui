@@ -14,16 +14,9 @@ export interface Signature {
   /**
    * The underlying `<button>` element.
    *
-   * Attributes and modifiers are forwarded via `...attributes`, so
-   * toggle-button state (`aria-pressed`), extra event listeners
-   * (`{{on "mousedown" ...}}`), test selectors, etc. may be applied
-   * directly:
-   *
-   * ```gjs
-   * <Button aria-pressed="{{if this.muted 'true' 'false'}}" @onClick={{this.toggleMute}}>
-   *   Mute
-   * </Button>
-   * ```
+   * Attributes and modifiers are forwarded via `...attributes`,
+   * enabling toggle-button state (`aria-pressed`), extra event
+   * listeners, test selectors, etc.
    */
   Element: HTMLButtonElement;
   Args: {
