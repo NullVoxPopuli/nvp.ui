@@ -117,7 +117,11 @@ jobs:
           - typescript@5.7
           - typescript@5.8
           - typescript@5.9
-          - typescript@rc
+          # typescript@rc is currently TypeScript 7, which no longer ships the
+          # lib/tsc entrypoint that ember-tsc requires, so this scenario fails.
+          # Disabled until glint supports TS 7:
+          # https://github.com/NullVoxPopuli/nvp.ui/issues/98
+          # - typescript@rc
           # - typescript@next
 
     steps:
