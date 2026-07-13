@@ -121,7 +121,7 @@ jobs:
           # lib/tsc entrypoint that ember-tsc requires, so this scenario fails.
           # It is allowed to fail via continue-on-error above.
           # https://github.com/NullVoxPopuli/nvp.ui/issues/98
-          - typescript@rc
+          # - typescript@rc
           # - typescript@next
 
     steps:
