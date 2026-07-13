@@ -1,5 +1,20 @@
 # Changelog
 
+## Release (2026-07-13)
+
+* nvp.ui 0.8.0 (minor)
+
+#### :rocket: Enhancement
+* `nvp.ui`
+  * [#101](https://github.com/NullVoxPopuli/nvp.ui/pull/101) [Breaking] Remove @embroider/addon-shim ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+#### :house: Internal
+* `nvp.ui`
+  * [#99](https://github.com/NullVoxPopuli/nvp.ui/pull/99) Fix pre-existing CI failures (heading-order a11y audit; document typescript@rc breakage) ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+#### Committers: 1
+- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
 ## Release (2026-07-12)
 
 * nvp.ui 0.7.0 (minor)
