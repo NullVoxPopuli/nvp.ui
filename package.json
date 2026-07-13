@@ -28,14 +28,12 @@
     "./test-support": {
       "types": "./declarations/test-support/index.d.ts",
       "default": "./dist/test-support/index.js"
-    },
-    "./addon-main": "./config/addon-main.cjs"
+    }
   },
   "files": [
     "dist",
     "declarations",
-    "src",
-    "config/addon-main.cjs"
+    "src"
   ],
   "scripts": {
     ":rollup": "rollup --config ./config/rollup.config.mjs",
@@ -69,7 +67,6 @@
   "dependencies": {
     "@ember/test-helpers": "^5.4.1",
     "@ember/test-waiters": ">= 4.1.0",
-    "@embroider/addon-shim": "^1.10.2",
     "@embroider/macros": "1.20.2",
     "@glimmer/component": "^2.0.0",
     "@glint/template": "^1.7.7",
@@ -168,8 +165,6 @@
   },
   "ember-addon": {
     "version": 2,
-    "type": "addon",
-    "main": "config/addon-main.cjs",
-    "app-js": {}
+    "type": "addon"
   }
 }
