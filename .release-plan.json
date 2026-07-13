@@ -2,17 +2,21 @@
   "solution": {
     "nvp.ui": {
       "impact": "minor",
-      "oldVersion": "0.6.0",
-      "newVersion": "0.7.0",
+      "oldVersion": "0.7.0",
+      "newVersion": "0.8.0",
       "tagName": "latest",
       "constraints": [
         {
           "impact": "minor",
           "reason": "Appears in changelog section :rocket: Enhancement"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :house: Internal"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2026-07-12)\n\n* nvp.ui 0.7.0 (minor)\n\n#### :rocket: Enhancement\n* `nvp.ui`\n  * [#96](https://github.com/NullVoxPopuli/nvp.ui/pull/96) Add ToggleButton (composed from Button via new splattributes) ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n\n#### Committers: 1\n- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n"
+  "description": "## Release (2026-07-13)\n\n* nvp.ui 0.8.0 (minor)\n\n#### :rocket: Enhancement\n* `nvp.ui`\n  * [#101](https://github.com/NullVoxPopuli/nvp.ui/pull/101) [Breaking] Remove @embroider/addon-shim ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n\n#### :house: Internal\n* `nvp.ui`\n  * [#99](https://github.com/NullVoxPopuli/nvp.ui/pull/99) Fix pre-existing CI failures (heading-order a11y audit; document typescript@rc breakage) ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n\n#### Committers: 1\n- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n"
 }
