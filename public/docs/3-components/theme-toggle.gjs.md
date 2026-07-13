@@ -74,11 +74,11 @@ import { ComponentSignature } from "kolay";
 </template>
 ```
 
-## State Attributes
+### State Attributes
 
 none
 
-## Styling
+### Styling
 
 Public selectors:
 
