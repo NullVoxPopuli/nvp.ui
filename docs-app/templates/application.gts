@@ -1,43 +1,78 @@
 import "../docs.css";
 
+import Component from "@glimmer/component";
+import { service } from "@ember/service";
+
 import { pascalCase, sentenceCase } from "change-case";
 import { pageTitle } from "ember-page-title";
 import Route from "ember-route-template";
-import { PageNav } from "kolay/components";
+import { docsManager, isCollection, isIndex } from "kolay";
 
-import { ApplicationShell, ExternalLink, ThemeToggle } from "#src/index.ts";
+import {
+  ApplicationShell,
+  ExternalLink,
+  Navigation,
+  NavigationList,
+  ThemeToggle,
+} from "#src/index.ts";
 import { abbreviatedSha } from "~build/git";
 
-import type { TOC } from "@ember/component/template-only";
-import type { Page } from "kolay";
+import type RouterService from "@ember/routing/router-service";
+import type { Collection, Page } from "kolay";
 
-const SideNav: TOC<{ Element: HTMLElement }> = <template>
-  <aside class="docs-nav">
-    <PageNav ...attributes>
-      <:page as |x|>
-        <x.Link>
-          {{nameFor x.page}}
-        </x.Link>
-      </:page>
-      <:collection as |x|>
-        {{#if x.index}}
-          <x.index.Link>
-            {{groupName x.collection.name}}
-          </x.index.Link>
-        {{else}}
-          {{groupName x.collection.name}}
-        {{/if}}
-      </:collection>
-    </PageNav>
+/**
+ * The sidebar composes <Navigation> + <NavigationList> directly from
+ * kolay's docs manifest: one labelled list per collection, one entry
+ * per page. Kolay is data-only here.
+ */
+class SideNav extends Component<{ Element: HTMLElement }> {
+  @service declare router: RouterService;
 
-    <p class="docs-nav__meta">
-      Built from
-      <a href="https://github.com/NullVoxPopuli/nvp.ui/commit/{{abbreviatedSha}}">
-        {{abbreviatedSha}}
-      </a>
-    </p>
-  </aside>
-</template>;
+  get docs() {
+    return docsManager(this);
+  }
+
+  get groups(): Collection[] {
+    const tree = this.docs.tree;
+
+    if (!("pages" in tree)) return [];
+
+    return tree.pages.filter((page) => isCollection(page));
+  }
+
+  isCurrent = (page: Page) => {
+    if (page.path === "/") return false;
+
+    const url = this.router.currentURL?.split(/[?#]/)[0];
+
+    // Match whole path segments, so that e.g. /navigation is not
+    // considered "current" while viewing /navigation-list
+    return url === page.path || (url?.startsWith(`${page.path}/`) ?? false);
+  };
+
+  <template>
+    <Navigation aria-label="Documentation" ...attributes>
+      {{#each this.groups as |group|}}
+        <NavigationList @label={{groupName group.name}}>
+          {{#each (pagesOf group) as |page|}}
+            <li>
+              <a href={{page.path}} aria-current={{if (this.isCurrent page) "page"}}>
+                {{nameFor page}}
+              </a>
+            </li>
+          {{/each}}
+        </NavigationList>
+      {{/each}}
+
+      <p class="docs-nav__meta">
+        Built from
+        <a href="https://github.com/NullVoxPopuli/nvp.ui/commit/{{abbreviatedSha}}">
+          {{abbreviatedSha}}
+        </a>
+      </p>
+    </Navigation>
+  </template>
+}
 
 export default Route(
   <template>
@@ -68,6 +103,10 @@ export default Route(
     </style>
   </template>,
 );
+
+function pagesOf(group: Collection): Page[] {
+  return group.pages.filter((page): page is Page => !isCollection(page) && !isIndex(page));
+}
 
 /**
  * Collection directories are prefixed with a number to control
