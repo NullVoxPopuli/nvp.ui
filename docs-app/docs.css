@@ -85,6 +85,10 @@
   min-width: 14rem;
 }
 
+.mobile-menu__tray aside.docs-nav {
+  padding: 1.25rem 0.75rem;
+}
+
 aside.docs-nav nav ul {
   margin: 0;
   padding: 0;
