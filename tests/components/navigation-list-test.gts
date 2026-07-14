@@ -7,106 +7,90 @@ import { NavigationList } from "#src/index.ts";
 module("NavigationList", function (hooks) {
   setupRenderingTest(hooks);
 
-  test("renders a nav element", async function (assert) {
+  test("is exactly a <ul>", async function (assert) {
     await render(
       <template>
-        <NavigationList as |l|>
-          <l.Section>
-            <li><a href="/a">A</a></li>
-          </l.Section>
+        <NavigationList>
+          <li><a href="/a">A</a></li>
         </NavigationList>
       </template>,
     );
 
-    assert.dom("nav.nvp__navigation-list").exists();
+    assert.dom("ul.nvp__navigation-list").exists();
+    assert.dom("ul.nvp__navigation-list").doesNotHaveAria("labelledby", "no label, no association");
+    assert.dom(".nvp__navigation-list__label").doesNotExist();
   });
 
-  test("splats attributes on the nav", async function (assert) {
+  test("splats attributes on the ul", async function (assert) {
     await render(
       <template>
-        <NavigationList aria-label="Documentation" data-test-nav as |l|>
-          <l.Section>
-            <li><a href="/a">A</a></li>
-          </l.Section>
+        <NavigationList data-test-list aria-label="Quick links">
+          <li><a href="/a">A</a></li>
         </NavigationList>
       </template>,
     );
 
-    assert.dom("[data-test-nav]").hasTagName("nav");
-    assert.dom("[data-test-nav]").hasClass("nvp__navigation-list");
-    assert.dom("[data-test-nav]").hasAria("label", "Documentation");
+    assert.dom("[data-test-list]").hasTagName("ul");
+    assert.dom("[data-test-list]").hasClass("nvp__navigation-list");
+    assert.dom("[data-test-list]").hasAria("label", "Quick links");
   });
 
-  module("Section", function () {
-    test("renders the label, associated with the list via aria-labelledby", async function (assert) {
+  test("plain <li> / <a> children are direct descendants", async function (assert) {
+    await render(
+      <template>
+        <NavigationList>
+          <li><a href="/a">A</a></li>
+          <li><a href="/somewhere">Somewhere</a></li>
+        </NavigationList>
+      </template>,
+    );
+
+    assert.dom("ul.nvp__navigation-list > li").exists({ count: 2 });
+    assert.dom("ul.nvp__navigation-list > li > a[href='/somewhere']").hasText("Somewhere");
+  });
+
+  module("@label", function () {
+    test("renders the label as a preceding sibling, associated via aria-labelledby", async function (assert) {
       await render(
         <template>
-          <NavigationList as |l|>
-            <l.Section @label="Components">
-              <li><a href="/button">Button</a></li>
-            </l.Section>
+          <NavigationList @label="Components">
+            <li><a href="/button">Button</a></li>
           </NavigationList>
         </template>,
       );
 
       assert.dom(".nvp__navigation-list__label").hasText("Components");
+      assert.dom(".nvp__navigation-list__label").hasTagName("span");
 
       const label = document.querySelector(".nvp__navigation-list__label");
-      const list = document.querySelector(".nvp__navigation-list__section");
+      const list = document.querySelector(".nvp__navigation-list");
 
       assert.ok(label?.id, "the label has an id");
+      assert.strictEqual(
+        label?.nextElementSibling,
+        list,
+        "the label immediately precedes its list (no wrapper element)",
+      );
       assert.dom(list).hasAria("labelledby", label?.id ?? "", "the list is labelled by the label");
     });
 
-    test("omits the label (and aria-labelledby) when no @label is given", async function (assert) {
+    test("multiple lists each get their own label association", async function (assert) {
       await render(
         <template>
-          <NavigationList as |l|>
-            <l.Section>
-              <li><a href="/button">Button</a></li>
-            </l.Section>
+          <NavigationList @label="Get started">
+            <li><a href="/intro">Intro</a></li>
+          </NavigationList>
+          <NavigationList @label="Components">
+            <li><a href="/button">Button</a></li>
           </NavigationList>
         </template>,
       );
 
-      assert.dom(".nvp__navigation-list__label").doesNotExist();
-      assert.dom(".nvp__navigation-list__section").doesNotHaveAria("labelledby");
-    });
-
-    test("splats attributes on the section's list", async function (assert) {
-      await render(
-        <template>
-          <NavigationList as |l|>
-            <l.Section @label="Components" data-test-section>
-              <li><a href="/button">Button</a></li>
-            </l.Section>
-          </NavigationList>
-        </template>,
-      );
-
-      assert.dom("[data-test-section]").hasTagName("ul");
-      assert.dom("[data-test-section]").hasClass("nvp__navigation-list__section");
-    });
-
-    test("supports multiple sections, each with their own label association", async function (assert) {
-      await render(
-        <template>
-          <NavigationList as |l|>
-            <l.Section @label="Get started">
-              <li><a href="/intro">Intro</a></li>
-            </l.Section>
-            <l.Section @label="Components">
-              <li><a href="/button">Button</a></li>
-            </l.Section>
-          </NavigationList>
-        </template>,
-      );
-
-      assert.dom(".nvp__navigation-list__section").exists({ count: 2 });
+      assert.dom(".nvp__navigation-list").exists({ count: 2 });
       assert.dom(".nvp__navigation-list__label").exists({ count: 2 });
 
       const labels = [...document.querySelectorAll(".nvp__navigation-list__label")];
-      const lists = [...document.querySelectorAll(".nvp__navigation-list__section")];
+      const lists = [...document.querySelectorAll(".nvp__navigation-list")];
 
       assert.notStrictEqual(labels[0]?.id, labels[1]?.id, "label ids are unique");
       assert.strictEqual(
@@ -122,46 +106,13 @@ module("NavigationList", function (hooks) {
     });
   });
 
-  module("items", function () {
-    test("plain <li> children are direct descendants of the section's list", async function (assert) {
-      await render(
-        <template>
-          <NavigationList as |l|>
-            <l.Section>
-              <li><a href="/a">A</a></li>
-              <li><a href="/b">B</a></li>
-            </l.Section>
-          </NavigationList>
-        </template>,
-      );
-
-      assert.dom(".nvp__navigation-list__section > li").exists({ count: 2 });
-    });
-
-    test("works with plain <a> children", async function (assert) {
-      await render(
-        <template>
-          <NavigationList as |l|>
-            <l.Section>
-              <li><a href="/somewhere">Somewhere</a></li>
-            </l.Section>
-          </NavigationList>
-        </template>,
-      );
-
-      assert.dom(".nvp__navigation-list__section > li > a[href='/somewhere']").hasText("Somewhere");
-    });
-  });
-
   module("current page styling hooks", function () {
     test("aria-current is preserved on consumer-rendered links", async function (assert) {
       await render(
         <template>
-          <NavigationList as |l|>
-            <l.Section>
-              <li><a href="/here" aria-current="page">Here</a></li>
-              <li><a href="/there">There</a></li>
-            </l.Section>
+          <NavigationList>
+            <li><a href="/here" aria-current="page">Here</a></li>
+            <li><a href="/there">There</a></li>
           </NavigationList>
         </template>,
       );
@@ -173,10 +124,8 @@ module("NavigationList", function (hooks) {
     test("active-class links (as routers render them) are addressable", async function (assert) {
       await render(
         <template>
-          <NavigationList as |l|>
-            <l.Section>
-              <li><a href="/here" class="active">Here</a></li>
-            </l.Section>
+          <NavigationList>
+            <li><a href="/here" class="active">Here</a></li>
           </NavigationList>
         </template>,
       );

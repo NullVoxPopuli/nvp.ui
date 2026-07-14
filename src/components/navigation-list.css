@@ -1,73 +1,70 @@
 /* ───────────────────────────────────────────
-   Navigation list — sidebar / docs-style nav
+   Navigation list — a labelled <ul> of links
    ─────────────────────────────────────────── */
 
-.nvp__navigation-list {
-  /*
-   * These are (re)computed here — not on :root — because color-mix()
-   * resolves var() references at the element the property is defined
-   * on, and the theme classes may be anywhere above (or below!) :root
-   * scope (e.g. nested theme demos).
-   */
+/*
+ * The color-mixes are (re)computed here — not on :root — because
+ * color-mix() resolves var() references at the element the property
+ * is defined on, and the theme classes may be anywhere above (or
+ * below!) :root scope (e.g. nested theme demos).
+ *
+ * (The label is a sibling of the <ul>, not a child, so both need them.)
+ */
+:is(.nvp__navigation-list, .nvp__navigation-list__label) {
   --navigation-list-label-color: color-mix(in oklab, var(--color-text) 65%, transparent);
   --navigation-list-link-color: color-mix(in oklab, var(--color-text) 78%, transparent);
   --navigation-list-hover-background: color-mix(in oklab, var(--color-text) 7%, transparent);
   --navigation-list-current-background: color-mix(in oklab, var(--color-primary) 24%, transparent);
+}
 
-  --navigation-list-section-gap: calc(12 * var(--gap));
-  --navigation-list-label-gap: var(--gap-4);
-  --navigation-list-item-gap: calc(2.5 * var(--gap));
-  --navigation-list-indent: var(--gap-2);
-  --navigation-list-item-padding: calc(1.25 * var(--padding-1)) calc(1.25 * var(--padding-2));
-  --navigation-list-item-radius: calc(2 * var(--radius));
+/* ── The list ─────────────────────────────── */
 
+.nvp__navigation-list {
+  display: grid;
+  gap: var(--navigation-list-item-gap, calc(2.5 * var(--gap)));
+  margin: 0;
+  padding: 0 0 0 var(--navigation-list-indent, var(--gap-2));
+  list-style: none;
+  font-size: 0.9375rem;
   line-height: 1.65;
 }
 
-/* ── Lists ────────────────────────────────── */
-
-.nvp__navigation-list :where(ul) {
-  display: grid;
-  gap: var(--navigation-list-item-gap);
-  margin: 0;
-  padding: 0 0 0 var(--navigation-list-indent);
-  list-style: none;
-  font-size: 0.9375rem;
-}
-
-.nvp__navigation-list :where(ul > li) {
+.nvp__navigation-list > :where(li) {
   margin: 0;
 }
 
-/* ── Section labels ───────────────────────── */
+/* ── The label ────────────────────────────── */
 
 .nvp__navigation-list__label {
   display: block;
   margin: 0;
   font-size: 0.6875rem;
   font-weight: 700;
+  line-height: 1.65;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--navigation-list-label-color);
 }
 
-.nvp__navigation-list :where(.nvp__navigation-list__label + ul) {
-  margin-top: var(--navigation-list-label-gap);
+.nvp__navigation-list__label + .nvp__navigation-list {
+  margin-top: var(--navigation-list-label-gap, var(--gap-4));
 }
 
-/* ── Space between sections ───────────────── */
-
-.nvp__navigation-list > :where(* + .nvp__navigation-list__label),
-.nvp__navigation-list > :where(ul + ul) {
-  margin-top: var(--navigation-list-section-gap);
+/* Consecutive lists space themselves apart into sections */
+.nvp__navigation-list + .nvp__navigation-list__label,
+.nvp__navigation-list + .nvp__navigation-list {
+  margin-top: var(--navigation-list-section-gap, calc(12 * var(--gap)));
 }
 
 /* ── Links ────────────────────────────────── */
 
 .nvp__navigation-list :where(li > a) {
   display: block;
-  padding: var(--navigation-list-item-padding);
-  border-radius: var(--navigation-list-item-radius);
+  padding: var(
+    --navigation-list-item-padding,
+    calc(1.25 * var(--padding-1)) calc(1.25 * var(--padding-2))
+  );
+  border-radius: var(--navigation-list-item-radius, calc(2 * var(--radius)));
   color: var(--navigation-list-link-color);
   text-decoration: none;
   transition:

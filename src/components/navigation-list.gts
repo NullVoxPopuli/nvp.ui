@@ -2,15 +2,15 @@ import "./variables.css";
 import "./focus.css";
 import "./navigation-list.css";
 
-import { hash, uniqueId } from "@ember/helper";
+import { uniqueId } from "@ember/helper";
 
 import type { TOC } from "@ember/component/template-only";
 
-export interface SectionSignature {
+export interface Signature {
   /**
-   * The `<ul>` for one group of links.
+   * The `<ul>` -- the component *is* the list.
    *
-   * Its children are plain `<li>` elements that you render yourself --
+   * Its children are plain `<li>` elements that you render yourself:
    * the stylesheet targets the direct-descendant `li`s and the links
    * inside them. Any link element works: a plain `<a>`, `<LinkTo>`,
    * an ember-primitives link, etc. The current page is highlighted
@@ -40,58 +40,36 @@ export interface SectionSignature {
   };
 }
 
-const Section: TOC<SectionSignature> = <template>
-  {{#let (uniqueId) as |labelId|}}
-    {{#if @label}}
-      <span class="nvp__navigation-list__label" id={{labelId}}>{{@label}}</span>
-    {{/if}}
-    <ul class="nvp__navigation-list__section" aria-labelledby={{if @label labelId}} ...attributes>
-      {{yield}}
-    </ul>
-  {{/let}}
-</template>;
-
-export interface Signature {
-  /**
-   * The `<nav>` element.
-   *
-   * When there are multiple `<nav>` elements on a page,
-   * pass an `aria-label` to distinguish them.
-   */
-  Element: HTMLElement;
-  Blocks: {
-    /**
-     * Yields `Section` for composing groups of links.
-     */
-    default: [list: { Section: TOC<SectionSignature> }];
-  };
-}
-
 /**
- * A styled navigation list (sidebars, docs navs, …): spaced groups
- * with uppercase section labels, and "chip" hover / current-page
- * styling for the links.
+ * A navigation list is nothing more than a (optionally labelled) `<ul>`:
+ * spaced link "chips" with hover / current-page styling, and an
+ * uppercase group label when `@label` is passed.
  *
- * Bring your own links -- plain `<a>`, `<LinkTo>`, ember-primitives
- * links all work. The current page is highlighted via `[aria-current]`
- * (or an `active` class, for routers that set one).
+ * There is no wrapper element -- the label `<span>` (when present) and
+ * the `<ul>` are rendered as siblings. Consecutive `<NavigationList>`s
+ * space themselves apart, so several labelled lists stack into a
+ * grouped nav. Wrap them in `<Navigation>` (or your own `<nav>`) to
+ * form a navigation landmark.
  *
  * @example
  * ```gts
  * import { NavigationList } from "nvp.ui/navigation-list";
  *
  * <template>
- *   <NavigationList aria-label="Documentation" as |l|>
- *     <l.Section @label="Get started">
- *       <li><a href="/intro" aria-current="page">Intro</a></li>
- *       <li><a href="/install">Installation</a></li>
- *     </l.Section>
+ *   <NavigationList @label="Get started">
+ *     <li><a href="/intro" aria-current="page">Intro</a></li>
+ *     <li><a href="/install">Installation</a></li>
  *   </NavigationList>
  * </template>
  * ```
  */
 export const NavigationList: TOC<Signature> = <template>
-  <nav class="nvp__navigation-list" ...attributes>
-    {{yield (hash Section=Section)}}
-  </nav>
+  {{#let (uniqueId) as |labelId|}}
+    {{#if @label}}
+      <span class="nvp__navigation-list__label" id={{labelId}}>{{@label}}</span>
+    {{/if}}
+    <ul class="nvp__navigation-list" aria-labelledby={{if @label labelId}} ...attributes>
+      {{yield}}
+    </ul>
+  {{/let}}
 </template>;

@@ -22,13 +22,6 @@
   overflow-x: hidden;
 }
 
-/* (NavigationList owns the styling of its own lists) */
-.mobile-menu__tray nav ul:not(.nvp__navigation-list *) {
-  padding-left: 0.5rem;
-  list-style: none;
-  line-height: 1.75rem;
-}
-
 /* ── Animated hamburger icon ─────────────── */
 /* Animation is driven by --menu-progress (0 = closed, 1 = open)
    which tracks the menu's relative position for smooth, drag-aware
@@ -122,11 +115,13 @@ header button.mobile-menu__toggle:active {
   }
 }
 
-/* (NavigationList owns the styling of its own lists) */
-.nvp__application-shell__layout nav ul:not(.nvp__navigation-list *) {
-  padding-left: 0.5rem;
-  list-style: none;
-  line-height: 1.75rem;
+/*
+ * Navigation ↔ shell contract: the shell knows its sticky header's
+ * height, so it tells <Navigation> how far below the viewport top to
+ * stick. The nav's contents are entirely the nav components' business.
+ */
+.nvp__application-shell__layout {
+  --navigation-top: 3.5rem;
 }
 
 @container (max-width: 768px) {

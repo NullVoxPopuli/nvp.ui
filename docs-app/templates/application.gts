@@ -8,15 +8,22 @@ import { pageTitle } from "ember-page-title";
 import Route from "ember-route-template";
 import { docsManager, isCollection, isIndex } from "kolay";
 
-import { ApplicationShell, ExternalLink, NavigationList, ThemeToggle } from "#src/index.ts";
+import {
+  ApplicationShell,
+  ExternalLink,
+  Navigation,
+  NavigationList,
+  ThemeToggle,
+} from "#src/index.ts";
 import { abbreviatedSha } from "~build/git";
 
 import type RouterService from "@ember/routing/router-service";
 import type { Collection, Page } from "kolay";
 
 /**
- * The sidebar composes <NavigationList> directly from kolay's
- * docs manifest: one Section per collection, one entry per page.
+ * The sidebar composes <Navigation> + <NavigationList> directly from
+ * kolay's docs manifest: one labelled list per collection, one entry
+ * per page. Kolay is data-only here.
  */
 class SideNav extends Component<{ Element: HTMLElement }> {
   @service declare router: RouterService;
@@ -36,24 +43,26 @@ class SideNav extends Component<{ Element: HTMLElement }> {
   isCurrent = (page: Page) => {
     if (page.path === "/") return false;
 
-    return this.router.currentURL?.startsWith(page.path) ?? false;
+    const url = this.router.currentURL?.split(/[?#]/)[0];
+
+    // Match whole path segments, so that e.g. /navigation is not
+    // considered "current" while viewing /navigation-list
+    return url === page.path || (url?.startsWith(`${page.path}/`) ?? false);
   };
 
   <template>
-    <aside class="docs-nav">
-      <NavigationList aria-label="Documentation" ...attributes as |list|>
-        {{#each this.groups as |group|}}
-          <list.Section @label={{groupName group.name}}>
-            {{#each (pagesOf group) as |page|}}
-              <li>
-                <a href={{page.path}} aria-current={{if (this.isCurrent page) "page"}}>
-                  {{nameFor page}}
-                </a>
-              </li>
-            {{/each}}
-          </list.Section>
-        {{/each}}
-      </NavigationList>
+    <Navigation aria-label="Documentation" ...attributes>
+      {{#each this.groups as |group|}}
+        <NavigationList @label={{groupName group.name}}>
+          {{#each (pagesOf group) as |page|}}
+            <li>
+              <a href={{page.path}} aria-current={{if (this.isCurrent page) "page"}}>
+                {{nameFor page}}
+              </a>
+            </li>
+          {{/each}}
+        </NavigationList>
+      {{/each}}
 
       <p class="docs-nav__meta">
         Built from
@@ -61,7 +70,7 @@ class SideNav extends Component<{ Element: HTMLElement }> {
           {{abbreviatedSha}}
         </a>
       </p>
-    </aside>
+    </Navigation>
   </template>
 }
 
