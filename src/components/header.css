@@ -23,6 +23,11 @@
     bottom: 0;
   }
 
+  /* When at the bottom, the elevation shadow casts upward */
+  &[data-position="bottom"].surface {
+    --surface-elevation-shadow: var(--shadow-xl2-up);
+  }
+
   .nvp__header__left {
     display: flex;
     align-items: center;
@@ -32,5 +37,52 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+  }
+}
+
+/*
+ * @position="auto" (the default): move to the bottom of tall or
+ * narrow containers -- thumb-reachable, mobile-style.
+ *
+ * "narrow" and "tall" are two SEPARATE @container rules on purpose:
+ * query-container selection is feature-dependent, so a single
+ * `(max-width) or (max-aspect-ratio)` query would skip inline-size
+ * containers entirely (aspect-ratio requires size containment) and
+ * the width half would never get a chance to match inside
+ * <ApplicationShell>'s inline-size wrapper.
+ *
+ * - "narrow" evaluates against the nearest inline-size (or size)
+ *   container -- the shell provides one;
+ * - "tall" evaluates against the nearest `container-type: size`
+ *   element (e.g. the docs' resizable demo frame);
+ * - with no container ancestor at all, @container rules never match
+ *   (no viewport fallback for rules), so "auto" degrades to "top".
+ *
+ * The `order` only takes effect when the parent is a column flex or
+ * grid layout (ApplicationShell's content pane is one) -- that is what
+ * lets `bottom: 0` stickiness actually pin to the bottom edge.
+ */
+@container (max-width: 480px) {
+  .nvp__header[data-position="auto"] {
+    top: auto;
+    bottom: 0;
+    order: 1;
+  }
+
+  .nvp__header[data-position="auto"].surface {
+    --surface-elevation-shadow: var(--shadow-xl2-up);
+  }
+}
+
+/* "tall": portrait (or square) size containers */
+@container (max-aspect-ratio: 1/1) {
+  .nvp__header[data-position="auto"] {
+    top: auto;
+    bottom: 0;
+    order: 1;
+  }
+
+  .nvp__header[data-position="auto"].surface {
+    --surface-elevation-shadow: var(--shadow-xl2-up);
   }
 }

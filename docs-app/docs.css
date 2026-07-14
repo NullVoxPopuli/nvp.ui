@@ -43,6 +43,23 @@
   border-bottom: var(--docs-border);
 }
 
+/* When @position="auto" resolves to the bottom (narrow/tall
+   containers), the hairline sits on the other side.
+   (Two rules, matching the kit's own query split -- see header.css) */
+@container (max-width: 480px) {
+  .nvp__header[data-position="auto"] {
+    border-bottom: none;
+    border-top: var(--docs-border);
+  }
+}
+
+@container (max-aspect-ratio: 1/1) {
+  .nvp__header[data-position="auto"] {
+    border-bottom: none;
+    border-top: var(--docs-border);
+  }
+}
+
 .docs-brand {
   font-size: 1.0625rem;
   font-weight: 700;
