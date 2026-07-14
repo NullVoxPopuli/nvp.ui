@@ -62,14 +62,49 @@
   }
 }
 
+/**
+ * Popovers float over arbitrary content, so unlike inline surfaces the
+ * background must be opaque. In light mode the surface math produces a
+ * translucent color (the mix percentages sum to < 100%), which would let
+ * the page bleed through the menu. Re-layering the surface tint over the
+ * page background keeps the same "elevated surface" color, but opaque.
+ * (The extra .surface class wins over the .theme-light .surface variables.)
+ */
+.nvp__menu__content.surface,
+.nvp__menu__kbd-hints.surface {
+  background-color: color-mix(
+    in oklab,
+    var(--color-page-background),
+    var(--surface-nesting-color-mix) var(--surface-nesting)
+  );
+}
+
 .nvp__menu__content {
+  --menu-border-color: color-mix(in oklab, var(--surface-background-color) 100%, black 30%);
+
   anchor-name: --nvp-menu;
-  min-width: 10rem;
+  min-width: 12rem;
   border-radius: var(--radius);
-  border: var(--border-width) var(--border-style) var(--border-color);
-  padding: 0;
+  border: var(--border-width) var(--border-style) var(--menu-border-color);
+
+  /**
+   * Breathing room around the items so that item hover backgrounds
+   * don't square off the rounded corners of the menu, and so the
+   * focus ring has space (see the note in focus.css).
+   */
+  padding: var(--padding-1);
   z-index: var(--z-hover);
-  background: var(--color-page-background);
+
+  /* Enter transition (--fade-duration is 0s under prefers-reduced-motion) */
+  transform-origin: top;
+  transition:
+    opacity var(--fade-duration),
+    scale var(--fade-duration);
+
+  @starting-style {
+    opacity: 0;
+    scale: 0.98;
+  }
 }
 
 .nvp__menu__item,
@@ -78,8 +113,9 @@
   width: 100%;
   padding: var(--padding-1) var(--padding-3);
   border: none;
+  border-radius: var(--radius);
   background: transparent;
-  color: var(--color-text);
+  color: color-mix(in oklab, var(--color-text) 90%, transparent);
   text-align: left;
   cursor: pointer;
   font-family: var(--font);
@@ -88,17 +124,30 @@
   text-decoration: none;
   transition: background 0.1s;
 
+  /**
+   * The menu focuses items on hover (and keeps them focused when the
+   * pointer leaves), so :focus is the "highlighted item" state.
+   * Keyboard navigation additionally gets the focus ring via the
+   * global :focus-visible styles in focus.css.
+   */
   &:hover,
+  &:focus,
   &:focus-visible {
     background: color-mix(in oklab, var(--color-primary) 20%, transparent);
     outline: none;
+  }
+
+  &:active {
+    background: color-mix(in oklab, var(--color-primary) 35%, transparent);
   }
 }
 
 .nvp__menu__separator {
   height: 1px;
-  margin: var(--padding-1) 0;
-  background: var(--border-color);
+
+  /* full-bleed hairline: extends through the content's padding */
+  margin: var(--padding-1) calc(-1 * var(--padding-1));
+  background: color-mix(in oklab, var(--color-text) 12%, transparent);
 }
 
 .nvp__menu__kbd-hints {
@@ -109,8 +158,10 @@
   translate: calc(-100% - 0.25rem) 0;
   width: max-content;
   z-index: calc(var(--z-hover) - 1);
+  border: var(--border-width) var(--border-style)
+    color-mix(in oklab, var(--surface-background-color) 100%, black 30%);
+  border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
   padding: 0.15rem 0.5rem 0.25rem 0.5rem;
   font-size: 0.6rem;
   color: color-mix(in oklab, var(--color-text) 60%, transparent);
@@ -118,13 +169,11 @@
 
   .ember-primitives__key {
     text-transform: uppercase;
-    background-color: #eee;
+    background-color: color-mix(in oklab, var(--color-text) 12%, var(--surface-background-color));
     border-radius: 2px;
-    border: 1px solid #b4b4b4;
-    box-shadow:
-      0 1px 1px rgba(0, 0, 0, 0.2),
-      0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
-    color: #333;
+    border: 1px solid color-mix(in oklab, var(--color-text) 35%, transparent);
+    box-shadow: 0 1px 1px color-mix(in oklab, var(--color-text) 20%, transparent);
+    color: color-mix(in oklab, var(--color-text) 80%, transparent);
     display: inline-block;
     font-size: 0.55rem;
     font-weight: 700;
@@ -135,6 +184,13 @@
 }
 
 @media (pointer: coarse) {
+  .nvp__menu__kbd-hints {
+    display: none;
+  }
+}
+
+/* The hints are positioned with CSS anchor positioning */
+@supports not (anchor-name: --nvp-menu) {
   .nvp__menu__kbd-hints {
     display: none;
   }

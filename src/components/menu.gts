@@ -22,6 +22,8 @@ export interface Signature {
     /**
      * Placement of the menu content relative to the trigger.
      * Uses floating-ui placement values.
+     *
+     * Defaults to "bottom-start" (aligned with the left edge of the trigger).
      */
     placement?: string;
   };
@@ -55,7 +57,11 @@ export interface Signature {
 }
 
 export const Menu: TOC<Signature> = <template>
-  <PrimitiveMenu @placement={{@placement}} as |menu|>
+  <PrimitiveMenu
+    @placement={{if @placement @placement "bottom-start"}}
+    @offsetOptions={{6}}
+    as |menu|
+  >
     {{yield
       (hash
         Trigger=(component StyledTrigger Trigger=menu.Trigger variant=@variant)
@@ -72,7 +78,7 @@ const StyledTrigger = <template>
 </template>;
 
 const StyledContent = <template>
-  <@Content class="nvp__menu__content surface elevation-lg" ...attributes as |items|>
+  <@Content class="nvp__menu__content surface elevation-xl" ...attributes as |items|>
     {{yield
       (hash
         Item=(component StyledItem Item=items.Item)
