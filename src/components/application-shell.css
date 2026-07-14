@@ -22,7 +22,8 @@
   overflow-x: hidden;
 }
 
-.mobile-menu__tray nav ul {
+/* (NavigationList owns the styling of its own lists) */
+.mobile-menu__tray nav ul:not(.nvp__navigation-list *) {
   padding-left: 0.5rem;
   list-style: none;
   line-height: 1.75rem;
@@ -121,7 +122,8 @@ header button.mobile-menu__toggle:active {
   }
 }
 
-.nvp__application-shell__layout nav ul {
+/* (NavigationList owns the styling of its own lists) */
+.nvp__application-shell__layout nav ul:not(.nvp__navigation-list *) {
   padding-left: 0.5rem;
   list-style: none;
   line-height: 1.75rem;
