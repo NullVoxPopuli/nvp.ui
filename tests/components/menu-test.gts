@@ -47,6 +47,27 @@ module("Menu", function (hooks) {
     assert.dom(".nvp__menu__item").hasText("Item 1");
   });
 
+  test("content is a styled, elevated surface", async function (assert) {
+    await render(
+      <template>
+        <PortalTargets />
+        <Menu as |menu|>
+          <menu.Trigger>Open</menu.Trigger>
+          <menu.Content as |Items|>
+            <Items.Item>Item 1</Items.Item>
+          </menu.Content>
+        </Menu>
+      </template>,
+    );
+
+    await click(".nvp__menu__trigger");
+
+    assert.dom(".nvp__menu__content").hasClass("surface");
+    assert.dom(".nvp__menu__content").hasClass("elevation-xl");
+    assert.dom(".nvp__menu__content").hasAttribute("role", "menu");
+    assert.dom(".nvp__menu__item").hasAttribute("role", "menuitem");
+  });
+
   test("renders keyboard hints when open", async function (assert) {
     await render(
       <template>
