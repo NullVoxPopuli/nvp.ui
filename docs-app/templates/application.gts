@@ -5,7 +5,7 @@ import { pageTitle } from "ember-page-title";
 import Route from "ember-route-template";
 import { PageNav } from "kolay/components";
 
-import { ApplicationShell, ExternalLink, ThemeToggle } from "#src/index.ts";
+import { ApplicationShell, ExternalLink, NavigationList, ThemeToggle } from "#src/index.ts";
 import { abbreviatedSha } from "~build/git";
 
 import type { TOC } from "@ember/component/template-only";
@@ -13,22 +13,26 @@ import type { Page } from "kolay";
 
 const SideNav: TOC<{ Element: HTMLElement }> = <template>
   <aside class="docs-nav">
-    <PageNav ...attributes>
-      <:page as |x|>
-        <x.Link>
-          {{nameFor x.page}}
-        </x.Link>
-      </:page>
-      <:collection as |x|>
-        {{#if x.index}}
-          <x.index.Link>
-            {{groupName x.collection.name}}
-          </x.index.Link>
-        {{else}}
-          {{groupName x.collection.name}}
-        {{/if}}
-      </:collection>
-    </PageNav>
+    <NavigationList>
+      <:nav>
+        <PageNav ...attributes>
+          <:page as |x|>
+            <x.Link>
+              {{nameFor x.page}}
+            </x.Link>
+          </:page>
+          <:collection as |x|>
+            {{#if x.index}}
+              <x.index.Link>
+                {{groupName x.collection.name}}
+              </x.index.Link>
+            {{else}}
+              {{groupName x.collection.name}}
+            {{/if}}
+          </:collection>
+        </PageNav>
+      </:nav>
+    </NavigationList>
 
     <p class="docs-nav__meta">
       Built from

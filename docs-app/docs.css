@@ -89,59 +89,7 @@
   padding: 1.25rem 0.75rem;
 }
 
-aside.docs-nav nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  line-height: 1.5;
-}
-
-/* Group labels are rendered as text (or an index link) directly
-   inside the top-level list items */
-aside.docs-nav nav > ul > li {
-  margin-top: 1.5rem;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--docs-muted);
-}
-
-aside.docs-nav nav > ul > li:first-child {
-  margin-top: 0;
-}
-
-/* ...while the pages within a group reset back to normal text */
-aside.docs-nav nav > ul > li > ul {
-  margin-top: 0.5rem;
-  font-size: 0.9375rem;
-  font-weight: 400;
-  letter-spacing: normal;
-  text-transform: none;
-  color: var(--color-text);
-}
-
-aside.docs-nav nav a {
-  display: block;
-  padding: 0.3125rem 0.625rem;
-  border-radius: calc(2 * var(--radius));
-  color: color-mix(in oklab, var(--color-text) 78%, transparent);
-  text-decoration: none;
-  transition:
-    background-color var(--fade-duration),
-    color var(--fade-duration);
-}
-
-aside.docs-nav nav a:hover {
-  background: var(--docs-faint);
-  color: var(--color-text);
-}
-
-aside.docs-nav nav a.active {
-  background: color-mix(in oklab, var(--color-primary) 24%, transparent);
-  color: var(--color-text);
-  font-weight: 500;
-}
+/* The nav-list styling itself comes from <NavigationList> */
 
 .docs-nav__meta {
   margin-top: 2rem;
@@ -260,13 +208,13 @@ aside.docs-nav nav a.active {
   margin-block: 0.3125rem;
 }
 
-.nvp__application-shell__content :is(p, li, td) a:not(.nvp__button) {
+.nvp__application-shell__content :is(p, li, td) a:not(.nvp__button, .nvp__navigation-list a) {
   color: var(--docs-link);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 
-.nvp__application-shell__content :is(p, li, td) a:not(.nvp__button):hover {
+.nvp__application-shell__content :is(p, li, td) a:not(.nvp__button, .nvp__navigation-list a):hover {
   text-decoration-thickness: 2px;
 }
 

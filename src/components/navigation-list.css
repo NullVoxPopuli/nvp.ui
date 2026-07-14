@@ -1,0 +1,109 @@
+/* ───────────────────────────────────────────
+   Navigation list — sidebar / docs-style nav
+   ─────────────────────────────────────────── */
+
+.nvp__navigation-list {
+  /*
+   * These are (re)computed here — not on :root — because color-mix()
+   * resolves var() references at the element the property is defined
+   * on, and the theme classes may be anywhere above (or below!) :root
+   * scope (e.g. nested theme demos).
+   */
+  --navigation-list-label-color: color-mix(in oklab, var(--color-text) 65%, transparent);
+  --navigation-list-link-color: color-mix(in oklab, var(--color-text) 78%, transparent);
+  --navigation-list-hover-background: color-mix(in oklab, var(--color-text) 7%, transparent);
+  --navigation-list-current-background: color-mix(in oklab, var(--color-primary) 24%, transparent);
+
+  --navigation-list-section-gap: calc(6 * var(--gap));
+  --navigation-list-label-gap: var(--gap-2);
+  --navigation-list-item-gap: 0px;
+  --navigation-list-item-padding: calc(1.25 * var(--padding-1)) calc(1.25 * var(--padding-2));
+  --navigation-list-item-radius: calc(2 * var(--radius));
+
+  line-height: 1.5;
+}
+
+/*
+ * Structural selectors (rather than only classes) so that navs the
+ * consumer brings along (via the <:nav> block) are styled the same
+ * as the composed Section / Item pieces.
+ */
+.nvp__navigation-list :where(ul) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9375rem;
+}
+
+/* ── Group spacing ────────────────────────── */
+
+nav.nvp__navigation-list,
+.nvp__navigation-list :where(nav > ul) {
+  display: grid;
+  gap: var(--navigation-list-section-gap);
+}
+
+.nvp__navigation-list :where(.nvp__navigation-list__section > ul, nav > ul > li > ul) {
+  display: grid;
+  gap: var(--navigation-list-item-gap);
+}
+
+/* ── Section labels ───────────────────────── */
+
+/*
+ * In brought-along navs, group labels are rendered as text (or an
+ * index link) directly inside the top-level list items…
+ */
+.nvp__navigation-list__label,
+.nvp__navigation-list :where(nav > ul > li) {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navigation-list-label-color);
+}
+
+/* …while the links within a group reset back to normal text */
+.nvp__navigation-list :where(nav > ul > li > ul) {
+  margin-top: var(--navigation-list-label-gap);
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--color-text);
+}
+
+.nvp__navigation-list :where(.nvp__navigation-list__label + ul) {
+  margin-top: var(--navigation-list-label-gap);
+}
+
+/* ── Links ────────────────────────────────── */
+
+.nvp__navigation-list :where(a) {
+  display: block;
+  padding: var(--navigation-list-item-padding);
+  border-radius: var(--navigation-list-item-radius);
+  color: var(--navigation-list-link-color);
+  text-decoration: none;
+  transition:
+    background-color var(--fade-duration),
+    color var(--fade-duration);
+}
+
+.nvp__navigation-list :where(a):hover {
+  background: var(--navigation-list-hover-background);
+  color: var(--color-text);
+}
+
+/*
+ * The current page's link.
+ *
+ * `aria-current` is the accessible way to mark it; the `.active`
+ * class is honored too, for routers/link components that set one
+ * (ember's <LinkTo>, kolay's PageNav, …).
+ */
+.nvp__navigation-list :where(a):is(.active, [aria-current]:not([aria-current="false"])) {
+  background: var(--navigation-list-current-background);
+  color: var(--color-text);
+  font-weight: 500;
+}
