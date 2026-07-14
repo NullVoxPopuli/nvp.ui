@@ -10,7 +10,7 @@ export interface Signature {
    * When there are multiple `<nav>` elements on a page,
    * pass an `aria-label` to distinguish them.
    */
-  Element: HTMLElement;
+  Element: HTMLElementTagNameMap["nav"];
   Blocks: {
     /**
      * The navigation's content -- typically one or more
