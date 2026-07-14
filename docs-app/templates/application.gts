@@ -1,3 +1,5 @@
+import "../docs.css";
+
 import { pascalCase, sentenceCase } from "change-case";
 import { pageTitle } from "ember-page-title";
 import Route from "ember-route-template";
@@ -10,7 +12,7 @@ import type { TOC } from "@ember/component/template-only";
 import type { Page } from "kolay";
 
 const SideNav: TOC<{ Element: HTMLElement }> = <template>
-  <aside>
+  <aside class="docs-nav">
     <PageNav ...attributes>
       <:page as |x|>
         <x.Link>
@@ -20,27 +22,34 @@ const SideNav: TOC<{ Element: HTMLElement }> = <template>
       <:collection as |x|>
         {{#if x.index}}
           <x.index.Link>
-            {{sentenceCase x.collection.name}}
+            {{groupName x.collection.name}}
           </x.index.Link>
         {{else}}
-          {{sentenceCase x.collection.name}}
+          {{groupName x.collection.name}}
         {{/if}}
       </:collection>
     </PageNav>
+
+    <p class="docs-nav__meta">
+      Built from
+      <a href="https://github.com/NullVoxPopuli/nvp.ui/commit/{{abbreviatedSha}}">
+        {{abbreviatedSha}}
+      </a>
+    </p>
   </aside>
 </template>;
 
 export default Route(
   <template>
-    {{pageTitle "Docs :: " abbreviatedSha}}
+    {{pageTitle "nvp.ui"}}
 
     <div class="app-root">
       <ApplicationShell>
         <:headerLeft>
-          <a href="/">nvp.ui</a>
+          <a class="docs-brand" href="/">nvp.ui</a>
         </:headerLeft>
         <:headerRight>
-          <ExternalLink href="https://github.com/NullVoxPopuli/nullui">GitHub</ExternalLink>
+          <ExternalLink href="https://github.com/NullVoxPopuli/nvp.ui">GitHub</ExternalLink>
           <ThemeToggle />
         </:headerRight>
         <:nav>
@@ -59,6 +68,15 @@ export default Route(
     </style>
   </template>,
 );
+
+/**
+ * Collection directories are prefixed with a number to control
+ * their order (e.g. "1-get-started") -- that prefix is not part
+ * of the display name.
+ */
+function groupName(name: string) {
+  return sentenceCase(name.replace(/^\d+[-_.\s]*/, ""));
+}
 
 function nameFor(x: Page) {
   // We defined componentName via json file

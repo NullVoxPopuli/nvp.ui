@@ -14,9 +14,9 @@ import * as SetBodyClassService from "ember-set-body-class/addon/services/body-c
 import config from "./config.ts";
 import * as Router from "./router.ts";
 import * as ApplicationRoute from "./routes/application.ts";
-import * as IndexRoute from "./routes/index.ts";
 import * as PageRoute from "./routes/page.ts";
 import * as ApplicationTemplate from "./templates/application.gts";
+import * as IndexTemplate from "./templates/index.gts";
 import * as PageTemplate from "./templates/page.gts";
 
 sync();
@@ -37,10 +37,10 @@ export default class App extends Application {
     // This App
     "docs-app/router": Router,
     "docs-app/routes/application": ApplicationRoute,
-    "docs-app/routes/index": IndexRoute,
     "docs-app/routes/page": PageRoute,
 
     "docs-app/templates/application": ApplicationTemplate,
+    "docs-app/templates/index": IndexTemplate,
 
     "docs-app/templates/page": PageTemplate,
 

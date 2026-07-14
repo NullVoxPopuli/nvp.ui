@@ -89,12 +89,18 @@ async function checkA11y(assert: Assert, path: string, theme: string) {
 module("Application | Pages", function (hooks) {
   setupApplicationTest(hooks);
 
-  test("/ redirects to the first docs page", async function (assert) {
+  test("/ renders the landing page", async function (assert) {
     await visit("/");
-    assert.ok(
-      currentURL().startsWith("/Docs/"),
-      `Expected redirect to /Docs/..., got ${currentURL()}`,
-    );
+    assert.strictEqual(currentURL(), "/", "the landing page has its own URL");
+    assert.dom("h1").hasText("nvp.ui");
+
+    await checkA11y(assert, "/", "default");
+
+    colorScheme.update("dark");
+    await checkA11y(assert, "/", "dark");
+
+    colorScheme.update("light");
+    await checkA11y(assert, "/", "light");
   });
 
   for (const page of pages) {

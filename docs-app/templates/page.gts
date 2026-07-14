@@ -15,13 +15,13 @@ function errorMessage(error: string | { reason: string; original: Error }): stri
 <template>
   <Page>
     <:pending>
-      <div class="loading-page">
-        Loading, compiling, etc
+      <div class="docs-page-loading">
+        Loading&hellip;
       </div>
     </:pending>
 
     <:error as |error|>
-      <div style="border: 1px solid red; padding: 1rem;" data-page-error>
+      <div class="docs-page-error" data-page-error>
         {{errorMessage error}}
       </div>
       {{(removeLoader)}}
@@ -33,14 +33,4 @@ function errorMessage(error: string | { reason: string; original: Error }): stri
     </:success>
 
   </Page>
-
-  <style>
-    .loading-page {
-      position: fixed;
-      top: 3rem;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.8);
-      color: black;
-    }
-  </style>
 </template>
