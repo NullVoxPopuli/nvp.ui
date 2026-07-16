@@ -97,8 +97,16 @@ export default Route(
     </div>
 
     <style>
+      /*
+       * The size container is the opt-in for the "tall" half of
+       * <Header @position="auto">: aspect-ratio queries need size
+       * containment, which the shell's inline-size wrapper cannot
+       * provide. Requires the definite height (size containment
+       * would collapse an auto-height box to nothing).
+       */
       .app-root {
         height: 100dvh;
+        container-type: size;
       }
     </style>
   </template>,
