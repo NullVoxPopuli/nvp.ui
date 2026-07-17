@@ -149,6 +149,22 @@ header button.mobile-menu__toggle:active {
   --navigation-top: 3.5rem;
 }
 
+/* The shell's header is @position="auto", so under the same "narrow"
+   and "tall" conditions that move it to the bottom edge (see
+   header.css for why these are two separate rules), nothing sits at
+   the top anymore -- the nav sticks to the viewport top itself. */
+@container (max-width: 480px) {
+  .nvp__application-shell__layout {
+    --navigation-top: 0px;
+  }
+}
+
+@container (max-aspect-ratio: 1/1) {
+  .nvp__application-shell__layout {
+    --navigation-top: 0px;
+  }
+}
+
 @container (max-width: 768px) {
   .nvp__application-shell__sidebar {
     display: none;

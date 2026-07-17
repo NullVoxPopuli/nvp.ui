@@ -75,7 +75,9 @@ How "auto" decides, using two container queries -- **narrow**
   `inline-size` wrapper -- the docs site you are reading uses it, so this
   site's header sits at the bottom on phones
 - **tall** (portrait aspect ratio) additionally applies inside
-  `container-type: size` elements, like the demo frame above. It is a
+  `container-type: size` elements, like the demo frame above -- or this
+  site's layout root, so half-screening a portrait-ish window moves this
+  site's header to the bottom too. It is a
   separate query on purpose: query-container selection is feature-dependent,
   so a combined `or` query would skip `inline-size` containers entirely
   (aspect-ratio needs size containment) and "narrow" would stop working in

@@ -4,6 +4,11 @@
   gap: 1rem;
   justify-content: space-between;
   padding: 0.5rem 1rem;
+
+  /* Same height whether or not a tall child (like ApplicationShell's
+     40px hamburger toggle) is present -- and the height that the
+     shell's --navigation-top contract (3.5rem) assumes. */
+  min-height: 3.5rem;
   background: var(--surface-background-color, var(--header-background));
   position: sticky;
   z-index: var(--z-site-nav);
