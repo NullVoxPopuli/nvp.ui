@@ -45,8 +45,10 @@ following the [DESIGN.md](https://getdesign.md) convention.
 Every value in this document comes from
 [`src/components/variables.css`](https://github.com/NullVoxPopuli/nvp.ui/blob/main/src/components/variables.css).
 When this document and that CSS disagree, the CSS wins.
-On [the docs site](https://nullui.vercel.app/Docs/1-get-started/design), the code fences below
-render as live demos — only the result, driven by the real tokens.
+
+> The code fences below are live demos, driven by the real components and tokens —
+> [view this document rendered on the docs site](https://nullui.vercel.app/Docs/1-get-started/design).
+> On GitHub they read as source.
 
 ## Overview
 
@@ -70,18 +72,20 @@ so the app's content is always the subject.
 
 ## Colors
 
-Semantic roles, not palettes — values live in the tokens:
+Semantic roles, not palettes — the values live in the tokens:
 
-- **Page & text** — `--color-page-background` is the canvas; `--color-text` is near-max contrast
-  against it in both themes.
-- **Accents** — `--color-primary` (also the form `accent-color`), `--color-secondary`, and
-  `--color-danger` for destructive actions. All cool and saturated against the neutral canvas.
-- **Borders** — `--border-color` is a hairline tone that barely departs from the canvas in light
-  mode; separation between regions reads primarily through surface shading, with borders as a
-  quiet assist.
+| Token                     | Light                                                                  | Dark                                                                  | Use                                                                                |
+| ------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `--color-page-background` | ![light page background](https://placehold.co/48x24/eeeeee/eeeeee.png) | ![dark page background](https://placehold.co/48x24/111111/111111.png) | The canvas; surfaces derive from this                                              |
+| `--color-text`            | ![light text](https://placehold.co/48x24/121212/121212.png)            | ![dark text](https://placehold.co/48x24/ffffff/ffffff.png)            | Body text — near-max contrast against the canvas                                   |
+| `--color-primary`         | ![light primary](https://placehold.co/48x24/88cdff/88cdff.png)         | ![dark primary](https://placehold.co/48x24/00cdff/00cdff.png)         | Primary actions, accents, `accent-color`                                           |
+| `--color-secondary`       | ![light secondary](https://placehold.co/48x24/aaaaff/aaaaff.png)       | ![dark secondary](https://placehold.co/48x24/5555ff/5555ff.png)       | Secondary actions                                                                  |
+| `--color-danger`          | ![light danger](https://placehold.co/48x24/ff66bb/ff66bb.png)          | ![dark danger](https://placehold.co/48x24/ee0055/ee0055.png)          | Destructive actions                                                                |
+| `--border-color`          | ![light border](https://placehold.co/48x24/efefef/efefef.png)          | ![dark border](https://placehold.co/48x24/222222/222222.png)          | Hairline borders — barely apart from the canvas; separation reads through surfaces |
 
+Accents are cool and saturated (cyan / periwinkle / pink) against a near-neutral canvas.
 Don't introduce new hues — derive with `color-mix()` from these tokens.
-Both themes, same swatches:
+The same tokens, rendered live in both themes:
 
 ```gjs live no-shadow
 import { Theme } from "nvp.ui/theme";
