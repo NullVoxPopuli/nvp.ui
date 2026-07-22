@@ -1,0 +1,12 @@
+.nvp__polite {
+  position: sticky;
+  transform: translateY(var(--polite-offset, 0px));
+}
+
+.nvp__polite__header {
+  top: 0;
+}
+
+.nvp__polite__footer {
+  bottom: 0;
+}

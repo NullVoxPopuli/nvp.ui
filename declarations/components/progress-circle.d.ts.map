@@ -1,0 +1,1 @@
+{"version":3,"file":"progress-circle.d.ts","sourceRoot":"","sources":["../../src/components/progress-circle.gts"],"names":[],"mappings":"AAuEA,OAAO,KAAK,EAAE,GAAG,EAAE,MAAM,gCAAgC,CAAC;AAM1D,MAAM,WAAW,SAAS;IACxB,OAAO,EAAE,WAAW,CAAC;IACrB,IAAI,EAAE;QACJ,KAAK,EAAE,MAAM,CAAC;QACd,KAAK,EAAE,MAAM,CAAC;KACf,CAAC;CACH;AAED,eAAO,MAAM,cAAc,EAAE,GAAG,CAAC,SAAS,CA8ExC,CAAC"}

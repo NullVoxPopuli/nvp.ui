@@ -1,0 +1,197 @@
+.nvp__menu__trigger {
+  --button-background-color: var(--button-color);
+  --button-hover-mix: 0%;
+  --button-interact-spread: 0;
+  --button-background-mix: 75%;
+  --button-padding-y: var(--padding-1);
+  --button-padding-x: var(--padding-3);
+  --button-shadow-offset-y: 1px;
+  --button-shadow-offset-x: 0px;
+  --button-shadow-blur: 1px;
+  --button-shadow: var(--button-shadow-offset-x) var(--button-shadow-offset-y)
+    var(--button-shadow-blur) var(--button-interact-spread) var(--button-background-color);
+
+  transition: all 0.2s;
+  position: relative;
+  display: inline-grid;
+  grid-auto-flow: column;
+  gap: var(--gap);
+  align-items: center;
+  padding: var(--button-padding-y) var(--button-padding-x);
+  line-height: var(--line-height);
+  border-radius: var(--button-border-radius);
+  border-width: var(--button-border-width);
+  border-style: var(--button-border-style);
+  box-shadow: var(--button-shadow);
+  cursor: pointer;
+  font-family: var(--font);
+
+  color: color-mix(in oklab, var(--color-text) 85%, transparent);
+
+  background: color-mix(
+    in oklab,
+    var(--button-background-color) var(--button-background-mix),
+    var(--button-hover-color-mix) var(--button-hover-mix)
+  );
+
+  border-color: color-mix(
+    in oklab,
+    var(--button-background-color) var(--button-background-mix),
+    var(--button-border-color-mix) var(--button-hover-mix)
+  );
+
+  &[data-variant="primary"] {
+    --button-background-color: var(--color-primary);
+  }
+  &[data-variant="secondary"] {
+    --button-background-color: var(--color-secondary);
+  }
+  &[data-variant="danger"] {
+    --button-background-color: var(--color-danger);
+  }
+
+  &:hover {
+    --button-hover-mix: 30%;
+    --button-interact-spread: 1px;
+  }
+
+  &:active {
+    --button-hover-mix: 30%;
+    --button-hover-color-mix: #000;
+    --button-interact-spread: -1px;
+  }
+}
+
+/**
+ * Popovers float over arbitrary content, so unlike inline surfaces the
+ * background must be opaque. In light mode the surface math produces a
+ * translucent color (the mix percentages sum to < 100%), which would let
+ * the page bleed through the menu. Re-layering the surface tint over the
+ * page background keeps the same "elevated surface" color, but opaque.
+ * (The extra .surface class wins over the .theme-light .surface variables.)
+ */
+.nvp__menu__content.surface,
+.nvp__menu__kbd-hints.surface {
+  background-color: color-mix(
+    in oklab,
+    var(--color-page-background),
+    var(--surface-nesting-color-mix) var(--surface-nesting)
+  );
+}
+
+.nvp__menu__content {
+  --menu-border-color: color-mix(in oklab, var(--surface-background-color) 100%, black 30%);
+
+  anchor-name: --nvp-menu;
+  min-width: 12rem;
+  border-radius: var(--radius);
+  border: var(--border-width) var(--border-style) var(--menu-border-color);
+
+  /**
+   * Breathing room around the items so that item hover backgrounds
+   * don't square off the rounded corners of the menu, and so the
+   * focus ring has space (see the note in focus.css).
+   */
+  padding: var(--padding-1);
+  z-index: var(--z-hover);
+
+  /* Enter transition (--fade-duration is 0s under prefers-reduced-motion) */
+  transform-origin: top;
+  transition:
+    opacity var(--fade-duration),
+    scale var(--fade-duration);
+
+  @starting-style {
+    opacity: 0;
+    scale: 0.98;
+  }
+}
+
+.nvp__menu__item,
+.nvp__menu__link-item {
+  display: block;
+  width: 100%;
+  padding: var(--padding-1) var(--padding-3);
+  border: none;
+  border-radius: var(--radius);
+  background: transparent;
+  color: color-mix(in oklab, var(--color-text) 90%, transparent);
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.875rem;
+  line-height: var(--line-height);
+  text-decoration: none;
+  transition: background 0.1s;
+
+  /**
+   * The menu focuses items on hover (and keeps them focused when the
+   * pointer leaves), so :focus is the "highlighted item" state.
+   * Keyboard navigation additionally gets the focus ring via the
+   * global :focus-visible styles in focus.css.
+   */
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    background: color-mix(in oklab, var(--color-primary) 20%, transparent);
+    outline: none;
+  }
+
+  &:active {
+    background: color-mix(in oklab, var(--color-primary) 35%, transparent);
+  }
+}
+
+.nvp__menu__separator {
+  height: 1px;
+
+  /* full-bleed hairline: extends through the content's padding */
+  margin: var(--padding-1) calc(-1 * var(--padding-1));
+  background: color-mix(in oklab, var(--color-text) 12%, transparent);
+}
+
+.nvp__menu__kbd-hints {
+  position: fixed;
+  position-anchor: --nvp-menu;
+  top: anchor(bottom);
+  left: anchor(right);
+  translate: calc(-100% - 0.25rem) 0;
+  width: max-content;
+  z-index: calc(var(--z-hover) - 1);
+  border: var(--border-width) var(--border-style)
+    color-mix(in oklab, var(--surface-background-color) 100%, black 30%);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  padding: 0.15rem 0.5rem 0.25rem 0.5rem;
+  font-size: 0.6rem;
+  color: color-mix(in oklab, var(--color-text) 60%, transparent);
+  pointer-events: none;
+
+  .ember-primitives__key {
+    text-transform: uppercase;
+    background-color: color-mix(in oklab, var(--color-text) 12%, var(--surface-background-color));
+    border-radius: 2px;
+    border: 1px solid color-mix(in oklab, var(--color-text) 35%, transparent);
+    box-shadow: 0 1px 1px color-mix(in oklab, var(--color-text) 20%, transparent);
+    color: color-mix(in oklab, var(--color-text) 80%, transparent);
+    display: inline-block;
+    font-size: 0.55rem;
+    font-weight: 700;
+    line-height: 1;
+    padding: 1px 3px;
+    white-space: nowrap;
+  }
+}
+
+@media (pointer: coarse) {
+  .nvp__menu__kbd-hints {
+    display: none;
+  }
+}
+
+/* The hints are positioned with CSS anchor positioning */
+@supports not (anchor-name: --nvp-menu) {
+  .nvp__menu__kbd-hints {
+    display: none;
+  }
+}
