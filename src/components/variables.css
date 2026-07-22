@@ -10,8 +10,15 @@
   color-scheme: light dark;
 
   /* General */
-  --radius: 0.25rem;
+
+  /**
+    * Square corners are the default aesthetic: every component derives its
+    * corners from this token, so setting it (e.g. `--radius: 0.25rem`) rounds
+    * the whole kit at once.
+    */
+  --radius: 0;
   --font: ui-sans-serif, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
   --fade-duration: 0.125s;
 
   /* z-indexes */
@@ -93,8 +100,10 @@
   /* Focus */
   --ring-size: 6px;
 
-  /* Border */
-  --border-color: #efefef;
+  /* Border
+     With square corners, edges are the design language --
+     borders need enough contrast to read as crisp outlines */
+  --border-color: #c9c9c9;
 
   /* Components */
   --button-color: rgb(220, 220, 220);
@@ -116,7 +125,7 @@
   --color-page-background: #111;
 
   /* Border */
-  --border-color: #222;
+  --border-color: #333;
 
   /* Focus */
   --ring-color: rgb(224 78 57 / var(--ring-opacity, 1));
