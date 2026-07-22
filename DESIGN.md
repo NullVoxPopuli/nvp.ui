@@ -1,3 +1,42 @@
+---
+version: 1
+name: nvp-ui-design
+description: A professional, sleek interface system for Ember apps. Gently rounded corners, hairline low-contrast borders, high-contrast system typography, and restrained fade-only motion. Depth comes from surface color-mixing and drop shadows — never gradients, blur, or decoration. Light and dark are equal first-class themes. Every value is a CSS custom property defined in src/components/variables.css; values are intentionally not duplicated here — reference the tokens.
+colors:
+  page-background: "var(--color-page-background)"
+  text: "var(--color-text)"
+  primary: "var(--color-primary)"
+  secondary: "var(--color-secondary)"
+  danger: "var(--color-danger)"
+  border: "var(--border-color)"
+  surface: "var(--surface-background-color)"
+typography:
+  font: "var(--font)"
+  line-height: "var(--line-height)"
+rounded:
+  radius: "var(--radius)"
+spacing:
+  gap: "var(--gap-1) … var(--gap-4)"
+  padding: "var(--padding-1) … var(--padding-4)"
+components:
+  application-shell: { import: "nvp.ui", tokens: "--menu-progress" }
+  avatar: { import: "nvp.ui/avatar", tokens: "--avatar-*" }
+  browser-window: { import: "nvp.ui/browser-window", tokens: "--browser-window-*" }
+  button: { import: "nvp.ui/button", tokens: "--button-*" }
+  external-link: { import: "nvp.ui", tokens: "" }
+  header: { import: "nvp.ui/header", tokens: "--header-background, --z-site-nav" }
+  menu: { import: "nvp.ui", tokens: "--menu-border-color, --button-*" }
+  navigation: { import: "nvp.ui", tokens: "--navigation-*" }
+  navigation-list: { import: "nvp.ui", tokens: "--navigation-list-*" }
+  polite-sticky: { import: "nvp.ui/polite-sticky", tokens: "--polite-offset" }
+  progress-circle: { import: "nvp.ui/progress-circle", tokens: "--color-primary" }
+  tabs: { import: "nvp.ui/tabs", tokens: "--tab-*, --tabpanel-*, --button-*" }
+  theme: { import: "nvp.ui/theme", tokens: "" }
+  theme-toggle: { import: "nvp.ui/theme-toggle", tokens: "" }
+  timeline: { import: "nvp.ui/timeline", tokens: "--timeline-*" }
+  toggle-button: { import: "nvp.ui", tokens: "--button-*" }
+---
+
 # Design
 
 The design reference for `nvp.ui` — for humans and AI agents building apps with this kit,
@@ -9,41 +48,39 @@ When this document and that CSS disagree, the CSS wins.
 On [the docs site](https://nullui.vercel.app/Docs/1-get-started/design), the code fences below
 render as live demos — only the result, driven by the real tokens.
 
-## Identity
+## Overview
 
 Professional and sleek.
 Gently rounded corners, hairline borders, high-contrast system typography, restrained motion.
 Depth comes from surface color-mixing and drop shadows — not gradients, blur, or decoration.
+The system has no imagery of its own: structure, color, and elevation do all of the visual work,
+so the app's content is always the subject.
 
-## Principles
+**Key Characteristics:**
 
-1. **Tokens first.** Every color, radius, spacing, shadow, and duration is a CSS custom property.
-   Never hardcode a hex value or pixel size in app CSS — reference a token, or derive from one with `color-mix()`.
-2. **Structure comes from surfaces, not lines.** Borders are hairline and low-contrast — in light
-   mode `--border-color` barely departs from the page background — so separation between regions
-   reads primarily through surface shading and elevation, with borders as a quiet assist.
-3. **Derive, don't invent.** Hover, pressed, and disabled states are `color-mix()` transformations of base
-   tokens, not new colors — for example, hover mixes 30% of `--button-hover-color-mix` into a button's background.
-4. **Light and dark are equals.** Every color token has a value in both themes. Theme is driven by
-   `color-scheme` and may be overridden at any DOM level via the `Theme` component or the
-   `theme-light` / `theme-dark` classes. Because class-based theming is in play, `light-dark()` cannot be
-   used for anything that must respond to those classes.
-5. **Accessibility is part of the aesthetic.** The two-layer focus ring, `prefers-reduced-motion`
-   support, and disabled-reason tooltips are styled deliberately — never suppress them.
+- Near-neutral page canvas in both themes, with cool saturated accents (cyan / periwinkle / pink).
+- Structure reads through _surfaces_ — nesting automatically lightens panels — while borders stay
+  hairline and quiet.
+- One radius token shapes the entire kit; one font token sets all type. Re-theming is a
+  handful of `:root` declarations, never a rewrite.
+- States (hover, pressed, disabled) are `color-mix()` transformations of base tokens, not new colors.
+- Light and dark are equals: theme flows from `color-scheme` and can be overridden at any DOM level.
+- Accessibility is part of the aesthetic — the two-layer focus ring, `prefers-reduced-motion`
+  support, and disabled-reason tooltips are styled deliberately, never suppressed.
 
-## Color
+## Colors
 
-| Token                     | Use                                      |
-| ------------------------- | ---------------------------------------- |
-| `--color-page-background` | Page base; surfaces derive from this     |
-| `--color-text`            | Body text                                |
-| `--color-primary`         | Primary actions, accents, `accent-color` |
-| `--color-secondary`       | Secondary actions                        |
-| `--color-danger`          | Destructive actions                      |
-| `--border-color`          | Hairline structural borders              |
+Semantic roles, not palettes — values live in the tokens:
 
-Accents are cool and saturated (cyan / periwinkle / pink) against near-neutral backgrounds.
-Don't introduce new hues — mix from these tokens.
+- **Page & text** — `--color-page-background` is the canvas; `--color-text` is near-max contrast
+  against it in both themes.
+- **Accents** — `--color-primary` (also the form `accent-color`), `--color-secondary`, and
+  `--color-danger` for destructive actions. All cool and saturated against the neutral canvas.
+- **Borders** — `--border-color` is a hairline tone that barely departs from the canvas in light
+  mode; separation between regions reads primarily through surface shading, with borders as a
+  quiet assist.
+
+Don't introduce new hues — derive with `color-mix()` from these tokens.
 Both themes, same swatches:
 
 ```gjs live no-shadow
@@ -86,43 +123,18 @@ const Swatches = <template>
 </template>
 ```
 
-### Surfaces instead of panel colors
+### Theming
 
-Never pick a background color for a panel, card, or popover. Use the `surface` class:
-each level of `.surface` nesting mixes a few percent more white into `--color-page-background`
-(via `color-mix(in oklab, ...)`), so elements "closer to the viewer" are automatically lighter.
-Pair with an elevation class — `elevation-sm` through `elevation-xl2` — when a layer should
-feel lifted off the one beneath it (bigger distance → bigger `drop-shadow`).
-
-```gjs live no-shadow
-<template>
-  <div class="surface">
-    surface
-    <div class="surface">
-      nested surface
-      <div class="surface elevation-md">
-        nested again, with elevation-md
-      </div>
-    </div>
-  </div>
-
-  <style>
-    @scope {
-      div {
-        padding: var(--padding-4);
-        border: var(--border-width) var(--border-style) var(--border-color);
-        border-radius: var(--radius);
-      }
-    }
-  </style>
-</template>
-```
+Theme is driven by `color-scheme`, overridable at any DOM level via the `Theme` component or the
+`theme-light` / `theme-dark` classes — nestable indefinitely. Because class-based theming is in
+play, `light-dark()` cannot be used for anything that must respond to those classes.
 
 ## Typography
 
-- Text: `--font: ui-sans-serif, sans-serif` — the platform's UI font, no webfonts.
+- Text: `--font` — the platform's own sans-serif UI font. No webfonts, ever: the system defers
+  to the reader's platform the way it defers to the app's content.
 - Code: the browser's default monospace stack; there is no mono token (yet).
-- Baseline: `--line-height: 1.5rem`.
+- Baseline rhythm: `--line-height`.
 
 ```gjs live no-shadow
 <template>
@@ -142,19 +154,16 @@ feel lifted off the one beneath it (bigger distance → bigger `drop-shadow`).
 </template>
 ```
 
-## Spacing
+## Layout
 
-A `0.25rem` scale, exposed as parallel `gap` and `padding` tokens:
+### Spacing System
 
-| Step | Value     | Tokens                    |
-| ---- | --------- | ------------------------- |
-| 1    | `0.25rem` | `--gap-1` / `--padding-1` |
-| 2    | `0.5rem`  | `--gap-2` / `--padding-2` |
-| 3    | `0.75rem` | `--gap-3` / `--padding-3` |
-| 4    | `1rem`    | `--gap-4` / `--padding-4` |
+A `0.25rem` base unit, exposed as parallel `gap` and `padding` scales, four steps each:
+`--gap-1` … `--gap-4` and `--padding-1` … `--padding-4`. The bare `--gap` defaults to step 1
+and `--padding` to step 2.
 
-`--gap` defaults to step 1 and `--padding` to step 2. Off-scale spacing should be computed
-from the scale (e.g. `calc(2 * var(--padding-4))`), not written as a new literal.
+Off-scale spacing is computed from the scale (e.g. `calc(2 * var(--padding-4))`), never written
+as a new literal.
 
 ```gjs live no-shadow
 <template>
@@ -185,12 +194,56 @@ from the scale (e.g. `calc(2 * var(--padding-4))`), not written as a new literal
 </template>
 ```
 
-## Shape and borders
+### Grid & Breakpoints
 
-- `--radius: 0.25rem` — gently rounded, never pill-shaped. Every component derives its corners
-  from this one token, so changing it once on `:root` re-shapes the whole kit. Do not adjust the
-  radius of individual components.
-- Borders are `--border-width: 1px` `--border-style: solid` in `--border-color`.
+There is deliberately no grid or breakpoint system. Components adapt to their _container_
+(the `Header` even measures its own aspect ratio), so composition — flexbox, CSS grid, and the
+`ApplicationShell` regions — is left to the app.
+
+## Elevation & Depth
+
+| Level     | Treatment                                                  | Use                                  |
+| --------- | ---------------------------------------------------------- | ------------------------------------ |
+| Flat      | Canvas, no border                                          | Page body                            |
+| Hairline  | 1px `--border-color` border                                | Quiet outlines, dividers, table rows |
+| Surface   | `.surface` — nesting mixes the canvas lighter per level    | Panels, cards, popovers, menus       |
+| Elevation | `.elevation-sm` … `.elevation-xl2` — growing `drop-shadow` | Layers that float above their parent |
+
+Never pick a background color for a panel: nest `.surface` and let the system derive it.
+Each nesting level is assumed closer to the viewer and mixes a few percent more white into
+`--color-page-background` via `color-mix(in oklab, …)`. Elevation classes add the _feeling of
+distance_ — the further apart two layers, the bigger the shadow.
+
+```gjs live no-shadow
+<template>
+  <div class="surface">
+    surface
+    <div class="surface">
+      nested surface
+      <div class="surface elevation-md">
+        nested again, with elevation-md
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @scope {
+      div {
+        padding: var(--padding-4);
+        border: var(--border-width) var(--border-style) var(--border-color);
+        border-radius: var(--radius);
+      }
+    }
+  </style>
+</template>
+```
+
+## Shapes
+
+- `--radius` — gently rounded, never pill-shaped. Every component derives its corners from this
+  one token, so changing it once on `:root` re-shapes the whole kit. Do not adjust the radius of
+  individual components.
+- Borders are `--border-width` `--border-style` in `--border-color` — hairline, quiet, structural.
 
 The same component under three values of `--radius` — reshaping is a one-token decision:
 
@@ -200,7 +253,7 @@ import { Button } from "nvp.ui/button";
 <template>
   <div class="radii">
     <span style="--radius: 0"><Button>--radius: 0</Button></span>
-    <span><Button>default (0.25rem)</Button></span>
+    <span><Button>default</Button></span>
     <span style="--radius: 1rem"><Button>--radius: 1rem</Button></span>
   </div>
 
@@ -219,19 +272,19 @@ import { Button } from "nvp.ui/button";
 
 ## Interaction
 
-- **Focus** is a two-layer ring: a 2px inner ring in `--ring-inner-color` (white in light, black in
-  dark) and a `--ring-size` outer ring in `--ring-color`. It appears on `:focus-visible` only.
-  Because of the ring's size, every interactive element needs at least 4px (`--padding-1`) of space
+- **Focus** is a two-layer ring: an inner ring in `--ring-inner-color` (inverts with the theme)
+  and a `--ring-size` outer ring in `--ring-color`. It appears on `:focus-visible` only.
+  Because of the ring's size, every interactive element needs at least `--padding-1` of space
   between it and any hard boundary.
 - **Hover / press** shift color via `color-mix()` and shrink/grow a 1px shadow spread — motion is
-  in color and depth, not position. Pressed (`:active`, `[aria-pressed="true"]`) mixes toward black
-  to look held down.
+  in color and depth, not position. Pressed (`:active`, `[aria-pressed="true"]`) mixes toward
+  black to look held down.
 - **Disabled** is expressed as `[aria-disabled]` (still focusable, still hoverable), desaturated
   toward `--color-disable-mix` — and a disabled control explains itself: `Button`'s `@disabled`
-  takes the _reason_, shown as a tooltip.
-- **Motion**: transitions fade over `--fade-duration` (0.125s), which drops to 0s under
+  takes the _reason_, shown as a focusable tooltip.
+- **Motion**: transitions fade over `--fade-duration`, which drops to 0s under
   `prefers-reduced-motion`. Nothing animates position; nothing loops.
-- **Layering**: use the z-index scale — `--z-hover: 10`, `--z-focused: 11`, `--z-site-nav: 50`.
+- **Layering**: use the z-index scale — `--z-hover`, `--z-focused`, `--z-site-nav`.
   Don't mint new z-index values.
 
 Hover for the color shift, Tab through for the focus ring, and hover the disabled button for its reason:
@@ -297,21 +350,92 @@ Two exist, for hero/marketing moments only: `--gradient-hero` (blue → violet s
 
 ## Components
 
-Reach for the kit before writing markup: `ApplicationShell`, `Avatar`, `BrowserWindow`, `Button`,
-`ExternalLink`, `Header`, `Menu`, `Navigation`, `NavigationList`, `PoliteSticky`, `ProgressCircle`,
-`Tabs`, `Theme`, `ThemeToggle`, `Timeline`, `ToggleButton` — each importable from its subpath
-(e.g. `import { Button } from "nvp.ui/button";`). They already consume every token above, so a
-correctly-themed app mostly means composing them and setting tokens.
+Reach for the kit before writing markup — every component below already consumes the global
+tokens, and each exposes its own `--<component>-*` custom-property API (defaulted from the
+global tokens) for local tuning. Variants are args that map onto attributes
+(`<Button @variant="primary">` renders `data-variant="primary"`), state is expressed through
+`aria-*` attributes, and native attributes/modifiers are forwarded through `...attributes` —
+not framework-specific args.
 
-Variants are args that map onto attributes (`<Button @variant="primary">` renders
-`data-variant="primary"`), state is expressed through `aria-*` attributes, and native
-attributes/modifiers are forwarded through `...attributes` — not framework-specific args.
+### Structure
+
+**`ApplicationShell`** — The page scaffold: header, navigation, and content regions with a
+mobile menu built in. Compose everything else inside it.
+
+**`Header`** — Site header on `--header-background`, layered at `--z-site-nav`.
+`@position="auto"` lets it sit at the top or bottom of the viewport based on its container.
+
+**`Navigation`** + **`NavigationList`** — Sidebar navigation: `Navigation` is the labeled
+container, `NavigationList` a titled group of links. Current-page and hover treatments derive
+from the accent tokens; tune with `--navigation-*` / `--navigation-list-*`.
+
+**`PoliteSticky`** — Sticky chrome that politely slides out of the way as you scroll into
+content and returns when you scroll back.
+
+### Actions
+
+**`Button`** — The reference interactive element. Variants `primary` / `secondary` / `danger`
+via `@variant`; `@disabled` takes a _reason_ (string or component) rendered as a focusable
+tooltip; icons via `@start` / `@end` or named blocks. All states are `color-mix()` derivations —
+see [Interaction](#interaction).
+
+**`ToggleButton`** — A `Button` that manages `aria-pressed`, styled held-down while pressed.
+
+**`Menu`** — A popover menu; the trigger is a `Button`, the popover is a `.surface`, items reuse
+the button state derivations.
+
+**`Tabs`** — Tabs share the button styling; the selected tab visually fuses with its panel
+(the panel border runs under the active tab).
+
+**`ExternalLink`** — An anchor for leaving the site: external-indicator icon and safe
+`rel` defaults.
+
+### Content
+
+**`Avatar`** — Image-or-initials identity disc; size, border, and background via `--avatar-*`.
+
+**`Timeline`** — An ordered list (`role="list"` / `listitem`) of dots and content, vertical or
+`@horizontal`; per-item `@status` (complete / current) colors the dot from the accent tokens.
+
+**`BrowserWindow`** — Decorative browser chrome for framing demos and screenshots; fully
+themeable via `--browser-window-*`.
+
+**`ProgressCircle`** — A circular progress indicator stroked in `--color-primary`.
+
+**`Theme`** + **`ThemeToggle`** — Scope a subtree to a theme; give the user the switch.
+
+## Do
+
+- Use the tokens — never hardcode colors, radii, spacing, shadows, or durations.
+- Nest `.surface` instead of picking panel backgrounds.
+- Derive state colors with `color-mix()` from the base tokens.
+- Express state as `aria-*` attributes and give disabled controls a reason.
+- Keep at least `--padding-1` between interactives and hard edges — the focus ring needs room.
+- Verify every screen in both themes; they are equals.
 
 ## Don't
 
-- Don't hardcode colors, radii, spacing, shadows, or durations — use the tokens.
-- Don't pick panel backgrounds — nest `.surface`.
 - Don't add webfonts.
 - Don't use `light-dark()` where class-based theming must work.
-- Don't remove or shrink focus rings, and don't crowd interactives within 4px of a hard edge.
+- Don't remove or shrink focus rings.
 - Don't animate position or add looping animation.
+- Don't mint new z-index values outside the scale.
+- Don't introduce new hues outside the token set.
+
+## Iteration Guide
+
+1. Compose from the components above before writing new markup.
+2. New components define their own `--<component>-*` properties, defaulted from the global
+   tokens — never from literals — so they inherit theming and reshaping for free.
+3. Variants are attribute-driven (`data-*` from args); states are `aria-*`.
+4. Forward native attributes and modifiers with `...attributes`.
+5. Every docs page is axe-audited in light and dark on every change — new UI must pass both.
+
+## Known Gaps
+
+- No monospace font token yet; code falls back to the browser's default stack.
+- No grid or breakpoint system — intentionally container-driven, but that means layout
+  conventions live in apps, not in the kit.
+- Motion vocabulary is fades only; there is no shared easing or duration scale beyond
+  `--fade-duration`.
+- The two gradients are the only sanctioned decoration, and only for hero/marketing moments.

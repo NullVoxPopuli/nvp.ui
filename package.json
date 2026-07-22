@@ -135,6 +135,7 @@
     "qunit-dom": "^3.4.0",
     "reactiveweb": "^1.9.1",
     "release-plan": "^0.18.0",
+    "remark-frontmatter": "^5.0.0",
     "rollup": "~4.55.1",
     "rollup-plugin-copy": "^3.5.0",
     "shiki": "^3.21.0",
