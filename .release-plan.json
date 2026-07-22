@@ -2,8 +2,8 @@
   "solution": {
     "nvp.ui": {
       "impact": "minor",
-      "oldVersion": "0.7.0",
-      "newVersion": "0.8.0",
+      "oldVersion": "0.8.0",
+      "newVersion": "0.9.0",
       "tagName": "latest",
       "constraints": [
         {
@@ -12,11 +12,15 @@
         },
         {
           "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
+          "reason": "Appears in changelog section :bug: Bug Fix"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :memo: Documentation"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2026-07-13)\n\n* nvp.ui 0.8.0 (minor)\n\n#### :rocket: Enhancement\n* `nvp.ui`\n  * [#101](https://github.com/NullVoxPopuli/nvp.ui/pull/101) [Breaking] Remove @embroider/addon-shim ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n\n#### :house: Internal\n* `nvp.ui`\n  * [#99](https://github.com/NullVoxPopuli/nvp.ui/pull/99) Fix pre-existing CI failures (heading-order a11y audit; document typescript@rc breakage) ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n\n#### Committers: 1\n- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n"
+  "description": "## Release (2026-07-17)\n\n* nvp.ui 0.9.0 (minor)\n\n#### :rocket: Enhancement\n* `nvp.ui`\n  * [#108](https://github.com/NullVoxPopuli/nvp.ui/pull/108) Docs site: opt into the \"tall\" half of Header @position=\"auto\" ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n  * [#107](https://github.com/NullVoxPopuli/nvp.ui/pull/107) Header @position=\"auto\" (new default): move to the bottom of tall/narrow containers ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n  * [#106](https://github.com/NullVoxPopuli/nvp.ui/pull/106) Add <Navigation> + <NavigationList>: a nav landmark that owns layout, and a list that is just a <ul> ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n\n#### :bug: Bug Fix\n* `nvp.ui`\n  * [#105](https://github.com/NullVoxPopuli/nvp.ui/pull/105) Fix menu styling: opaque elevated surface, trigger alignment, and theme-aware details ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n\n#### :memo: Documentation\n* `nvp.ui`\n  * [#108](https://github.com/NullVoxPopuli/nvp.ui/pull/108) Docs site: opt into the \"tall\" half of Header @position=\"auto\" ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n  * [#103](https://github.com/NullVoxPopuli/nvp.ui/pull/103) Polish the docs site: typography, nav, code blocks, and a real landing page ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n\n#### Committers: 1\n- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n"
 }

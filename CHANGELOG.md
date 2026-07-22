@@ -1,5 +1,27 @@
 # Changelog
 
+## Release (2026-07-17)
+
+* nvp.ui 0.9.0 (minor)
+
+#### :rocket: Enhancement
+* `nvp.ui`
+  * [#108](https://github.com/NullVoxPopuli/nvp.ui/pull/108) Docs site: opt into the "tall" half of Header @position="auto" ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+  * [#107](https://github.com/NullVoxPopuli/nvp.ui/pull/107) Header @position="auto" (new default): move to the bottom of tall/narrow containers ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+  * [#106](https://github.com/NullVoxPopuli/nvp.ui/pull/106) Add <Navigation> + <NavigationList>: a nav landmark that owns layout, and a list that is just a <ul> ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+#### :bug: Bug Fix
+* `nvp.ui`
+  * [#105](https://github.com/NullVoxPopuli/nvp.ui/pull/105) Fix menu styling: opaque elevated surface, trigger alignment, and theme-aware details ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+#### :memo: Documentation
+* `nvp.ui`
+  * [#108](https://github.com/NullVoxPopuli/nvp.ui/pull/108) Docs site: opt into the "tall" half of Header @position="auto" ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+  * [#103](https://github.com/NullVoxPopuli/nvp.ui/pull/103) Polish the docs site: typography, nav, code blocks, and a real landing page ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+#### Committers: 1
+- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
 ## Release (2026-07-13)
 
 * nvp.ui 0.8.0 (minor)
