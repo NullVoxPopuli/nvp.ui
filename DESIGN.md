@@ -1,40 +1,136 @@
 ---
 version: 1
 name: nvp-ui-design
-description: A professional, sleek interface system for Ember apps. Gently rounded corners, hairline low-contrast borders, high-contrast system typography, and restrained fade-only motion. Depth comes from surface color-mixing and drop shadows — never gradients, blur, or decoration. Light and dark are equal first-class themes. Every value is a CSS custom property defined in src/components/variables.css; values are intentionally not duplicated here — reference the tokens.
+description: A professional, sleek interface system for Ember apps. Gently rounded corners, hairline low-contrast borders, high-contrast system typography, and restrained fade-only motion. Depth comes from surface color-mixing and drop shadows — never gradients, blur, or decoration. Light and dark are equal first-class themes, driven by color-scheme with per-subtree overrides. Every token below is a CSS custom property from src/components/variables.css (colors.primary is --color-primary, rounded.radius is --radius, and so on); when this file and that CSS disagree, the CSS wins.
+
 colors:
-  page-background: "var(--color-page-background)"
-  text: "var(--color-text)"
-  primary: "var(--color-primary)"
-  secondary: "var(--color-secondary)"
-  danger: "var(--color-danger)"
-  border: "var(--border-color)"
-  surface: "var(--surface-background-color)"
+  page-background: "#eeeeee"
+  text: "#121212"
+  primary: "#88cdff"
+  secondary: "#aaaaff"
+  danger: "#ff66bb"
+  border: "#efefef"
+  button: "rgb(220, 220, 220)"
+  header-background: "#ffffff"
+  disable-mix: "#bbbbbb"
+  ring: "rgb(100, 100, 224)"
+  ring-inner: "#ffffff"
+
+colors-dark:
+  page-background: "#111111"
+  text: "#ffffff"
+  primary: "#00cdff"
+  secondary: "#5555ff"
+  danger: "#ee0055"
+  border: "#222222"
+  button: "rgb(100, 100, 100)"
+  header-background: "#111111"
+  disable-mix: "#000000"
+  ring: "rgb(224, 78, 57)"
+  ring-inner: "#000000"
+
 typography:
-  font: "var(--font)"
-  line-height: "var(--line-height)"
+  body:
+    fontFamily: "ui-sans-serif, sans-serif"
+    lineHeight: 1.5rem
+
 rounded:
-  radius: "var(--radius)"
+  radius: 0.25rem
+
 spacing:
-  gap: "var(--gap-1) … var(--gap-4)"
-  padding: "var(--padding-1) … var(--padding-4)"
+  gap-1: 0.25rem
+  gap-2: 0.5rem
+  gap-3: 0.75rem
+  gap-4: 1rem
+  padding-1: 0.25rem
+  padding-2: 0.5rem
+  padding-3: 0.75rem
+  padding-4: 1rem
+
+borders:
+  width: 1px
+  style: solid
+
+shadows:
+  sm: "drop-shadow(0px 2px 0.125rem rgba(0, 0, 0, 0.15))"
+  md: "drop-shadow(0px 2px 0.25rem rgba(0, 0, 0, 0.2))"
+  lg: "drop-shadow(0px 2px 0.5rem rgba(0, 0, 0, 0.25))"
+  xl: "drop-shadow(0px 2px 0.75rem rgba(0, 0, 0, 0.3))"
+  xl2: "drop-shadow(0px 2px 1rem rgba(0, 0, 0, 0.3))"
+
+z-index:
+  hover: 10
+  focused: 11
+  site-nav: 50
+
+motion:
+  fade-duration: 0.125s
+
 components:
-  application-shell: { import: "nvp.ui", tokens: "--menu-progress" }
-  avatar: { import: "nvp.ui/avatar", tokens: "--avatar-*" }
-  browser-window: { import: "nvp.ui/browser-window", tokens: "--browser-window-*" }
-  button: { import: "nvp.ui/button", tokens: "--button-*" }
-  external-link: { import: "nvp.ui", tokens: "" }
-  header: { import: "nvp.ui/header", tokens: "--header-background, --z-site-nav" }
-  menu: { import: "nvp.ui", tokens: "--menu-border-color, --button-*" }
-  navigation: { import: "nvp.ui", tokens: "--navigation-*" }
-  navigation-list: { import: "nvp.ui", tokens: "--navigation-list-*" }
-  polite-sticky: { import: "nvp.ui/polite-sticky", tokens: "--polite-offset" }
-  progress-circle: { import: "nvp.ui/progress-circle", tokens: "--color-primary" }
-  tabs: { import: "nvp.ui/tabs", tokens: "--tab-*, --tabpanel-*, --button-*" }
-  theme: { import: "nvp.ui/theme", tokens: "" }
-  theme-toggle: { import: "nvp.ui/theme-toggle", tokens: "" }
-  timeline: { import: "nvp.ui/timeline", tokens: "--timeline-*" }
-  toggle-button: { import: "nvp.ui", tokens: "--button-*" }
+  button:
+    import: "nvp.ui/button"
+    backgroundColor: "{colors.button}"
+    textColor: "{colors.text}"
+    rounded: "{rounded.radius}"
+    padding: "{spacing.padding-1} {spacing.padding-3}"
+    variants: "primary | secondary | danger — swap backgroundColor for {colors.primary} / {colors.secondary} / {colors.danger}"
+    states: "hover/pressed/disabled are color-mix() derivations; disabled via [aria-disabled] with a reason tooltip"
+    cssApi: "--button-*"
+  toggle-button:
+    import: "nvp.ui"
+    extends: "{components.button}"
+    states: "[aria-pressed='true'] renders held-down (mixes toward black)"
+  menu:
+    import: "nvp.ui"
+    trigger: "{components.button}"
+    surface: "nested .surface with {shadows.md}"
+    cssApi: "--menu-border-color"
+  tabs:
+    import: "nvp.ui/tabs"
+    tab: "{components.button}"
+    panel: "1px {colors.border} border; the selected tab fuses with the panel edge"
+    cssApi: "--tab-*, --tabpanel-*"
+  header:
+    import: "nvp.ui/header"
+    backgroundColor: "{colors.header-background}"
+    zIndex: "{z-index.site-nav}"
+    position: "auto | top | bottom (container-aware)"
+  application-shell:
+    import: "nvp.ui"
+    regions: "header, navigation, main; built-in mobile menu"
+  navigation:
+    import: "nvp.ui"
+    cssApi: "--navigation-*"
+  navigation-list:
+    import: "nvp.ui"
+    current: "accent-derived background from {colors.primary}"
+    cssApi: "--navigation-list-*"
+  polite-sticky:
+    import: "nvp.ui/polite-sticky"
+    behavior: "sticky chrome that slides away while scrolling into content"
+  avatar:
+    import: "nvp.ui/avatar"
+    rounded: "{rounded.radius}"
+    cssApi: "--avatar-*"
+  timeline:
+    import: "nvp.ui/timeline"
+    dot: "status colors derive from {colors.primary}"
+    cssApi: "--timeline-*"
+  browser-window:
+    import: "nvp.ui/browser-window"
+    cssApi: "--browser-window-*"
+  progress-circle:
+    import: "nvp.ui/progress-circle"
+    stroke: "{colors.primary}"
+  external-link:
+    import: "nvp.ui"
+    behavior: "external-indicator icon, safe rel defaults"
+  theme:
+    import: "nvp.ui/theme"
+    behavior: "scopes a subtree to light or dark; sets color-scheme"
+  theme-toggle:
+    import: "nvp.ui/theme-toggle"
+    behavior: "user-facing switch, synchronized with color-scheme"
 ---
 
 # Design
