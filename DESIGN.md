@@ -6,8 +6,8 @@ following the [DESIGN.md](https://getdesign.md) convention.
 Every value in this document comes from
 [`src/components/variables.css`](https://github.com/NullVoxPopuli/nvp.ui/blob/main/src/components/variables.css).
 When this document and that CSS disagree, the CSS wins.
-On [the docs site](https://nullui.vercel.app/Docs/1-get-started/design), the code blocks below
-render as live demos, driven by the real tokens.
+On [the docs site](https://nullui.vercel.app/Docs/1-get-started/design), the code fences below
+render as live demos — only the result, driven by the real tokens.
 
 ## Identity
 
@@ -20,8 +20,8 @@ Depth comes from surface color-mixing and drop shadows — not gradients, blur, 
 1. **Tokens first.** Every color, radius, spacing, shadow, and duration is a CSS custom property.
    Never hardcode a hex value or pixel size in app CSS — reference a token, or derive from one with `color-mix()`.
 2. **Structure comes from surfaces, not lines.** Borders are hairline and low-contrast — in light
-   mode `--border-color` (`#efefef`) barely departs from the page background — so separation between
-   regions reads primarily through surface shading and elevation, with borders as a quiet assist.
+   mode `--border-color` barely departs from the page background — so separation between regions
+   reads primarily through surface shading and elevation, with borders as a quiet assist.
 3. **Derive, don't invent.** Hover, pressed, and disabled states are `color-mix()` transformations of base
    tokens, not new colors — for example, hover mixes 30% of `--button-hover-color-mix` into a button's background.
 4. **Light and dark are equals.** Every color token has a value in both themes. Theme is driven by
@@ -33,20 +33,20 @@ Depth comes from surface color-mixing and drop shadows — not gradients, blur, 
 
 ## Color
 
-| Token                     | Light     | Dark      | Use                                      |
-| ------------------------- | --------- | --------- | ---------------------------------------- |
-| `--color-page-background` | `#eee`    | `#111`    | Page base; surfaces derive from this     |
-| `--color-text`            | `#121212` | `#ffffff` | Body text                                |
-| `--color-primary`         | `#88cdff` | `#00cdff` | Primary actions, accents, `accent-color` |
-| `--color-secondary`       | `#aaaaff` | `#5555ff` | Secondary actions                        |
-| `--color-danger`          | `#ff66bb` | `#ee0055` | Destructive actions                      |
-| `--border-color`          | `#efefef` | `#222`    | Hairline structural borders              |
+| Token                     | Use                                      |
+| ------------------------- | ---------------------------------------- |
+| `--color-page-background` | Page base; surfaces derive from this     |
+| `--color-text`            | Body text                                |
+| `--color-primary`         | Primary actions, accents, `accent-color` |
+| `--color-secondary`       | Secondary actions                        |
+| `--color-danger`          | Destructive actions                      |
+| `--border-color`          | Hairline structural borders              |
 
 Accents are cool and saturated (cyan / periwinkle / pink) against near-neutral backgrounds.
 Don't introduce new hues — mix from these tokens.
-Both themes, same swatches — the values come from the tokens:
+Both themes, same swatches:
 
-```gjs live preview no-shadow
+```gjs live no-shadow
 import { Theme } from "nvp.ui/theme";
 
 const Swatches = <template>
@@ -94,7 +94,7 @@ each level of `.surface` nesting mixes a few percent more white into `--color-pa
 Pair with an elevation class — `elevation-sm` through `elevation-xl2` — when a layer should
 feel lifted off the one beneath it (bigger distance → bigger `drop-shadow`).
 
-```gjs live preview no-shadow
+```gjs live no-shadow
 <template>
   <div class="surface">
     surface
@@ -124,7 +124,7 @@ feel lifted off the one beneath it (bigger distance → bigger `drop-shadow`).
 - Code: the browser's default monospace stack; there is no mono token (yet).
 - Baseline: `--line-height: 1.5rem`.
 
-```gjs live preview no-shadow
+```gjs live no-shadow
 <template>
   <p>The platform's own sans-serif, high contrast against the page — with
     <code>inline code</code>
@@ -156,7 +156,7 @@ A `0.25rem` scale, exposed as parallel `gap` and `padding` tokens:
 `--gap` defaults to step 1 and `--padding` to step 2. Off-scale spacing should be computed
 from the scale (e.g. `calc(2 * var(--padding-4))`), not written as a new literal.
 
-```gjs live preview no-shadow
+```gjs live no-shadow
 <template>
   <div class="steps">
     <span style="padding: var(--padding-1)">padding-1</span>
@@ -194,7 +194,7 @@ from the scale (e.g. `calc(2 * var(--padding-4))`), not written as a new literal
 
 The same component under three values of `--radius` — reshaping is a one-token decision:
 
-```gjs live preview no-shadow
+```gjs live no-shadow
 import { Button } from "nvp.ui/button";
 
 <template>
@@ -236,7 +236,7 @@ import { Button } from "nvp.ui/button";
 
 Hover for the color shift, Tab through for the focus ring, and hover the disabled button for its reason:
 
-```gjs live preview no-shadow
+```gjs live no-shadow
 import { Button } from "nvp.ui/button";
 import { PortalTargets } from "ember-primitives";
 
@@ -271,7 +271,7 @@ import { PortalTargets } from "ember-primitives";
 Two exist, for hero/marketing moments only: `--gradient-hero` (blue → violet sweep) and
 `--gradient-featured` (violet → indigo). Everything else is flat color.
 
-```gjs live preview no-shadow
+```gjs live no-shadow
 <template>
   <div class="bars">
     <div style="background: var(--gradient-hero)">--gradient-hero</div>
