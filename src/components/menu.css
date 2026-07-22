@@ -170,7 +170,7 @@
   .ember-primitives__key {
     text-transform: uppercase;
     background-color: color-mix(in oklab, var(--color-text) 12%, var(--surface-background-color));
-    border-radius: 2px;
+    border-radius: var(--radius);
     border: 1px solid color-mix(in oklab, var(--color-text) 35%, transparent);
     box-shadow: 0 1px 1px color-mix(in oklab, var(--color-text) 20%, transparent);
     color: color-mix(in oklab, var(--color-text) 80%, transparent);

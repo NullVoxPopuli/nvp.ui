@@ -126,8 +126,15 @@ export default Route(
       }
 
       .docs-hero h1 {
+        font-family: var(--font-mono);
         font-size: 3rem;
         letter-spacing: -0.03em;
+      }
+
+      /* Terminal cursor sign-off on the wordmark */
+      .docs-hero h1::after {
+        content: "_";
+        color: var(--color-primary);
       }
 
       .docs-hero__tagline {
@@ -142,6 +149,11 @@ export default Route(
         border: var(--docs-border);
         border-radius: var(--docs-radius);
         font-size: 0.9375rem;
+      }
+
+      .docs-hero__install code::before {
+        content: "$ ";
+        color: var(--docs-muted);
       }
 
       .docs-hero__actions {
@@ -188,10 +200,43 @@ export default Route(
       }
 
       .docs-features li {
+        --bracket-color: var(--color-primary);
+
+        position: relative;
         margin: 0;
         padding: 1.25rem;
         border: var(--docs-border);
         border-radius: var(--docs-radius);
+      }
+
+      /* The pastel light-mode primary washes out on white cards */
+      .theme-light .docs-features li {
+        --bracket-color: var(--docs-link);
+      }
+
+      /* HUD corner brackets, sitting on the card's own border */
+      .docs-features li::before,
+      .docs-features li::after {
+        content: "";
+        position: absolute;
+        width: 0.625rem;
+        height: 0.625rem;
+        border: 2px solid var(--bracket-color);
+        pointer-events: none;
+      }
+
+      .docs-features li::before {
+        top: -1px;
+        left: -1px;
+        border-right: none;
+        border-bottom: none;
+      }
+
+      .docs-features li::after {
+        right: -1px;
+        bottom: -1px;
+        border-top: none;
+        border-left: none;
       }
 
       .docs-features h3 {

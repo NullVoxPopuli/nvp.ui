@@ -10,7 +10,8 @@
   --docs-measure: 46rem;
   --docs-measure-wide: 60rem;
 
-  /* Slightly softer corners for cards / code blocks */
+  /* Cards / code blocks scale from the kit's radius token
+     (0 by default -- square corners are the house style) */
   --docs-radius: calc(3 * var(--radius));
 }
 
@@ -29,9 +30,7 @@
   --docs-faint: color-mix(in oklab, var(--color-text) 7%, transparent);
   --docs-link: color-mix(in oklab, var(--color-primary) 45%, var(--color-text));
 
-  /* The kit's --border-color is nearly invisible against the page
-     background in light mode; docs hairlines need a touch more contrast */
-  --docs-border-color: color-mix(in oklab, var(--color-text) 14%, var(--color-page-background));
+  --docs-border-color: var(--border-color);
   --docs-border: var(--border-width) var(--border-style) var(--docs-border-color);
 }
 
@@ -300,9 +299,13 @@
   padding-right: 0;
 }
 
+/* Spec-sheet column labels */
 .nvp__application-shell__content thead th {
-  font-size: 0.8125rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--docs-muted);
   border-bottom-width: calc(2 * var(--border-width));
 }

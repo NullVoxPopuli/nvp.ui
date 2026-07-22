@@ -19,7 +19,7 @@
     min-width: 40px;
     flex-grow: 1;
     aspect-ratio: 2.1;
-    border-radius: 50px;
+    border-radius: calc(2 * var(--radius));
     position: relative;
     padding: 4% 8%;
     cursor: pointer;
@@ -51,7 +51,7 @@
     height: 88%;
     position: absolute;
     left: 3%;
-    border-radius: 50%;
+    border-radius: var(--radius);
     transition: transform 0.2s linear;
   }
 
