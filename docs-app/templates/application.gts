@@ -126,6 +126,11 @@ function groupName(name: string) {
 }
 
 function nameFor(x: Page) {
+  // This page renders the repo-root DESIGN.md, so it is labeled as that file
+  if (x.name === "design") {
+    return "Design.md";
+  }
+
   // We defined componentName via json file
 
   if ("componentName" in x) {
