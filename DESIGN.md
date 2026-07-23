@@ -98,6 +98,14 @@ components:
   application-shell:
     import: "nvp.ui"
     regions: "header, navigation, main; built-in mobile menu"
+  card:
+    pattern: "a composition, not a component — there is deliberately no Card in the kit"
+    surface: ".surface, plus .elevation-sm when it should float"
+    border: "{borders.width} {borders.style} {colors.border}"
+    rounded: "{rounded.radius}"
+    padding: "calc(1.25 * {spacing.padding-4})"
+    bodyText: "color-mix(in oklab, {colors.text} 80%, transparent)"
+    grid: "repeat(auto-fit, minmax(min(100%, 20rem), 1fr)) with {spacing.gap-4} gutters"
   navigation:
     import: "nvp.ui"
     cssApi: "--navigation-*"
@@ -471,6 +479,58 @@ from the accent tokens; tune with `--navigation-*` / `--navigation-list-*`.
 
 **`PoliteSticky`** — Sticky chrome that politely slides out of the way as you scroll into
 content and returns when you scroll back.
+
+### Cards & containers
+
+There is deliberately no `Card` component — a card is a composition, and every panel-shaped
+thing (cards, popovers, menus) is built the same way: a `.surface` (plus `elevation-sm` when it
+should float), a hairline border, `--radius` corners, and padding from the scale. Body copy
+inside a card softens by mixing `--color-text` toward transparent. Card grids use
+`auto-fit` / `minmax` columns with `--gap-4` gutters — cards reflow rather than shrink.
+
+```gjs live no-shadow
+<template>
+  <ul class="cards">
+    <li class="surface elevation-sm">
+      <h3>A surface</h3>
+      <p>The background is derived from the canvas — never picked by hand.</p>
+    </li>
+    <li class="surface elevation-sm">
+      <h3>A quiet border</h3>
+      <p>Hairline, in the border token — the surface does the separating.</p>
+    </li>
+    <li class="surface elevation-sm">
+      <h3>Tokens all the way</h3>
+      <p>Radius, padding, and gaps come from the scales, so cards reshape with the kit.</p>
+    </li>
+  </ul>
+
+  <style>
+    @scope {
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+        gap: var(--gap-4);
+        margin: 0;
+        padding: var(--padding-2);
+        list-style: none;
+      }
+      li {
+        padding: calc(1.25 * var(--padding-4));
+        border: var(--border-width) var(--border-style) var(--border-color);
+        border-radius: var(--radius);
+      }
+      h3 {
+        margin: 0 0 var(--gap-2);
+      }
+      p {
+        margin: 0;
+        color: color-mix(in oklab, var(--color-text) 80%, transparent);
+      }
+    }
+  </style>
+</template>
+```
 
 ### Actions
 
