@@ -3,17 +3,19 @@ import "./focus.css";
 import "./table.css";
 
 import Component from "@glimmer/component";
-import { fn } from "@ember/helper";
-import { on } from "@ember/modifier";
+import { service } from "@ember/service";
+
+import { withQP } from "ember-primitives/qp";
 
 import { headlessTable } from "@universal-ember/table";
 import {
   DataSorting,
   isSortable,
-  sort,
+  SortDirection,
   sortDirection,
 } from "@universal-ember/table/plugins/data-sorting";
 
+import type RouterService from "@ember/routing/router-service";
 import type { ComponentLike } from "@glint/template";
 import type { Column, ColumnConfig, Row } from "@universal-ember/table";
 import type { SortItem } from "@universal-ember/table/plugins/data-sorting";
@@ -25,7 +27,7 @@ export type Align = "start" | "center" | "end";
  *
  * The `@universal-ember/table` config, plus how nvp.ui lays it out:
  * - `key`, `name`, `value`, `Cell` are the upstream config
- * - `align`, `nowrap`, `sortable`, `sortProperty` are layout
+ * - `align`, `nowrap`, `sortable` are nvp.ui's
  *
  * Extra keys are kept.
  * A `Cell` component reads them from `@column.config`.
@@ -45,18 +47,12 @@ export interface TableColumn<T = unknown> extends ColumnConfig<T> {
    */
   nowrap?: boolean;
   /**
-   * Whether the header sorts.
+   * Whether the header links to a sort by this column.
    *
-   * Only matters when the table has `@onSort`.
-   * Then every column sorts unless it says `false`.
+   * The sort key is the column `key`.
+   * Only columns the endpoint can sort by opt in.
    */
   sortable?: boolean;
-  /**
-   * The sort key sent to `@onSort`.
-   *
-   * Only needed when it is not the column `key`.
-   */
-  sortProperty?: string;
   [extra: string]: unknown;
 }
 
@@ -79,29 +75,11 @@ export interface Signature<T = unknown> {
     columns: TableColumn<T>[];
     data: T[];
     /**
-     * The table's accessible name, rendered as a `<caption>`.
+     * The table's accessible name, rendered as a visually hidden `<caption>`.
      *
-     * Hidden unless `@showCaption` is set.
+     * A visible title is a heading outside the table.
      */
-    caption?: string;
-    showCaption?: boolean;
-    /**
-     * Tighter row padding.
-     */
-    dense?: boolean;
-    /**
-     * The current sort, one entry per sorted column.
-     *
-     * The owner sorts the data.
-     * The table only shows the state and asks for changes.
-     */
-    sorts?: SortItem<T>[];
-    /**
-     * Called with the next sort when a header is clicked.
-     *
-     * Providing this makes the headers sortable.
-     */
-    onSort?: (sorts: SortItem<T>[]) => void;
+    caption: string;
   };
   Blocks: {
     /**
@@ -135,32 +113,41 @@ function cellOf<T>(column: Column<T>) {
   return column.Cell as unknown as ComponentLike<CellSignature<T>> | undefined;
 }
 
+/**
+ * The `sort` query param, in {json:api} syntax:
+ * comma separated keys, `-` for descending.
+ */
+function parseSorts<T>(param: unknown): SortItem<T>[] {
+  if (typeof param !== "string" || !param) return [];
+
+  return param
+    .split(",")
+    .map((key) =>
+      key.startsWith("-")
+        ? { property: key.slice(1), direction: SortDirection.Descending }
+        : { property: key, direction: SortDirection.Ascending },
+    ) as SortItem<T>[];
+}
+
 export class Table<T = unknown> extends Component<Signature<T>> {
+  @service("router") declare router: RouterService;
+
   table = headlessTable<T>(this, {
     columns: () => this.args.columns.map((column) => this.withSorting(column)),
     data: () => this.args.data,
-    plugins: [
-      [
-        DataSorting,
-        () => ({
-          sorts: this.args.sorts ?? [],
-          onSort: this.args.onSort,
-        }),
-      ],
-    ],
+    plugins: [[DataSorting, () => ({ sorts: this.sorts })]],
   });
 
+  get sorts() {
+    return parseSorts<T>(this.router.currentRoute?.queryParams?.["sort"]);
+  }
+
   /**
-   * Turns `sortable` and `sortProperty` into the plugin's per-column options.
-   *
-   * Without `@onSort`, nothing sorts.
+   * Turns `sortable` into the plugin's per-column option,
+   * which drives `aria-sort`.
    */
   withSorting = (column: TableColumn<T>): ColumnConfig<T> => {
-    const isSortable = Boolean(this.args.onSort) && column.sortable !== false;
-    const sortingOptions = () => ({
-      isSortable,
-      sortProperty: column.sortProperty ?? column.key,
-    });
+    const sortingOptions = () => ({ isSortable: column.sortable === true });
 
     return {
       ...column,
@@ -173,18 +160,26 @@ export class Table<T = unknown> extends Component<Signature<T>> {
     };
   };
 
+  /**
+   * The `sort` value a header links to.
+   *
+   * Ascending first, then it toggles.
+   * There is no unsorted state, because a link never removes a query param.
+   */
+  nextSort = (column: Column<T>) => {
+    const key = String(column.config.key);
+
+    return sortDirection(column) === SortDirection.Ascending ? `-${key}` : key;
+  };
+
   get isEmpty() {
     return this.args.data.length === 0;
   }
 
   <template>
-    <div class="nvp__table" data-dense={{@dense}} data-empty={{this.isEmpty}}>
+    <div class="nvp__table" data-empty={{this.isEmpty}}>
       <table class="nvp__table__table" {{this.table.modifiers.container}} ...attributes>
-        {{#if @caption}}
-          <caption
-            class={{unless @showCaption "nvp__table__caption--hidden"}}
-          >{{@caption}}</caption>
-        {{/if}}
+        <caption class="nvp__table__caption">{{@caption}}</caption>
 
         <thead class="nvp__table__head">
           <tr>
@@ -196,15 +191,14 @@ export class Table<T = unknown> extends Component<Signature<T>> {
                 {{this.table.modifiers.columnHeader column}}
               >
                 {{#if (isSortable column)}}
-                  <button
-                    type="button"
+                  <a
                     class="nvp__table__sort"
                     data-sort={{sortDirection column}}
-                    {{on "click" (fn sort column)}}
+                    href={{withQP "sort" (this.nextSort column)}}
                   >
                     {{column.name}}
                     <span class="nvp__table__sort-icon" aria-hidden="true"></span>
-                  </button>
+                  </a>
                 {{else}}
                   {{column.name}}
                 {{/if}}

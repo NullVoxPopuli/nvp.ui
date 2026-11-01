@@ -2,7 +2,7 @@ import "./variables.css";
 import "./focus.css";
 import "./pagination.css";
 
-import { withQP } from "ember-primitives/qp";
+import { qp, withQP } from "ember-primitives/qp";
 
 import { pageSlots } from "./-private/page-slots.ts";
 
@@ -10,12 +10,12 @@ import type { TOC } from "@ember/component/template-only";
 
 export { pageSlots };
 
-function paramOf(param: string | undefined) {
-  return param ?? "page";
+function pageOf(param: string | undefined) {
+  return Number(param ?? 1);
 }
 
-function slotsOf(page: number, totalPages: number, count: number | undefined) {
-  return pageSlots(page, totalPages, count ?? 5);
+function slotsOf(page: number, totalPages: number) {
+  return pageSlots(page, totalPages, 5);
 }
 
 function asString(page: number) {
@@ -37,8 +37,7 @@ function after(page: number) {
 interface EdgeSignature {
   Args: {
     rel: "first" | "prev" | "next" | "last";
-    page: number;
-    param: string;
+    href: string;
     label: string;
     symbol: string;
     /**
@@ -71,7 +70,7 @@ const Edge: TOC<EdgeSignature> = <template>
         {{/if}}
       </a>
     {{else}}
-      <a class="nvp__pagination__link" data-rel={{@rel}} href={{withQP @param (asString @page)}}>
+      <a class="nvp__pagination__link" data-rel={{@rel}} href={{@href}}>
         {{#if @symbolAfter}}
           <span class="nvp__pagination__label">{{@label}}</span>
           <span aria-hidden="true">{{@symbol}}</span>
@@ -87,85 +86,59 @@ const Edge: TOC<EdgeSignature> = <template>
 export interface Signature {
   /**
    * The `<nav>` around the links.
+   *
+   * Its accessible name is "Pagination".
+   * Set `aria-label` to change it.
    */
   Element: HTMLElement;
   Args: {
-    /**
-     * The page being shown, counted from 1.
-     */
-    page: number;
     totalPages: number;
-    /**
-     * The query param that holds the page number.
-     *
-     * Every link keeps the current URL's query params
-     * and sets this one.
-     *
-     * Default: "page"
-     */
-    param?: string;
-    /**
-     * How many page links to show.
-     *
-     * The row keeps this many as the current page moves,
-     * so the links stay put.
-     *
-     * Default: 5
-     */
-    pageSlots?: number;
-    /**
-     * The accessible name of the `<nav>`.
-     *
-     * Default: "Pagination"
-     */
-    label?: string;
   };
 }
 
 /**
  * Page links, driven by the router.
  *
+ * The current page is the `page` query param, counted from 1.
  * Each link is a plain anchor whose href is the current URL
- * with the page query param set.
+ * with `page` set and every other query param kept.
  * The router is the click handler.
  *
  * The app must:
  * - hand anchor clicks to the router, with `properLinks`
  *   from `ember-primitives/proper-links`
- * - declare the query param on the route that reads it
+ * - declare `page` on the route that reads it
  *
  * The layout never changes shape as the page changes:
  * - first, previous, next and last are always rendered
- * - the page links are a fixed number of slots around the current page
+ * - five page links slide around the current page
  */
 export const Pagination: TOC<Signature> = <template>
-  <nav class="nvp__pagination" aria-label={{if @label @label "Pagination"}} ...attributes>
-    {{#let (paramOf @param) as |param|}}
+  <nav class="nvp__pagination" aria-label="Pagination" ...attributes>
+    {{#let (pageOf (qp "page")) as |current|}}
       <ul class="nvp__pagination__list">
         <Edge
           @rel="first"
-          @page={{1}}
-          @param={{param}}
+          @href={{withQP "page" "1"}}
           @label="First"
           @symbol="«"
-          @disabled={{isCurrent @page 1}}
+          @disabled={{isCurrent current 1}}
         />
         <Edge
           @rel="prev"
-          @page={{before @page}}
-          @param={{param}}
+          @href={{withQP "page" (asString (before current))}}
           @label="Previous"
           @symbol="‹"
-          @disabled={{isCurrent @page 1}}
+          @disabled={{isCurrent current 1}}
         />
 
-        {{#each (slotsOf @page @totalPages @pageSlots) as |page|}}
+        {{#each (slotsOf current @totalPages) as |page|}}
           <li>
             <a
               class="nvp__pagination__link"
               data-page={{page}}
-              aria-current={{if (isCurrent page @page) "page"}}
-              href={{withQP param (asString page)}}
+              aria-current={{if (isCurrent page current) "page"}}
+              href={{withQP "page" (asString page)}}
             >
               {{page}}
             </a>
@@ -174,21 +147,19 @@ export const Pagination: TOC<Signature> = <template>
 
         <Edge
           @rel="next"
-          @page={{after @page}}
-          @param={{param}}
+          @href={{withQP "page" (asString (after current))}}
           @label="Next"
           @symbol="›"
           @symbolAfter={{true}}
-          @disabled={{isCurrent @page @totalPages}}
+          @disabled={{isCurrent current @totalPages}}
         />
         <Edge
           @rel="last"
-          @page={{@totalPages}}
-          @param={{param}}
+          @href={{withQP "page" (asString @totalPages)}}
           @label="Last"
           @symbol="»"
           @symbolAfter={{true}}
-          @disabled={{isCurrent @page @totalPages}}
+          @disabled={{isCurrent current @totalPages}}
         />
       </ul>
     {{/let}}

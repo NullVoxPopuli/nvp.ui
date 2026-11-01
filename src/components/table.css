@@ -8,11 +8,6 @@
   display: grid;
   gap: var(--gap-3);
   width: 100%;
-
-  &[data-dense] {
-    --table-cell-padding-y: var(--padding-1);
-    --table-cell-padding-x: var(--padding-2);
-  }
 }
 
 .nvp__table__table {
@@ -21,18 +16,12 @@
   font: inherit;
 }
 
-.nvp__table__caption--hidden {
+.nvp__table__caption {
   position: absolute;
   width: 1px;
   height: 1px;
   overflow: hidden;
   clip: rect(0 0 0 0);
-}
-
-.nvp__table__table caption:not(.nvp__table__caption--hidden) {
-  padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
-  text-align: start;
-  font-weight: 600;
 }
 
 .nvp__table__header-cell,
@@ -81,6 +70,7 @@
   background: none;
   color: inherit;
   font: inherit;
+  text-decoration: none;
   text-transform: inherit;
   letter-spacing: inherit;
   cursor: pointer;

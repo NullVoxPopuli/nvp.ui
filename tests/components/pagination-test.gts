@@ -1,5 +1,6 @@
+import { tracked } from "@glimmer/tracking";
 import Service from "@ember/service";
-import { findAll, render } from "@ember/test-helpers";
+import { findAll, render, settled } from "@ember/test-helpers";
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 
@@ -19,17 +20,27 @@ function hrefOf(selector: string) {
 module("Pagination", function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function () {
-    // withQP reads the current URL from the router service
-    class RouterStub extends Service {
-      currentURL = "/fruit?sort=name&page=2";
-    }
+  // qp reads currentRoute and withQP reads currentURL
+  class RouterStub extends Service {
+    @tracked currentURL = "/fruit?sort=name&page=2";
 
+    get currentRoute() {
+      const params = new URL(this.currentURL, location.origin).searchParams;
+
+      return { queryParams: Object.fromEntries(params) };
+    }
+  }
+
+  function visitStub(owner: { lookup(name: string): unknown }, url: string) {
+    (owner.lookup("service:router") as RouterStub).currentURL = url;
+  }
+
+  hooks.beforeEach(function () {
     this.owner.register("service:router", RouterStub);
   });
 
   test("links set the page query param and keep the others", async function (assert) {
-    await render(<template><Pagination @page={{2}} @totalPages={{3}} /></template>);
+    await render(<template><Pagination @totalPages={{3}} /></template>);
 
     assert.dom("nav").hasAttribute("aria-label", "Pagination");
     assert.deepEqual(pagesShown(), ["1", "2", "3"]);
@@ -43,18 +54,25 @@ module("Pagination", function (hooks) {
     assert.strictEqual(hrefOf("[data-rel='last']"), "/fruit?sort=name&page=3");
   });
 
-  test("the query param name can change", async function (assert) {
-    await render(<template><Pagination @page={{2}} @totalPages={{3}} @param="p" /></template>);
+  test("without a page param, the first page is current", async function (assert) {
+    visitStub(this.owner, "/fruit");
 
-    assert.strictEqual(hrefOf("[data-rel='next']"), "/fruit?sort=name&page=2&p=3");
+    await render(<template><Pagination @totalPages={{3}} /></template>);
+
+    assert.dom("a[aria-current='page']").hasText("1");
+  });
+
+  test("aria-label renames the nav", async function (assert) {
+    await render(<template><Pagination @totalPages={{3}} aria-label="Fruit pages" /></template>);
+
+    assert.dom("nav").hasAttribute("aria-label", "Fruit pages");
   });
 
   test("the edges stay in place and go nowhere at the ends", async function (assert) {
-    await render(
-      <template><Pagination @page={{1}} @totalPages={{3}} @label="Fruit pages" /></template>,
-    );
+    visitStub(this.owner, "/fruit?page=1");
 
-    assert.dom("nav").hasAttribute("aria-label", "Fruit pages");
+    await render(<template><Pagination @totalPages={{3}} /></template>);
+
     assert.dom("li").exists({ count: 7 });
     assert.dom("[data-rel='first']").doesNotHaveAttribute("href");
     assert.dom("[data-rel='first']").hasAria("disabled", "true");
@@ -62,7 +80,8 @@ module("Pagination", function (hooks) {
     assert.dom("[data-rel='next']").hasAttribute("href");
     assert.dom("[data-rel='last']").hasAttribute("href");
 
-    await render(<template><Pagination @page={{3}} @totalPages={{3}} /></template>);
+    visitStub(this.owner, "/fruit?page=3");
+    await settled();
 
     assert.dom("li").exists({ count: 7 });
     assert.dom("[data-rel='next']").doesNotHaveAttribute("href");
@@ -72,7 +91,7 @@ module("Pagination", function (hooks) {
   });
 
   test("the symbol leads on backward controls and trails on forward ones", async function (assert) {
-    await render(<template><Pagination @page={{2}} @totalPages={{3}} /></template>);
+    await render(<template><Pagination @totalPages={{3}} /></template>);
 
     assert.dom("[data-rel='prev']").hasText("‹ Previous");
     assert.dom("[data-rel='next']").hasText("Next ›");
@@ -80,19 +99,21 @@ module("Pagination", function (hooks) {
   });
 
   test("the row of pages slides but keeps its size", async function (assert) {
-    await render(<template><Pagination @page={{1}} @totalPages={{20}} /></template>);
+    visitStub(this.owner, "/fruit?page=1");
+
+    await render(<template><Pagination @totalPages={{20}} /></template>);
 
     assert.deepEqual(pagesShown(), ["1", "2", "3", "4", "5"]);
 
-    await render(<template><Pagination @page={{10}} @totalPages={{20}} /></template>);
+    visitStub(this.owner, "/fruit?page=10");
+    await settled();
 
     assert.deepEqual(pagesShown(), ["8", "9", "10", "11", "12"]);
 
-    await render(
-      <template><Pagination @page={{20}} @totalPages={{20}} @pageSlots={{3}} /></template>,
-    );
+    visitStub(this.owner, "/fruit?page=20");
+    await settled();
 
-    assert.deepEqual(pagesShown(), ["18", "19", "20"]);
+    assert.deepEqual(pagesShown(), ["16", "17", "18", "19", "20"]);
   });
 });
 

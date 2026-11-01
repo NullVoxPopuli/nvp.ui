@@ -2,9 +2,11 @@
 
 Page links: first, previous, a row of page numbers, next, last. The current page is marked with `aria-current`.
 
-The links are plain anchors, and the router is the click handler. Each href is the current URL with the page query param set, so every other query param survives a page change. The component needs two things from the app, described under Setup.
+Pagination follows the [Tabular Data](/Docs/1-get-started/tabular-data) conventions. The `page` query param holds the current page, counted from 1. The component reads it from the URL, so it takes only the total.
 
-The links never move. The four edge links are always rendered, and at the ends they go nowhere. The row of page numbers has a fixed number of slots that slides with the current page but never changes size.
+The links are plain anchors, and the router is the click handler. Each href is the current URL with `page` set, and every other query param stays.
+
+The links never move. The four edge links are always rendered, and at the ends they go nowhere. The row of five page numbers slides with the current page but never changes size.
 
 ```gjs live no-shadow
 import { Pagination } from "nvp.ui/pagination";
@@ -13,62 +15,45 @@ import { qp } from "ember-primitives/qp";
 const current = (page) => Number(page ?? 1);
 
 <template>
-  {{#let (current (qp "page")) as |page|}}
-    <p>Page {{page}} of 12</p>
-    <Pagination @page={{page}} @totalPages={{12}} />
-  {{/let}}
+  <p>Page {{current (qp "page")}} of 12</p>
+  <Pagination @totalPages={{12}} />
 </template>
 ```
 
 ## Setup
 
-The component is only useful with the router. Two things must be in place.
+The app needs two things, both described on [Tabular Data](/Docs/1-get-started/tabular-data):
 
-Anchor clicks must reach the router. `properLinks` from ember-primitives does that for every anchor in the app:
+- `properLinks` from ember-primitives, so that anchor clicks reach the router
+- `page` declared in the `queryParams` of the route, so that a page change loads the new page from the endpoint
 
-```ts
-import EmberRouter from "@ember/routing/router";
-import { properLinks } from "ember-primitives/proper-links";
-
-@properLinks
-export default class Router extends EmberRouter {}
-```
-
-The route that shows the pages must declare the query param, so a change re-runs its model:
-
-```ts
-export default class LinksRoute extends Route {
-  queryParams = {
-    page: { refreshModel: true },
-  };
-
-  model({ page }) {
-    return fetchPage(Number(page ?? 1));
-  }
-}
-```
-
-Then the component only needs the current page and the total:
+The endpoint returns the total, and the template passes it through:
 
 ```gjs
-<Pagination @page={{@model.page}} @totalPages={{@model.totalPages}} />
+<Pagination @totalPages={{@model.meta.totalPages}} />
+```
+
+A table puts the pagination in its `:footer` block:
+
+```gjs
+<Table @caption="Links" @columns={{columns}} @data={{@model.data}}>
+  <:footer><Pagination @totalPages={{@model.meta.totalPages}} /></:footer>
+</Table>
 ```
 
 ## API Reference
 
 ### Arguments
 
-| Argument      | Type     |                                                     |
-| ------------- | -------- | --------------------------------------------------- |
-| `@page`       | `number` | the page being shown, counted from 1                |
-| `@totalPages` | `number` | how many pages there are                            |
-| `@param`      | `string` | the query param that holds the page, default "page" |
-| `@pageSlots`  | `number` | how many page links to show, default 5              |
-| `@label`      | `string` | the `<nav>`'s accessible name, default "Pagination" |
+| Argument      | Type     |                          |
+| ------------- | -------- | ------------------------ |
+| `@totalPages` | `number` | how many pages there are |
+
+The current page is not an argument. It comes from the `page` query param. The `<nav>` has the accessible name "Pagination". Set `aria-label` on the component to change it.
 
 ### `pageSlots(page, totalPages, count)`
 
-The page numbers the component shows: `count` consecutive pages around the current one, clamped to the collection. Exported for custom markup.
+The page numbers the component shows: `count` consecutive pages around the current one, clamped to the collection.
 
 ### Classes & Attributes
 

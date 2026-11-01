@@ -17,5 +17,3 @@ export { ThemeToggle } from "./components/theme-toggle.gts";
 export { Timeline } from "./components/timeline.gts";
 export { ToggleButton } from "./components/toggle-button.gts";
 export type { Column, Row } from "@universal-ember/table";
-export type { SortItem } from "@universal-ember/table/plugins/data-sorting";
-export { SortDirection } from "@universal-ember/table/plugins/data-sorting";
