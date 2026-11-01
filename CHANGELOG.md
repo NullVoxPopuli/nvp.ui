@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2026-11-01)
+
+* nvp.ui 0.11.0 (minor)
+
+#### :rocket: Enhancement
+* `nvp.ui`
+  * [#117](https://github.com/NullVoxPopuli/nvp.ui/pull/117) Add Table and Pagination ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+#### Committers: 1
+- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
 ## Release (2026-08-11)
 
 * nvp.ui 0.10.0 (minor)
