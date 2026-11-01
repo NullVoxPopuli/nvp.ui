@@ -159,10 +159,10 @@ export class Table<T = unknown> extends Component<Signature<T>> {
   table = headlessTable<T>(this, {
     columns: () => this.args.columns.map(this.toConfig),
     data: () => this.args.data,
-    plugins: this.plugins,
+    plugins: this.#plugins,
   });
 
-  get plugins() {
+  get #plugins() {
     const sorting = DataSorting.with(() => ({ sorts: this.sorts }));
 
     if (!this.isResizable) return [sorting];
