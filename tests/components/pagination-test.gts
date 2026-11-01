@@ -1,10 +1,10 @@
-import { tracked } from "@glimmer/tracking";
-import Service from "@ember/service";
 import { findAll, render, settled } from "@ember/test-helpers";
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 
 import { pageSlots, Pagination } from "#src/index.ts";
+
+import { RouterStub, visitStub } from "../helpers/router-stub.ts";
 
 function pagesShown() {
   return findAll("[data-page]").map((link) => link.textContent?.trim());
@@ -13,30 +13,19 @@ function pagesShown() {
 function hrefOf(selector: string) {
   const href = document.querySelector(selector)?.getAttribute("href") ?? "";
 
-  // withQP builds an absolute URL; only the path and query matter here
+  /**
+   * withQP builds an absolute URL.
+   * Only the path and query matter here.
+   */
   return href.replace(location.origin, "");
 }
 
 module("Pagination", function (hooks) {
   setupRenderingTest(hooks);
 
-  // qp reads currentRoute and withQP reads currentURL
-  class RouterStub extends Service {
-    @tracked currentURL = "/fruit?sort=name&page=2";
-
-    get currentRoute() {
-      const params = new URL(this.currentURL, location.origin).searchParams;
-
-      return { queryParams: Object.fromEntries(params) };
-    }
-  }
-
-  function visitStub(owner: { lookup(name: string): unknown }, url: string) {
-    (owner.lookup("service:router") as RouterStub).currentURL = url;
-  }
-
   hooks.beforeEach(function () {
     this.owner.register("service:router", RouterStub);
+    visitStub(this.owner, "/fruit?sort=name&page=2");
   });
 
   test("links set the page query param and keep the others", async function (assert) {
@@ -88,6 +77,30 @@ module("Pagination", function (hooks) {
     assert.dom("[data-rel='last']").doesNotHaveAttribute("href");
     assert.dom("[data-rel='prev']").hasAttribute("href");
     assert.dom("[data-rel='first']").hasAttribute("href");
+  });
+
+  test("a page outside the collection shows as the nearest page", async function (assert) {
+    visitStub(this.owner, "/fruit?page=99");
+
+    await render(<template><Pagination @totalPages={{3}} /></template>);
+
+    assert.dom("a[aria-current='page']").hasText("3");
+    assert.dom("[data-rel='next']").doesNotHaveAttribute("href");
+    assert.strictEqual(hrefOf("[data-rel='prev']"), "/fruit?page=2");
+
+    visitStub(this.owner, "/fruit?page=nonsense");
+    await settled();
+
+    assert.dom("a[aria-current='page']").hasText("1");
+  });
+
+  test("an empty collection has nowhere to go", async function (assert) {
+    visitStub(this.owner, "/fruit");
+
+    await render(<template><Pagination @totalPages={{0}} /></template>);
+
+    assert.dom("[data-page]").doesNotExist();
+    assert.dom("[href]").doesNotExist();
   });
 
   test("the symbol leads on backward controls and trails on forward ones", async function (assert) {

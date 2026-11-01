@@ -10,8 +10,12 @@ import type { TOC } from "@ember/component/template-only";
 
 export { pageSlots };
 
-function pageOf(param: string | undefined) {
-  return Number(param ?? 1);
+/**
+ * Anyone can type a query param,
+ * and a collection can shrink after a link to its last page is shared.
+ */
+function pageOf(param: string | undefined, totalPages: number) {
+  return Math.max(1, Math.min(Number(param) || 1, totalPages));
 }
 
 function slotsOf(page: number, totalPages: number) {
@@ -24,6 +28,10 @@ function asString(page: number) {
 
 function isCurrent(page: number, current: number) {
   return page === current;
+}
+
+function isLast(page: number, totalPages: number) {
+  return page >= totalPages;
 }
 
 function before(page: number) {
@@ -59,27 +67,21 @@ interface EdgeSignature {
  */
 const Edge: TOC<EdgeSignature> = <template>
   <li>
-    {{#if @disabled}}
-      <a class="nvp__pagination__link" data-rel={{@rel}} role="link" aria-disabled="true">
-        {{#if @symbolAfter}}
-          <span class="nvp__pagination__label">{{@label}}</span>
-          <span aria-hidden="true">{{@symbol}}</span>
-        {{else}}
-          <span aria-hidden="true">{{@symbol}}</span>
-          <span class="nvp__pagination__label">{{@label}}</span>
-        {{/if}}
-      </a>
-    {{else}}
-      <a class="nvp__pagination__link" data-rel={{@rel}} href={{@href}}>
-        {{#if @symbolAfter}}
-          <span class="nvp__pagination__label">{{@label}}</span>
-          <span aria-hidden="true">{{@symbol}}</span>
-        {{else}}
-          <span aria-hidden="true">{{@symbol}}</span>
-          <span class="nvp__pagination__label">{{@label}}</span>
-        {{/if}}
-      </a>
-    {{/if}}
+    <a
+      class="nvp__pagination__link"
+      data-rel={{@rel}}
+      href={{unless @disabled @href}}
+      role={{if @disabled "link"}}
+      aria-disabled={{if @disabled "true"}}
+    >
+      {{#unless @symbolAfter}}
+        <span aria-hidden="true">{{@symbol}}</span>
+      {{/unless}}
+      <span class="nvp__pagination__label">{{@label}}</span>
+      {{#if @symbolAfter}}
+        <span aria-hidden="true">{{@symbol}}</span>
+      {{/if}}
+    </a>
   </li>
 </template>;
 
@@ -115,7 +117,7 @@ export interface Signature {
  */
 export const Pagination: TOC<Signature> = <template>
   <nav class="nvp__pagination" aria-label="Pagination" ...attributes>
-    {{#let (pageOf (qp "page")) as |current|}}
+    {{#let (pageOf (qp "page") @totalPages) as |current|}}
       <ul class="nvp__pagination__list">
         <Edge
           @rel="first"
@@ -151,7 +153,7 @@ export const Pagination: TOC<Signature> = <template>
           @label="Next"
           @symbol="›"
           @symbolAfter={{true}}
-          @disabled={{isCurrent current @totalPages}}
+          @disabled={{isLast current @totalPages}}
         />
         <Edge
           @rel="last"
@@ -159,7 +161,7 @@ export const Pagination: TOC<Signature> = <template>
           @label="Last"
           @symbol="»"
           @symbolAfter={{true}}
-          @disabled={{isCurrent current @totalPages}}
+          @disabled={{isLast current @totalPages}}
         />
       </ul>
     {{/let}}

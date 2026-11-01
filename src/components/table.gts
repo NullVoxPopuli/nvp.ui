@@ -8,6 +8,8 @@ import { service } from "@ember/service";
 import { withQP } from "ember-primitives/qp";
 
 import { headlessTable } from "@universal-ember/table";
+import { columns } from "@universal-ember/table/plugins";
+import { ColumnResizing, resizeHandle } from "@universal-ember/table/plugins/column-resizing";
 import {
   DataSorting,
   isSortable,
@@ -23,11 +25,17 @@ import type { SortItem } from "@universal-ember/table/plugins/data-sorting";
 export type Align = "start" | "center" | "end";
 
 /**
+ * Upstream defaults to 128px,
+ * which pushes a table of four columns off the side of a phone.
+ */
+const MIN_COLUMN_WIDTH = 64;
+
+/**
  * A column.
  *
  * The `@universal-ember/table` config, plus how nvp.ui lays it out:
  * - `key`, `name`, `value`, `Cell` are the upstream config
- * - `align`, `nowrap`, `sortable` are nvp.ui's
+ * - `align`, `nowrap`, `sortable`, `resizable` are nvp.ui's
  *
  * Extra keys are kept.
  * A `Cell` component reads them from `@column.config`.
@@ -53,6 +61,13 @@ export interface TableColumn<T = unknown> extends ColumnConfig<T> {
    * Only columns the endpoint can sort by opt in.
    */
   sortable?: boolean;
+  /**
+   * Whether the edge between this column and the next one can be dragged.
+   *
+   * Both columns must opt in.
+   * Widths are not in the URL, and last until the table is removed.
+   */
+  resizable?: boolean;
   [extra: string]: unknown;
 }
 
@@ -132,32 +147,57 @@ function parseSorts<T>(param: unknown): SortItem<T>[] {
 export class Table<T = unknown> extends Component<Signature<T>> {
   @service("router") declare router: RouterService;
 
+  /**
+   * The plugin sets a width on every header,
+   * so tables with no resizable column go without it
+   * and size their columns from the content.
+   *
+   * Read once, because the plugin list is fixed when the table is created.
+   */
+  isResizable = this.args.columns.some((column) => column.resizable);
+
   table = headlessTable<T>(this, {
-    columns: () => this.args.columns.map((column) => this.withSorting(column)),
+    columns: () => this.args.columns.map(this.toConfig),
     data: () => this.args.data,
-    plugins: [[DataSorting, () => ({ sorts: this.sorts })]],
+    plugins: this.plugins,
   });
+
+  get plugins() {
+    const sorting = DataSorting.with(() => ({ sorts: this.sorts }));
+
+    if (!this.isResizable) return [sorting];
+
+    return [sorting, ColumnResizing.with(() => ({ handlePosition: "right" }))];
+  }
 
   get sorts() {
     return parseSorts<T>(this.router.currentRoute?.queryParams?.["sort"]);
   }
 
   /**
-   * Turns `sortable` into the plugin's per-column option,
-   * which drives `aria-sort`.
+   * Turns `sortable` into a per-column plugin option.
+   *
+   * `resizable` is not passed on, because the plugin leaves a column
+   * it cannot resize out of sharing the container width,
+   * and that column then overflows a smaller container.
+   * Instead, `showsResizeHandle` decides where the handles go.
    */
-  withSorting = (column: TableColumn<T>): ColumnConfig<T> => {
-    const sortingOptions = () => ({ isSortable: column.sortable === true });
+  toConfig = (column: TableColumn<T>): ColumnConfig<T> => {
+    const pluginOptions = column.pluginOptions?.slice() ?? [];
 
-    return {
-      ...column,
-      pluginOptions: [
-        ...(column.pluginOptions ?? []),
-        [DataSorting, sortingOptions] as unknown as NonNullable<
-          ColumnConfig<T>["pluginOptions"]
-        >[number],
-      ],
-    };
+    pluginOptions.push(DataSorting.forColumn(() => ({ isSortable: column.sortable === true })));
+
+    if (this.isResizable) {
+      pluginOptions.push(ColumnResizing.forColumn(() => ({ minWidth: MIN_COLUMN_WIDTH })));
+    }
+
+    return { ...column, pluginOptions };
+  };
+
+  showsResizeHandle = (column: Column<T>) => {
+    const next = columns.next(column);
+
+    return Boolean(layoutOf(column).resizable && next && layoutOf(next).resizable);
   };
 
   /**
@@ -177,8 +217,8 @@ export class Table<T = unknown> extends Component<Signature<T>> {
   }
 
   <template>
-    <div class="nvp__table" data-empty={{this.isEmpty}}>
-      <table class="nvp__table__table" {{this.table.modifiers.container}} ...attributes>
+    <div class="nvp__table" {{this.table.modifiers.container}}>
+      <table class="nvp__table__table" data-resizable={{this.isResizable}} ...attributes>
         <caption class="nvp__table__caption">{{@caption}}</caption>
 
         <thead class="nvp__table__head">
@@ -201,6 +241,15 @@ export class Table<T = unknown> extends Component<Signature<T>> {
                   </a>
                 {{else}}
                   {{column.name}}
+                {{/if}}
+
+                {{#if (this.showsResizeHandle column)}}
+                  <button
+                    type="button"
+                    class="nvp__table__resize-handle"
+                    aria-label="Resize {{column.name}}"
+                    {{resizeHandle column}}
+                  ></button>
                 {{/if}}
               </th>
             {{/each}}

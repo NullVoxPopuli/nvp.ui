@@ -49,7 +49,7 @@ A table puts the pagination in its `:footer` block:
 | ------------- | -------- | ------------------------ |
 | `@totalPages` | `number` | how many pages there are |
 
-The current page is not an argument. It comes from the `page` query param. The `<nav>` has the accessible name "Pagination". Set `aria-label` on the component to change it.
+The current page is not an argument. It comes from the `page` query param. A value that is not a page in the collection shows as the nearest page. The `<nav>` has the accessible name "Pagination". Set `aria-label` on the component to change it.
 
 ### `pageSlots(page, totalPages, count)`
 

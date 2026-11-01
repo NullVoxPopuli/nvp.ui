@@ -27,12 +27,9 @@
   padding: var(--pagination-link-padding);
   border-radius: var(--radius);
   border: var(--border-width) var(--border-style) transparent;
-  background: none;
   color: var(--color-text);
   text-decoration: none;
-  font: inherit;
   line-height: var(--line-height);
-  cursor: pointer;
   transition: background-color var(--fade-duration);
 
   &:hover {
@@ -51,6 +48,7 @@
   }
 
   &[aria-disabled="true"] {
+    background: none;
     cursor: default;
     opacity: 0.5;
   }

@@ -16,6 +16,21 @@
   font: inherit;
 }
 
+.nvp__table__table[data-resizable] {
+  table-layout: fixed;
+
+  .nvp__table__header-cell {
+    position: relative;
+    box-sizing: border-box;
+    white-space: normal;
+  }
+
+  .nvp__table__cell[data-nowrap] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
 .nvp__table__caption {
   position: absolute;
   width: 1px;
@@ -65,15 +80,8 @@
   display: inline-flex;
   align-items: center;
   gap: var(--gap-1);
-  padding: 0;
-  border: 0;
-  background: none;
   color: inherit;
-  font: inherit;
   text-decoration: none;
-  text-transform: inherit;
-  letter-spacing: inherit;
-  cursor: pointer;
 
   &:focus-visible {
     outline: none;
@@ -83,6 +91,32 @@
 
   &:hover {
     color: var(--color-text);
+  }
+}
+
+.nvp__table__resize-handle {
+  --handle-width: 0.75rem;
+
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: calc(var(--handle-width) / -2);
+  z-index: 1;
+  width: var(--handle-width);
+  padding: 0;
+  border: 0;
+  background: linear-gradient(currentColor, currentColor) center / 2px 100% no-repeat;
+  color: var(--table-border-color);
+  cursor: col-resize;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color-primary);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--ring-shadow);
+    border-radius: var(--radius);
   }
 }
 
@@ -107,15 +141,6 @@
 
 .nvp__table__row:hover {
   background: var(--table-hover-color);
-}
-
-.nvp__table__actions {
-  text-align: end;
-  white-space: nowrap;
-
-  > * + * {
-    margin-inline-start: var(--gap-2);
-  }
 }
 
 .nvp__table__empty {

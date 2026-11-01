@@ -1,10 +1,10 @@
-import { tracked } from "@glimmer/tracking";
-import Service from "@ember/service";
-import { render } from "@ember/test-helpers";
+import { find, render, settled, triggerEvent, waitUntil } from "@ember/test-helpers";
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 
 import { Table } from "#src/index.ts";
+
+import { RouterStub, visitStub } from "../helpers/router-stub.ts";
 
 import type { TOC } from "@ember/component/template-only";
 import type { CellSignature, TableColumn } from "#src/index.ts";
@@ -34,22 +34,24 @@ function hrefOf(selector: string) {
   return href.replace(location.origin, "");
 }
 
+function widthOf(selector: string) {
+  return parseFloat((find(selector) as HTMLElement).style.width);
+}
+
+/**
+ * The plugin measures the container in a ResizeObserver,
+ * which test waiters do not know about.
+ */
+async function waitForLayout() {
+  await waitUntil(() => widthOf("th:nth-child(1)") > 64);
+}
+
 module("Table", function (hooks) {
   setupRenderingTest(hooks);
 
-  // The sort comes from currentRoute and the sort hrefs from currentURL
-  class RouterStub extends Service {
-    @tracked currentURL = "/fruit?sort=-count&page=3";
-
-    get currentRoute() {
-      const params = new URL(this.currentURL, location.origin).searchParams;
-
-      return { queryParams: Object.fromEntries(params) };
-    }
-  }
-
   hooks.beforeEach(function () {
     this.owner.register("service:router", RouterStub);
+    visitStub(this.owner, "/fruit?sort=-count&page=3");
   });
 
   test("renders a head, rows, cells, and a hidden caption", async function (assert) {
@@ -97,7 +99,7 @@ module("Table", function (hooks) {
   });
 
   test("an ascending column links to descending", async function (assert) {
-    (this.owner.lookup("service:router") as RouterStub).currentURL = "/fruit?sort=count";
+    visitStub(this.owner, "/fruit?sort=count");
 
     const sortable: TableColumn<Fruit>[] = [{ key: "count", name: "Count", sortable: true }];
 
@@ -131,7 +133,6 @@ module("Table", function (hooks) {
     assert.dom("thead th").exists({ count: 2 });
     assert.dom("tbody").doesNotExist();
     assert.dom(".nvp__table__empty").hasText("Nothing here yet.");
-    assert.dom(".nvp__table").hasAttribute("data-empty");
   });
 
   test("the footer block renders below the table", async function (assert) {
@@ -144,5 +145,102 @@ module("Table", function (hooks) {
     );
 
     assert.dom(".nvp__table__footer").hasText("Page 1 of 3");
+  });
+
+  module("resizing", function () {
+    const resizable: TableColumn<Fruit>[] = [
+      { key: "name", name: "Name", resizable: true },
+      { key: "count", name: "Count", resizable: true },
+      { key: "notes", name: "Notes" },
+    ];
+
+    test("columns do not resize unless they opt in", async function (assert) {
+      await render(
+        <template><Table @caption="Fruit" @columns={{columns}} @data={{rows}} /></template>,
+      );
+
+      assert.dom("th button").doesNotExist();
+      assert.dom("table").doesNotHaveAttribute("data-resizable");
+      assert.strictEqual((find("th") as HTMLElement).style.width, "");
+    });
+
+    test("an edge needs a resizable column on both sides", async function (assert) {
+      await render(
+        <template><Table @caption="Fruit" @columns={{resizable}} @data={{rows}} /></template>,
+      );
+
+      assert.dom("th:nth-child(1) button").hasAria("label", "Resize Name");
+      assert.dom("th:nth-child(2) button").doesNotExist();
+      assert.dom("th:nth-child(3) button").doesNotExist();
+    });
+
+    test("dragging an edge moves width between the columns", async function (assert) {
+      await render(
+        <template><Table @caption="Fruit" @columns={{resizable}} @data={{rows}} /></template>,
+      );
+      await waitForLayout();
+
+      const name = widthOf("th:nth-child(1)");
+      const count = widthOf("th:nth-child(2)");
+
+      /**
+       * Not triggerEvent, which waits for settled.
+       * A drag holds a test waiter until the mouse is released.
+       */
+      find("th:nth-child(1) button")?.dispatchEvent(new MouseEvent("mousedown", { clientX: 100 }));
+      window.dispatchEvent(new MouseEvent("mousemove", { clientX: 130 }));
+      window.dispatchEvent(new MouseEvent("mouseup"));
+      await settled();
+
+      assert.strictEqual(widthOf("th:nth-child(1)"), name + 30);
+      assert.strictEqual(widthOf("th:nth-child(2)"), count - 30);
+    });
+
+    test("every column shrinks with the container after a drag", async function (assert) {
+      await render(
+        <template>
+          <div id="container">
+            <Table @caption="Fruit" @columns={{resizable}} @data={{rows}} />
+          </div>
+        </template>,
+      );
+      await waitForLayout();
+
+      find("th:nth-child(1) button")?.dispatchEvent(new MouseEvent("mousedown", { clientX: 100 }));
+      window.dispatchEvent(new MouseEvent("mousemove", { clientX: 110 }));
+      window.dispatchEvent(new MouseEvent("mouseup"));
+      await settled();
+
+      const notes = widthOf("th:nth-child(3)");
+      const container = find("#container") as HTMLElement;
+
+      container.style.width = `${container.clientWidth - 60}px`;
+
+      await waitUntil(() => widthOf("th:nth-child(3)") < notes);
+
+      const total =
+        widthOf("th:nth-child(1)") + widthOf("th:nth-child(2)") + widthOf("th:nth-child(3)");
+
+      /**
+       * The test container is scaled, and the plugin measures the scaled size.
+       */
+      const available = container.getBoundingClientRect().width;
+
+      assert.true(Math.abs(total - available) < 1, "the columns fill the container");
+    });
+
+    test("the arrow keys move a focused edge", async function (assert) {
+      await render(
+        <template><Table @caption="Fruit" @columns={{resizable}} @data={{rows}} /></template>,
+      );
+      await waitForLayout();
+
+      const name = widthOf("th:nth-child(1)");
+
+      await triggerEvent("th:nth-child(1) button", "keydown", { code: "ArrowLeft" });
+      await waitUntil(() => widthOf("th:nth-child(1)") !== name);
+
+      assert.strictEqual(widthOf("th:nth-child(1)"), name - 1);
+    });
   });
 });

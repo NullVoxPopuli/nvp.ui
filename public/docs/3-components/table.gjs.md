@@ -37,15 +37,16 @@ const columns = [
 
 Each column is a `@universal-ember/table` column config plus layout:
 
-| Key        |                                                                        |
-| ---------- | ---------------------------------------------------------------------- |
-| `key`      | the property read from each row, and the default sort key              |
-| `name`     | the header text                                                        |
-| `value`    | `({ row, column }) => value`, when the cell is not the property        |
-| `Cell`     | a component receiving `@row` and `@column`, when the cell needs markup |
-| `align`    | `start`, `center`, or `end`                                            |
-| `nowrap`   | keep the cells on one line                                             |
-| `sortable` | `true` makes the header a sort link; the sort field is `key`           |
+| Key         |                                                                        |
+| ----------- | ---------------------------------------------------------------------- |
+| `key`       | the property read from each row, and the default sort key              |
+| `name`      | the header text                                                        |
+| `value`     | `({ row, column }) => value`, when the cell is not the property        |
+| `Cell`      | a component receiving `@row` and `@column`, when the cell needs markup |
+| `align`     | `start`, `center`, or `end`                                            |
+| `nowrap`    | keep the cells on one line                                             |
+| `sortable`  | `true` makes the header a sort link; the sort field is `key`           |
+| `resizable` | `true` lets the edge to the next resizable column be dragged           |
 
 Any other key is kept on the config, so a `Cell` can read it from `@column.config`.
 
@@ -70,7 +71,7 @@ const columns = [
   { key: "count", name: "Count", align: "end", sortable: true },
 ];
 
-// A real endpoint sorts. This demo has no endpoint.
+/** A real endpoint sorts. This demo has no endpoint. */
 function sorted(sort) {
   if (!sort) return fruit;
 
@@ -81,6 +82,38 @@ function sorted(sort) {
 }
 
 <template><Table @caption="Fruit" @columns={{columns}} @data={{sorted (qp "sort")}} /></template>
+```
+
+## Resizing
+
+Drag the edge between two headers to change the width of the columns. With a focused edge, the left and right arrow keys do the same. The table stays as wide as its container, so a column grows only by taking width from the columns after it, and it stops at 64px.
+
+Columns opt in with `resizable: true`. An edge is resizable if the columns on both sides opt in. Here, the Actions column does not opt in, so the Added column has no edge.
+
+A table with a resizable column starts with equal column widths, because its widths no longer come from the cell content. Widths are not in the URL. They reset when the table renders again.
+
+```gjs live no-shadow
+import { Table } from "nvp.ui/table";
+import { Button } from "nvp.ui/button";
+
+const fruit = [
+  { name: "Apple", notes: "Keeps for months in a cold room", added: "Aug 1, 2026" },
+  { name: "Banana", notes: "Ripens quickly next to other fruit", added: "Aug 9, 2026" },
+  { name: "Cherry", notes: "Short season", added: "Sep 2, 2026" },
+];
+
+const Actions = <template>
+  <Button>Edit</Button>
+</template>;
+
+const columns = [
+  { key: "name", name: "Name", resizable: true },
+  { key: "notes", name: "Notes", resizable: true },
+  { key: "added", name: "Added", nowrap: true, resizable: true },
+  { key: "actions", name: "Actions", align: "end", Cell: Actions },
+];
+
+<template><Table @caption="Fruit notes" @columns={{columns}} @data={{fruit}} /></template>
 ```
 
 ## Empty
