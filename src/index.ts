@@ -1,3 +1,4 @@
+export { pageSlots } from "./components/-private/page-slots.ts";
 export { ApplicationShell } from "./components/application-shell.gts";
 export { Avatar, AvatarGroup } from "./components/avatar.gts";
 export { BrowserWindow } from "./components/browser-window.gts";
@@ -7,8 +8,12 @@ export { Header } from "./components/header.gts";
 export { Menu } from "./components/menu.gts";
 export { Navigation } from "./components/navigation.gts";
 export { NavigationList } from "./components/navigation-list.gts";
+export { Pagination } from "./components/pagination.gts";
 export { politeSticky } from "./components/polite-sticky.gts";
 export { Shell } from "./components/shell.gts";
+export type { CellSignature, TableColumn } from "./components/table.gts";
+export { Table } from "./components/table.gts";
 export { ThemeToggle } from "./components/theme-toggle.gts";
 export { Timeline } from "./components/timeline.gts";
 export { ToggleButton } from "./components/toggle-button.gts";
+export type { Column, Row } from "@universal-ember/table";

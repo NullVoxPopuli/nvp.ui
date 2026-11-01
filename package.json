@@ -71,6 +71,7 @@
     "@embroider/macros": "1.20.2",
     "@glimmer/component": "^2.0.0",
     "@glint/template": "^1.7.7",
+    "@universal-ember/table": "4.1.1",
     "decorator-transforms": "^2.3.1",
     "ember-mobile-menu": "^6.0.0",
     "ember-modifier": ">= 4.2.0",

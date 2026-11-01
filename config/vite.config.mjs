@@ -20,6 +20,8 @@ export default defineConfig({
       "nvp.ui/browser-window": `${process.cwd()}/src/components/browser-window.gts`,
       "nvp.ui/button": `${process.cwd()}/src/components/button.gts`,
       "nvp.ui/header": `${process.cwd()}/src/components/header.gts`,
+      "nvp.ui/pagination": `${process.cwd()}/src/components/pagination.gts`,
+      "nvp.ui/table": `${process.cwd()}/src/components/table.gts`,
       "nvp.ui/polite-sticky": `${process.cwd()}/src/components/polite-sticky.gts`,
       "nvp.ui/theme-toggle": `${process.cwd()}/src/components/theme-toggle.gts`,
       "nvp.ui/progress-circle": `${process.cwd()}/src/components/progress-circle.gts`,

@@ -15,6 +15,7 @@ import config from "./config.ts";
 import * as Router from "./router.ts";
 import * as ApplicationRoute from "./routes/application.ts";
 import * as PageRoute from "./routes/page.ts";
+import * as PageIndexRoute from "./routes/page/index.ts";
 import * as ApplicationTemplate from "./templates/application.gts";
 import * as IndexTemplate from "./templates/index.gts";
 import * as PageTemplate from "./templates/page.gts";
@@ -38,6 +39,7 @@ export default class App extends Application {
     "docs-app/router": Router,
     "docs-app/routes/application": ApplicationRoute,
     "docs-app/routes/page": PageRoute,
+    "docs-app/routes/page/index": PageIndexRoute,
 
     "docs-app/templates/application": ApplicationTemplate,
     "docs-app/templates/index": IndexTemplate,
