@@ -1,8 +1,10 @@
-import { find, render, settled, triggerEvent, waitUntil } from "@ember/test-helpers";
+import { find, render, triggerEvent, waitUntil } from "@ember/test-helpers";
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 
 import { Table } from "#src/index.ts";
+
+import { createHelpers } from "@universal-ember/table/test-support";
 
 import { RouterStub, visitStub } from "../helpers/router-stub.ts";
 
@@ -33,6 +35,8 @@ function hrefOf(selector: string) {
 
   return href.replace(location.origin, "");
 }
+
+const { dragRight } = createHelpers({ resizeHandle: "button" });
 
 function widthOf(selector: string) {
   return parseFloat((find(selector) as HTMLElement).style.width);
@@ -183,14 +187,7 @@ module("Table", function (hooks) {
       const name = widthOf("th:nth-child(1)");
       const count = widthOf("th:nth-child(2)");
 
-      /**
-       * Not triggerEvent, which waits for settled.
-       * A drag holds a test waiter until the mouse is released.
-       */
-      find("th:nth-child(1) button")?.dispatchEvent(new MouseEvent("mousedown", { clientX: 100 }));
-      window.dispatchEvent(new MouseEvent("mousemove", { clientX: 130 }));
-      window.dispatchEvent(new MouseEvent("mouseup"));
-      await settled();
+      await dragRight(find("th:nth-child(1)") as Element, 30);
 
       assert.strictEqual(widthOf("th:nth-child(1)"), name + 30);
       assert.strictEqual(widthOf("th:nth-child(2)"), count - 30);
@@ -206,10 +203,7 @@ module("Table", function (hooks) {
       );
       await waitForLayout();
 
-      find("th:nth-child(1) button")?.dispatchEvent(new MouseEvent("mousedown", { clientX: 100 }));
-      window.dispatchEvent(new MouseEvent("mousemove", { clientX: 110 }));
-      window.dispatchEvent(new MouseEvent("mouseup"));
-      await settled();
+      await dragRight(find("th:nth-child(1)") as Element, 10);
 
       const notes = widthOf("th:nth-child(3)");
       const container = find("#container") as HTMLElement;

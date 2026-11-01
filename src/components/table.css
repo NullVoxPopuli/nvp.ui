@@ -120,6 +120,16 @@
   }
 }
 
+@media (any-pointer: coarse) {
+  .nvp__table__resize-handle {
+    --handle-width: 2.75rem;
+  }
+
+  .nvp__table__table[data-resizable] .nvp__table__header-cell {
+    height: 2.75rem;
+  }
+}
+
 .nvp__table__sort-icon::after {
   content: "↕";
   opacity: 0.5;

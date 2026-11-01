@@ -86,7 +86,7 @@ function sorted(sort) {
 
 ## Resizing
 
-Drag the edge between two headers to change the width of the columns. With a focused edge, the left and right arrow keys do the same. The table stays as wide as its container, so a column grows only by taking width from the columns after it, and it stops at 64px.
+Drag the edge between two headers to change the width of the columns. Touch works the same way, and on a device with a touch screen the edge is a larger target. With a focused edge, the left and right arrow keys do the same. The table stays as wide as its container, so a column grows only by taking width from the columns after it, and it stops at 64px.
 
 Columns opt in with `resizable: true`. An edge is resizable if the columns on both sides opt in. Here, the Actions column does not opt in, so the Added column has no edge.
 
