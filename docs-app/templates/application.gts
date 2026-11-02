@@ -6,7 +6,7 @@ import { service } from "@ember/service";
 import { pascalCase, sentenceCase } from "change-case";
 import { pageTitle } from "ember-page-title";
 import Route from "ember-route-template";
-import { docsManager, isIndex,isPageTree } from "kolay";
+import { docsManager, isIndex, isPageTree } from "kolay";
 
 import {
   ApplicationShell,
