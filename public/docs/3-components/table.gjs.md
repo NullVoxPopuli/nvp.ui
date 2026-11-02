@@ -35,18 +35,13 @@ const columns = [
 
 ## Columns
 
-Each column is a `@universal-ember/table` column config plus layout:
+```gjs live no-shadow
+import { APIDocs } from "kolay";
 
-| Key         |                                                                        |
-| ----------- | ---------------------------------------------------------------------- |
-| `key`       | the property read from each row, and the default sort key              |
-| `name`      | the header text                                                        |
-| `value`     | `({ row, column }) => value`, when the cell is not the property        |
-| `Cell`      | a component receiving `@row` and `@column`, when the cell needs markup |
-| `align`     | `start`, `center`, or `end`                                            |
-| `nowrap`    | keep the cells on one line                                             |
-| `sortable`  | `true` makes the header a sort link; the sort field is `key`           |
-| `resizable` | `true` lets the edge to the next resizable column be dragged           |
+<template>
+  <APIDocs @package="." @module="declarations/components/table" @name="TableColumn" />
+</template>
+```
 
 Any other key is kept on the config, so a `Cell` can read it from `@column.config`.
 

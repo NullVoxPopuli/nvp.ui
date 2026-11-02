@@ -126,7 +126,7 @@
     "execa": "^9.6.1",
     "highlight.js": "^11.11.1",
     "highlightjs-glimmer": "^2.2.2",
-    "kolay": "^5.2.0",
+    "kolay": "^5.4.0",
     "lodash.sortby": "^4.7.0",
     "lorem-ipsum": "^2.0.8",
     "prettier": "^3.7.4",
@@ -143,7 +143,7 @@
     "shiki": "^3.21.0",
     "testem": "^3.17.0",
     "tracked-built-ins": "^4.1.0",
-    "typedoc": "^0.28.15",
+    "typedoc": "^0.28.20",
     "typescript": "^5.9.3",
     "unplugin-info": "^1.2.2",
     "vite": "^7.3.1"
