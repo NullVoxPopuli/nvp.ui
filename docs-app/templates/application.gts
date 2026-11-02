@@ -6,7 +6,7 @@ import { service } from "@ember/service";
 import { pascalCase, sentenceCase } from "change-case";
 import { pageTitle } from "ember-page-title";
 import Route from "ember-route-template";
-import { docsManager, isCollection, isIndex } from "kolay";
+import { docsManager, isIndex,isPageTree } from "kolay";
 
 import {
   ApplicationShell,
@@ -18,7 +18,7 @@ import {
 import { abbreviatedSha } from "~build/git";
 
 import type RouterService from "@ember/routing/router-service";
-import type { Collection, Page } from "kolay";
+import type { Page, PageTree } from "kolay";
 
 /**
  * The sidebar composes <Navigation> + <NavigationList> directly from
@@ -32,12 +32,12 @@ class SideNav extends Component<{ Element: HTMLElement }> {
     return docsManager(this);
   }
 
-  get groups(): Collection[] {
+  get groups(): PageTree[] {
     const tree = this.docs.tree;
 
     if (!("pages" in tree)) return [];
 
-    return tree.pages.filter((page) => isCollection(page));
+    return tree.pages.filter((page) => isPageTree(page));
   }
 
   isCurrent = (page: Page) => {
@@ -112,8 +112,8 @@ export default Route(
   </template>,
 );
 
-function pagesOf(group: Collection): Page[] {
-  return group.pages.filter((page): page is Page => !isCollection(page) && !isIndex(page));
+function pagesOf(group: PageTree): Page[] {
+  return group.pages.filter((page): page is Page => !isPageTree(page) && !isIndex(page));
 }
 
 /**

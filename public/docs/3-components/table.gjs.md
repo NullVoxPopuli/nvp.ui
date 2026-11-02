@@ -35,7 +35,7 @@ const columns = [
 
 ## Columns
 
-Each column is a [`TableColumn`](#table-column): a `@universal-ember/table` column config, plus how nvp.ui lays it out. A `Cell` component renders a cell that needs markup, and receives the arguments in [`CellSignature`](#cell-signature).
+Each column is a [`TableColumn`](#tablecolumn): a `@universal-ember/table` column config, plus how nvp.ui lays it out. A `Cell` component renders a cell that needs markup, and receives the arguments in [`CellSignature`](#cellsignature).
 
 ## Sorting
 
