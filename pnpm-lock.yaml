@@ -197,8 +197,8 @@ importers:
         specifier: ^2.2.2
         version: 2.2.2(highlight.js@11.11.1)
       kolay:
-        specifier: ^6.0.0
-        version: 6.0.0(0922080c021e6a3ae57c4a2f93cd0240)
+        specifier: ^6.0.1
+        version: 6.0.1(0922080c021e6a3ae57c4a2f93cd0240)
       lodash.sortby:
         specifier: ^4.7.0
         version: 4.7.0
@@ -4000,8 +4000,8 @@ packages:
       '@glint/template':
         optional: true
 
-  ember-primitives@0.62.0:
-    resolution: {integrity: sha512-olo9BdIyXkKleEKjQGq6Ya94iM7+Dr6TtT4+QLFyAzFQtHTENgy5rbEqFnbjw4qQmnibXR2s+jXxSDyPAQczhA==}
+  ember-primitives@0.63.1:
+    resolution: {integrity: sha512-VxcsWjHnPwtv1CE2Ll5rNgH9HSz4kYVN+5ze2/DP9VhV94pnCC005VcRAwPKxO0bQJkVpkOBuCinfJFkqnJEgA==}
     hasBin: true
     peerDependencies:
       '@ember/test-helpers': '>= 3.2.0'
@@ -5443,8 +5443,8 @@ packages:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
 
-  kolay@6.0.0:
-    resolution: {integrity: sha512-3EC/tI02o1r5RlmevI9CsX3dvikC/jSvO4d2E7E5hLXT2wz4Ba51crp3tQFYS4dBBqc8A3V42Ho7JnKXVxk8yg==}
+  kolay@6.0.1:
+    resolution: {integrity: sha512-SO3F1DA3alC/GhrJc/LNw8IN3kp644uAgKtRenSZN9Pbh9G1+788EhPjIKloopqQ61Q+q46ofAyZCQOsYMZ7Vw==}
     engines: {node: '>= 18'}
 
   ky@1.14.2:
@@ -7861,6 +7861,9 @@ packages:
 
   which-heading-do-i-need@0.4.1:
     resolution: {integrity: sha512-NUwKC7rjs6hFqdr6Yu+4Hd9muQEL5XW3QvV8hj/uHSBo8o9FRsWOqArgWcL4IIvUDpS+KCoaRW/8+jHhNL8itQ==}
+
+  which-heading-do-i-need@0.4.2:
+    resolution: {integrity: sha512-hKEFGe0I3TdEqFkRNyuMxGBhLt/zWBr1hBRkynJ0bGnbXyUVrvSUPj4SDw0hWhydPey4SHKESaSdvyyZYERhxA==}
 
   which-typed-array@1.1.19:
     resolution: {integrity: sha512-rEvr90Bck4WZt9HHFC4DJMsjvu7x+r6bImz0/BrbWb7A2djJ8hnZMrWnHo9F8ssv0OMErasDhftrfROTyqSDrw==}
@@ -13075,7 +13078,7 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  ember-primitives@0.62.0(1775fedac88fde2a8dc6f6911af65003):
+  ember-primitives@0.63.1(1775fedac88fde2a8dc6f6911af65003):
     dependencies:
       '@babel/runtime': 7.29.2
       '@ember/test-waiters': 4.1.2
@@ -13092,7 +13095,7 @@ snapshots:
       tabster: 8.7.0
       tracked-built-ins: 4.1.2(@babel/core@7.28.5)
       tracked-toolbox: 3.0.0(@babel/core@7.28.5)
-      which-heading-do-i-need: 0.4.1
+      which-heading-do-i-need: 0.4.2
     optionalDependencies:
       '@ember/test-helpers': 5.4.1(e36bea8b02087eee87d28ed2727a0989)
       '@glint/template': 1.7.7
@@ -15052,7 +15055,7 @@ snapshots:
 
   kind-of@6.0.3: {}
 
-  kolay@6.0.0(0922080c021e6a3ae57c4a2f93cd0240):
+  kolay@6.0.1(0922080c021e6a3ae57c4a2f93cd0240):
     dependencies:
       '@11ty/gray-matter': 3.0.0
       '@ember/test-waiters': 4.1.2
@@ -15063,7 +15066,7 @@ snapshots:
       content-tag: 4.2.1
       decorator-transforms: 2.4.0(@babel/core@7.28.5)
       ember-modifier: 4.2.2(@babel/core@7.28.5)
-      ember-primitives: 0.62.0(1775fedac88fde2a8dc6f6911af65003)
+      ember-primitives: 0.63.1(1775fedac88fde2a8dc6f6911af65003)
       ember-repl: 8.2.3(8c91de4daa5902d0318f476517fc7024)
       ember-resources: 7.1.0(dceb021addb51d0506bd80f89e2b7f27)
       globby: 16.2.4
@@ -18142,6 +18145,8 @@ snapshots:
   which-heading-do-i-need@0.2.6: {}
 
   which-heading-do-i-need@0.4.1: {}
+
+  which-heading-do-i-need@0.4.2: {}
 
   which-typed-array@1.1.19:
     dependencies:
