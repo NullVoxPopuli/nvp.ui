@@ -4,7 +4,7 @@ A styled data table on top of [`@universal-ember/table`](https://github.com/univ
 
 The table follows the [Tabular Data](/Docs/1-get-started/tabular-data) conventions. The data endpoint sorts, filters, and pages. The URL holds that state, and the table only shows it and links to the next state.
 
-```gjs live no-shadow
+```gjs live preview no-shadow
 import { Table } from "nvp.ui/table";
 import { Button } from "nvp.ui/button";
 
@@ -56,7 +56,7 @@ The `sort` query param holds the sort, in the {json:api} syntax: `?sort=count` i
 
 The table does not sort the rows. The route passes `sort` to the endpoint, which sorts. Only columns that the endpoint can sort by opt in with `sortable: true`. See [Tabular Data](/Docs/1-get-started/tabular-data) for the route.
 
-```gjs live no-shadow
+```gjs live preview no-shadow
 import { Table } from "nvp.ui/table";
 import { qp } from "ember-primitives/qp";
 
@@ -92,7 +92,7 @@ Columns opt in with `resizable: true`. An edge is resizable if the columns on bo
 
 A table with a resizable column starts with equal column widths, because its widths no longer come from the cell content. Widths are not in the URL. They reset when the table renders again.
 
-```gjs live no-shadow
+```gjs live preview no-shadow
 import { Table } from "nvp.ui/table";
 import { Button } from "nvp.ui/button";
 
@@ -120,7 +120,7 @@ const columns = [
 
 With no data, the rows are not rendered and the `empty` block takes their place. The header stays, so the columns are still visible.
 
-```gjs live no-shadow
+```gjs live preview no-shadow
 import { Table } from "nvp.ui/table";
 
 const columns = [
