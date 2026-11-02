@@ -3,16 +3,11 @@ import { module, test } from "qunit";
 import { setupApplicationTest } from "ember-qunit";
 
 import { colorScheme } from "ember-primitives/color-scheme";
+import { manifest } from "virtual:kolay/docs/Docs";
 
 import { a11yAudit } from "ember-a11y-testing/test-support";
 
-// @ts-expect-error virtual module provided by kolay's vite plugin
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-const { manifest } = await import("kolay/compiled-docs:virtual");
-// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-const pages = manifest.groups.flatMap((g: { list: { path: string }[] }) => g.list) as {
-  path: string;
-}[];
+const pages = manifest.list;
 
 /**
  * a11yAudit halts tests, this gets around that

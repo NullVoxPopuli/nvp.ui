@@ -2,7 +2,7 @@ import { ember, extensions } from "@embroider/vite";
 
 import { babel } from "@rollup/plugin-babel";
 import rehypeShiki from "@shikijs/rehype";
-import { kolay } from "kolay/vite";
+import { apiDocs, docs } from "kolay/vite";
 import remarkFrontmatter from "remark-frontmatter";
 import info from "unplugin-info/vite";
 import { defineConfig } from "vite";
@@ -47,14 +47,8 @@ export default defineConfig({
       extensions,
     }),
     info(),
-    kolay({
-      groups: [
-        {
-          name: "Docs",
-          src: import.meta.resolve("../public/docs", import.meta.url),
-        },
-      ],
-      packages: ["."],
+    docs("Docs", {
+      src: import.meta.resolve("../public/docs", import.meta.url),
       // DESIGN.md carries a machine-readable token map as YAML frontmatter
       remarkPlugins: [remarkFrontmatter],
       rehypePlugins: [
@@ -73,6 +67,7 @@ export default defineConfig({
         import { ComponentSignature } from 'kolay';
       `,
     }),
+    apiDocs(["."]),
   ],
   optimizeDeps: {
     // a wasm-providing dependency

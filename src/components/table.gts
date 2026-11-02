@@ -34,8 +34,8 @@ const MIN_COLUMN_WIDTH = 64;
  * A column.
  *
  * The `@universal-ember/table` config, plus how nvp.ui lays it out:
- * - `key`, `name`, `value`, `Cell` are the upstream config
- * - `align`, `nowrap`, `sortable`, `resizable` are nvp.ui's
+ * - upstream: `key`, `name`, `value`, `Cell`
+ * - nvp.ui: `align`, `nowrap`, `sortable`, `resizable`
  *
  * Extra keys are kept.
  * A `Cell` component reads them from `@column.config`.
