@@ -35,15 +35,7 @@ const columns = [
 
 ## Columns
 
-```gjs live no-shadow
-import { APIDocs } from "kolay";
-
-<template>
-  <APIDocs @package="." @module="declarations/components/table" @name="TableColumn" />
-</template>
-```
-
-Any other key is kept on the config, so a `Cell` can read it from `@column.config`.
+Each column is a [`TableColumn`](#table-column): a `@universal-ember/table` column config, plus how nvp.ui lays it out. A `Cell` component renders a cell that needs markup, and receives the arguments in [`CellSignature`](#cell-signature).
 
 ## Sorting
 
@@ -133,22 +125,45 @@ const none = [];
 
 ## API Reference
 
-### Arguments
+### Table
 
-| Argument   | Type            |                                                                                                                          |
-| ---------- | --------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `@columns` | `TableColumn[]` | see Columns                                                                                                              |
-| `@data`    | `T[]`           | one row per item                                                                                                         |
-| `@caption` | `string`        | required, the accessible name, rendered as a visually hidden `<caption>`; a visible title is a heading outside the table |
+```gjs live no-shadow
+import { ComponentSignature } from "kolay";
+
+<template>
+  <ComponentSignature @package="." @module="declarations/components/table" @name="Signature" />
+</template>
+```
 
 The sort is not an argument. It comes from the `sort` query param.
 
-### Blocks
+### TableColumn
 
-| Block     | Yields |                             |
-| --------- | ------ | --------------------------- |
-| `:empty`  |        | shown when there is no data |
-| `:footer` |        | below the table             |
+```gjs live no-shadow
+import { APIDocs } from "kolay";
+
+<template>
+  <APIDocs @package="." @module="declarations/components/table" @name="TableColumn" />
+</template>
+```
+
+### Align
+
+```gjs live no-shadow
+import { APIDocs } from "kolay";
+
+<template><APIDocs @package="." @module="declarations/components/table" @name="Align" /></template>
+```
+
+### CellSignature
+
+```gjs live no-shadow
+import { APIDocs } from "kolay";
+
+<template>
+  <APIDocs @package="." @module="declarations/components/table" @name="CellSignature" />
+</template>
+```
 
 ### CSS API
 
