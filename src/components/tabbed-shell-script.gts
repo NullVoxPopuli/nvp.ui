@@ -89,18 +89,6 @@ export type TabbedShellScriptSignature = ScriptsSignature | BlockSignature;
  * ```gjs
  * import { TabbedShellScript } from "nvp.ui/tabbed-shell-script";
  *
- * <template>
- *   <TabbedShellScript as |Tab|>
- *     <Tab @label="pnpm" @script="pnpm add nvp.ui" />
- *     <Tab @label="npm" @script="npm install nvp.ui" />
- *   </TabbedShellScript>
- * </template>
- * ```
- *
- * @example
- * ```gjs
- * import { TabbedShellScript } from "nvp.ui/tabbed-shell-script";
- *
  * const scripts = [
  *   { label: "pnpm", script: "pnpm add nvp.ui" },
  *   { label: "npm", script: "npm install nvp.ui" },
@@ -108,6 +96,18 @@ export type TabbedShellScriptSignature = ScriptsSignature | BlockSignature;
  *
  * <template>
  *   <TabbedShellScript @scripts={{scripts}} />
+ * </template>
+ * ```
+ *
+ * @example
+ * ```gjs
+ * import { TabbedShellScript } from "nvp.ui/tabbed-shell-script";
+ *
+ * <template>
+ *   <TabbedShellScript as |Tab|>
+ *     <Tab @label="pnpm" @script="pnpm add nvp.ui" />
+ *     <Tab @label="npm" @script="npm install nvp.ui" />
+ *   </TabbedShellScript>
  * </template>
  * ```
  */

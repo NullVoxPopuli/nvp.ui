@@ -3,6 +3,26 @@
 Shows one shell script per tab.
 Use it for a command that changes with the tool, for example the install command for each package manager.
 
+Pass `@scripts`, an array with a `label` and a `script` for each tab.
+
+```gjs live preview no-shadow
+import { TabbedShellScript } from "nvp.ui/tabbed-shell-script";
+
+const scripts = [
+  { label: "pnpm", script: "pnpm add nvp.ui" },
+  { label: "npm", script: "npm install nvp.ui" },
+  { label: "yarn", script: "yarn add nvp.ui" },
+];
+
+<template><TabbedShellScript @scripts={{scripts}} /></template>
+```
+
+## Block
+
+To write each tab in the template, use the block instead of `@scripts`.
+The block yields `Tab`, which takes `@label` and `@script`.
+Use `@scripts` or the block, not both.
+
 ```gjs live preview no-shadow
 import { TabbedShellScript } from "nvp.ui/tabbed-shell-script";
 
@@ -17,38 +37,14 @@ import { TabbedShellScript } from "nvp.ui/tabbed-shell-script";
 
 ## Multi-line scripts
 
-Line breaks in `@script` show as line breaks.
-
-```gjs live preview no-shadow
-import { TabbedShellScript } from "nvp.ui/tabbed-shell-script";
-
-const pnpm = `pnpm install
-pnpm test`;
-
-const npm = `npm install
-npm test`;
-
-<template>
-  <TabbedShellScript as |Tab|>
-    <Tab @label="pnpm" @script={{pnpm}} />
-    <Tab @label="npm" @script={{npm}} />
-  </TabbedShellScript>
-</template>
-```
-
-## `@scripts`
-
-To build the tabs from data, pass `@scripts` instead of the block.
-Each item has a `label` and a `script`.
-Use `@scripts` or the block, not both.
+Line breaks in a script show as line breaks.
 
 ```gjs live preview no-shadow
 import { TabbedShellScript } from "nvp.ui/tabbed-shell-script";
 
 const scripts = [
-  { label: "pnpm", script: "pnpm add nvp.ui" },
-  { label: "npm", script: "npm install nvp.ui" },
-  { label: "yarn", script: "yarn add nvp.ui" },
+  { label: "pnpm", script: "pnpm install\npnpm test" },
+  { label: "npm", script: "npm install\nnpm test" },
 ];
 
 <template><TabbedShellScript @scripts={{scripts}} /></template>
