@@ -1,0 +1,100 @@
+.nvp__range-slider {
+  --range-slider-track-height: 0.5rem;
+  --range-slider-thumb-width: 0.75rem;
+  --range-slider-thumb-height: 1.75rem;
+  --range-slider-track-color: color-mix(in oklab, var(--color-text) 15%, transparent);
+  --range-slider-range-color: color-mix(in oklab, var(--color-primary) 60%, transparent);
+  --range-slider-thumb-color: var(--color-primary);
+  --range-slider-thumb-border-color: color-mix(in oklab, var(--color-text) 60%, transparent);
+  --ember-primitives__slider__hit-area: var(--range-slider-thumb-height);
+
+  /**
+   * Room for the value labels above the thumbs,
+   * and for the focus ring on every side.
+   */
+  padding: calc(var(--line-height) + var(--padding-1)) calc(var(--range-slider-thumb-width) / 2)
+    var(--padding-1);
+  user-select: none;
+}
+
+/**
+ * The track is as tall as the thumbs, so that content in the block,
+ * such as a playhead, can fill its height. The rail is drawn in it.
+ */
+.nvp__range-slider__track {
+  height: var(--range-slider-thumb-height);
+  background: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 50%;
+    height: var(--range-slider-track-height);
+    transform: translateY(-50%);
+    border-radius: var(--range-slider-track-height);
+    background: var(--range-slider-track-color);
+  }
+}
+
+.nvp__range-slider__range {
+  top: 50%;
+  bottom: auto;
+  height: var(--range-slider-track-height);
+  transform: translateY(-50%);
+  border-radius: 0;
+  background: var(--range-slider-range-color);
+}
+
+.nvp__range-slider .ember-primitives__slider__thumb-input {
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.nvp__range-slider .ember-primitives__slider__thumb {
+  width: var(--range-slider-thumb-width);
+  height: var(--range-slider-thumb-height);
+  border-radius: var(--radius);
+  border: var(--border-width) var(--border-style) var(--range-slider-thumb-border-color);
+  background: var(--range-slider-thumb-color);
+}
+
+/**
+ * The native input has the focus, but it is invisible,
+ * so the visible thumb shows the focus ring.
+ */
+.nvp__range-slider .ember-primitives__slider__thumb-input:focus-visible {
+  box-shadow: none;
+
+  & + .ember-primitives__slider__thumb {
+    outline: 2px solid transparent;
+    box-shadow: var(--ring-shadow);
+  }
+}
+
+.nvp__range-slider .ember-primitives__slider__thumb-input:hover + .ember-primitives__slider__thumb {
+  filter: brightness(1.15);
+}
+
+.nvp__range-slider__value {
+  position: absolute;
+  bottom: calc(100% + var(--padding-1));
+  font-size: 0.8rem;
+  line-height: var(--line-height);
+  white-space: nowrap;
+
+  /**
+   * The labels point away from each other,
+   * so that they stay readable when the thumbs are close.
+   */
+  [data-part="start"] + * > & {
+    right: 0;
+  }
+
+  [data-part="end"] + * > & {
+    left: 0;
+  }
+}

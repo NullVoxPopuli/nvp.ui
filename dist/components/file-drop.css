@@ -1,0 +1,34 @@
+.nvp__file-drop {
+  --file-drop-border-color: color-mix(in oklab, var(--color-text) 35%, transparent);
+  --file-drop-active-color: var(--color-primary);
+  --file-drop-padding: var(--padding-4);
+
+  display: grid;
+  place-items: center;
+  gap: var(--gap-2);
+  padding: var(--file-drop-padding);
+  border: 2px dashed var(--file-drop-border-color);
+  border-radius: var(--radius);
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color var(--fade-duration),
+    background-color var(--fade-duration);
+
+  &:hover {
+    border-color: var(--file-drop-active-color);
+  }
+
+  &[data-dragging] {
+    border-color: var(--file-drop-active-color);
+    border-style: solid;
+    background: color-mix(in oklab, var(--file-drop-active-color) 15%, transparent);
+  }
+
+  /**
+   * The input is hidden, so the drop zone shows its focus.
+   */
+  &:has(:focus-visible) {
+    box-shadow: var(--ring-shadow);
+  }
+}

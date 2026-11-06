@@ -1,0 +1,65 @@
+.nvp__pagination {
+  --pagination-gap: var(--gap-1);
+  --pagination-link-padding: var(--padding-1) var(--padding-2);
+  --pagination-current-background: var(--color-primary);
+
+  display: flex;
+  justify-content: center;
+}
+
+.nvp__pagination__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--pagination-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nvp__pagination__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-1);
+  min-width: 2.5rem;
+  justify-content: center;
+  font-variant-numeric: tabular-nums;
+  padding: var(--pagination-link-padding);
+  border-radius: var(--radius);
+  border: var(--border-width) var(--border-style) transparent;
+  color: var(--color-text);
+  text-decoration: none;
+  line-height: var(--line-height);
+  transition: background-color var(--fade-duration);
+
+  &:hover {
+    background: color-mix(in oklab, var(--color-text) 10%, transparent);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--ring-shadow);
+  }
+
+  &[aria-current="page"] {
+    background: var(--pagination-current-background);
+    border-color: color-mix(in oklab, var(--pagination-current-background) 70%, black 30%);
+    font-weight: 600;
+  }
+
+  &[aria-disabled="true"] {
+    background: none;
+    cursor: default;
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .nvp__pagination__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+}

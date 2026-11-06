@@ -1,0 +1,527 @@
+/* ───────────────────────────────────────────
+   BrowserWindow — browser window mockup
+   ─────────────────────────────────────────── */
+
+.nvp__browser-window {
+  --browser-window-background: light-dark(#fff, #2a2a2e);
+  --browser-window-color: light-dark(#000, #fff);
+  --browser-window-border-color: light-dark(rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.1));
+  --browser-window-header-background: light-dark(#f6f6f6, #3a3a3c);
+  --browser-window-url-background: light-dark(#fff, #1e1e21);
+  --browser-window-url-color: light-dark(#666, #aaa);
+  --browser-window-circle-close: #ff5f56;
+  --browser-window-circle-minimize: #ffbd2e;
+  --browser-window-circle-maximize: #27c93f;
+  --browser-window-circle-size: 0.75em;
+  --browser-window-border-radius: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--browser-window-border-radius);
+  border: 1px solid var(--browser-window-border-color);
+  background: var(--browser-window-background);
+  color: var(--browser-window-color);
+  overflow: hidden;
+  min-width: 12rem;
+}
+
+/* ── Header / title bar ──────────────────── */
+
+.nvp__browser-window__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.625em 0.75em;
+  background: var(--browser-window-header-background);
+  user-select: none;
+}
+
+/* ═══════════════════════════════════════════
+   macOS style (default)
+   ═══════════════════════════════════════════ */
+
+.nvp__browser-window__circles {
+  display: flex;
+  gap: 0.375em;
+  flex-shrink: 0;
+}
+
+.nvp__browser-window__circle {
+  width: var(--browser-window-circle-size);
+  height: var(--browser-window-circle-size);
+  border-radius: 50%;
+  transition: filter 0.15s;
+}
+
+.nvp__browser-window__circle:nth-child(1) {
+  background-color: var(--browser-window-circle-close);
+}
+
+.nvp__browser-window__circle:nth-child(2) {
+  background-color: var(--browser-window-circle-minimize);
+}
+
+.nvp__browser-window__circle:nth-child(3) {
+  background-color: var(--browser-window-circle-maximize);
+}
+
+.nvp__browser-window__circle:hover {
+  filter: brightness(0.85);
+}
+
+/* ── Grayscale variant (macOS only) ──────── */
+
+.nvp__browser-window[data-grayscale] .nvp__browser-window__circle {
+  background-color: light-dark(#e0e0e0, #555) !important;
+}
+
+/* ═══════════════════════════════════════════
+   Windows style
+   ═══════════════════════════════════════════ */
+
+.nvp__browser-window[data-os="windows"] {
+  --browser-window-header-background: light-dark(#fff, #1f1f1f);
+  --browser-window-border-radius: 0;
+}
+
+.nvp__browser-window[data-os="windows"] .nvp__browser-window__header {
+  flex-direction: row;
+}
+
+.nvp__browser-window[data-os="windows"] .nvp__browser-window__controls {
+  gap: 0;
+  align-self: stretch;
+  min-height: 2em;
+  margin: -0.625em -0.75em -0.625em auto;
+}
+
+.nvp__browser-window[data-os="windows"] .nvp__browser-window__controls svg {
+  box-sizing: content-box;
+  width: 1em;
+  height: 100%;
+  padding: 0 0.75em;
+  color: light-dark(#333, #ccc);
+  border-radius: 0;
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+}
+
+.nvp__browser-window[data-os="windows"] .nvp__browser-window__controls svg:hover {
+  background: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
+}
+
+.nvp__browser-window[data-os="windows"] .nvp__browser-window__controls svg:last-child:hover {
+  background: #e81123;
+  color: #fff;
+}
+
+/* ═══════════════════════════════════════════
+   Ubuntu / GNOME (Adwaita) style
+   Controls on the right: minimize, maximize, close
+   ═══════════════════════════════════════════ */
+
+.nvp__browser-window[data-os="ubuntu"] {
+  --browser-window-header-background: light-dark(#fff, #2e2e32);
+  --browser-window-border-radius: 0.75rem;
+}
+
+.nvp__browser-window[data-os="ubuntu"] .nvp__browser-window__header {
+  padding: 0.375em 0.5em;
+}
+
+.nvp__browser-window[data-os="ubuntu"] .nvp__browser-window__controls {
+  gap: 0.25em;
+}
+
+.nvp__browser-window[data-os="ubuntu"] .nvp__browser-window__controls svg {
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  padding: 0.25em;
+  border-radius: 50%;
+  color: light-dark(#555, #999);
+  background: transparent;
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+}
+
+.nvp__browser-window[data-os="ubuntu"] .nvp__browser-window__controls svg:hover {
+  background: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
+  color: light-dark(#222, #fff);
+}
+
+/* close button — last child (rightmost) */
+.nvp__browser-window[data-os="ubuntu"] .nvp__browser-window__controls svg:last-child:hover {
+  background: #e01b24;
+  color: #fff;
+}
+
+/* ═══════════════════════════════════════════
+   Generic style (no window controls)
+   ═══════════════════════════════════════════ */
+
+.nvp__browser-window[data-os="generic"] {
+  --browser-window-border-radius: 0.375rem;
+}
+
+.nvp__browser-window[data-os="generic"] .nvp__browser-window__header {
+  justify-content: center;
+}
+
+/* ── Shared controls container ───────────── */
+
+.nvp__browser-window__controls {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* ── URL bar (shared) ────────────────────── */
+
+.nvp__browser-window__url {
+  flex: 1;
+  font-family: system-ui, sans-serif;
+  font-size: 0.8125em;
+  line-height: 1.5;
+  padding: 0.125em 0.5em;
+  border-radius: 0.25em;
+  background: var(--browser-window-url-background);
+  color: var(--browser-window-url-color);
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.nvp__browser-window:not([data-os="mac"]) .nvp__browser-window__url {
+  text-align: left;
+}
+
+/* ═══════════════════════════════════════════
+   Tabs — shared
+   ═══════════════════════════════════════════ */
+
+.nvp__browser-window__tabs {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  gap: 0.125em;
+  align-items: end;
+  align-self: stretch;
+}
+
+.nvp__browser-window__tab {
+  padding: 0.25em 0.75em;
+  font-family: system-ui, sans-serif;
+  font-size: 0.75em;
+  line-height: 1.5;
+  white-space: nowrap;
+  max-width: 12em;
+  cursor: default;
+  color: var(--browser-window-url-color);
+}
+
+/* Truncate the label text, not the whole tab (which contains the close icon) */
+.nvp__browser-window__tab-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.nvp__browser-window__tab[data-active="true"] {
+  color: var(--browser-window-color);
+}
+
+/* ── Tab close button ───────────────────── */
+
+.nvp__browser-window__tab-close {
+  width: 0.875em;
+  height: 0.875em;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: var(--browser-window-url-color);
+  opacity: 0.6;
+  transition:
+    opacity 0.15s,
+    background-color 0.15s;
+}
+
+.nvp__browser-window__tab:hover .nvp__browser-window__tab-close,
+.nvp__browser-window__tab[data-active="true"] .nvp__browser-window__tab-close {
+  opacity: 1;
+}
+
+.nvp__browser-window__tab-close:hover {
+  background: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.15));
+}
+
+/* Safari tabs don't show close buttons in a mockup */
+.nvp__browser-window[data-tab-style="safari"] .nvp__browser-window__tab-close {
+  display: none;
+}
+
+/* Firefox only shows close button on the active tab */
+.nvp__browser-window[data-tab-style="firefox"]
+  .nvp__browser-window__tab:not([data-active="true"])
+  .nvp__browser-window__tab-close {
+  display: none;
+}
+
+/* ── New tab (+) button ─────────────────── */
+
+.nvp__browser-window__new-tab {
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+  padding: 0.125em;
+  border-radius: 50%;
+  color: var(--browser-window-url-color);
+  transition: background-color 0.15s;
+  align-self: center;
+}
+
+.nvp__browser-window__new-tab:hover {
+  background: light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.08));
+}
+
+/* Safari doesn't show a new-tab button in the tab bar */
+.nvp__browser-window[data-tab-style="safari"] .nvp__browser-window__new-tab {
+  display: none;
+}
+
+/* ── Toolbar (shown when tabs are present) ── */
+
+.nvp__browser-window__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.375em;
+  padding: 0.375em 0.75em;
+  background: var(--browser-window-background);
+}
+
+/* Safari toolbar has a top border separating it from tabs */
+.nvp__browser-window[data-tab-style="safari"] .nvp__browser-window__toolbar {
+  border-top: 1px solid var(--browser-window-border-color);
+}
+
+/* ── Nav back/forward/reload buttons ─────── */
+
+.nvp__browser-window__nav {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  color: var(--browser-window-url-color);
+}
+
+/* ═══════════════════════════════════════════
+   Tab style: Safari
+   Rounded pill tabs
+   ═══════════════════════════════════════════ */
+
+.nvp__browser-window[data-tab-style="safari"] .nvp__browser-window__tab {
+  border-radius: 0.375em;
+  transition: background-color 0.15s;
+}
+
+.nvp__browser-window[data-tab-style="safari"] .nvp__browser-window__tab:hover {
+  background: light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
+}
+
+.nvp__browser-window[data-tab-style="safari"] .nvp__browser-window__tab[data-active="true"] {
+  background: var(--browser-window-url-background);
+  box-shadow: 0 0.5px 2px light-dark(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.4));
+}
+
+/* ═══════════════════════════════════════════
+   Tab style: Chrome (Material Design 3)
+   Active tab has the signature curved "foot" —
+   an inverse radius at the base where the tab
+   meets the toolbar, created with radial-gradient
+   pseudo-elements. Tab sits on a darker strip
+   and merges into the white toolbar below.
+   ═══════════════════════════════════════════ */
+
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__header {
+  padding-bottom: 0;
+  border-bottom: 1px solid light-dark(#c8cacd, #3c3e41);
+  background: light-dark(#dee1e6, #292b2e);
+}
+
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tabs {
+  align-self: stretch;
+  align-items: end;
+  gap: 0;
+}
+
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  border-radius: 0.5em 0.5em 0 0;
+  padding: 0.375em 0.75em;
+  margin-bottom: -1px;
+  transition: background-color 0.15s;
+}
+
+/* Partial-height separator between Chrome tabs (centered, ~60% height).
+   Only on inactive tabs, and not on the tab right after the active one. */
+.nvp__browser-window[data-tab-style="chrome"]
+  .nvp__browser-window__tab:not([data-active="true"])
+  + .nvp__browser-window__tab:not([data-active="true"])::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: light-dark(rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.1));
+  pointer-events: none;
+}
+
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab:hover {
+  background: light-dark(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.08));
+  border-radius: 0.5em 0.5em 0 0;
+}
+
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"] {
+  position: relative;
+  background: var(--browser-window-background);
+  border-bottom: 1px solid var(--browser-window-background);
+  z-index: 1;
+}
+
+/* Chrome curved foot — inverse radius at bottom corners of active tab */
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"]::before,
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"]::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0.5em;
+  height: 0.5em;
+  pointer-events: none;
+}
+
+.nvp__browser-window[data-tab-style="chrome"]
+  .nvp__browser-window__tab[data-active="true"]::before {
+  left: -0.5em;
+  background: radial-gradient(
+    circle at 0 0,
+    transparent 0.5em,
+    var(--browser-window-background) 0.5em
+  );
+}
+
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__tab[data-active="true"]::after {
+  right: -0.5em;
+  background: radial-gradient(
+    circle at 100% 0,
+    transparent 0.5em,
+    var(--browser-window-background) 0.5em
+  );
+}
+
+/* Chrome/Firefox tab styles change header padding — adjust controls margin */
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__controls,
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__controls {
+  margin-bottom: 0;
+}
+
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__controls {
+  margin-top: -0.5em;
+  margin-bottom: -0.375em;
+}
+
+/* Chrome URL bar is pill-shaped */
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__url {
+  border-radius: 1em;
+  padding: 0.25em 0.75em;
+  background: light-dark(#f1f3f4, #202124);
+}
+
+/* Chrome toolbar gets a subtle bottom border */
+.nvp__browser-window[data-tab-style="chrome"] .nvp__browser-window__toolbar {
+  border-bottom: 1px solid var(--browser-window-border-color);
+}
+
+/* ═══════════════════════════════════════════
+   Tab style: Firefox (Proton)
+   Floating rounded-rectangle tabs that sit
+   within the tab strip without touching the
+   bottom edge — similar to Safari's pill style
+   but with a slightly boxier shape.
+   ═══════════════════════════════════════════ */
+
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__header {
+  padding-top: 0.5em;
+  padding-bottom: 0.375em;
+  border-bottom: 1px solid light-dark(#ccc, #444);
+  background: light-dark(#f0f0f4, #2b2a33);
+}
+
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tabs {
+  align-self: stretch;
+  align-items: center;
+}
+
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  border-radius: 0.25em;
+  padding: 0.25em 0.625em;
+  transition: background-color 0.15s;
+}
+
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab:hover {
+  background: light-dark(rgba(0, 0, 0, 0.07), rgba(255, 255, 255, 0.08));
+}
+
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__tab[data-active="true"] {
+  background: var(--browser-window-background);
+  box-shadow:
+    0 1px 3px light-dark(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.3)),
+    0 0 0 0.5px light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
+}
+
+/* Firefox URL bar is a rounded rectangle */
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__url {
+  border-radius: 0.5em;
+  padding: 0.25em 0.625em;
+  background: light-dark(#f0f0f4, #1c1b22);
+}
+
+/* Firefox toolbar gets a subtle bottom border */
+.nvp__browser-window[data-tab-style="firefox"] .nvp__browser-window__toolbar {
+  border-bottom: 1px solid var(--browser-window-border-color);
+}
+
+/* ── Content area ────────────────────────── */
+
+.nvp__browser-window__body {
+  padding: 0.75em;
+}
+
+.nvp__browser-window[data-flush] > .nvp__browser-window__body {
+  padding: 0;
+}
+
+.nvp__browser-window[data-flush] > .nvp__browser-window__body > img,
+.nvp__browser-window[data-flush] > .nvp__browser-window__body > iframe {
+  display: block;
+  width: 100%;
+}
+
+/* ── Shadow variant ──────────────────────── */
+
+.nvp__browser-window[data-shadow] {
+  box-shadow:
+    0px 0.3px 0.5px light-dark(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+    0.1px 2.4px 3.6px light-dark(rgba(0, 0, 0, 0.07), rgba(0, 0, 0, 0.14)),
+    0.1px 4.3px 6.5px light-dark(rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.22)),
+    0.2px 6.7px 10.1px light-dark(rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.29));
+}

@@ -1,0 +1,36 @@
+/* ───────────────────────────────────────────
+   Navigation — the <nav> landmark's own layout
+   ─────────────────────────────────────────── */
+
+/*
+ * Contract: an ancestor (e.g. ApplicationShell's layout, which knows
+ * its sticky header's height) may set `--navigation-top`; the nav
+ * sticks that far below the viewport top and scrolls its own overflow.
+ */
+.nvp__navigation {
+  position: sticky;
+  top: var(--navigation-top, 0px);
+  max-height: calc(100dvh - var(--navigation-top, 0px));
+  overflow-y: auto;
+  padding: var(
+    --navigation-padding,
+    calc(6 * var(--gap)) var(--gap-4) calc(8 * var(--gap)) calc(5 * var(--gap))
+  );
+}
+
+/*
+ * Responsiveness, relative to the nearest size container
+ * (ApplicationShell provides one).
+ */
+@container (min-width: 769px) {
+  .nvp__navigation {
+    min-width: var(--navigation-min-width, 14rem);
+  }
+}
+
+/* Narrow containers (e.g. the shell's mobile tray) get tighter padding */
+@container (max-width: 768px) {
+  .nvp__navigation {
+    padding: var(--navigation-padding-narrow, calc(5 * var(--gap)) var(--gap-3));
+  }
+}
