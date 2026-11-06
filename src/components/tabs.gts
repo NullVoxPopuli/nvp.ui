@@ -83,7 +83,7 @@ type Bound<S> = S extends { Args: infer A; Blocks: infer B }
   ? { Args: Omit<A, "tab">; Blocks: B }
   : never;
 
-type Tab = ComponentLike<Bound<BlocksTab | LabelTab | LabelContentTab>>;
+export type Tab = ComponentLike<Bound<BlocksTab | LabelTab | LabelContentTab>>;
 
 const StyledTab: TOC<BlocksTab | LabelTab | LabelContentTab> = <template>
   <@tab as |UnstyledButton UnstyledContent|>
