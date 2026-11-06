@@ -59,6 +59,14 @@ export interface Signature {
     onChange: (start: number, end: number) => void;
 
     /**
+     * Called with the values when a move ends:
+     * at the end of a drag, and after each key press.
+     *
+     * For example, to record one undo step per move, not one per `@onChange`.
+     */
+    onCommit?: (start: number, end: number) => void;
+
+    /**
      * Turns a value into text for assistive technology (`aria-valuetext`)
      * and for the visible thumb labels.
      *
@@ -173,6 +181,14 @@ export class RangeSlider extends Component<Signature> {
   };
 
   /**
+   * Slider reports a commit after the change,
+   * so `@start` and `@end` already have the values that `@onChange` accepted.
+   */
+  commit = () => {
+    this.args.onCommit?.(this.args.start, this.args.end);
+  };
+
+  /**
    * The native input moves before `@onChange` decides.
    * If the thumb stays, the input goes back to it,
    * so that the next key press and assistive technology use the real value.
@@ -198,6 +214,7 @@ export class RangeSlider extends Component<Signature> {
       @max={{@max}}
       @step={{this.step}}
       @onValueChange={{this.change}}
+      @onValueCommit={{this.commit}}
       {{on "input" this.resync}}
       {{on "change" this.resync}}
       ...attributes

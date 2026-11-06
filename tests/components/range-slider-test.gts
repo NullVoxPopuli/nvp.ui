@@ -133,6 +133,35 @@ module("RangeSlider", function (hooks) {
     assert.verifySteps(["change 0.3 1", "change 0.3 0.7"]);
   });
 
+  test("@onCommit reports the accepted values when a move ends", async function (assert) {
+    const state = new TrackedObject({ start: 2, end: 4 });
+    const change = (start: number, end: number) => {
+      assert.step(`change ${start} ${end}`);
+      state.start = start;
+      state.end = end;
+    };
+    const commit = (start: number, end: number) => assert.step(`commit ${start} ${end}`);
+
+    await render(
+      <template>
+        <RangeSlider
+          @label="Loop"
+          @max={{10}}
+          @start={{state.start}}
+          @end={{state.end}}
+          @onChange={{change}}
+          @onCommit={{commit}}
+        />
+      </template>,
+    );
+
+    await fillIn('[data-part="end"]', "7");
+    assert.verifySteps(["change 2 7", "commit 2 7"]);
+
+    await fillIn('[data-part="start"]', "9");
+    assert.verifySteps(["change 6 7", "commit 6 7"], "the commit has the value after @minGap");
+  });
+
   test("the block can place content on the track", async function (assert) {
     const noop = () => {};
 
