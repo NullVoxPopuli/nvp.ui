@@ -8,7 +8,7 @@ import {
 } from "ember-primitives/components/tabs";
 
 import type { TOC } from "@ember/component/template-only";
-import type { ComponentLike, WithBoundArgs } from "@glint/template";
+import type { ComponentLike } from "@glint/template";
 
 function isString(x: unknown): x is string {
   return typeof x === "string";
@@ -26,44 +26,66 @@ const StyledContent: TOC<{ Args: { content: ContentType }; Blocks: { default: []
   </@content>
 </template>;
 
-const StyledTab: TOC<
-  | {
-      Args: {
-        tab: ContainerType;
-        label: undefined;
-        content: undefined;
-      };
-      Blocks: {
-        button: [];
-        content: [];
-        default: never;
-      };
-    }
-  | {
-      Args: {
-        tab: ContainerType;
-        label: string | ComponentLike;
-        content: undefined;
-      };
-      Blocks: {
-        default: [];
-        button: never;
-        content: never;
-      };
-    }
-  | {
-      Args: {
-        label: string | ComponentLike;
-        content: string | ComponentLike;
-        tab: ContainerType;
-      };
-      Blocks: {
-        default: [];
-        button: never;
-        content: never;
-      };
-    }
-> = <template>
+/**
+ * A tab with the `<:button>` and `<:content>` blocks.
+ */
+interface BlocksTab {
+  Args: {
+    tab: ContainerType;
+    label?: undefined;
+    content?: undefined;
+  };
+  Blocks: {
+    button: [];
+    content: [];
+    default: never;
+  };
+}
+
+/**
+ * A tab with `@label`, and the default block for the tab panel.
+ */
+interface LabelTab {
+  Args: {
+    tab: ContainerType;
+    label: string | ComponentLike;
+    content?: undefined;
+  };
+  Blocks: {
+    default: [];
+    button: never;
+    content: never;
+  };
+}
+
+/**
+ * A tab with `@label` and `@content`.
+ */
+interface LabelContentTab {
+  Args: {
+    label: string | ComponentLike;
+    content: string | ComponentLike;
+    tab: ContainerType;
+  };
+  Blocks: {
+    default: [];
+    button: never;
+    content: never;
+  };
+}
+
+/**
+ * `WithBoundArgs` removes `tab` from the union as a whole,
+ * which loses which args go together.
+ * This removes it from each way to write a tab on its own.
+ */
+type Bound<S> = S extends { Args: infer A; Blocks: infer B }
+  ? { Args: Omit<A, "tab">; Blocks: B }
+  : never;
+
+type Tab = ComponentLike<Bound<BlocksTab | LabelTab | LabelContentTab>>;
+
+const StyledTab: TOC<BlocksTab | LabelTab | LabelContentTab> = <template>
   <@tab as |UnstyledButton UnstyledContent|>
     {{#let
       (component StyledButton button=UnstyledButton)
@@ -121,7 +143,7 @@ export const Tabs: TOC<{
     variant?: "primary" | "secondary" | "danger";
   };
   Blocks: {
-    default: [WithBoundArgs<typeof StyledTab, "tab">];
+    default: [Tab];
   };
 }> = <template>
   <PrimitiveTabs
