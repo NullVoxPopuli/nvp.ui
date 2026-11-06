@@ -36,6 +36,24 @@ npm test`;
 </template>
 ```
 
+## `@scripts`
+
+To build the tabs from data, pass `@scripts` instead of the block.
+Each item has a `label` and a `script`.
+Use `@scripts` or the block, not both.
+
+```gjs live preview no-shadow
+import { TabbedShellScript } from "nvp.ui/tabbed-shell-script";
+
+const scripts = [
+  { label: "pnpm", script: "pnpm add nvp.ui" },
+  { label: "npm", script: "npm install nvp.ui" },
+  { label: "yarn", script: "yarn add nvp.ui" },
+];
+
+<template><TabbedShellScript @scripts={{scripts}} /></template>
+```
+
 ## API Reference
 
 ### TabbedShellScript
@@ -63,6 +81,16 @@ import { ComponentSignature } from "kolay";
     @module="declarations/components/tabbed-shell-script"
     @name="ShellTabSignature"
   />
+</template>
+```
+
+### ShellScript
+
+```gjs live no-shadow
+import { APIDocs } from "kolay";
+
+<template>
+  <APIDocs @package="." @module="declarations/components/tabbed-shell-script" @name="ShellScript" />
 </template>
 ```
 
