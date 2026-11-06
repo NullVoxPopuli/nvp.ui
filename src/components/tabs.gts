@@ -26,44 +26,43 @@ const StyledContent: TOC<{ Args: { content: ContentType }; Blocks: { default: []
   </@content>
 </template>;
 
-const StyledTab: TOC<
-  | {
-      Args: {
-        tab: ContainerType;
-        label: undefined;
-        content: undefined;
-      };
-      Blocks: {
-        button: [];
-        content: [];
-        default: never;
-      };
-    }
-  | {
-      Args: {
-        tab: ContainerType;
-        label: string | ComponentLike;
-        content: undefined;
-      };
-      Blocks: {
-        default: [];
-        button: never;
-        content: never;
-      };
-    }
-  | {
-      Args: {
-        label: string | ComponentLike;
-        content: string | ComponentLike;
-        tab: ContainerType;
-      };
-      Blocks: {
-        default: [];
-        button: never;
-        content: never;
-      };
-    }
-> = <template>
+export interface TabSignature {
+  Args: {
+    tab: ContainerType;
+
+    /**
+     * The text or component in the tab button.
+     *
+     * Without `@label`, use the `<:button>` and `<:content>` blocks.
+     */
+    label?: string | ComponentLike;
+
+    /**
+     * The text or component in the tab panel.
+     *
+     * With `@label` and without `@content`, the default block is the tab panel.
+     */
+    content?: string | ComponentLike;
+  };
+  Blocks: {
+    /**
+     * The tab panel, when `@label` is set and `@content` is not.
+     */
+    default: [];
+
+    /**
+     * The tab button, when `@label` is not set.
+     */
+    button: [];
+
+    /**
+     * The tab panel, when `@label` is not set.
+     */
+    content: [];
+  };
+}
+
+const StyledTab: TOC<TabSignature> = <template>
   <@tab as |UnstyledButton UnstyledContent|>
     {{#let
       (component StyledButton button=UnstyledButton)
@@ -130,7 +129,6 @@ export const Tabs: TOC<{
     data-variant={{or @variant "primary"}}
     as |Tab|
   >
-    {{! @glint-expect-error }}
     {{yield (component StyledTab tab=Tab)}}
   </PrimitiveTabs>
 </template>;
