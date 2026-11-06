@@ -1,0 +1,11 @@
+/* See ./tabs.css for the tabs and the tabpanel */
+
+.nvp__tabbed-shell-script__script {
+  margin: 0;
+  font-family: var(--tabbed-shell-script-font, ui-monospace, monospace);
+  white-space: pre;
+
+  code {
+    font: inherit;
+  }
+}

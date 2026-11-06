@@ -12,6 +12,7 @@ export { Pagination } from "./components/pagination.gts";
 export { politeSticky } from "./components/polite-sticky.gts";
 export { RangeSlider } from "./components/range-slider.gts";
 export { Shell } from "./components/shell.gts";
+export { TabbedShellScript } from "./components/tabbed-shell-script.gts";
 export type { CellSignature, TableColumn } from "./components/table.gts";
 export { Table } from "./components/table.gts";
 export { ThemeToggle } from "./components/theme-toggle.gts";
