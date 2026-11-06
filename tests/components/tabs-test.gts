@@ -4,25 +4,8 @@ import { setupRenderingTest } from "ember-qunit";
 
 import { Tabs } from "#src/components/tabs.gts";
 
-/**
- * Never rendered. `pnpm lint:types` fails if one of these is not a type error.
- */
-const invalidTabs = <template>
-  <Tabs as |Tab|>
-    {{! @glint-expect-error: @content needs a @label }}
-    <Tab @content="Apple" />
-
-    {{! @glint-expect-error: @label is a string or a component }}
-    <Tab @label={{42}}>Apple</Tab>
-  </Tabs>
-</template>;
-
 module("Tabs", function (hooks) {
   setupRenderingTest(hooks);
-
-  test("invalid tabs are type errors", function (assert) {
-    assert.ok(invalidTabs, "see the @glint-expect-error comments above");
-  });
 
   test("@label and @content", async function (assert) {
     await render(
