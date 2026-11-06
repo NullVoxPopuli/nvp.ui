@@ -49,8 +49,8 @@ importers:
         specifier: '>= 4.2.0'
         version: 4.2.2(@babel/core@7.28.5)
       ember-primitives:
-        specifier: ^0.55.0
-        version: 0.55.0(5099e6b4cfc6855afe429ea210253e04)
+        specifier: ^0.63.1
+        version: 0.63.1(5099e6b4cfc6855afe429ea210253e04)
       ember-resources:
         specifier: '>= 7.0.4'
         version: 7.0.7(e46f14758177b29adb88383f2d4cb96d)
@@ -3957,22 +3957,6 @@ packages:
 
   ember-primitives@0.53.1:
     resolution: {integrity: sha512-Jb5MBilMTWJFaDhw3Z/uL3s3Y+G/HzmfLX8eTECkyBoQibApuvA5CMwVHmkDU1ItvndXqBqT0ougAdLqotW+Xg==}
-    hasBin: true
-    peerDependencies:
-      '@ember/test-helpers': '>= 3.2.0'
-      '@ember/test-waiters': '>= 3.0.2'
-      '@glimmer/component': ^2.2.1
-      '@glint/template': ^1.7.7
-      ember-modifier: '>= 4.2.0'
-      ember-resources: '>= 6.1.0'
-    peerDependenciesMeta:
-      '@ember/test-helpers':
-        optional: true
-      '@glint/template':
-        optional: true
-
-  ember-primitives@0.55.0:
-    resolution: {integrity: sha512-UlSeLlU36n9Ui/plTuHo+8DyQFf11vLDXW5LaFjxDEaHokgws9OWkxOHRg0xmz3I5UeTPbkUAGsHF2u2YJwR2w==}
     hasBin: true
     peerDependencies:
       '@ember/test-helpers': '>= 3.2.0'
@@ -13034,32 +13018,6 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  ember-primitives@0.55.0(5099e6b4cfc6855afe429ea210253e04):
-    dependencies:
-      '@babel/runtime': 7.29.2
-      '@ember/test-waiters': 4.1.1(e36bea8b02087eee87d28ed2727a0989)
-      '@embroider/addon-shim': 1.10.2
-      '@embroider/macros': 1.20.2(e36bea8b02087eee87d28ed2727a0989)
-      '@floating-ui/dom': 1.7.6
-      '@glimmer/component': 2.2.1
-      decorator-transforms: 2.3.1(@babel/core@7.28.5)
-      ember-element-helper: 0.8.8
-      ember-modifier: 4.2.2(@babel/core@7.28.5)
-      ember-resources: 7.0.7(e46f14758177b29adb88383f2d4cb96d)
-      form-data-utils: 0.6.0
-      reactiveweb: 1.9.1(5697c47ca410bceb42acde2b50572571)
-      should-handle-link: 1.3.0
-      tabster: 8.7.0
-      tracked-built-ins: 4.1.0(@babel/core@7.28.5)
-      tracked-toolbox: 2.2.0(@babel/core@7.28.5)
-      which-heading-do-i-need: 0.2.6
-    optionalDependencies:
-      '@ember/test-helpers': 5.4.1(e36bea8b02087eee87d28ed2727a0989)
-      '@glint/template': 1.7.7
-    transitivePeerDependencies:
-      - '@babel/core'
-      - supports-color
-
   ember-primitives@0.61.1(1775fedac88fde2a8dc6f6911af65003):
     dependencies:
       '@babel/runtime': 7.29.2
@@ -13098,6 +13056,31 @@ snapshots:
       ember-resources: 7.1.0(dceb021addb51d0506bd80f89e2b7f27)
       form-data-utils: 0.6.0
       reactiveweb: 1.9.3(307a8f77fcfa4419ff9ab0eb14e073a5)
+      should-handle-link: 1.3.0
+      tabster: 8.7.0
+      tracked-built-ins: 4.1.2(@babel/core@7.28.5)
+      tracked-toolbox: 3.0.0(@babel/core@7.28.5)
+      which-heading-do-i-need: 0.4.2
+    optionalDependencies:
+      '@ember/test-helpers': 5.4.1(e36bea8b02087eee87d28ed2727a0989)
+      '@glint/template': 1.7.7
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
+
+  ember-primitives@0.63.1(5099e6b4cfc6855afe429ea210253e04):
+    dependencies:
+      '@babel/runtime': 7.29.2
+      '@ember/test-waiters': 4.1.1(e36bea8b02087eee87d28ed2727a0989)
+      '@embroider/addon-shim': 1.10.2
+      '@floating-ui/dom': 1.7.6
+      '@glimmer/component': 2.2.1
+      decorator-transforms: 2.3.2(@babel/core@7.28.5)
+      ember-element-helper: 0.8.8
+      ember-modifier: 4.2.2(@babel/core@7.28.5)
+      ember-resources: 7.0.7(e46f14758177b29adb88383f2d4cb96d)
+      form-data-utils: 0.6.0
+      reactiveweb: 1.9.3(5697c47ca410bceb42acde2b50572571)
       should-handle-link: 1.3.0
       tabster: 8.7.0
       tracked-built-ins: 4.1.2(@babel/core@7.28.5)
@@ -16370,6 +16353,18 @@ snapshots:
   reactiveweb@1.9.3(307a8f77fcfa4419ff9ab0eb14e073a5):
     dependencies:
       '@ember/test-waiters': 4.1.2
+      '@embroider/addon-shim': 1.10.2
+      decorator-transforms: 2.4.0(@babel/core@7.28.5)
+      ember-resources: 7.1.0(dceb021addb51d0506bd80f89e2b7f27)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@glimmer/component'
+      - '@glint/template'
+      - supports-color
+
+  reactiveweb@1.9.3(5697c47ca410bceb42acde2b50572571):
+    dependencies:
+      '@ember/test-waiters': 4.1.1(e36bea8b02087eee87d28ed2727a0989)
       '@embroider/addon-shim': 1.10.2
       decorator-transforms: 2.4.0(@babel/core@7.28.5)
       ember-resources: 7.1.0(dceb021addb51d0506bd80f89e2b7f27)

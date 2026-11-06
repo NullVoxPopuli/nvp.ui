@@ -4,7 +4,6 @@ The accessible button is an improvement on the native `<button>` by providing ad
 
 ```gjs live no-shadow
 import { Button, ExternalLink } from "nvp.ui";
-import { PortalTargets } from "ember-primitives";
 
 const Reasoning = <template>
   You are missing the following permissions:
@@ -21,7 +20,6 @@ const Reasoning = <template>
 </template>;
 
 <template>
-  <PortalTargets />
   <Button>Default</Button>
   <Button @variant="primary">Primary</Button>
   <Button @variant="secondary">Secondary</Button>

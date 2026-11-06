@@ -95,7 +95,7 @@ function handleClick(
 }
 
 export const Button: TOC<Signature> = <template>
-  <Popover @inline={{true}} as |popover|>
+  <Popover as |popover|>
     <button
       class="nvp__button"
       data-variant={{@variant}}

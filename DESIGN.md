@@ -574,10 +574,8 @@ Hover for the color shift, Tab through for the focus ring, and hover the disable
 
 ```gjs live no-shadow
 import { Button } from "nvp.ui/button";
-import { PortalTargets } from "ember-primitives";
 
 <template>
-  <PortalTargets />
   <div class="states">
     <Button>Default</Button>
     <Button @variant="primary">Primary</Button>

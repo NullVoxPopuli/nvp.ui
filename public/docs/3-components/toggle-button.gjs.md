@@ -8,15 +8,12 @@ that toggle is currently on.
 
 ```gjs live no-shadow
 import { ToggleButton } from "nvp.ui";
-import { PortalTargets } from "ember-primitives";
 import { cell } from "ember-resources";
 
 const muted = cell(false);
 const toggleMuted = () => (muted.current = !muted.current);
 
 <template>
-  <PortalTargets />
-
   <ToggleButton @pressed={{muted.current}} @onClick={{toggleMuted}}>
     {{if muted.current "Muted 🔇" "Mute 🔊"}}
   </ToggleButton>
