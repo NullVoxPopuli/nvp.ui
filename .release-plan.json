@@ -2,17 +2,25 @@
   "solution": {
     "nvp.ui": {
       "impact": "minor",
-      "oldVersion": "0.10.0",
-      "newVersion": "0.11.0",
+      "oldVersion": "0.11.0",
+      "newVersion": "0.12.0",
       "tagName": "latest",
       "constraints": [
         {
           "impact": "minor",
           "reason": "Appears in changelog section :rocket: Enhancement"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :bug: Bug Fix"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :memo: Documentation"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2026-11-01)\n\n* nvp.ui 0.11.0 (minor)\n\n#### :rocket: Enhancement\n* `nvp.ui`\n  * [#117](https://github.com/NullVoxPopuli/nvp.ui/pull/117) Add Table and Pagination ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n\n#### Committers: 1\n- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n"
+  "description": "## Release (2026-11-06)\n\n* nvp.ui 0.12.0 (minor)\n\n#### :rocket: Enhancement\n* `nvp.ui`\n  * [#123](https://github.com/NullVoxPopuli/nvp.ui/pull/123) Add FileDrop: a styled drop zone for files from disk ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n  * [#127](https://github.com/NullVoxPopuli/nvp.ui/pull/127) Add TabbedShellScript ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n  * [#122](https://github.com/NullVoxPopuli/nvp.ui/pull/122) Add RangeSlider on ember-primitives Slider ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n  * [#126](https://github.com/NullVoxPopuli/nvp.ui/pull/126) Upgrade ember-primitives to 0.63.1 ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n\n#### :bug: Bug Fix\n* `nvp.ui`\n  * [#125](https://github.com/NullVoxPopuli/nvp.ui/pull/125) Dark theme: page background below the content, and pressed buttons ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n  * [#124](https://github.com/NullVoxPopuli/nvp.ui/pull/124) Tabs: accept @label with a block, keep the union types ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n\n#### :memo: Documentation\n* `nvp.ui`\n  * [#121](https://github.com/NullVoxPopuli/nvp.ui/pull/121) Update to kolay 6 and Ember 7; render every Table type in the API Reference ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n  * [#119](https://github.com/NullVoxPopuli/nvp.ui/pull/119) Table docs: show the code below each demo ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n\n#### Committers: 1\n- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))\n"
 }
