@@ -106,7 +106,16 @@
   --reason-background-color: rgb(240, 240, 240);
   --reason-border: 2px solid #eee;
   --header-background: #fff;
+  --button-pressed-color-mix: #000;
+}
 
+/**
+ * Not on :root, because <html> would then keep the light background in dark mode.
+ * With no background on <html>, the canvas takes the background of <body>,
+ * which has the theme class.
+ */
+body,
+.theme-light {
   background: var(--color-page-background);
   color: var(--color-text);
 }
@@ -132,6 +141,9 @@
   --reason-border: 1px solid #222;
   --header-background: #111;
 
+  /* Darker is hard to see on a dark page, so pressed buttons get lighter */
+  --button-pressed-color-mix: #fff;
+
   background: var(--color-page-background);
   color: var(--color-text);
 }
@@ -147,7 +159,6 @@ body {
   margin: 0;
   padding: 0;
   accent-color: var(--color-primary);
-  background: var(--color-page-background);
 }
 
 html,

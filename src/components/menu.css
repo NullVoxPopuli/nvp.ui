@@ -57,7 +57,7 @@
 
   &:active {
     --button-hover-mix: 30%;
-    --button-hover-color-mix: #000;
+    --button-hover-color-mix: var(--button-pressed-color-mix);
     --button-interact-spread: -1px;
   }
 
