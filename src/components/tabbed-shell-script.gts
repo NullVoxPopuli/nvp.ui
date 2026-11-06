@@ -6,7 +6,7 @@ import type { Tab } from "./tabs.gts";
 import type { TOC } from "@ember/component/template-only";
 import type { WithBoundArgs } from "@glint/template";
 
-export interface ScriptSignature {
+export interface ShellTabSignature {
   Args: {
     /**
      * The text of the tab, for example the name of a package manager.
@@ -27,7 +27,7 @@ export interface ScriptSignature {
   };
 }
 
-const Script: TOC<ScriptSignature> = <template>
+const ShellTab: TOC<ShellTabSignature> = <template>
   <@tab @label={{@label}}>
     <pre class="nvp__tabbed-shell-script__script"><code>{{@script}}</code></pre>
   </@tab>
@@ -35,7 +35,7 @@ const Script: TOC<ScriptSignature> = <template>
 
 export interface TabbedShellScriptSignature {
   Blocks: {
-    default: [WithBoundArgs<typeof Script, "tab">];
+    default: [WithBoundArgs<typeof ShellTab, "tab">];
   };
 }
 
@@ -48,15 +48,15 @@ export interface TabbedShellScriptSignature {
  * import { TabbedShellScript } from "nvp.ui/tabbed-shell-script";
  *
  * <template>
- *   <TabbedShellScript as |Script|>
- *     <Script @label="pnpm" @script="pnpm add nvp.ui" />
- *     <Script @label="npm" @script="npm install nvp.ui" />
+ *   <TabbedShellScript as |Tab|>
+ *     <Tab @label="pnpm" @script="pnpm add nvp.ui" />
+ *     <Tab @label="npm" @script="npm install nvp.ui" />
  *   </TabbedShellScript>
  * </template>
  * ```
  */
 export const TabbedShellScript: TOC<TabbedShellScriptSignature> = <template>
   <Tabs as |Tab|>
-    {{yield (component Script tab=Tab)}}
+    {{yield (component ShellTab tab=Tab)}}
   </Tabs>
 </template>;

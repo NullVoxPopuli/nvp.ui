@@ -7,10 +7,10 @@ Use it for a command that changes with the tool, for example the install command
 import { TabbedShellScript } from "nvp.ui/tabbed-shell-script";
 
 <template>
-  <TabbedShellScript as |Script|>
-    <Script @label="pnpm" @script="pnpm add nvp.ui" />
-    <Script @label="npm" @script="npm install nvp.ui" />
-    <Script @label="yarn" @script="yarn add nvp.ui" />
+  <TabbedShellScript as |Tab|>
+    <Tab @label="pnpm" @script="pnpm add nvp.ui" />
+    <Tab @label="npm" @script="npm install nvp.ui" />
+    <Tab @label="yarn" @script="yarn add nvp.ui" />
   </TabbedShellScript>
 </template>
 ```
@@ -29,9 +29,9 @@ const npm = `npm install
 npm test`;
 
 <template>
-  <TabbedShellScript as |Script|>
-    <Script @label="pnpm" @script={{pnpm}} />
-    <Script @label="npm" @script={{npm}} />
+  <TabbedShellScript as |Tab|>
+    <Tab @label="pnpm" @script={{pnpm}} />
+    <Tab @label="npm" @script={{npm}} />
   </TabbedShellScript>
 </template>
 ```
@@ -52,7 +52,7 @@ import { ComponentSignature } from "kolay";
 </template>
 ```
 
-### Script (yielded)
+### Tab (yielded)
 
 ```gjs live no-shadow
 import { ComponentSignature } from "kolay";
@@ -61,7 +61,7 @@ import { ComponentSignature } from "kolay";
   <ComponentSignature
     @package="."
     @module="declarations/components/tabbed-shell-script"
-    @name="ScriptSignature"
+    @name="ShellTabSignature"
   />
 </template>
 ```

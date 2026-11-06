@@ -10,9 +10,9 @@ module("TabbedShellScript", function (hooks) {
   test("one tab per script", async function (assert) {
     await render(
       <template>
-        <TabbedShellScript as |Script|>
-          <Script @label="pnpm" @script="pnpm add nvp.ui" />
-          <Script @label="npm" @script="npm install nvp.ui" />
+        <TabbedShellScript as |Tab|>
+          <Tab @label="pnpm" @script="pnpm add nvp.ui" />
+          <Tab @label="npm" @script="npm install nvp.ui" />
         </TabbedShellScript>
       </template>,
     );
@@ -31,8 +31,8 @@ module("TabbedShellScript", function (hooks) {
 
     await render(
       <template>
-        <TabbedShellScript as |Script|>
-          <Script @label="pnpm" @script={{script}} />
+        <TabbedShellScript as |Tab|>
+          <Tab @label="pnpm" @script={{script}} />
         </TabbedShellScript>
       </template>,
     );
