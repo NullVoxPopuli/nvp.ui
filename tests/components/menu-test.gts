@@ -2,8 +2,6 @@ import { click, render, triggerKeyEvent } from "@ember/test-helpers";
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 
-import { PortalTargets } from "ember-primitives";
-
 import { Menu } from "#src/index.ts";
 
 module("Menu", function (hooks) {
@@ -12,7 +10,6 @@ module("Menu", function (hooks) {
   test("renders a trigger button", async function (assert) {
     await render(
       <template>
-        <PortalTargets />
         <Menu as |menu|>
           <menu.Trigger>Actions</menu.Trigger>
           <menu.Content as |Items|>
@@ -29,7 +26,6 @@ module("Menu", function (hooks) {
   test("opens content on trigger click", async function (assert) {
     await render(
       <template>
-        <PortalTargets />
         <Menu as |menu|>
           <menu.Trigger>Open</menu.Trigger>
           <menu.Content as |Items|>
@@ -50,7 +46,6 @@ module("Menu", function (hooks) {
   test("content is a styled, elevated surface", async function (assert) {
     await render(
       <template>
-        <PortalTargets />
         <Menu as |menu|>
           <menu.Trigger>Open</menu.Trigger>
           <menu.Content as |Items|>
@@ -71,7 +66,6 @@ module("Menu", function (hooks) {
   test("renders keyboard hints when open", async function (assert) {
     await render(
       <template>
-        <PortalTargets />
         <Menu as |menu|>
           <menu.Trigger>Open</menu.Trigger>
           <menu.Content as |Items|>
@@ -90,7 +84,6 @@ module("Menu", function (hooks) {
   test("renders items, link items, and separators", async function (assert) {
     await render(
       <template>
-        <PortalTargets />
         <Menu as |menu|>
           <menu.Trigger>Menu</menu.Trigger>
           <menu.Content as |Items|>
@@ -113,7 +106,6 @@ module("Menu", function (hooks) {
   test("applies variant to trigger", async function (assert) {
     await render(
       <template>
-        <PortalTargets />
         <Menu @variant="primary" as |menu|>
           <menu.Trigger>Primary</menu.Trigger>
           <menu.Content as |Items|>
@@ -129,7 +121,6 @@ module("Menu", function (hooks) {
   test("closes on Escape", async function (assert) {
     await render(
       <template>
-        <PortalTargets />
         <Menu as |menu|>
           <menu.Trigger>Open</menu.Trigger>
           <menu.Content as |Items|>
@@ -149,7 +140,6 @@ module("Menu", function (hooks) {
   test("@variant=bare marks the trigger", async function (assert) {
     await render(
       <template>
-        <PortalTargets />
         <Menu @variant="bare" as |menu|>
           <menu.Trigger>Accounts</menu.Trigger>
           <menu.Content as |Items|>
@@ -162,10 +152,9 @@ module("Menu", function (hooks) {
     assert.dom(".nvp__menu__trigger").hasAttribute("data-variant", "bare");
   });
 
-  test("the keyboard hints render inside the portal, next to the content", async function (assert) {
+  test("the keyboard hints sit under the content, in the top layer", async function (assert) {
     await render(
       <template>
-        <PortalTargets />
         <Menu as |menu|>
           <menu.Trigger>Open</menu.Trigger>
           <menu.Content as |Items|>
@@ -177,19 +166,23 @@ module("Menu", function (hooks) {
 
     await click(".nvp__menu__trigger");
 
-    // Anchor positioning requires the hints and the content to share
-    // a containing block: both live in the popover portal target.
-    const portal = document.querySelector(
-      '[data-portal-name="ember-primitives__portal-targets__popover"]',
-    );
+    const content = document.querySelector(".nvp__menu__content");
+    const hints = document.querySelector(".nvp__menu__kbd-hints");
 
-    assert.dom(".nvp__menu__kbd-hints", portal).exists();
+    if (!content || !hints) throw new Error("The menu is not open");
+
+    assert.true(content.matches(":popover-open"), "the content is open in the top layer");
+    assert.true(hints.matches(":popover-open"), "the hints are open in the top layer");
+    assert.strictEqual(
+      Math.round(hints.getBoundingClientRect().top),
+      Math.round(content.getBoundingClientRect().bottom),
+      "the hints anchor to the bottom edge of the content",
+    );
   });
 
   test("LinkItem renders an anchor with the given href", async function (assert) {
     await render(
       <template>
-        <PortalTargets />
         <Menu as |menu|>
           <menu.Trigger>Open</menu.Trigger>
           <menu.Content as |Items|>

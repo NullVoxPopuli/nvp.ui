@@ -6,10 +6,9 @@ import "./menu.css";
 
 import { hash } from "@ember/helper";
 
+import { modifier } from "ember-modifier";
 import { Key } from "ember-primitives/components/keys";
 import { Menu as PrimitiveMenu } from "ember-primitives/components/menu";
-import { Portal } from "ember-primitives/components/portal";
-import { TARGETS } from "ember-primitives/components/portal-targets";
 
 import type { TOC } from "@ember/component/template-only";
 import type { ComponentLike } from "@glint/template";
@@ -83,6 +82,10 @@ const StyledTrigger = <template>
   </@Trigger>
 </template>;
 
+const showPopover = modifier((element: HTMLElement) => {
+  element.showPopover();
+});
+
 const StyledContent = <template>
   <@Content class="nvp__menu__content surface elevation-xl" ...attributes as |items|>
     {{yield
@@ -94,19 +97,14 @@ const StyledContent = <template>
     }}
   </@Content>
   {{#if @isOpen}}
-    {{! The hints anchor (CSS anchor positioning) to the portaled menu
-        content, so they must live in the same portal: rendered inline,
-        an ancestor with layout containment (e.g. a container query
-        container) would become their containing block, the anchor
-        would stop being acceptable, and the hints would land at the
-        static position instead. }}
-    <Portal @to={{TARGETS.popover}} @append={{true}}>
-      <div class="nvp__menu__kbd-hints surface elevation-lg">
-        press
-        <Key>esc</Key>
-        to close
-      </div>
-    </Portal>
+    {{! The menu content is in the top layer, and the hints anchor to it.
+        An anchor is usable only when it is earlier in the top layer,
+        so the hints join the top layer after the content. }}
+    <div popover="manual" class="nvp__menu__kbd-hints surface elevation-lg" {{showPopover}}>
+      press
+      <Key>esc</Key>
+      to close
+    </div>
   {{/if}}
 </template>;
 

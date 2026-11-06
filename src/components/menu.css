@@ -176,6 +176,11 @@
 }
 
 .nvp__menu__kbd-hints {
+  /* undo the browser styles for [popover] */
+  inset: auto;
+  margin: 0;
+  overflow: visible;
+
   position: fixed;
   position-anchor: --nvp-menu;
   top: anchor(bottom);

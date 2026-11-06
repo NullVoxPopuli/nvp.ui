@@ -1,6 +1,5 @@
 import { fn } from "@ember/helper";
 
-import { PortalTargets } from "ember-primitives";
 import { cell } from "ember-resources";
 import Route from "ember-route-template";
 
@@ -14,8 +13,6 @@ const setLastAction = (action: string) => lastAction.set(action);
 
 export default Route(
   <template>
-    <PortalTargets />
-
     <div class="docs-landing">
       <section class="docs-hero">
         <h1>nvp.ui</h1>

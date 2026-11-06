@@ -4,12 +4,10 @@ A dropdown menu with full keyboard navigation, variant theming, and keyboard sho
 
 ```gjs live preview no-shadow
 import { Menu } from "nvp.ui";
-import { PortalTargets } from "ember-primitives";
 
 const noop = () => {};
 
 <template>
-  <PortalTargets />
   <div style="display: flex; gap: 1rem; align-items: start;">
     <Menu as |menu|>
       <menu.Trigger>Actions</menu.Trigger>
@@ -58,7 +56,6 @@ navigation — the current account is marked with `aria-current`.
 
 ```gjs live preview no-shadow
 import { Menu, Navigation, NavigationList } from "nvp.ui";
-import { PortalTargets } from "ember-primitives";
 
 const accounts = [
   { slug: "nullvoxp", name: "NullVoxPopuli", current: true },
@@ -66,7 +63,6 @@ const accounts = [
 ];
 
 <template>
-  <PortalTargets />
   <div style="max-width: 14rem;">
     <Navigation aria-label="Example sidebar">
       <Menu @variant="bare" as |menu|>
