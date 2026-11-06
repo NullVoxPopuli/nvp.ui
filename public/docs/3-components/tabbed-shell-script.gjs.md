@@ -58,6 +58,10 @@ const scripts = [
 
 ### TabbedShellScript
 
+`TabbedShellScript` takes one of these two signatures.
+
+#### With `@scripts`
+
 ```gjs live no-shadow
 import { ComponentSignature } from "kolay";
 
@@ -65,7 +69,21 @@ import { ComponentSignature } from "kolay";
   <ComponentSignature
     @package="."
     @module="declarations/components/tabbed-shell-script"
-    @name="TabbedShellScriptSignature"
+    @name="ScriptsSignature"
+  />
+</template>
+```
+
+#### With a block
+
+```gjs live no-shadow
+import { ComponentSignature } from "kolay";
+
+<template>
+  <ComponentSignature
+    @package="."
+    @module="declarations/components/tabbed-shell-script"
+    @name="BlockSignature"
   />
 </template>
 ```
