@@ -25,6 +25,7 @@ export default defineConfig({
       "nvp.ui/polite-sticky": `${process.cwd()}/src/components/polite-sticky.gts`,
       "nvp.ui/theme-toggle": `${process.cwd()}/src/components/theme-toggle.gts`,
       "nvp.ui/progress-circle": `${process.cwd()}/src/components/progress-circle.gts`,
+      "nvp.ui/range-slider": `${process.cwd()}/src/components/range-slider.gts`,
       "nvp.ui/tabs": `${process.cwd()}/src/components/tabs.gts`,
       "nvp.ui/theme": `${process.cwd()}/src/components/theme.gts`,
       "nvp.ui/timeline": `${process.cwd()}/src/components/timeline.gts`,
