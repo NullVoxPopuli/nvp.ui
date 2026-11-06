@@ -19,6 +19,7 @@ export default defineConfig({
     alias: {
       "nvp.ui/browser-window": `${process.cwd()}/src/components/browser-window.gts`,
       "nvp.ui/button": `${process.cwd()}/src/components/button.gts`,
+      "nvp.ui/file-drop": `${process.cwd()}/src/components/file-drop.gts`,
       "nvp.ui/header": `${process.cwd()}/src/components/header.gts`,
       "nvp.ui/pagination": `${process.cwd()}/src/components/pagination.gts`,
       "nvp.ui/table": `${process.cwd()}/src/components/table.gts`,

@@ -4,6 +4,7 @@ export { Avatar, AvatarGroup } from "./components/avatar.gts";
 export { BrowserWindow } from "./components/browser-window.gts";
 export { Button } from "./components/button.gts";
 export { ExternalLink } from "./components/external-link.gts";
+export { FileDrop } from "./components/file-drop.gts";
 export { Header } from "./components/header.gts";
 export { Menu } from "./components/menu.gts";
 export { Navigation } from "./components/navigation.gts";
